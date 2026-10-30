@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="260" viewBox="0 0 360 260">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#d7fff2"/>
+      <stop offset="1" stop-color="#fbfffd"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="260" fill="url(#g)"/>
+  <path d="M36 214c42-72 84-116 140-130-22 62-70 109-140 130z" fill="#6bcf75" opacity=".8"/>
+  <path d="M108 84h58l-9 140h-40L108 84z" fill="#75e5c3" stroke="#2fc19a" stroke-width="3"/>
+  <path d="M120 70h34v18h-34z" fill="#50d5b2"/>
+  <rect x="120" y="118" width="34" height="56" rx="5" fill="#efffff"/>
+  <text x="137" y="139" text-anchor="middle" font-size="16" fill="#1466b8" font-family="Arial, sans-serif" font-weight="700">飘柔</text>
+  <text x="230" y="96" font-size="42" fill="#2057b5" font-family="Arial, sans-serif" font-weight="700">3重去油</text>
+  <text x="232" y="142" font-size="36" fill="#2057b5" font-family="Arial, sans-serif" font-weight="700">又去屑</text>
+  <text x="235" y="180" font-size="22" fill="#276" font-family="Arial, sans-serif">一顺到底</text>
+</svg>

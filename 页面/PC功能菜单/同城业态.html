@@ -1,0 +1,112 @@
+<section class="city-format-page" id="cityFormatPage" hidden aria-label="同城业态">
+  <div class="city-format-toolbar">
+    <button class="btn primary" type="button" data-city-format-action="新增业态">新增业态</button>
+  </div>
+
+  <div class="city-format-table-scroll">
+    <table class="city-format-table">
+      <colgroup>
+        <col style="width: 15.4%" />
+        <col style="width: 15.4%" />
+        <col style="width: 15.4%" />
+        <col style="width: 15.4%" />
+        <col style="width: 15.4%" />
+        <col style="width: 23%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>业态ID</th>
+          <th>业态名称</th>
+          <th>创建时间</th>
+          <th>更新时间</th>
+          <th>创建人</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>36</td>
+          <td>大卖场</td>
+          <td>2020-02-20 16:33:03</td>
+          <td>2025-12-04 16:00:58</td>
+          <td>王琰</td>
+          <td class="city-format-actions">
+            <button type="button" data-city-format-action="编辑" data-city-format-name="大卖场">编辑</button>
+            <button type="button" data-city-format-action="删除" data-city-format-name="大卖场">删除</button>
+            <button type="button" data-city-format-action="配置" data-city-format-name="大卖场">配置</button>
+          </td>
+        </tr>
+        <tr>
+          <td>125</td>
+          <td>恺源</td>
+          <td>2025-09-22 10:02:29</td>
+          <td>2026-04-23 10:07:45</td>
+          <td>齐伟伟-恺源</td>
+          <td class="city-format-actions">
+            <button type="button" data-city-format-action="编辑" data-city-format-name="恺源">编辑</button>
+            <button type="button" data-city-format-action="删除" data-city-format-name="恺源">删除</button>
+            <button type="button" data-city-format-action="配置" data-city-format-name="恺源">配置</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal-mask city-format-invoice-mask" id="cityFormatInvoiceModal" aria-hidden="true">
+    <section class="city-format-invoice-modal" role="dialog" aria-modal="true" aria-labelledby="cityFormatInvoiceTitle">
+      <header class="city-format-invoice-header">
+        <div>
+          <h2 id="cityFormatInvoiceTitle">配置</h2>
+          <p>当前业态：<strong id="cityFormatInvoiceName">-</strong></p>
+        </div>
+        <button class="city-format-invoice-close" id="cityFormatInvoiceClose" type="button" aria-label="关闭">×</button>
+      </header>
+
+      <div class="city-format-config-tabs" role="tablist" aria-label="配置功能">
+        <button class="active" id="cityFormatInvoiceTab" type="button" role="tab" aria-selected="true" aria-controls="cityFormatInvoiceForm">开票配置</button>
+      </div>
+
+      <form id="cityFormatInvoiceForm" role="tabpanel" aria-labelledby="cityFormatInvoiceTab" tabindex="0" novalidate>
+        <div class="city-format-invoice-body">
+          <div class="city-format-invoice-rule" role="note" aria-labelledby="cityFormatInvoiceRuleTitle">
+            <i aria-hidden="true">!</i>
+            <div class="city-format-invoice-rule-content">
+              <strong id="cityFormatInvoiceRuleTitle">开票规则说明</strong>
+              <ul>
+                <li>开通渠道后，可配置该渠道参与开票的费用项。</li>
+                <li>商品实付金额为必开票项，无需单独配置。</li>
+                <li>支持配置费用项：打包费、包装费、配送费。</li>
+                <li>打包费、包装费、配送费需在各渠道下分别配置对应商品编码，勾选费用项后必须填写该渠道的商品编码。</li>
+                <li>默认开票规则：顾客开票金额 = 商品实付金额 + 打包费 + 包装费 + 实付配送费</li>
+                <li>若渠道单独配置开票规则，则按照渠道配置的费用项计算开票金额。</li>
+                <li>未勾选的费用项不计入顾客开票金额。</li>
+              </ul>
+            </div>
+          </div>
+
+          <fieldset class="city-format-invoice-channels">
+            <legend><span class="city-format-required">*</span>开通渠道：</legend>
+            <div class="city-format-channel-options">
+              <label><input type="checkbox" name="cityFormatInvoiceChannel" value="jd-home" data-channel-name="京东到家" />京东到家</label>
+              <label><input type="checkbox" name="cityFormatInvoiceChannel" value="meituan" data-channel-name="美团外卖" />美团外卖</label>
+              <label><input type="checkbox" name="cityFormatInvoiceChannel" value="taobao-flash" data-channel-name="淘宝闪购" />淘宝闪购</label>
+              <label><input type="checkbox" name="cityFormatInvoiceChannel" value="douyin-shop" data-channel-name="抖店" />抖店</label>
+            </div>
+          </fieldset>
+
+          <section class="city-format-invoice-items" aria-labelledby="cityFormatInvoiceItemsTitle">
+            <h3 id="cityFormatInvoiceItemsTitle">渠道开票项配置：</h3>
+            <div id="cityFormatInvoiceItemPanels">
+              <div class="city-format-invoice-empty">请先勾选开通渠道</div>
+            </div>
+          </section>
+        </div>
+
+        <footer class="city-format-invoice-footer">
+          <button class="btn" id="cityFormatInvoiceCancel" type="button">取消</button>
+          <button class="btn primary" type="submit">保存</button>
+        </footer>
+      </form>
+    </section>
+  </div>
+</section>

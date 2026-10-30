@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Local credentials and environments
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Dependencies and generated files
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+*.log
+*.tmp
+*.bak
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

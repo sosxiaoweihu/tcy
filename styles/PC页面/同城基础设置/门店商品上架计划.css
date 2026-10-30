@@ -1,0 +1,389 @@
+.store-shelf-plan-panel {
+  padding-top: var(--spacing-lg);
+}
+
+.store-shelf-plan-business {
+  width: 440px;
+  max-width: 100%;
+  margin-bottom: var(--spacing-lg);
+}
+
+.store-shelf-plan-filters {
+  display: grid;
+  grid-template-columns: repeat(var(--store-plan-filter-cols, 3), minmax(0, 1fr)) auto;
+  gap: var(--spacing-lg) var(--spacing-xl);
+  align-items: center;
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.store-shelf-plan-filters > label {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-sm);
+  white-space: nowrap;
+}
+
+.store-shelf-plan-filters input,
+.store-shelf-plan-filters select {
+  width: 100%;
+  height: 32px;
+}
+
+.store-shelf-plan-filter-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  justify-content: flex-end;
+  grid-column: -2 / -1;
+  grid-row: 1;
+}
+
+.store-shelf-plan-filter-actions .link-button {
+  min-width: 52px;
+  height: 32px;
+}
+
+.store-shelf-plan-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl) 0 var(--spacing-md);
+}
+
+.store-shelf-plan-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.store-shelf-plan-batch {
+  position: relative;
+}
+
+.store-shelf-plan-batch-menu {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + var(--spacing-xs));
+  left: 0;
+  min-width: 128px;
+  padding: var(--spacing-xs);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-dropdown);
+}
+
+.store-shelf-plan-batch-menu button {
+  display: block;
+  width: 100%;
+  height: 32px;
+  padding: 0 var(--spacing-md);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+.store-shelf-plan-batch-menu button:hover {
+  background: var(--color-bg-hover);
+}
+
+.store-shelf-plan-batch-menu .store-shelf-plan-danger,
+.store-shelf-plan-row-actions .store-shelf-plan-danger {
+  color: var(--color-danger);
+}
+
+.store-shelf-plan-table-scroll {
+  overflow: auto;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+}
+
+.store-shelf-plan-table {
+  width: 100%;
+  min-width: 1534px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--font-size-body);
+}
+
+.store-shelf-plan-table th,
+.store-shelf-plan-table td {
+  border-right: 1px solid var(--color-border-default);
+  border-bottom: 1px solid var(--color-border-default);
+  padding: var(--spacing-md);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.store-shelf-plan-table th {
+  height: 48px;
+  color: var(--color-text-primary);
+  background: var(--color-bg-table-header);
+  font-size: var(--font-size-table-header);
+  font-weight: 600;
+}
+
+.store-shelf-plan-table td {
+  height: 104px;
+  background: var(--color-bg-card);
+  line-height: 20px;
+}
+
+.store-shelf-plan-table tbody tr:nth-child(even) td {
+  background: var(--color-bg-page);
+}
+
+.store-shelf-plan-table tbody tr:hover td {
+  background: var(--color-bg-hover);
+}
+
+.store-shelf-plan-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.store-shelf-plan-table th:nth-child(2),
+.store-shelf-plan-table td:nth-child(2),
+.store-shelf-plan-table th:nth-child(3),
+.store-shelf-plan-table td:nth-child(3),
+.store-shelf-plan-table th:last-child,
+.store-shelf-plan-table td:last-child {
+  text-align: left;
+}
+
+.store-shelf-plan-table th:last-child,
+.store-shelf-plan-table td:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 1;
+  border-right: 0;
+  box-shadow: -1px 0 0 var(--color-border-default), -4px 0 8px rgba(16, 24, 40, 0.04);
+}
+
+.store-shelf-plan-table th:last-child {
+  z-index: 2;
+}
+
+.store-shelf-plan-product {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.store-shelf-plan-product-image {
+  display: block;
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  background-image: url("../../../assets/store-shelf-plan-reference.png");
+  background-size: 1232px 553.7px;
+  background-position: -63px var(--store-plan-photo-y);
+  background-repeat: no-repeat;
+  background-color: var(--color-bg-card);
+}
+
+.store-shelf-plan-product strong {
+  display: block;
+  font-weight: 400;
+}
+
+.store-shelf-plan-table small {
+  display: block;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-secondary);
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+
+.store-shelf-plan-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs) var(--spacing-sm);
+}
+
+.store-shelf-plan-row-actions button {
+  font-size: var(--font-size-body);
+  line-height: 22px;
+}
+
+.store-shelf-plan-row-actions button:last-child {
+  width: 100%;
+  text-align: left;
+}
+
+.store-shelf-plan-table select {
+  width: 76px;
+  height: 32px;
+  padding: 0 var(--spacing-xs);
+  color: var(--color-text-secondary);
+}
+
+.store-shelf-plan-table select[data-status="enabled"] {
+  color: var(--color-success);
+}
+
+.store-shelf-plan-empty {
+  padding: 64px var(--spacing-xl);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.store-shelf-plan-pagination {
+  flex-wrap: wrap;
+  padding-right: 0;
+  border-top: 0;
+}
+
+.store-shelf-plan-pagination button:disabled {
+  color: var(--color-text-placeholder);
+  cursor: not-allowed;
+}
+
+.store-shelf-plan-dialog {
+  width: min(640px, calc(100vw - 48px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: var(--radius-lg);
+  color: var(--color-text-primary);
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-modal);
+  font-size: var(--font-size-body);
+}
+
+.store-shelf-plan-dialog::backdrop {
+  background: rgba(16, 24, 40, 0.45);
+}
+
+.store-shelf-plan-dialog header,
+.store-shelf-plan-dialog footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg) var(--spacing-xl);
+}
+
+.store-shelf-plan-dialog header {
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.store-shelf-plan-dialog h2 {
+  margin: 0;
+  font-size: var(--font-size-page-title);
+}
+
+.store-shelf-plan-dialog footer {
+  justify-content: flex-end;
+  border-top: 1px solid var(--color-border-default);
+}
+
+.store-shelf-plan-dialog-body {
+  padding: var(--spacing-xl);
+}
+
+.store-shelf-plan-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border: 1px solid #ffe0a3;
+  border-radius: var(--radius-md);
+  color: #b54708;
+  background: #fff7e6;
+  line-height: 22px;
+}
+
+.store-shelf-plan-note i {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 16px;
+  height: 16px;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: var(--color-warning);
+  color: #fff;
+  font-style: normal;
+  font-size: var(--font-size-secondary);
+}
+
+.store-shelf-plan-editor-fields {
+  display: grid;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.store-shelf-plan-editor-fields > label,
+.store-shelf-plan-editor-row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.store-shelf-plan-editor-fields input,
+.store-shelf-plan-editor-fields select {
+  width: 100%;
+}
+
+.store-shelf-plan-range {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.store-shelf-plan-confirm {
+  width: min(480px, calc(100vw - 48px));
+}
+
+.store-shelf-plan-confirm p {
+  margin: 0;
+  line-height: 24px;
+}
+
+.store-shelf-plan-details {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: var(--spacing-lg) var(--spacing-md);
+  margin: var(--spacing-xl) 0 0;
+  line-height: 22px;
+}
+
+.store-shelf-plan-details dt {
+  color: var(--color-text-secondary);
+}
+
+.store-shelf-plan-details dd {
+  margin: 0;
+}
+
+.store-shelf-plan-panel select:focus-visible,
+.store-shelf-plan-table-scroll:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .store-shelf-plan-filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .store-shelf-plan-filter-actions {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .store-shelf-plan-editor-fields > label,
+  .store-shelf-plan-editor-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-sm);
+  }
+}

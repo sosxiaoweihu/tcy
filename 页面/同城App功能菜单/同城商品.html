@@ -1,0 +1,21 @@
+<section class="city-products-page" id="cityProductsPage" aria-label="商品管理" hidden>
+  <header class="cp-top"><div class="cp-status"><strong>10:25</strong><span>▥ 4G <b>94</b></span></div><div class="cp-title"><button type="button" data-cp-back aria-label="返回全部工具">〈</button><button type="button" class="cp-search-close" data-cp-search-close aria-label="关闭搜索结果" hidden>×</button><h1>商品管理</h1></div></header>
+  <form class="cp-search" role="search"><span aria-hidden="true"></span><input aria-label="商品编码、条码或名称" placeholder="请输入商品编码/条码/名称"><button type="submit">搜索</button></form>
+  <nav class="cp-tabs" aria-label="商品状态"></nav>
+  <div class="cp-main"><nav class="cp-categories" aria-label="商品分类"></nav><section class="cp-content"><header><strong id="cpCategoryTitle">水果类</strong><button type="button" data-cp-batch>批量管理</button></header><div class="cp-list"></div></section></div>
+  <div class="cp-batch" hidden><label><input type="checkbox" data-cp-all>全选</label><span data-cp-selected aria-live="polite">已选0件</span><div class="cp-batch-buttons"><button type="button" data-cp-batch-action="up">批量上架</button><button type="button" data-cp-batch-action="down">批量下架</button><button type="button" data-cp-batch-action="pause">临时下架</button></div></div>
+  <footer class="cp-footer"><span>当前门店： <strong id="cpStoreName">联家西藏路店</strong></span><button type="button" data-cp-store>切换门店</button></footer>
+  <section class="cp-detail" aria-label="商品详情" hidden>
+    <div class="cp-detail-content">
+      <section class="cp-detail-summary" aria-label="商品基本信息"></section>
+      <section class="cp-detail-channels" aria-label="按渠道上下架">
+        <table><thead><tr><th scope="col">平台</th><th scope="col">当前价格</th><th scope="col">状态</th></tr></thead><tbody></tbody></table>
+        <div class="cp-detail-save"><button type="button" data-cp-save-channels>保存上下架</button><button type="button" data-cp-detail-pause>临时下架</button></div>
+      </section>
+      <section class="cp-detail-stock" aria-label="库存设置"><label for="cpDetailStock">可售库存</label><input id="cpDetailStock" type="number" min="0" step="1" inputmode="numeric" aria-label="可售库存"><button type="button" data-cp-save-stock>保存库存</button></section>
+    </div>
+    <footer class="cp-detail-footer"><button type="button" data-cp-detail-cancel>取消</button></footer>
+  </section>
+  <div class="cp-sheet" hidden><button class="cp-mask" type="button" aria-label="关闭门店选择"></button><section role="dialog" aria-modal="true" aria-label="选择门店"><header><strong>选择门店</strong><button type="button" data-cp-close>×</button></header><div class="cp-stores"></div></section></div>
+  <div class="cp-toast" role="status" hidden></div>
+</section>

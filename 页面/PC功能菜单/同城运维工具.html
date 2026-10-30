@@ -1,0 +1,303 @@
+<section class="city-ops-page" id="cityOpsPage" hidden aria-label="同城运维工具">
+  <div class="city-ops-status-bar" role="radiogroup" aria-label="切换状态">
+    <span>切换状态</span>
+    <label><input type="radio" name="cityOpsEnvironment" value="商超测试" checked />商超测试</label>
+    <label><input type="radio" name="cityOpsEnvironment" value="抖音1" />抖音1</label>
+  </div>
+
+  <div class="city-ops-layout">
+    <aside class="city-ops-subnav" aria-label="运维工具菜单">
+      <button class="active" type="button" data-city-ops-tool="platform" aria-controls="cityOpsPlatformWorkbench" aria-pressed="true">平台商品对比工具</button>
+      <button type="button" data-city-ops-tool="frontend-category" aria-controls="cityOpsFrontendCategoryWorkbench" aria-pressed="false">前台类目对比工具</button>
+    </aside>
+
+    <section class="city-ops-workbench" id="cityOpsPlatformWorkbench">
+      <header class="city-ops-title">
+        <h1>门店对比工具</h1>
+      </header>
+
+      <form class="city-ops-form" id="cityOpsForm">
+        <fieldset class="city-ops-field city-ops-compare-types">
+          <legend><span class="required-star">*</span>对比类型：</legend>
+          <label><input type="checkbox" name="cityOpsCompareType" value="平台存在三方无" />平台存在三方无</label>
+          <label><input type="checkbox" name="cityOpsCompareType" value="三方存在平台无" />三方存在平台无</label>
+          <label><input type="checkbox" name="cityOpsCompareType" value="价格对比" />价格对比</label>
+          <label><input type="checkbox" name="cityOpsCompareType" value="库存对比" />库存对比</label>
+        </fieldset>
+
+        <div class="city-ops-field">
+          <label class="city-ops-field-label" for="cityOpsStoreControl"><span class="required-star">*</span>对比门店：</label>
+          <div class="city-ops-store-picker" id="cityOpsStorePicker">
+            <button class="city-ops-store-control" id="cityOpsStoreControl" type="button" aria-expanded="false">
+              <span id="cityOpsStoreValue">支持多选</span>
+              <i aria-hidden="true"></i>
+            </button>
+            <div class="city-ops-store-dropdown" id="cityOpsStoreDropdown" hidden>
+              <label><input type="checkbox" value="1001" data-store-name="家得福海棠店" />1001 · 家得福海棠店</label>
+              <label><input type="checkbox" value="1139" data-store-name="家得福中央华府店" />1139 · 家得福中央华府店</label>
+              <label><input type="checkbox" value="1146" data-store-name="家得福双盛花园店" />1146 · 家得福双盛花园店</label>
+              <label><input type="checkbox" value="1191" data-store-name="家得福灌云万达店" />1191 · 家得福灌云万达店</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="city-ops-field">
+          <label class="city-ops-field-label" for="cityOpsProductFilter">对比商品：</label>
+          <input id="cityOpsProductFilter" type="text" placeholder="最多50个商品，使用英文逗号隔开，不填默认所有商品" />
+        </div>
+
+        <fieldset class="city-ops-field city-ops-channel">
+          <legend><span class="required-star">*</span>对比渠道：</legend>
+          <label><input type="radio" name="cityOpsChannel" value="美团" />美团外卖</label>
+        </fieldset>
+
+        <div class="city-ops-form-action">
+          <button class="btn primary" id="cityOpsExecuteButton" type="submit">执行</button>
+        </div>
+      </form>
+
+      <section class="city-ops-results" aria-labelledby="cityOpsResultTitle">
+        <div class="city-ops-result-heading">
+          <h2 id="cityOpsResultTitle">执行结果</h2>
+          <button class="btn primary" id="cityOpsRefreshButton" type="button">刷新</button>
+        </div>
+
+        <div class="city-ops-table-scroll">
+          <table class="city-ops-table">
+            <colgroup>
+              <col style="width: 95px" />
+              <col style="width: 140px" />
+              <col style="width: 100px" />
+              <col style="width: 95px" />
+              <col style="width: 120px" />
+              <col style="width: 95px" />
+              <col style="width: 100px" />
+              <col style="width: 95px" />
+              <col style="width: 170px" />
+              <col style="width: 95px" />
+              <col style="width: 170px" />
+              <col style="width: 95px" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>任务编码</th>
+                <th>对比类型</th>
+                <th>对比渠道</th>
+                <th>对比门店</th>
+                <th>对比商品</th>
+                <th>差异条数</th>
+                <th>核对总条数</th>
+                <th>拉取数量</th>
+                <th>创建时间</th>
+                <th>创建人</th>
+                <th>完成时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="cityOpsTableBody">
+              <tr data-task-code="285">
+                <td>285</td>
+                <td>平台存在三方无</td>
+                <td>美团</td>
+                <td>1001</td>
+                <td>全部商品</td>
+                <td>1</td>
+                <td>13</td>
+                <td>18</td>
+                <td>2024-07-15 23:21:53</td>
+                <td>朱</td>
+                <td>2024-07-15 23:21:55</td>
+                <td><button class="city-ops-download" type="button" data-download-task="285">下载差异</button></td>
+              </tr>
+              <tr data-task-code="286">
+                <td>286</td>
+                <td>三方存在平台无</td>
+                <td>美团</td>
+                <td>1001</td>
+                <td>全部商品</td>
+                <td>5016</td>
+                <td>5029</td>
+                <td>18</td>
+                <td>2024-07-15 23:21:53</td>
+                <td>朱</td>
+                <td>2024-07-15 23:21:55</td>
+                <td><button class="city-ops-download" type="button" data-download-task="286">下载差异</button></td>
+              </tr>
+              <tr data-task-code="287">
+                <td>287</td>
+                <td>价格对比</td>
+                <td>美团</td>
+                <td>1001</td>
+                <td>全部商品</td>
+                <td>3</td>
+                <td>13</td>
+                <td>18</td>
+                <td>2024-07-15 23:21:53</td>
+                <td>朱</td>
+                <td>2024-07-15 23:21:55</td>
+                <td><button class="city-ops-download" type="button" data-download-task="287">下载差异</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="city-ops-empty" id="cityOpsEmptyState" hidden>暂无执行结果</div>
+        </div>
+      </section>
+    </section>
+
+    <section class="city-ops-workbench" id="cityOpsFrontendCategoryWorkbench" hidden>
+      <header class="city-ops-title">
+        <h1>前台类目对比工具</h1>
+      </header>
+
+      <form class="city-ops-form" id="frontendCategoryCompareForm">
+        <fieldset class="city-ops-field city-ops-channel">
+          <legend><span class="required-star">*</span>对比渠道：</legend>
+          <label><input type="radio" name="frontendCategoryChannel" value="美团外卖" />美团外卖</label>
+          <label><input type="radio" name="frontendCategoryChannel" value="饿百" />饿百</label>
+        </fieldset>
+
+        <div class="city-ops-field">
+          <label class="city-ops-field-label" for="frontendCategoryStoreControl"><span class="required-star">*</span>对比门店：</label>
+          <div class="city-ops-store-picker" id="frontendCategoryStorePicker">
+            <button class="city-ops-store-control" id="frontendCategoryStoreControl" type="button" aria-expanded="false">
+              <span id="frontendCategoryStoreValue">支持多选</span>
+              <i aria-hidden="true"></i>
+            </button>
+            <div class="city-ops-store-dropdown" id="frontendCategoryStoreDropdown" hidden>
+              <label><input type="checkbox" value="1001" data-store-name="家得福海棠店" />1001 · 家得福海棠店</label>
+              <label><input type="checkbox" value="1139" data-store-name="家得福中央华府店" />1139 · 家得福中央华府店</label>
+              <label><input type="checkbox" value="1146" data-store-name="家得福双盛花园店" />1146 · 家得福双盛花园店</label>
+              <label><input type="checkbox" value="1191" data-store-name="家得福灌云万达店" />1191 · 家得福灌云万达店</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="city-ops-form-action">
+          <button class="btn primary" id="frontendCategoryExecuteButton" type="submit">执行</button>
+        </div>
+      </form>
+
+      <section class="city-ops-results" aria-labelledby="frontendCategoryResultTitle">
+        <div class="city-ops-result-heading">
+          <h2 id="frontendCategoryResultTitle">执行结果</h2>
+          <button class="btn primary" id="frontendCategoryRefreshButton" type="button">刷新</button>
+        </div>
+
+        <div class="city-ops-table-scroll">
+          <table class="city-ops-table frontend-category-compare-table">
+            <colgroup>
+              <col style="width: 100px" />
+              <col style="width: 120px" />
+              <col style="width: 130px" />
+              <col style="width: 110px" />
+              <col style="width: 110px" />
+              <col style="width: 110px" />
+              <col style="width: 120px" />
+              <col style="width: 180px" />
+              <col style="width: 100px" />
+              <col style="width: 180px" />
+              <col style="width: 160px" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>任务编码</th>
+                <th>对比渠道</th>
+                <th>对比门店</th>
+                <th>对比差异</th>
+                <th>修正差异</th>
+                <th>对比状态</th>
+                <th>修正状态</th>
+                <th>创建时间</th>
+                <th>创建人</th>
+                <th>完成时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="frontendCategoryTableBody">
+              <tr data-task-code="308">
+                <td>308</td>
+                <td>美团外卖</td>
+                <td>1001</td>
+                <td>12</td>
+                <td>--</td>
+                <td>对比完成</td>
+                <td class="frontend-category-correction-status">--</td>
+                <td>2024-07-16 10:12:08</td>
+                <td>朱</td>
+                <td>2024-07-16 10:12:12</td>
+                <td>
+                  <div class="city-ops-row-actions">
+                    <button class="city-ops-download" type="button" data-frontend-category-download="308">下载差异</button>
+                    <button class="city-ops-download" type="button" data-frontend-category-correct="308">修正</button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-task-code="309">
+                <td>309</td>
+                <td>饿百</td>
+                <td>1139</td>
+                <td>8</td>
+                <td>--</td>
+                <td>对比完成</td>
+                <td class="frontend-category-correction-status">--</td>
+                <td>2024-07-16 10:18:35</td>
+                <td>朱</td>
+                <td>2024-07-16 10:18:39</td>
+                <td>
+                  <div class="city-ops-row-actions">
+                    <button class="city-ops-download" type="button" data-frontend-category-download="309">下载差异</button>
+                    <button class="city-ops-download" type="button" data-frontend-category-correct="309">修正</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="city-ops-empty" id="frontendCategoryEmptyState" hidden>暂无执行结果</div>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <div class="modal-mask" id="frontendCategoryCorrectionModal" aria-hidden="true">
+    <section class="modal frontend-category-correction-modal" role="dialog" aria-modal="true" aria-labelledby="frontendCategoryCorrectionTitle">
+      <header class="modal-header">
+        <h2 id="frontendCategoryCorrectionTitle">类目修正</h2>
+        <button class="icon-button" id="closeFrontendCategoryCorrectionModal" type="button" aria-label="关闭类目修正窗口">×</button>
+      </header>
+      <form id="frontendCategoryCorrectionForm">
+        <div class="frontend-category-correction-body">
+          <label class="frontend-category-correction-field" for="frontendCategoryCorrectionStore">
+            <span><i>*</i>门店选择：</span>
+            <select id="frontendCategoryCorrectionStore">
+              <option value="">请选择门店</option>
+              <option value="all">全选门店</option>
+              <option value="1001">1001 · 家得福海棠店</option>
+              <option value="1139">1139 · 家得福中央华府店</option>
+              <option value="1146">1146 · 家得福双盛花园店</option>
+              <option value="1191">1191 · 家得福灌云万达店</option>
+            </select>
+          </label>
+          <div class="frontend-category-correction-description" role="note" aria-label="类目修正提示">
+            <i aria-hidden="true">!</i>
+            <div class="frontend-category-correction-description-content">
+              <p><strong>提示：</strong>以下场景将自动修正：</p>
+              <ol>
+                <li>同城有平台无-新增</li>
+                <li>平台有同城无-删除</li>
+                <li>二级类目编码重复，名称不一致-删除</li>
+                <li>二级类目父级层级不一致-改层级</li>
+                <li>二级编码层级一致名称不一致-改名称</li>
+                <li>一级编码重复，名称不一致-删除</li>
+                <li>一级编码名称不一致-改名称</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <footer class="frontend-category-correction-footer">
+          <button class="btn" id="cancelFrontendCategoryCorrection" type="button">取消</button>
+          <button class="btn primary" type="submit">提交修正</button>
+        </footer>
+      </form>
+    </section>
+  </div>
+</section>

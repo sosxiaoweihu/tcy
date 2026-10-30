@@ -1,0 +1,35 @@
+:root {
+  --color-primary: #1677ff;
+  --color-primary-hover: #4096ff;
+  --color-danger: #d92d20;
+  --color-warning: #f79009;
+  --color-success: #12b76a;
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #667085;
+  --color-text-placeholder: #98a2b3;
+  --color-border-default: #d0d5dd;
+  --color-bg-page: #f3f6fb;
+  --color-bg-card: #ffffff;
+  --color-bg-table-header: #eef4ff;
+  --color-bg-selected-row: #eaf3ff;
+  --color-bg-hover: #f5f9ff;
+
+  --font-size-page-title: 18px;
+  --font-size-body: 14px;
+  --font-size-secondary: 12px;
+  --font-size-table-header: 13px;
+  --font-size-button: 14px;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  --shadow-dropdown: 0 8px 24px rgba(16, 24, 40, 0.12);
+  --shadow-modal: 0 20px 48px rgba(16, 24, 40, 0.22);
+}

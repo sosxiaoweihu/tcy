@@ -1,0 +1,11 @@
+<section id="cityInventoryLogPage" class="inventory-log-page" hidden aria-label="同城库存操作日志">
+  <form id="inventoryLogFilters" class="inventory-log-filters">
+    <label>同步结果：<select id="inventoryLogResult"><option value="">请选择同步结果</option><option>成功</option><option>失败</option></select></label>
+    <div class="inventory-log-time"><span>操作时间：</span><button type="button" id="inventoryLogDateButton" aria-expanded="false"><span aria-hidden="true">◷</span><span id="inventoryLogDateText"></span></button>
+      <div id="inventoryLogDatePanel" class="inventory-log-date-panel" hidden><label>开始时间<input id="inventoryLogStart" type="datetime-local" step="1" /></label><label>结束时间<input id="inventoryLogEnd" type="datetime-local" step="1" /></label><p id="inventoryLogDateError" role="alert"></p><div><button class="btn" type="button" id="inventoryLogDateCancel">取消</button><button class="btn primary" type="button" id="inventoryLogDateApply">确定</button></div></div>
+    </div>
+    <div class="inventory-log-actions"><button class="btn primary" type="submit">查 询</button><button class="btn inventory-reset" type="reset">重 置</button></div>
+  </form>
+  <section class="inventory-log-card"><div class="inventory-log-scroll"><table class="inventory-log-table"><colgroup><col style="width:12.5%"><col style="width:10%"><col style="width:9%"><col style="width:8%"><col style="width:8%"><col style="width:8%"><col style="width:12.5%"><col style="width:12%"><col style="width:7.5%"><col style="width:12.5%"></colgroup><thead><tr><th>操作信息</th><th>线上可售库存变化</th><th>线上可售库存</th><th>线上库存</th><th>库存比例</th><th>安全库存</th><th>同步结果</th><th>单号</th><th>操作人</th><th>操作时间</th></tr></thead><tbody id="inventoryLogRows"></tbody></table></div></section>
+  <div id="inventoryLogFeedback" class="inventory-toast" role="status" hidden></div>
+</section>

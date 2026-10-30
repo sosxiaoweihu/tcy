@@ -1,0 +1,100 @@
+<section class="interface-page" id="interfacePage" hidden>
+          <aside class="interface-list">
+            <h2>接口列表</h2>
+            <button class="active" data-interface="skuCateBrand">
+              <span>根据商品名称获取推荐的类目品牌接口</span>
+              <em>【pms/getSkuCateBrandBySkuName】</em>
+            </button>
+          </aside>
+
+          <section class="api-tool">
+            <div class="api-left">
+              <h1>API 调用工具</h1>
+              <div class="api-warning">此操作对正式环境真实数据操作，请谨慎操作！</div>
+
+              <table class="api-param-table">
+                <colgroup>
+                  <col class="api-name-col" />
+                  <col class="api-value-col" />
+                  <col class="api-desc-col" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>参数名称</th>
+                    <th>参数值</th>
+                    <th>参数描述</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>API 类目</td>
+                    <td>常规接口</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>方法名</td>
+                    <td>jd.o2o.pms.getSkuCateBrandBySkuName</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>版本号</td>
+                    <td>1.0</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>token</td>
+                    <td><span class="required-star">*</span><input id="apiToken" value="" /></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>app_key</td>
+                    <td><span class="required-star">*</span><input id="apiAppKey" value="" /></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>app_secret</td>
+                    <td><span class="required-star">*</span><input id="apiAppSecret" value="" /></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table class="api-param-table business-params">
+                <colgroup>
+                  <col class="api-name-col" />
+                  <col class="api-value-col" />
+                  <col class="api-desc-col" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td>productName</td>
+                    <td><span class="required-star">*</span><input id="apiProductName" value="蒙牛软牛奶200ml*10" /></td>
+                    <td>商品名称</td>
+                  </tr>
+                  <tr class="param-section">
+                    <td colspan="3">fields</td>
+                  </tr>
+                  <tr>
+                    <td>fields</td>
+                    <td><span class="required-star">*</span><input id="apiFields" value="brand,category" /></td>
+                    <td>获取字段名 推荐品牌-brand；推荐类目-category；</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <button class="api-submit" id="apiSubmitButton">提交测试</button>
+            </div>
+
+            <div class="api-right">
+              <label>
+                <span>提交参数：</span>
+                <textarea id="apiRequestText" placeholder="点击提交测试后自动生成提交参数" spellcheck="false"></textarea>
+              </label>
+
+              <label>
+                <span>返回结果：</span>
+                <textarea id="apiResponseText" placeholder="点击提交测试后自动展示返回结果" spellcheck="false"></textarea>
+              </label>
+            </div>
+          </section>
+        </section>

@@ -1,0 +1,16 @@
+<section id="cityInventoryPage" class="city-inventory-page" hidden aria-label="同城库存">
+  <div class="inventory-format">切换业态： <label><input type="radio" checked name="inventoryFormat" /> 卖场</label></div>
+  <form class="inventory-filters" id="inventoryFilters">
+    <label class="inventory-store-label">门店信息：<span class="inventory-store"><span id="inventoryStoreTag">1001_1001_联家恒通店 <button type="button" data-inventory-action="clear-store" aria-label="清除门店">×</button></span><select id="inventoryStore" aria-label="门店信息"><option value="1001">1001_1001_联家恒通店</option><option value="">全部门店</option></select></span></label>
+    <label>商品编码：<input id="inventoryCode" placeholder="请输入商品编码" /></label>
+    <label>商品名称：<input id="inventoryName" placeholder="请输入商品名称" /></label>
+    <div class="inventory-query"><button class="btn primary" type="submit">查 询</button><button class="btn inventory-reset" type="reset">重 置</button></div>
+  </form>
+  <section class="inventory-card">
+    <div class="inventory-toolbar"><button class="btn primary" data-inventory-action="import">批量导入库存</button><button class="btn" data-inventory-action="sync">设置库存同步</button><button class="btn" data-inventory-action="export">导出库存</button></div>
+    <div class="inventory-scroll"><table class="inventory-table"><colgroup><col style="width:19.3%"><col style="width:8%"><col style="width:10.5%"><col style="width:10.5%"><col style="width:10.5%"><col style="width:10.5%"><col style="width:10.5%"><col style="width:10.5%"><col style="width:9.7%"></colgroup><thead><tr><th>商品信息</th><th>门店信息</th><th>门店库存</th><th>库存比例 <i title="按门店库存比例同步线上库存">i</i></th><th>线上库存 <i title="当前线上库存数量">i</i></th><th>安全库存 <i title="预留的安全库存数量">i</i></th><th>线上可售库存 <i title="线上可销售的库存数量">i</i></th><th>接收库存同步 <i title="是否接收门店库存同步">i</i></th><th>操作</th></tr></thead><tbody id="inventoryRows"></tbody></table></div>
+    <footer class="inventory-pagination"><span id="inventoryTotal"></span><nav id="inventoryPages" aria-label="库存分页"></nav><label>前往 <input id="inventoryJump" type="number" min="1" value="1" aria-label="库存页码" /> 页</label></footer>
+  </section>
+  <dialog id="inventoryDialog" class="inventory-dialog"><form method="dialog"><header><strong id="inventoryDialogTitle"></strong><button value="cancel" aria-label="关闭">×</button></header><div id="inventoryDialogBody"></div><footer><button class="btn" value="cancel">取消</button><button class="btn primary" id="inventoryConfirm" value="default">确定</button></footer></form></dialog>
+  <div id="inventoryToast" class="inventory-toast" role="status" hidden></div>
+</section>

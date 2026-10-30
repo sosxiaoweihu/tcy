@@ -1,0 +1,70 @@
+<section class="local-life-verify-page" id="localLifeVerifyPage" hidden>
+          <div class="verify-filters collapsed">
+            <label><span>平台券码：</span><input placeholder="请输入平台券码" /></label>
+            <label><span>平台订单号：</span><input placeholder="请输入平台订单号" /></label>
+            <label><span>创建时间：</span><button class="date-picker">◷ 2026-06-02 至 2026-06-02</button></label>
+            <label><span>渠道：</span><select><option>请选择渠道</option><option>抖音券</option><option>美团券</option><option>支付宝券</option></select></label>
+            <label><span>核销门店：</span><select><option>请选择门店</option><option>家得福海棠店</option><option>家得福双盛花园店</option></select></label>
+            <label><span>核销状态：</span><select><option>请选择核销状态</option><option>已核销</option><option>已撤销</option></select></label>
+            <label><span>核销时间：</span><button class="date-picker">◷ 开始时间　至　结束时间</button></label>
+            <label><span>商品名称：</span><input placeholder="请输入商品名称" /></label>
+            <label><span>POS订单号：</span><input placeholder="请输入POS订单号" /></label>
+            <div class="local-life-filter-actions">
+              <button class="btn primary">查 询</button>
+              <button class="btn">重 置</button>
+              <button class="collapse-arrow" data-filter-toggle="verify" aria-label="展开筛选">⌄</button>
+            </div>
+          </div>
+
+          <div class="verify-toolbar">
+            <p>说明：因抖音实时查询分账接口下线，3月底将无法获取包括：券金额、营销费用、佣金等相关信息，商家可以从抖音后台下载分账明细。</p>
+            <div>
+              <button class="btn">导 出</button>
+              <button class="btn">查看导出</button>
+            </div>
+          </div>
+
+          <div class="verify-table-wrap">
+            <table class="verify-table">
+              <thead>
+                <tr>
+                  <th>平台券码</th>
+                  <th>平台订单号</th>
+                  <th>POS订单号</th>
+                  <th>渠道</th>
+                  <th>商品信息</th>
+                  <th>券码状态</th>
+                  <th>核销门店</th>
+                  <th>券面值</th>
+                  <th>顾客实付</th>
+                  <th>创建时间</th>
+                  <th class="verify-sticky-col">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>109589443870018</td><td>1095526936...</td><td>11919111300256...</td><td>抖音券</td><td>100元代金券食品品...</td><td>已核销</td><td>家得福灌云万达广场...</td><td>100.0</td><td>88.0</td><td>2026-06-02 10:34:21</td><td class="verify-sticky-col"><a>撤销</a><a data-after-sale>售后</a></td></tr>
+                <tr><td>109577226834594</td><td>1095533196...</td><td>11833011901204...</td><td>支付宝券</td><td>100元代金券食品品...</td><td>已核销</td><td>家得福灌云九龙港店...</td><td>100.0</td><td>95.0</td><td>2026-06-02 10:42:09</td><td class="verify-sticky-col"><a>撤销</a><a data-verify-detail="1">查看</a><a data-after-sale>售后</a></td></tr>
+                <tr><td>109258744130082</td><td>1095500229...</td><td>11462026060265...</td><td>支付宝券</td><td>100元代金券食品品...</td><td>已核销</td><td>家得福双盛花园店 1...</td><td>100.0</td><td>97.0</td><td>2026-06-02 11:03:48</td><td class="verify-sticky-col"><a>撤销</a><a data-verify-detail="2">查看</a><a data-after-sale>售后</a></td></tr>
+                <tr><td>109596314012194</td><td>1095500176...</td><td>11462026060265...</td><td>抖音券</td><td>200元代金券食品品...</td><td>已核销</td><td>家得福双盛花园店 1...</td><td>200.0</td><td>194.0</td><td>2026-06-02 11:16:36</td><td class="verify-sticky-col"><a>撤销</a><a data-after-sale>售后</a></td></tr>
+                <tr><td>109256312317986</td><td>1095459176...</td><td>11828201400484...</td><td>抖音券</td><td>200元代金券食品品...</td><td>已核销</td><td>家得福东海锦程佳园...</td><td>200.0</td><td>193.98</td><td>2026-06-02 11:21:57</td><td class="verify-sticky-col"><a>撤销</a><a data-after-sale>售后</a></td></tr>
+                <tr><td>109573448307906</td><td>1095499857...</td><td>11919110900872...</td><td>抖音券</td><td>100元代金券食品品...</td><td>已核销</td><td>家得福灌云万达广场...</td><td>100.0</td><td>88.0</td><td>2026-06-02 11:30:18</td><td class="verify-sticky-col"><a>撤销</a><a data-after-sale>售后</a></td></tr>
+                <tr><td>109587948182402</td><td>1095526653...</td><td>10010660402299...</td><td>抖音券</td><td>100元代金券食品品...</td><td>已核销</td><td>家得福海棠店 1001</td><td>100.0</td><td>94.98</td><td>2026-06-02 11:41:03</td><td class="verify-sticky-col"><a>撤销</a><a data-after-sale>售后</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="local-life-pagination">
+            <span>共 332 条</span>
+            <button>‹</button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <strong>...</strong>
+            <button>34</button>
+            <button>›</button>
+            <label>前往 <input value="1" /> 页</label>
+          </div>
+        </section>

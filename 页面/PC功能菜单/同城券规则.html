@@ -1,0 +1,169 @@
+<section class="local-life-coupon-page" id="localLifeCouponPage" hidden>
+          <div class="coupon-rule-list" id="couponRuleList">
+          <div class="coupon-rule-filters">
+            <label><span>渠道名称：</span><select><option>请选择</option><option>美团</option><option>抖音</option><option>支付宝</option><option>快手</option></select></label>
+            <label><span>平台券商品编码：</span><input placeholder="请输入" /></label>
+            <label><span>状态：</span><select><option>请选择</option><option>生效</option><option>失效</option></select></label>
+            <div class="coupon-date-row">
+              <label><span>创建时间：</span><input placeholder="◷ 开始时间" /></label>
+              <span>~</span>
+              <input placeholder="◷ 结束时间" />
+              <select><option>日期</option></select>
+            </div>
+            <div class="local-life-filter-actions">
+              <button class="btn primary">查 询</button>
+              <button class="btn">重 置</button>
+            </div>
+          </div>
+
+          <div class="coupon-rule-toolbar">
+            <button class="btn primary" id="openCouponRuleCreate">新 建</button>
+          </div>
+
+          <div class="coupon-rule-table-wrap">
+            <table class="coupon-rule-table">
+              <thead>
+                <tr>
+                  <th>编码</th>
+                  <th>平台券商品编码</th>
+                  <th>渠道名称</th>
+                  <th>状态</th>
+                  <th>创建信息</th>
+                  <th>更新信息</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a>2059159556340572161</a></td>
+                  <td>1647375668</td>
+                  <td>美团</td>
+                  <td>生效</td>
+                  <td>2026-05-26 14:27:50</td>
+                  <td>2026-05-26 14:27:54</td>
+                  <td><a>失效</a><a>编辑</a></td>
+                </tr>
+                <tr>
+                  <td><a>2044336818255736833</a></td>
+                  <td>1454016789</td>
+                  <td>美团</td>
+                  <td>生效</td>
+                  <td>2026-04-15 16:47:34</td>
+                  <td>2026-04-15 16:47:34</td>
+                  <td><a>失效</a><a>编辑</a></td>
+                </tr>
+                <tr>
+                  <td><a>2042503609493463041</a></td>
+                  <td>1111</td>
+                  <td>美团</td>
+                  <td>失效</td>
+                  <td>2026-04-10 15:23:03</td>
+                  <td>2026-04-10 15:23:03</td>
+                  <td><a>生效</a><a>编辑</a></td>
+                </tr>
+                <tr>
+                  <td><a>2042497001864749058</a></td>
+                  <td>1633437459</td>
+                  <td>美团</td>
+                  <td>生效</td>
+                  <td>2026-04-10 14:56:47</td>
+                  <td>2026-04-15 15:08:12</td>
+                  <td><a>失效</a><a>编辑</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="local-life-pagination">
+            <span>共 4 条</span>
+            <button>‹</button>
+            <button class="active">1</button>
+            <button>›</button>
+            <label>前往 <input value="1" /> 页</label>
+          </div>
+          </div>
+
+          <div class="coupon-rule-create" id="couponRuleCreate" hidden>
+            <section class="coupon-create-card">
+              <h2>平台券</h2>
+              <div class="coupon-create-form">
+                <div class="coupon-create-row channel-row">
+                  <span class="required-label">渠道：</span>
+                  <label><input type="radio" name="couponChannel" value="美团" /> 美团</label>
+                  <label><input type="radio" name="couponChannel" value="抖音" /> 抖音</label>
+                  <label><input type="radio" name="couponChannel" value="快手" /> 快手</label>
+                  <label><input type="radio" name="couponChannel" value="支付宝" checked /> 支付宝</label>
+                </div>
+                <label class="coupon-create-row">
+                  <span class="required-label">平台券商品编码：</span>
+                  <div class="coupon-code-field">
+                    <input placeholder="请输入平台券商品编码" />
+                    <button class="btn" id="checkCouponProductButton" type="button">检查商品</button>
+                  </div>
+                </label>
+                <div class="coupon-create-row pay-mode-row">
+                  <span>支付记账方式</span>
+                  <label><input type="radio" name="payMode" /> 实收</label>
+                  <label><input type="radio" name="payMode" /> 实收+折扣</label>
+                </div>
+              </div>
+
+              <h2>商品设置</h2>
+              <div class="coupon-create-form product-setting-form">
+                <div class="coupon-create-row">
+                  <span class="required-label">参与商品：</span>
+                  <label><input type="radio" name="joinProduct" value="all" /> 全部</label>
+                  <label><input type="radio" name="joinProduct" value="product" /> 商品</label>
+                  <label><input type="radio" name="joinProduct" value="category" checked /> 品类</label>
+                  <label><input type="radio" name="joinProduct" value="brand" /> 品牌</label>
+                </div>
+                <label class="coupon-create-row coupon-join-detail" id="couponJoinProductRow" hidden>
+                  <span>商品：</span>
+                  <input id="couponJoinProductCodes" placeholder="请输入商品编码，多个商品编码以‘,’隔开" />
+                </label>
+                <label class="coupon-create-row coupon-join-detail" id="couponJoinCategoryRow">
+                  <span>品类：</span>
+                  <select><option>请选择</option></select>
+                </label>
+                <label class="coupon-create-row coupon-join-detail" id="couponJoinBrandRow" hidden>
+                  <span>品牌：</span>
+                  <select><option>请选择</option></select>
+                </label>
+                <div class="coupon-create-row" id="couponExcludeOptionsRow">
+                  <span>排除商品：</span>
+                  <label><input type="radio" name="excludeProduct" value="none" checked /> 不排除</label>
+                  <label><input type="radio" name="excludeProduct" value="product" /> 商品</label>
+                  <label><input type="radio" name="excludeProduct" value="category" /> 品类</label>
+                </div>
+                <label class="coupon-create-row coupon-exclude-detail" id="couponExcludeProductRow" hidden>
+                  <span>商品：</span>
+                  <input id="couponExcludeProductCodes" placeholder="请输入商品编码，多个商品编码以‘,’隔开" />
+                </label>
+                <div class="coupon-create-row coupon-exclude-detail" id="couponExcludeCategoryRow" hidden>
+                  <span id="couponExcludeCategoryLabel">品类：</span>
+                  <div class="coupon-category-picker" id="couponExcludeCategoryPicker">
+                    <button type="button" class="coupon-category-trigger" id="couponExcludeCategoryTrigger" aria-labelledby="couponExcludeCategoryLabel couponExcludeCategoryText" aria-expanded="false" aria-controls="couponExcludeCategoryPanel">
+                      <span id="couponExcludeCategoryText">请选择</span><span class="coupon-category-arrow" aria-hidden="true">⌄</span>
+                    </button>
+                    <div class="coupon-category-panel" id="couponExcludeCategoryPanel" hidden></div>
+                  </div>
+                </div>
+                <div class="coupon-create-row" id="couponPromotionPriceRow" role="group" aria-labelledby="couponPromotionPriceLabel" hidden>
+                  <span class="required-label" id="couponPromotionPriceLabel">促销价限制<span class="coupon-field-help" tabindex="0" role="img" aria-label="适用范围说明" aria-describedby="couponPromotionPriceTooltip">i<span class="coupon-field-tooltip" id="couponPromotionPriceTooltip" role="tooltip">只针对经典ERP有效 ，与中台促销是否排除互斥排除设置</span></span>：</span>
+                  <label><input type="radio" name="couponPromotionPrice" value="participate" checked /> 促销价参与用券</label>
+                  <label><input type="radio" name="couponPromotionPrice" value="exclude" /> 促销价不参与</label>
+                </div>
+                <div class="coupon-create-row" id="couponDiscountLimitRow" role="group" aria-labelledby="couponDiscountLimitLabel" hidden>
+                  <span class="required-label" id="couponDiscountLimitLabel">优惠券限制<span class="coupon-field-help" tabindex="0" role="img" aria-label="适用范围说明" aria-describedby="couponDiscountLimitTooltip">i<span class="coupon-field-tooltip" id="couponDiscountLimitTooltip" role="tooltip">只针对经典ERP有效 ，与中台优惠券是否排除互斥排除设置</span></span>：</span>
+                  <label><input type="radio" name="couponDiscountLimit" value="participate" checked /> 优惠券参与</label>
+                  <label><input type="radio" name="couponDiscountLimit" value="exclude" /> 优惠券不参与</label>
+                </div>
+              </div>
+
+              <div class="coupon-create-actions">
+                <button class="btn primary" id="confirmCouponRuleCreate">确定</button>
+                <button class="btn" id="cancelCouponRuleCreate">取消</button>
+              </div>
+            </section>
+          </div>
+        </section>

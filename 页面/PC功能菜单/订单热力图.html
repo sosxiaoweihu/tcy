@@ -1,0 +1,79 @@
+<section class="heatmap-page" id="heatmapPage" hidden>
+          <div class="heatmap-filters">
+            <label><span>门店</span><select><option>不选默认全部门店</option></select></label>
+            <label><span>渠道</span><select><option>全渠道-汇总</option><option>京东到家</option><option>美团外卖</option><option>饿了么</option></select></label>
+            <label><span>地点分类</span><select><option>请选择</option><option>住宅区</option><option>办公区</option><option>学校</option></select></label>
+            <label><span>配送距离段</span><select><option>请选择</option><option>0-1km</option><option>1-3km</option><option>3-5km</option></select></label>
+            <div class="date-range">
+              <button>2026-05-01 → 2026-05-30</button>
+              <button>近七天</button>
+              <button>近30天</button>
+            </div>
+            <div class="heatmap-actions">
+              <button class="btn primary">查询</button>
+              <button class="link-button">重置</button>
+              <button class="link-button">查看详情&gt;</button>
+            </div>
+          </div>
+
+          <div class="heatmap-workbench">
+            <div class="map-stage" id="heatmapStage">
+              <div class="map-canvas" id="mapCanvas">
+                <div class="river river-main"></div>
+                <div class="river river-branch"></div>
+                <div class="park park-a">都梁公园</div>
+                <div class="park park-b">山水广场</div>
+                <div class="park park-c">中央公园</div>
+                <div class="road road-a">新扬高速</div>
+                <div class="road road-b">山水大道</div>
+                <div class="road road-c">五墩广场</div>
+                <div class="map-label label-a">国贸商城</div>
+                <div class="map-label label-b">旺胎县医院</div>
+                <div class="map-label label-c">凤凰广场</div>
+                <div class="map-label label-d">奥体中心</div>
+                <div class="heat heat-strong h1"></div>
+                <div class="heat heat-strong h2"></div>
+                <div class="heat heat-mid h3"></div>
+                <div class="heat heat-mid h4"></div>
+                <div class="heat heat-low h5"></div>
+                <div class="heat heat-low h6"></div>
+                <div class="heat heat-low h7"></div>
+                <div class="pin p1"></div>
+                <div class="pin p2"></div>
+                <div class="pin p3"></div>
+                <div class="pin p4"></div>
+                <div class="pin p5"></div>
+              </div>
+              <div class="map-compass">⌃<br />◇<br />⌄</div>
+              <div class="map-zoom">
+                <button id="zoomIn">＋</button>
+                <div class="zoom-track"><span id="zoomThumb"></span></div>
+                <button id="zoomOut">−</button>
+              </div>
+              <div class="map-brand">腾讯地图</div>
+            </div>
+
+            <aside class="heatmap-panel">
+              <section class="metric-card">
+                <h2>全部地点</h2>
+                <div class="metrics-grid">
+                  <div><span>完成订单数</span><strong>3457</strong></div>
+                  <div><span>客单价</span><strong>81.38</strong></div>
+                </div>
+              </section>
+              <section class="chart-card">
+                <div class="chart-title">
+                  <h2>完成订单数渠道占比</h2>
+                  <div><button class="active">占比图</button><button>详情表</button></div>
+                </div>
+                <div class="donut-wrap">
+                  <div class="donut"></div>
+                  <span class="donut-center">占比</span>
+                  <span class="chart-label jd">京东秒送<br />0.58%</span>
+                  <span class="chart-label mt">美团外卖<br />28.41%</span>
+                  <span class="chart-label ele">饿了么<br />71.01%</span>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </section>

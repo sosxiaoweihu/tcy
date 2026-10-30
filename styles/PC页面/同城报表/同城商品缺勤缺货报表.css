@@ -1,0 +1,368 @@
+.product-absence-report-page {
+  min-height: calc(100vh - 98px);
+  background: #fff;
+  color: #1f2933;
+  border-top: 1px solid #e5e9f0;
+}
+
+.absence-report-filters {
+  min-height: 148px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(230px, 1fr));
+  align-items: center;
+  gap: 4px 36px;
+  padding: 18px 36px;
+  border-bottom: 1px solid #e5e9f0;
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(15, 23, 42, 0.06);
+}
+
+.absence-report-filters label {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.absence-report-filters input,
+.absence-report-filters select,
+.absence-report-filters .date-picker {
+  width: 100%;
+  height: 34px;
+  border: 1px solid #d6dce7;
+  border-radius: 4px;
+  background: #fff;
+  color: #667085;
+}
+
+.absence-filter-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stockout-report-filters {
+  grid-template-columns: repeat(5, minmax(190px, 1fr));
+}
+
+.stockout-report-filters .absence-filter-actions {
+  grid-column: 5 / 6;
+  grid-row: 2 / 3;
+}
+
+.stockout-report-filters.collapsed {
+  min-height: 78px;
+  grid-template-rows: 48px;
+  padding-top: 14px;
+  padding-bottom: 10px;
+}
+
+.stockout-report-filters.collapsed > label:nth-of-type(n + 5) {
+  display: none;
+}
+
+.stockout-report-filters.collapsed .absence-filter-actions {
+  grid-column: 5 / 6;
+  grid-row: 1 / 2;
+}
+
+.stockout-filter-toggle {
+  width: auto;
+  min-width: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #1769ff;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.stockout-filter-toggle i {
+  font-style: normal;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.stockout-report-filters .stockout-period-field {
+  grid-column: 3 / 5;
+  grid-row: 2 / 3;
+}
+
+.stockout-period-control {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(210px, 1fr) 104px;
+  gap: 8px;
+}
+
+.stockout-date-range {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  border: 1px solid #d6dce7;
+  border-radius: 4px;
+  background: #fff;
+  padding: 0 10px;
+  color: #667085;
+  text-align: left;
+}
+
+.stockout-date-range strong {
+  overflow: hidden;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stockout-calendar-popover {
+  position: absolute;
+  z-index: 30;
+  top: 42px;
+  right: 0;
+  width: 620px;
+  border: 1px solid #dfe5ee;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.16);
+}
+
+.stockout-calendar-header {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.stockout-calendar-header button {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background: transparent;
+  color: #667085;
+  font-size: 24px;
+}
+
+.stockout-calendar-months {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  padding: 14px 18px 10px;
+}
+
+.stockout-calendar-month h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.stockout-calendar-weekdays,
+.stockout-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.stockout-calendar-weekdays span {
+  height: 28px;
+  color: #667085;
+  font-size: 12px;
+  line-height: 28px;
+}
+
+.stockout-calendar-days button {
+  height: 32px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #303846;
+  font-size: 12px;
+}
+
+.stockout-calendar-days button:not(:disabled):hover {
+  background: #edf3ff;
+}
+
+.stockout-calendar-days button.outside {
+  color: #c6ccd6;
+}
+
+.stockout-calendar-days button.in-range {
+  background: #edf3ff;
+  color: #2468e5;
+}
+
+.stockout-calendar-days button.range-start,
+.stockout-calendar-days button.range-end {
+  border-radius: 50%;
+  background: #3468f5;
+  color: #fff;
+}
+
+.stockout-calendar-footer {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-top: 1px solid #eef2f6;
+}
+
+.stockout-calendar-footer > span {
+  color: #667085;
+  font-size: 12px;
+}
+
+.stockout-calendar-footer > div {
+  display: flex;
+  gap: 8px;
+}
+
+.absence-report-toolbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px 0 20px;
+}
+
+.absence-report-toolbar > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.absence-report-toolbar strong {
+  font-size: 16px;
+}
+
+.absence-report-toolbar span {
+  color: #7a8494;
+  font-size: 13px;
+}
+
+.absence-report-table-wrap {
+  position: relative;
+  margin: 0 12px;
+  overflow: auto;
+  border: 1px solid #e6ebf2;
+  scrollbar-color: #b9bdc3 #eef2f6;
+  scrollbar-width: thin;
+}
+
+.absence-report-table {
+  width: 100%;
+  min-width: 1680px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 13px;
+}
+
+.absence-report-table th {
+  height: 46px;
+  background: #f3f7fc;
+  color: #303846;
+  font-weight: 600;
+  text-align: center;
+}
+
+.absence-report-table th,
+.absence-report-table td {
+  border-bottom: 1px solid #e8edf3;
+  vertical-align: middle;
+}
+
+.absence-report-table th + th {
+  border-left: 1px solid #dfe5ee;
+}
+
+.absence-report-table td {
+  height: 84px;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.absence-report-table th:nth-child(1) { width: 285px; }
+.absence-report-table th:nth-child(2) { width: 200px; }
+.absence-report-table th:nth-child(3) { width: 180px; }
+.absence-report-table th:nth-child(4) { width: 190px; }
+.absence-report-table th:nth-child(5) { width: 110px; }
+.absence-report-table th:nth-child(6) { width: 190px; }
+.absence-report-table th:nth-child(7) { width: 190px; }
+.absence-report-table th:nth-child(8) { width: 150px; }
+.absence-report-table th:nth-child(9) { width: 220px; }
+
+.stockout-report-table {
+  min-width: 1780px;
+}
+
+.stockout-report-table th:nth-child(1) { width: 110px; }
+.stockout-report-table th:nth-child(2) { width: 180px; }
+.stockout-report-table th:nth-child(3) { width: 120px; }
+.stockout-report-table th:nth-child(4) { width: 210px; }
+.stockout-report-table th:nth-child(5) { width: 140px; }
+.stockout-report-table th:nth-child(6) { width: 285px; }
+.stockout-report-table th:nth-child(7) { width: 190px; }
+.stockout-report-table th:nth-child(8) { width: 150px; }
+.stockout-report-table th:nth-child(9) { width: 130px; }
+.stockout-report-table th:nth-child(10) { width: 140px; }
+
+.absence-report-table td > strong,
+.absence-report-table td > small,
+.absence-product small {
+  display: block;
+}
+
+.absence-report-table td > small,
+.absence-product small {
+  margin-top: 5px;
+  color: #7a8494;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.absence-product {
+  text-align: left;
+}
+
+.absence-product strong {
+  display: block;
+  line-height: 1.4;
+}
+
+.absence-channel,
+.absence-reason {
+  color: #1f2933;
+}
+
+.absence-duration {
+  color: #4a5565;
+  white-space: nowrap;
+}
+
+.absence-duration.ongoing,
+.absence-duration.long {
+  color: #e0524d;
+}
+
+.absence-ongoing {
+  color: #98a1af;
+}
+
+.absence-empty {
+  min-width: 1680px;
+  padding: 72px 20px;
+  color: #98a1af;
+  text-align: center;
+}
+
+.absence-pagination {
+  margin: 0 12px;
+}
+

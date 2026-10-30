@@ -1,0 +1,71 @@
+<section class="im-app-page" id="imAppPage" aria-label="IM消息" hidden>
+              <div class="im-app-status">
+                <strong>15:20</strong>
+                <span>▥　⌁　<b>81</b></span>
+              </div>
+              <header class="im-app-header">
+                <button id="imBackButton" type="button" aria-label="返回">‹</button>
+                <h1 id="imHeaderTitle">IM消息</h1>
+                <button class="im-header-close" id="imCloseButton" type="button" aria-label="关闭IM消息">×</button>
+              </header>
+
+              <div class="im-app-main">
+                <section class="im-conversation-view" id="imConversationView">
+                  <nav class="im-tabs" aria-label="消息分类">
+                    <button class="active" type="button" data-im-tab="pending">今日待回复 <span id="imPendingBadge">4</span></button>
+                    <button type="button" data-im-tab="all">全部消息</button>
+                  </nav>
+                  <div class="im-channel-row">
+                    <label>
+                      <span>渠道</span>
+                      <select id="imChannelFilter" aria-label="渠道筛选">
+                        <option>全部渠道</option>
+                        <option>京东秒送</option>
+                        <option>美团外卖</option>
+                        <option>饿了么</option>
+                        <option>抖店</option>
+                      </select>
+                    </label>
+                    <label class="im-unreplied-toggle"><input id="imTodayUnrepliedFilter" type="checkbox" checked /><span>仅看今日未回复</span></label>
+                  </div>
+                  <div class="im-list-summary">
+                    <strong id="imConversationCount">4个会话待回复</strong>
+                    <span>按最新消息排序</span>
+                  </div>
+                  <div class="im-conversation-list" id="imConversationList"></div>
+                </section>
+
+                <section class="im-detail-view" id="imDetailView" hidden>
+                  <div class="im-order-card" id="imOrderCard" aria-label="关联订单信息" hidden>
+                    <div class="im-order-summary" id="imOrderSummary"></div>
+                    <button class="im-order-detail-link" id="imOrderDetailLink" type="button">查看详情 <span aria-hidden="true">›</span></button>
+                  </div>
+                  <div class="im-message-thread" id="imMessageThread"></div>
+                  <div class="im-reply-box">
+                    <button id="imImageUploadButton" type="button" aria-label="添加图片">＋</button>
+                    <input id="imImageUploadInput" type="file" accept="image/*" hidden />
+                    <div class="im-reply-composer"><div class="im-image-preview" id="imImagePreview" hidden><img id="imImagePreviewImage" alt="待发送图片预览" /><button id="imImagePreviewRemove" type="button" aria-label="移除图片">×</button></div><input id="imReplyInput" placeholder="请输入回复内容" /></div>
+                    <button class="im-send-button" id="imSendButton" type="button">发送</button>
+                  </div>
+                </section>
+              </div>
+
+              <div class="im-store-floating" id="imStoreFloating">
+                <div><span>当前门店：</span><strong id="imCurrentStore">家得福海棠店</strong></div>
+                <button id="imOpenStoreSwitcher" type="button">切换门店</button>
+              </div>
+
+              <div class="im-store-switcher" id="imStoreSwitcher" hidden>
+                <button class="im-store-backdrop" id="imCloseStoreSwitcher" type="button" aria-label="关闭门店选择"></button>
+                <section class="im-store-sheet" aria-label="选择门店">
+                  <header><h2>选择门店</h2><button id="imStoreSheetClose" type="button" aria-label="关闭">×</button></header>
+                  <div class="im-store-options">
+                    <button class="selected" type="button" data-im-store="家得福海棠店"><span>家得福海棠店</span><i>✓</i></button>
+                    <button type="button" data-im-store="家得福中央华府店"><span>家得福中央华府店</span><i>✓</i></button>
+                    <button type="button" data-im-store="家得福双盛花园店"><span>家得福双盛花园店</span><i>✓</i></button>
+                    <button type="button" data-im-store="家得福灌云万达店"><span>家得福灌云万达店</span><i>✓</i></button>
+                    <button type="button" data-im-store="家得福嘉会城店"><span>家得福嘉会城店</span><i>✓</i></button>
+                  </div>
+                </section>
+              </div>
+            </section>

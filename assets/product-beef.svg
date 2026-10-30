@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
+  <title id="title">安格斯金钱腱商品图</title>
+  <rect width="120" height="120" rx="10" fill="#fff9f4"/>
+  <g stroke="#6f2d2d" stroke-width="3">
+    <path d="M17 42c6-16 26-24 42-13 12 8 10 29-2 39-14 11-37 5-42-10-2-5-1-11 2-16Z" fill="#a94d4d"/>
+    <path d="M58 32c13-10 34-4 40 10 6 15-4 33-20 37-15 4-30-7-31-22-1-10 3-19 11-25Z" fill="#ba5656"/>
+    <path d="M31 69c12-9 32-5 40 8 7 12-1 27-16 31-16 4-34-6-37-19-2-8 3-15 13-20Z" fill="#8f4141"/>
+  </g>
+  <g fill="none" stroke="#f1c3b2" stroke-linecap="round" stroke-width="3">
+    <path d="M26 43c8 1 16 6 22 14"/>
+    <path d="M65 44c8 3 16 10 20 20"/>
+    <path d="M31 83c10 1 20 6 27 13"/>
+  </g>
+</svg>

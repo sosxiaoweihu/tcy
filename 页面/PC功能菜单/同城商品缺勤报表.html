@@ -1,0 +1,160 @@
+<section class="product-absence-report-page" id="productAbsenceReportPage" hidden>
+          <div class="absence-report-filters">
+            <label>
+              <span>商品信息：</span>
+              <input id="absenceProductFilter" placeholder="请输入商品名称/编码/条码" />
+            </label>
+            <label>
+              <span>门店信息：</span>
+              <select id="absenceStoreFilter">
+                <option value="">全部门店</option>
+                <option>家得福海棠店</option>
+                <option>家得福中央华府店</option>
+                <option>家得福双盛花园店</option>
+                <option>家得福灌云万达店</option>
+              </select>
+            </label>
+            <label>
+              <span>渠道信息：</span>
+              <select id="absenceChannelFilter">
+                <option value="">全部渠道</option>
+                <option>京东秒送</option>
+                <option>美团外卖</option>
+                <option>饿了么</option>
+                <option>抖店</option>
+              </select>
+            </label>
+            <label>
+              <span>缺勤原因：</span>
+              <select id="absenceReasonFilter">
+                <option value="">全部原因</option>
+                <option>手工下架</option>
+                <option>任务下架</option>
+                <option>ERP不可售</option>
+              </select>
+            </label>
+            <label>
+              <span>业态：</span>
+              <select id="absenceBusinessFilter">
+                <option selected>便利店</option>
+              </select>
+            </label>
+            <label>
+              <span>缺勤开始时间：</span>
+              <button class="date-picker" type="button">◷ 2026-06-01 至 2026-06-22</button>
+            </label>
+            <label>
+              <span>商品分类：</span>
+              <select id="absenceCategoryFilter">
+                <option value="">全部分类</option>
+                <option>粮油调味</option>
+                <option>个护清洁</option>
+                <option>乳品烘焙</option>
+                <option>冰品冷饮</option>
+                <option>家居百货</option>
+              </select>
+            </label>
+            <div class="absence-filter-actions">
+              <button class="btn primary" id="absenceSearchButton" type="button">查 询</button>
+              <button class="btn" id="absenceResetButton" type="button">重 置</button>
+            </div>
+          </div>
+
+          <div class="absence-report-toolbar">
+            <div>
+              <strong>商品缺勤明细</strong>
+              <span id="absenceResultSummary">共 126 条缺勤记录</span>
+            </div>
+            <button class="btn" id="absenceExportButton" type="button">导 出</button>
+          </div>
+
+          <div class="absence-report-table-wrap">
+            <table class="absence-report-table">
+              <thead>
+                <tr>
+                  <th>商品信息</th>
+                  <th>门店信息</th>
+                  <th>渠道信息</th>
+                  <th>缺勤原因</th>
+                  <th>操作人</th>
+                  <th>缺勤开始时间</th>
+                  <th>缺勤结束时间</th>
+                  <th>缺勤时长</th>
+                  <th>商品分类信息</th>
+                </tr>
+              </thead>
+              <tbody id="absenceReportTableBody">
+                <tr data-product="益盐堂精制碘盐 500g 10109193 6947498626395" data-store="家得福海棠店" data-channel="美团外卖" data-reason="ERP不可售" data-operator="王小明" data-business="便利店" data-category="粮油调味">
+                  <td><div class="absence-product"><strong>益盐堂精制碘盐 500g</strong><small>商品编码：10109193</small><small>条码：6947498626395</small></div></td>
+                  <td><strong>家得福海棠店</strong><small>门店编码：1001</small></td>
+                  <td><span class="absence-channel mt">美团外卖</span></td>
+                  <td><span class="absence-reason">ERP不可售</span></td>
+                  <td>王小明</td>
+                  <td>2026-06-22 08:35:16</td>
+                  <td><span class="absence-ongoing">--</span></td>
+                  <td><strong class="absence-duration ongoing">持续 2小时18分钟</strong></td>
+                  <td><strong>粮油调味</strong><small>调味品 / 食用盐</small></td>
+                </tr>
+                <tr data-product="飘柔控油去屑型洗发露 750g 1100166 6903148357699" data-store="家得福中央华府店" data-channel="饿了么" data-reason="手工下架" data-operator="李慧" data-business="便利店" data-category="个护清洁">
+                  <td><div class="absence-product"><strong>飘柔控油去屑型洗发露 750g</strong><small>商品编码：1100166</small><small>条码：6903148357699</small></div></td>
+                  <td><strong>家得福中央华府店</strong><small>门店编码：1139</small></td>
+                  <td><span class="absence-channel ele">饿了么</span></td>
+                  <td><span class="absence-reason">手工下架</span></td>
+                  <td>李慧</td>
+                  <td>2026-06-21 14:08:32</td>
+                  <td>2026-06-21 18:42:10</td>
+                  <td><strong class="absence-duration">4小时33分钟</strong></td>
+                  <td><strong>个护清洁</strong><small>洗发护发 / 洗发水</small></td>
+                </tr>
+                <tr data-product="光明优倍鲜牛奶 950ml 10168022 6901209231018" data-store="家得福双盛花园店" data-channel="京东秒送" data-reason="任务下架" data-operator="系统" data-business="便利店" data-category="乳品烘焙">
+                  <td><div class="absence-product"><strong>光明优倍鲜牛奶 950ml</strong><small>商品编码：10168022</small><small>条码：6901209231018</small></div></td>
+                  <td><strong>家得福双盛花园店</strong><small>门店编码：1146</small></td>
+                  <td><span class="absence-channel jd">京东秒送</span></td>
+                  <td><span class="absence-reason">任务下架</span></td>
+                  <td>系统</td>
+                  <td>2026-06-21 09:12:07</td>
+                  <td>2026-06-21 10:05:41</td>
+                  <td><strong class="absence-duration">53分钟</strong></td>
+                  <td><strong>乳品烘焙</strong><small>低温乳品 / 鲜牛奶</small></td>
+                </tr>
+                <tr data-product="八喜夸脱草莓味冰淇淋 550g 151603073 6907868888365" data-store="家得福灌云万达店" data-channel="抖店" data-reason="ERP不可售" data-operator="赵丽" data-business="便利店" data-category="冰品冷饮">
+                  <td><div class="absence-product"><strong>八喜夸脱草莓味冰淇淋 550g</strong><small>商品编码：151603073</small><small>条码：6907868888365</small></div></td>
+                  <td><strong>家得福灌云万达店</strong><small>门店编码：1191</small></td>
+                  <td><span class="absence-channel dou">抖店</span></td>
+                  <td><span class="absence-reason">ERP不可售</span></td>
+                  <td>赵丽</td>
+                  <td>2026-06-20 16:20:55</td>
+                  <td>2026-06-21 09:01:26</td>
+                  <td><strong class="absence-duration long">16小时40分钟</strong></td>
+                  <td><strong>冰品冷饮</strong><small>冰淇淋 / 家庭装</small></td>
+                </tr>
+                <tr data-product="James.F螺旋冰棍模 1个装 10112784 6940220223886" data-store="家得福海棠店" data-channel="美团外卖" data-reason="任务下架" data-operator="系统" data-business="便利店" data-category="家居百货">
+                  <td><div class="absence-product"><strong>James.F螺旋冰棍模 1个装</strong><small>商品编码：10112784</small><small>条码：6940220223886</small></div></td>
+                  <td><strong>家得福海棠店</strong><small>门店编码：1001</small></td>
+                  <td><span class="absence-channel mt">美团外卖</span></td>
+                  <td><span class="absence-reason">任务下架</span></td>
+                  <td>系统</td>
+                  <td>2026-06-19 11:36:18</td>
+                  <td>2026-06-19 12:17:03</td>
+                  <td><strong class="absence-duration">40分钟</strong></td>
+                  <td><strong>家居百货</strong><small>厨房用品 / 制冰模具</small></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="absence-empty" id="absenceEmptyState" hidden>暂无符合条件的缺勤记录</div>
+          </div>
+
+          <div class="local-life-pagination absence-pagination">
+            <span id="absencePaginationTotal">共 126 条</span>
+            <button>‹</button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <strong>...</strong>
+            <button>13</button>
+            <button>›</button>
+            <label>前往 <input value="1" /> 页</label>
+          </div>
+        </section>

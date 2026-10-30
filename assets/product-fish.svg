@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
+  <title id="title">冷冻臭鳜鱼商品图</title>
+  <rect width="120" height="120" rx="10" fill="#f5f7fb"/>
+  <ellipse cx="60" cy="62" rx="39" ry="44" fill="#eef3f8" stroke="#223d66" stroke-width="4"/>
+  <ellipse cx="60" cy="60" rx="34" ry="39" fill="#fff" stroke="#8ca6c4" stroke-width="2"/>
+  <path d="M38 61c12-14 30-14 43 0-13 14-31 14-43 0Z" fill="#607fa6"/>
+  <path d="m38 61-10-8v16Z" fill="#607fa6"/>
+  <circle cx="74" cy="58" r="2.5" fill="#fff"/>
+  <path d="M42 87h36" stroke="#d7a737" stroke-linecap="round" stroke-width="5"/>
+  <text x="60" y="39" fill="#223d66" font-family="sans-serif" font-size="10" font-weight="700" text-anchor="middle">嘉美水产</text>
+</svg>

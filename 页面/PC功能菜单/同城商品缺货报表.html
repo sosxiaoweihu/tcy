@@ -1,0 +1,201 @@
+<section class="product-absence-report-page product-stockout-report-page" id="productStockoutReportPage" hidden>
+          <div class="absence-report-filters stockout-report-filters collapsed">
+            <label>
+              <span>业态：</span>
+              <select id="stockoutBusinessFilter">
+                <option selected>便利店</option>
+              </select>
+            </label>
+            <label>
+              <span>订单号：</span>
+              <input id="stockoutOrderFilter" placeholder="请输入订单号" />
+            </label>
+            <label>
+              <span>退款类型：</span>
+              <select id="stockoutRefundTypeFilter">
+                <option value="">全部类型</option>
+                <option>退差</option>
+                <option>部分退</option>
+                <option>全额退</option>
+              </select>
+            </label>
+            <label>
+              <span>门店信息：</span>
+              <select id="stockoutStoreFilter">
+                <option value="">全部门店</option>
+                <option>家得福海棠店</option>
+                <option>家得福中央华府店</option>
+                <option>家得福双盛花园店</option>
+                <option>家得福灌云万达店</option>
+              </select>
+            </label>
+            <label>
+              <span>渠道：</span>
+              <select id="stockoutChannelFilter">
+                <option value="">全部渠道</option>
+                <option>京东秒送</option>
+                <option>美团外卖</option>
+                <option>饿了么</option>
+                <option>抖店</option>
+              </select>
+            </label>
+            <label>
+              <span>商品信息：</span>
+              <input id="stockoutProductFilter" placeholder="请输入商品名称/编码/条码" />
+            </label>
+            <label>
+              <span>退款原因：</span>
+              <select id="stockoutReasonFilter">
+                <option value="">全部原因</option>
+                <option>拣货时发现缺货</option>
+                <option>顾客不需要了</option>
+                <option>顾客多买/错买</option>
+                <option>商品质量有问题</option>
+                <option>商品与描述不符</option>
+              </select>
+            </label>
+            <label class="stockout-period-field">
+              <span>统计时期：</span>
+              <div class="stockout-period-control">
+                <button class="stockout-date-range" id="stockoutDateRangeButton" type="button" aria-expanded="false">
+                  <span aria-hidden="true">◷</span>
+                  <strong id="stockoutDateRangeText">2026-06-21 - 2026-06-21</strong>
+                </button>
+                <select id="stockoutPeriodFilter">
+                  <option selected>昨天</option>
+                  <option>本周</option>
+                  <option>上周</option>
+                  <option>本月</option>
+                  <option>上月</option>
+                  <option>本年</option>
+                  <option>自定义</option>
+                </select>
+
+                <section class="stockout-calendar-popover" id="stockoutCalendarPopover" hidden aria-label="自定义统计时期">
+                  <header class="stockout-calendar-header">
+                    <button id="stockoutCalendarPrev" type="button" aria-label="上一个月">‹</button>
+                    <strong>选择统计时期</strong>
+                    <button id="stockoutCalendarNext" type="button" aria-label="下一个月">›</button>
+                  </header>
+                  <div class="stockout-calendar-months" id="stockoutCalendarMonths"></div>
+                  <footer class="stockout-calendar-footer">
+                    <span id="stockoutCalendarSelection">2026-06-21 至 2026-06-21</span>
+                    <div>
+                      <button class="btn" id="stockoutCalendarCancel" type="button">取消</button>
+                      <button class="btn primary" id="stockoutCalendarConfirm" type="button">确定</button>
+                    </div>
+                  </footer>
+                </section>
+              </div>
+            </label>
+            <div class="absence-filter-actions">
+              <button class="btn primary" id="stockoutSearchButton" type="button">查 询</button>
+              <button class="btn" id="stockoutResetButton" type="button">重 置</button>
+              <button class="collapse-arrow stockout-filter-toggle" id="stockoutFilterToggle" type="button" aria-label="展开筛选"><span>展开</span><i>⌄</i></button>
+            </div>
+          </div>
+
+          <div class="absence-report-toolbar">
+            <div>
+              <strong>商品缺货明细</strong>
+              <span id="stockoutResultSummary">共 238 条缺货记录</span>
+            </div>
+            <button class="btn" id="stockoutExportButton" type="button">导 出</button>
+          </div>
+
+          <div class="absence-report-table-wrap">
+            <table class="absence-report-table stockout-report-table">
+              <thead>
+                <tr>
+                  <th>业态</th>
+                  <th>订单号</th>
+                  <th>退款类型</th>
+                  <th>门店信息</th>
+                  <th>渠道</th>
+                  <th>商品信息</th>
+                  <th>退款原因</th>
+                  <th>下单商品数量</th>
+                  <th>退货件数</th>
+                  <th>退款金额</th>
+                </tr>
+              </thead>
+              <tbody id="stockoutReportTableBody">
+                <tr data-business="便利店" data-order="202606220001" data-refund-type="退差" data-store="家得福海棠店" data-channel="美团外卖" data-product="益盐堂精制碘盐 500g 10109193 6947498626395" data-reason="顾客多买/错买">
+                  <td>便利店</td>
+                  <td>202606220001</td>
+                  <td>退差</td>
+                  <td><strong>家得福海棠店</strong><small>门店编码：1001</small></td>
+                  <td>美团外卖</td>
+                  <td><div class="absence-product"><strong>益盐堂精制碘盐 500g</strong><small>商品编码：10109193</small><small>条码：6947498626395</small></div></td>
+                  <td>顾客多买/错买</td>
+                  <td>2</td>
+                  <td>1</td>
+                  <td><strong>¥5.80</strong></td>
+                </tr>
+                <tr data-business="便利店" data-order="202606220018" data-refund-type="部分退" data-store="家得福中央华府店" data-channel="饿了么" data-product="飘柔控油去屑型洗发露 750g 1100166 6903148357699" data-reason="拣货时发现缺货">
+                  <td>便利店</td>
+                  <td>202606220018</td>
+                  <td>部分退</td>
+                  <td><strong>家得福中央华府店</strong><small>门店编码：1139</small></td>
+                  <td>饿了么</td>
+                  <td><div class="absence-product"><strong>飘柔控油去屑型洗发露 750g</strong><small>商品编码：1100166</small><small>条码：6903148357699</small></div></td>
+                  <td>拣货时发现缺货</td>
+                  <td>3</td>
+                  <td>1</td>
+                  <td><strong>¥39.90</strong></td>
+                </tr>
+                <tr data-business="便利店" data-order="202606210326" data-refund-type="全额退" data-store="家得福双盛花园店" data-channel="京东秒送" data-product="光明优倍鲜牛奶 950ml 10168022 6901209231018" data-reason="顾客不需要了">
+                  <td>便利店</td>
+                  <td>202606210326</td>
+                  <td>全额退</td>
+                  <td><strong>家得福双盛花园店</strong><small>门店编码：1146</small></td>
+                  <td>京东秒送</td>
+                  <td><div class="absence-product"><strong>光明优倍鲜牛奶 950ml</strong><small>商品编码：10168022</small><small>条码：6901209231018</small></div></td>
+                  <td>顾客不需要了</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td><strong>¥35.80</strong></td>
+                </tr>
+                <tr data-business="便利店" data-order="202606210455" data-refund-type="部分退" data-store="家得福灌云万达店" data-channel="抖店" data-product="八喜夸脱草莓味冰淇淋 550g 151603073 6907868888365" data-reason="商品质量有问题">
+                  <td>便利店</td>
+                  <td>202606210455</td>
+                  <td>部分退</td>
+                  <td><strong>家得福灌云万达店</strong><small>门店编码：1191</small></td>
+                  <td>抖店</td>
+                  <td><div class="absence-product"><strong>八喜夸脱草莓味冰淇淋 550g</strong><small>商品编码：151603073</small><small>条码：6907868888365</small></div></td>
+                  <td>商品质量有问题</td>
+                  <td>4</td>
+                  <td>2</td>
+                  <td><strong>¥59.80</strong></td>
+                </tr>
+                <tr data-business="便利店" data-order="202606200172" data-refund-type="全额退" data-store="家得福海棠店" data-channel="美团外卖" data-product="James.F螺旋冰棍模 1个装 10112784 6940220223886" data-reason="商品与描述不符">
+                  <td>便利店</td>
+                  <td>202606200172</td>
+                  <td>全额退</td>
+                  <td><strong>家得福海棠店</strong><small>门店编码：1001</small></td>
+                  <td>美团外卖</td>
+                  <td><div class="absence-product"><strong>James.F螺旋冰棍模 1个装</strong><small>商品编码：10112784</small><small>条码：6940220223886</small></div></td>
+                  <td>商品与描述不符</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td><strong>¥32.90</strong></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="absence-empty" id="stockoutEmptyState" hidden>暂无符合条件的缺货记录</div>
+          </div>
+
+          <div class="local-life-pagination absence-pagination">
+            <span id="stockoutPaginationTotal">共 238 条</span>
+            <button>‹</button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <strong>...</strong>
+            <button>24</button>
+            <button>›</button>
+            <label>前往 <input value="1" /> 页</label>
+          </div>
+        </section>

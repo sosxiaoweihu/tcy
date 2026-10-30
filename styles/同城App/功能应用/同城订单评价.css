@@ -1,0 +1,95 @@
+
+.order-reviews-entry{position:absolute;z-index:3;top:39.1%;left:5.3%;width:21%;height:7.2%;display:flex;flex-direction:column;align-items:center;gap:1cqw;border:0;padding:0;background:transparent;color:#575b64;font-size:2.75cqw;cursor:pointer;white-space:nowrap}
+.order-reviews-entry>span:first-child{display:grid;place-items:center;width:8.2cqw;height:8.2cqw;border-radius:29%;background:linear-gradient(145deg,#ffcb61,#ff9f32);font-size:7cqw;color:white;line-height:1}
+.order-reviews-page{position:absolute;inset:0;z-index:12;display:flex;flex-direction:column;overflow:hidden;border-radius:inherit;background:var(--color-bg-page);color:var(--color-text-primary);font:3.4cqw Arial,"PingFang SC","Microsoft YaHei",sans-serif}
+.order-reviews-page [hidden]{display:none!important}.order-reviews-page button{font:inherit;cursor:pointer}.order-reviews-page button:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px}
+.order-reviews-page .cp-title button{border:0;background:none;color:white}
+.or-filterbar{display:flex;align-items:center;background:white;padding:2cqw 4cqw;gap:3cqw;border-bottom:1px solid #edf0f5;flex:none}
+.or-filterbar button{border:0;background:none;min-height:8cqw;display:flex;align-items:center;gap:2cqw;color:var(--color-text-primary);padding:0}.or-filterbar button:first-child{flex:1}.or-filterbar span{color:var(--color-text-secondary);font-size:3cqw}.or-filterbar strong{font-size:3.4cqw;font-weight:500}.or-filterbar i{font-style:normal;color:#9098a5}
+.or-list{flex:1;min-height:0;overflow:auto;padding:3cqw 3cqw 6cqw;scrollbar-width:none}
+.or-card{border-radius:2.5cqw;background:white;margin-bottom:3cqw;overflow:hidden;border:1px solid #e9eef5}
+.or-card-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:1.5cqw;padding:3cqw;background:var(--color-bg-table-header);white-space:nowrap}
+.or-channel-badge{display:inline-flex;align-items:center;justify-content:center;min-height:5.5cqw;padding:.5cqw 1.5cqw;border-radius:1.2cqw;font-size:2.8cqw;font-weight:600;white-space:nowrap}
+.or-channel-badge[data-channel="美团"]{background:#fff0b3;color:#785400}.or-channel-badge[data-channel="淘宝"]{background:#ffeadf;color:#c4470c}.or-channel-badge[data-channel="京东"]{background:#ffe5e7;color:#c92032}.or-channel-badge[data-channel="抖店"]{background:#303340;color:#fff}.or-channel-badge[data-channel="自营"]{background:#e0f4ea;color:#16764a}
+.order-reviews-page .or-order-number{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;border:0;background:none;padding:0;font-size:2.7cqw;color:var(--color-text-primary)}
+.or-card-head time{font-size:2.7cqw;color:var(--color-text-secondary)}.or-full-order{overflow-wrap:anywhere;font-size:4cqw;line-height:1.6}
+.or-card-body{padding:2.5cqw 3cqw 3cqw}
+.or-rating{display:flex;align-items:center;justify-content:space-between;gap:2cqw;white-space:nowrap;min-height:6cqw}
+.or-rating-item{display:flex;align-items:center;gap:1cqw;font-size:3cqw}
+.or-rating-item>span{color:#999}.or-rating-item>strong{font-size:3.4cqw;font-weight:400;color:#222}
+.or-rating-star{display:block;flex:none;width:4.4cqw;height:4.4cqw;color:#ffc34d}
+
+.or-comment{font-size:3.4cqw;line-height:1.7;margin:2.5cqw 0;overflow-wrap:anywhere}.or-muted{color:var(--color-text-placeholder);font-size:3cqw}
+.or-reply{background:#f6f7fa;border-radius:1.5cqw;padding:2.5cqw;margin:2.5cqw 0;font-size:3cqw;line-height:1.7;overflow-wrap:anywhere}.or-reply strong{display:block;color:var(--color-primary);font-weight:500;margin-bottom:1cqw}.or-reply p{margin:0}
+.or-products{border-top:1px solid #eff1f5;margin-top:3cqw;padding-top:1cqw}.or-product{display:flex;align-items:center;justify-content:space-between;gap:3cqw;padding:2cqw 0;font-size:3cqw;line-height:1.5}.or-product>span:first-child{min-width:0;overflow-wrap:anywhere}.or-product>span:last-child{flex:none;color:var(--color-text-secondary)}
+.order-reviews-page .or-products-toggle{display:block;width:100%;min-height:8cqw;padding:1cqw 0;background:none;border:0;color:var(--color-primary);font-size:3cqw}
+.or-actions{display:flex;justify-content:space-between;gap:2cqw;align-items:center;border-top:1px solid #eff1f5;padding-top:2.5cqw;margin-top:2cqw;min-height:9cqw}.order-reviews-page .or-reply-button{flex:none;background:var(--color-primary);color:white;border:0;border-radius:1.3cqw;padding:0 5cqw;min-height:8cqw;font-size:3cqw}.order-reviews-page .or-reply-button:disabled{background:#f0f2f5;color:var(--color-text-placeholder);cursor:default}
+.or-end{text-align:center;color:var(--color-text-placeholder);font-size:3cqw;padding:3cqw}
+
+.or-sheet{position:absolute;inset:0;z-index:25}.or-mask{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0006}.or-sheet>section{position:absolute;bottom:0;width:100%;max-height:87%;display:flex;flex-direction:column;background:white;border-radius:4cqw 4cqw 0 0;padding:4cqw 4cqw 6cqw}.or-sheet header{display:flex;align-items:center;justify-content:space-between;margin-bottom:3cqw}.or-sheet h2{font-size:4.2cqw;margin:0}.or-sheet header button{background:none;border:0;font-size:6cqw;color:#8993a2}.or-sheet-body{overflow:auto}.or-form label{display:block;margin-bottom:3.5cqw;font-size:3.2cqw}.or-form input,.or-form select,.or-form textarea{width:100%;min-width:0;display:block;margin-top:2cqw;border:1px solid var(--color-border-default);border-radius:1.5cqw;background:white;color:var(--color-text-primary);padding:2.5cqw;font-family:inherit;font-size:3.4cqw}.or-form textarea{resize:vertical;min-height:28cqw}.or-dates{display:grid;grid-template-columns:1fr 1fr;gap:2cqw}.or-presets{display:flex;gap:2cqw;margin:2cqw 0 4cqw}.or-presets button{flex:1;background:var(--color-bg-table-header);color:var(--color-primary);border:0;border-radius:1.4cqw;padding:2.5cqw}.or-form-actions{display:flex;gap:3cqw;margin-top:4cqw}.or-form-actions button{flex:1;min-height:11cqw;background:white;border:1px solid var(--color-border-default);border-radius:2cqw}.or-form-actions button:last-child{background:var(--color-primary);border-color:var(--color-primary);color:white}.or-error{color:var(--color-danger);font-size:3cqw}.or-toast{position:absolute;z-index:30;top:44%;left:50%;transform:translateX(-50%);background:#000b;color:white;padding:3cqw 4cqw;border-radius:2cqw;max-width:85%;text-align:center}.or-export-item{padding:3cqw 0;border-bottom:1px solid #eee;font-size:3.2cqw;line-height:1.8}.or-export-item button{border:0;background:none;color:var(--color-primary)}
+
+.or-filterbar{gap:1.5cqw;padding:2cqw}.or-filterbar button:first-child{flex:none;min-width:0;flex-wrap:nowrap;gap:1cqw;justify-content:flex-start}.or-filterbar button:first-child strong{font-size:2.9cqw;color:var(--color-text-primary);white-space:nowrap}.or-store-picker{position:relative;display:flex;align-items:center;gap:1cqw;min-width:0;min-height:8cqw;flex:1;justify-content:center;padding:0}.or-store-picker select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}.or-store-picker:focus-within{outline:2px solid var(--color-primary);outline-offset:2px}.or-filterbar button:last-child{width:auto;flex:none;justify-content:center;gap:0;white-space:nowrap;font-size:3cqw}#orStoreLabel{min-width:0;white-space:normal;overflow-wrap:anywhere;font-size:3cqw;line-height:1.4;text-align:left}
+
+.order-reviews-page .cp-title button{font-size:7cqw;width:9cqw;height:10cqw;left:2cqw;line-height:1}
+
+.or-filterbar i{flex:none;display:inline-block;width:1.3cqw;height:1.3cqw;border-right:.3cqw solid #667085;border-bottom:.3cqw solid #667085;transform:rotate(45deg);font-size:0;margin:-.6cqw .4cqw 0}.or-filterbar button:last-child i{margin-left:1cqw}
+
+.or-filter-dropdown{position:absolute;left:0;right:0;bottom:0;z-index:20;overflow:hidden}
+.or-filter-mask{position:absolute;inset:0;width:100%;height:100%;background:#0005;border:0}
+.or-filter-panel{position:relative;display:flex;flex-direction:column;max-height:100%;background:#fff;animation:or-filter-slide .2s ease-out;transform-origin:top}
+.or-filter-options{min-height:0;overflow:auto;padding:3cqw 4cqw 4cqw;scrollbar-width:none}
+.or-filter-options fieldset{border:0;margin:0 0 6cqw;padding:0;min-width:0}.or-filter-options fieldset:last-child{margin-bottom:0}
+.or-filter-options legend{padding:0;margin-bottom:3cqw;font-size:3.5cqw;color:#555}
+.or-filter-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2cqw}
+.order-reviews-page .or-filter-grid button{min-height:8.5cqw;padding:1.5cqw 1cqw;border:0;border-radius:1cqw;background:#f7f7f7;color:#666;font-size:3.4cqw;white-space:nowrap}
+.order-reviews-page .or-filter-grid button[aria-pressed="true"]{background:#eff6ff;color:#3674ff}
+.or-filter-footer{display:flex;flex:none;gap:3cqw;padding:3cqw 4cqw;border-top:1px solid #f5f5f5;background:#fff}
+.order-reviews-page .or-filter-footer button{flex:1;min-height:10.5cqw;border:1px solid #e8e8e8;border-radius:2cqw;background:#fff;color:#555;font-size:4cqw}
+.order-reviews-page .or-filter-footer button:last-child{background:#316dff;border-color:#316dff;color:#fff}
+.or-filterbar [aria-expanded="true"],.or-filterbar [aria-expanded="true"] span{color:#3674ff}
+.or-filterbar [aria-expanded="true"] i{transform:rotate(225deg);border-color:#3674ff;margin-top:.6cqw}
+@keyframes or-filter-slide{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.or-filter-panel{animation:none}}
+
+.or-card-store{min-width:0;white-space:normal;overflow-wrap:anywhere;font-size:3.2cqw;font-weight:600;line-height:1.4}
+
+.or-product-reaction{display:inline-flex;align-items:center;justify-content:center;width:4.6cqw;height:4.6cqw;flex:0 0 4.6cqw;margin-left:auto}
+.or-product-reaction svg{display:block;width:4.6cqw;height:4.6cqw;fill:none;stroke:#ffb56b;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.or-product-reaction svg:not(.is-active){display:none}
+.or-product-reaction .or-thumb-down{transform:rotate(180deg);stroke:#a5a5a5}
+
+.or-review-images{display:flex;flex-wrap:wrap;gap:2cqw;margin:0 0 3cqw}
+.order-reviews-page .or-review-images button{display:block;flex:none;width:18cqw;height:18cqw;padding:0;border:1px solid #eceff3;border-radius:1.5cqw;overflow:hidden;background:#f7f8fa}
+.tongcheng-app-screen .or-review-images img{display:block;width:100%;height:100%;object-fit:cover}
+.or-image-preview{display:flex;align-items:center;justify-content:center;padding:2cqw 0}
+.tongcheng-app-screen .or-image-preview img{display:block;width:100%;height:auto;max-height:100cqw;object-fit:contain;border-radius:2cqw}
+
+.or-filterbar button.or-store-picker{flex:1;min-width:0;gap:1cqw;justify-content:center}
+.or-store-dropdown{position:absolute;left:0;right:0;bottom:0;z-index:20;overflow:hidden}
+.or-store-panel{position:relative;display:flex;flex-direction:column;max-height:92%;background:#fff;border-radius:0 0 3cqw 3cqw;overflow:hidden;animation:or-filter-slide .2s ease-out}
+.or-store-panel>header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;flex:none;padding:3.4cqw 4cqw;border-bottom:1px solid #f2f2f2}
+.or-store-panel h2{margin:0;font-size:4.5cqw;font-weight:600}.order-reviews-page .or-store-panel>header button{border:0;padding:1cqw 0;background:none;font-size:4cqw;text-align:left}.order-reviews-page .or-store-panel>header button:last-child{text-align:right;color:#6265ef}
+.or-business-row{display:flex;flex-direction:column;gap:3cqw;padding:3cqw 4cqw;background:#fff;font-size:3.5cqw;flex:none}
+.or-business-row>span{color:#555;line-height:1.4}.or-business-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2cqw;min-width:0}
+.order-reviews-page .or-business-options button{display:flex;align-items:center;justify-content:center;min-height:8.5cqw;padding:1.5cqw 1cqw;border:0;border-radius:1cqw;background:#f7f7f7;color:#666;white-space:nowrap;font-size:3.4cqw}
+.order-reviews-page .or-business-options button[aria-pressed=true]{background:#eff6ff;color:#3674ff}
+.or-store-list i{display:grid;place-items:center;flex:none;width:4.5cqw;height:4.5cqw;border-radius:50%;font-size:3.3cqw;font-style:normal;color:transparent;border:1px solid #ccc}
+.or-store-list [aria-pressed=true] i{background:#6b67f5;border-color:#6b67f5;color:#fff}
+.or-store-search{display:flex;align-items:center;gap:2cqw;margin:3cqw 4cqw;padding:0 3cqw;min-height:10cqw;background:#f6f7f9;border:1px solid #eceef2;border-radius:2cqw;flex:none}
+.or-store-search>span{font-size:5cqw;color:#999}.or-store-search input{width:0;flex:1;min-width:0;border:0;outline:0;background:none;font:3.5cqw Arial,"PingFang SC",sans-serif}.or-store-search input::-webkit-search-cancel-button{display:none}.order-reviews-page .or-store-search button{border:0;background:none;color:#999;font-size:5cqw;padding:0}
+.or-store-list{overflow:auto;min-height:0;scrollbar-width:none;padding-bottom:2cqw}
+.order-reviews-page .or-store-list button{display:flex;align-items:center;justify-content:space-between;gap:3cqw;width:100%;min-height:12cqw;padding:3cqw 4cqw;border:0;border-bottom:1px solid #eee;background:white;text-align:left;font-size:3.7cqw;line-height:1.5}
+.or-store-list button>span{min-width:0;overflow-wrap:anywhere}.or-store-list i{visibility:hidden}.or-store-list [aria-pressed=true] i{visibility:visible}
+@media(prefers-reduced-motion:reduce){.or-store-panel{animation:none}}
+
+.or-review-tabs{display:flex;flex:none;height:11cqw;background:#fff;border-bottom:1px solid #edf0f5}
+.order-reviews-page .or-review-tabs button{position:relative;flex:1;border:0;padding:0;background:none;color:var(--color-text-secondary);font-size:3.8cqw}
+.order-reviews-page .or-review-tabs button[aria-selected=true]{color:var(--color-primary);font-weight:600}
+.or-review-tabs button[aria-selected=true]::after{content:"";position:absolute;bottom:0;left:calc(50% - 4cqw);width:8cqw;height:.7cqw;border-radius:1cqw;background:var(--color-primary)}
+.or-city-content{display:flex;flex-direction:column;flex:1;min-height:0}
+.or-mini-content{display:grid;place-items:center;flex:1;min-height:0;background:var(--color-bg-page)}
+.or-mini-content p{margin:0;color:var(--color-text-placeholder);font-size:4cqw}
+
+.or-sheet.or-date-sheet{top:var(--or-date-top);overflow:hidden}
+.or-sheet.or-date-sheet>section{top:0;bottom:auto;max-height:100%;border-radius:0 0 3cqw 3cqw;animation:or-filter-slide .2s ease-out}
+@media(prefers-reduced-motion:reduce){.or-sheet.or-date-sheet>section{animation:none}}

@@ -1,0 +1,54 @@
+@media (max-width: 920px) {
+  .app-shell {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+
+  .topbar {
+    height: auto;
+    grid-template-columns: 1fr;
+    padding: var(--spacing-md);
+  }
+
+  .content,
+  .page-tabs {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-grid label {
+    align-items: flex-start;
+  }
+
+  .filter-grid label span {
+    padding-top: 6px;
+  }
+
+  .filter-actions,
+  .table-toolbar,
+  .toolbar-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .category-panel {
+    width: min(420px, calc(100vw - 120px));
+  }
+
+  .tongcheng-app-page {
+    padding: 14px;
+  }
+
+  .tongcheng-app-screen {
+    width: min(427px, calc(100vw - 92px), calc((100vh - 28px) * 0.46501));
+  }
+
+  .tongcheng-app-screen.retail-union-open {
+    width: min(427px, calc(100vw - 92px), calc((100vh - 28px) * 0.46725));
+  }
+
+}
+

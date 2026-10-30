@@ -1,0 +1,178 @@
+<section class="product-pool-page" id="productPoolPage" hidden aria-label="商品池管理">
+  <div class="product-pool-preference">
+    <select aria-label="商品池默认配置"><option>默认</option></select>
+  </div>
+
+  <section class="product-pool-filters" aria-label="商品池筛选">
+    <label><span>商品名称：</span><input id="productPoolNameFilter" type="search" placeholder="请输入内容" /></label>
+    <label><span>商品编号：</span><input id="productPoolCodeFilter" type="search" placeholder="请输入内容" /></label>
+    <label><span>租户类目：</span><input id="productPoolTenantCategoryFilter" type="search" placeholder="请输入内容" /></label>
+    <label><span>同步状态：</span><select id="productPoolSyncFilter"><option value="">请选择</option><option>成功</option><option>失败</option><option>未同步</option></select></label>
+    <label><span>渠道类型：</span><select id="productPoolChannelFilter"><option value="">请选择</option><option>京东到家</option><option>美团外卖</option><option>饿百</option></select></label>
+    <label><span>前端类目分类：</span><select id="productPoolFrontendCategoryFilter"><option value="">请选择</option><option>饮料酒水</option><option>休闲食品</option><option>粮油调味</option></select></label>
+    <label><span>自定义图片：</span><select id="productPoolCustomImageFilter"><option value="">请选择</option><option value="yes">有</option><option value="no">无</option></select></label>
+    <label><span>包含角标：</span><select id="productPoolBadgeFilter"><option value="">全部</option><option value="yes">包含</option><option value="no">不包含</option></select></label>
+    <label><span>包装盒：</span><select id="productPoolPackageFilter"><option value="">全部</option><option value="yes">已设置</option><option value="no">未设置</option></select></label>
+    <label><span>包含前缀：</span><select id="productPoolPrefixFilter"><option value="">全部</option><option value="yes">包含</option><option value="no">不包含</option></select></label>
+    <label><span>商品图片：</span><select id="productPoolImageFilter"><option value="">全部</option><option value="yes">有图片</option><option value="no">无图片</option></select></label>
+    <div class="product-pool-filter-actions">
+      <button class="btn primary" id="productPoolQueryButton" type="button">查询</button>
+      <button class="btn primary" id="productPoolResetButton" type="button">重置</button>
+    </div>
+  </section>
+
+  <section class="product-pool-table-card">
+    <div class="product-pool-toolbar">
+      <button class="btn" type="button" data-product-pool-action="新增商品">新增商品</button>
+      <button class="btn" type="button" data-product-pool-action="批量导入">批量导入</button>
+      <button class="btn" type="button" data-product-pool-action="商品数据下载">商品数据下载</button>
+      <button class="btn" type="button" data-product-pool-action="批量重推">批量重推</button>
+      <button class="btn" type="button" data-product-pool-action="推送失败结果导出">推送失败结果导出</button>
+      <button class="btn" type="button" data-product-pool-action="设置角标">设置角标</button>
+      <button class="btn" type="button" data-product-pool-action="去除角标">去除角标</button>
+      <button class="btn" type="button" data-product-pool-action="设置前缀">设置前缀</button>
+      <button class="btn" type="button" data-product-pool-action="去除前缀">去除前缀</button>
+      <button class="btn" type="button" data-product-pool-action="批量设置包装盒">批量设置包装盒</button>
+      <button class="btn" type="button" data-product-pool-action="批量删除商品">批量删除商品</button>
+    </div>
+
+    <div class="product-pool-table-scroll">
+      <table class="product-pool-table">
+        <colgroup>
+          <col style="width: 48px" />
+          <col style="width: 180px" />
+          <col style="width: 155px" />
+          <col style="width: 150px" />
+          <col style="width: 150px" />
+          <col style="width: 150px" />
+          <col style="width: 150px" />
+          <col style="width: 135px" />
+          <col style="width: 175px" />
+          <col style="width: 175px" />
+          <col style="width: 200px" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th><input id="productPoolSelectAll" type="checkbox" aria-label="全选商品" /></th>
+            <th>商品名称</th>
+            <th>商品图片</th>
+            <th>角标图片</th>
+            <th>前缀</th>
+            <th>标签</th>
+            <th>商品编号</th>
+            <th>同步状态</th>
+            <th>创建时间</th>
+            <th>最近同步时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="productPoolTableBody"></tbody>
+      </table>
+      <div class="product-pool-empty" id="productPoolEmptyState" hidden>暂无符合条件的商品</div>
+    </div>
+
+    <footer class="product-pool-pagination">
+      <span id="productPoolPaginationTotal">共 42187 条</span>
+      <select aria-label="每页条数"><option>10条/页</option></select>
+      <button type="button" aria-label="上一页">‹</button>
+      <button class="active" type="button">1</button>
+      <button type="button">2</button>
+      <button type="button">3</button>
+      <button type="button">4</button>
+      <button type="button">5</button>
+      <button type="button">6</button>
+      <span>•••</span>
+      <button type="button">4219</button>
+      <button type="button" aria-label="下一页">›</button>
+      <label>前往 <input id="productPoolPageJump" type="number" min="1" max="4219" value="1" /> 页</label>
+    </footer>
+  </section>
+</section>
+
+<div class="modal-mask" id="productPoolEditModal" aria-hidden="true">
+  <section class="product-pool-edit-modal" role="dialog" aria-modal="true" aria-labelledby="productPoolEditTitle">
+    <header class="product-pool-edit-header">
+      <h2 id="productPoolEditTitle">修改商品</h2>
+      <button class="icon-button" id="productPoolEditClose" type="button" aria-label="关闭修改商品弹窗">×</button>
+    </header>
+
+    <div class="product-pool-edit-body">
+      <section class="product-pool-edit-section">
+        <h3>基础信息</h3>
+        <div class="product-pool-basic-grid">
+          <label><span class="required">商品名称</span><input id="productPoolEditName" type="text" /></label>
+          <label><span class="required">商品编码</span><input id="productPoolEditCode" type="text" /></label>
+          <label><span class="required">商品条码</span><input id="productPoolEditBarcode" type="text" /></label>
+          <label class="product-pool-platform-category"><span class="required">平台类目</span><select id="productPoolEditCategory"><option>鲜食/熟食 / 熟食/卤味/凉菜 / 禽肉类熟食</option><option>饮料酒水 / 果蔬汁</option><option>粮油调味 / 米面杂粮</option></select></label>
+        </div>
+      </section>
+
+      <div class="product-pool-recommend-state"><i>✓</i><span>已为推荐类目</span></div>
+      <section class="product-pool-attribute-panel">
+        <header>
+          <strong>饿百类目属性</strong>
+          <button class="btn" id="productPoolRecommendAttributes" type="button">一键推荐属性</button>
+        </header>
+        <div class="product-pool-attribute-columns">
+          <div class="product-pool-attribute-column">
+            <label class="product-pool-attribute-field"><span>主要成分<small>608366858</small></span><input placeholder="请输入主要成分" /></label>
+            <label class="product-pool-attribute-field"><span class="required">净含量<small>147956252</small></span><span class="product-pool-net-content"><input placeholder="请输入净含量" /><select><option>请选择单位</option><option>g</option><option>kg</option><option>ml</option></select></span></label>
+            <label class="product-pool-attribute-field"><span>厂家联系方式<small>151428601</small></span><input placeholder="请输入厂家联系方式" /></label>
+            <label class="product-pool-attribute-field"><span class="required">商品类别<small>589743111</small></span><select><option>请选择商品类别</option><option>禽肉类熟食</option><option>即食熟食</option></select></label>
+            <label class="product-pool-attribute-field"><span>生产厂家地址<small>151454497</small></span><input placeholder="请输入生产厂家地址" /></label>
+          </div>
+          <div class="product-pool-attribute-column">
+            <label class="product-pool-attribute-field"><span>产地<small>589735952</small></span><select><option>请选择产地</option><option>中国大陆</option><option>进口</option></select></label>
+            <label class="product-pool-attribute-field"><span>包装方式<small>589743613</small></span><select><option>请选择包装方式</option><option>袋装</option><option>盒装</option><option>瓶装</option></select></label>
+            <label class="product-pool-attribute-field"><span>品牌<small>20000</small></span><select><option>请选择品牌</option><option>我得</option><option>奈雪</option><option>金龙鱼</option></select></label>
+            <label class="product-pool-attribute-field"><span>是否清真<small>589740817</small></span><select><option>请选择是否清真</option><option>是</option><option>否</option></select></label>
+            <label class="product-pool-attribute-field"><span class="required">食用方式<small>589740919</small></span><select><option>请选择食用方式</option><option>开袋即食</option><option>加热食用</option></select></label>
+          </div>
+          <div class="product-pool-attribute-column">
+            <label class="product-pool-attribute-field"><span class="required">储藏条件<small>589739536</small></span><select><option>请选择储藏条件</option><option>常温</option><option>冷藏</option><option>冷冻</option></select></label>
+            <label class="product-pool-attribute-field"><span>包装规格<small>2020563</small></span><input placeholder="请输入包装规格" /></label>
+            <label class="product-pool-attribute-field"><span class="required">售卖方式<small>5897350800</small></span><select><option>请选择售卖方式</option><option>按件售卖</option><option>按重量售卖</option></select></label>
+            <label class="product-pool-attribute-field"><span>生产厂家名称<small>151486361</small></span><input placeholder="请输入生产厂家名称" /></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-pool-edit-section product-pool-image-section">
+        <h3>图片信息</h3>
+        <div class="product-pool-image-row">
+          <div class="product-pool-image-label required">商品图片 <i>i</i></div>
+          <div class="product-pool-image-content">
+            <button class="btn product-pool-upload-button" id="productPoolMainUpload" type="button">点击上传</button>
+            <input id="productPoolMainImageInput" type="file" accept="image/*" multiple hidden />
+            <div class="product-pool-edit-image-list product-pool-main-images" id="productPoolMainImages"></div>
+            <p class="product-pool-image-warning">饿了么：请至少上传2张图片</p>
+          </div>
+        </div>
+
+        <div class="product-pool-image-row">
+          <div class="product-pool-image-label">详情图 <i>i</i></div>
+          <div class="product-pool-image-content">
+            <input id="productPoolDetailImageInput" type="file" accept="image/*" multiple hidden />
+            <div class="product-pool-edit-image-list product-pool-detail-images" id="productPoolDetailImages"></div>
+            <p class="product-pool-image-warning">饿了么：请上传图片</p>
+          </div>
+        </div>
+
+        <div class="product-pool-image-row">
+          <div class="product-pool-image-label">特殊图片 <i>i</i></div>
+          <div class="product-pool-image-content product-pool-special-content">
+            <p><strong>标题：配料图</strong> <em>（不传特殊图下架）</em></p>
+            <p>描述：当前类目需上传清晰完整的商品配料表和条码图片，建议使用平面设计图；实拍图片请保持文字清晰、背景整洁。</p>
+            <input id="productPoolSpecialImageInput" type="file" accept="image/*" multiple hidden />
+            <div class="product-pool-edit-image-list product-pool-special-images" id="productPoolSpecialImages"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="product-pool-edit-footer">
+      <button class="btn" id="productPoolEditCancel" type="button">取消</button>
+      <button class="btn primary" id="productPoolEditSave" type="button">保存</button>
+    </footer>
+  </section>
+</div>

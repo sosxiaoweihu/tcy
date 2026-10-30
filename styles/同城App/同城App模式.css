@@ -1,0 +1,20 @@
+body.tongcheng-app-mode .topbar,
+body.tongcheng-app-mode .page-tabs {
+  display: none;
+}
+
+/* 手机外的功能页签，沿用后台页签的桌面字号与尺寸。 */
+.tongcheng-app-tabs{display:none}
+body.tongcheng-app-mode .tongcheng-app-tabs{height:44px;display:flex;gap:var(--spacing-xs);align-items:end;padding:0 var(--spacing-xl);background:var(--color-bg-card);border-bottom:1px solid #e4e8f0;overflow-x:auto;scrollbar-width:thin;white-space:nowrap}
+.tc-app-tab{display:flex;align-items:center;flex:none;height:35px;border:1px solid var(--color-border-default);border-bottom:0;border-radius:var(--radius-md) var(--radius-md) 0 0;background:#f8fafc;color:var(--color-text-secondary)}
+.tc-app-tab.active{position:relative;background:var(--color-bg-page);border-color:#c7d9fb;color:var(--color-primary)}
+.tc-app-tab.active:before{content:"";position:absolute;left:12px;right:12px;top:-1px;height:2px;border-radius:2px;background:var(--color-primary)}
+.tc-app-tab button{height:100%;padding:0 14px;border:0;background:transparent;color:inherit;font-size:var(--font-size-body);white-space:nowrap}
+.tc-app-tab.active>[role="tab"]{font-weight:600}
+.tc-app-tab .tc-app-tab-close{display:grid;place-items:center;width:22px;height:22px;padding:0;margin-right:6px;border-radius:4px;font-size:18px;color:#98a2b3}
+.tc-app-tab .tc-app-tab-close:hover{background:#e8ecf4;color:#475467}
+.tc-app-tab button:focus-visible{outline:2px solid var(--color-primary);outline-offset:-2px}
+body.tongcheng-app-mode .tongcheng-app-page{height:calc(100vh - 44px)}
+body.tongcheng-app-mode .tongcheng-app-screen{width:min(427px,calc(100vw - 132px),calc((100vh - 92px) * .46501))}
+body.tongcheng-app-mode .tongcheng-app-screen.retail-union-open{width:min(427px,calc(100vw - 132px),calc((100vh - 92px) * .46725))}
+@media(max-width:720px){body.tongcheng-app-mode .tongcheng-app-tabs{padding-left:12px;padding-right:12px}body.tongcheng-app-mode .tongcheng-app-screen{width:min(427px,calc(100vw - 132px),calc((100vh - 146px) * .46501))}body.tongcheng-app-mode .tongcheng-app-screen.retail-union-open{width:min(427px,calc(100vw - 132px),calc((100vh - 146px) * .46725))}}
