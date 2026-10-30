@@ -12,7 +12,7 @@
     const click=s=>{const button=$(s);if(!button)throw new Error(`缺少测试入口：${s}`);button.click();};
     const tool=async entry=>{click('[data-app-tab="tools"]');await settle();click(entry);await settle();};
     const cases=[
-      ['全部工具',async()=>click('[data-app-tab="tools"]')],
+      ['全部工具',async()=>{if($('[data-app-tab="home"]'))throw new Error('已移除的 App首页 不应出现');if(!$('#tongchengAppScreen').src.endsWith('/retail-union-tools.png'))throw new Error('首次进入 App 应直接显示全部工具');click('[data-app-tab="tools"]');}],
       ['同城商品管理',async()=>tool('#openCityProducts')],
       ['商品搜索结果',async()=>{const form=$('.cp-search');form.querySelector('input').value='番茄';form.dispatchEvent(new app.Event('submit',{bubbles:true,cancelable:true}));}],
       ['批量管理全选',async()=>{click('[data-cp-back]');click('[data-cp-batch]');click('[data-cp-all]');}],

@@ -18,11 +18,11 @@ function setup(controller) {
 test('首次刷新时，同名 DOM 元素不能被误当作已初始化的页签控制器', () => {
   const { context, calls } = setup({ nodeType: 1, id: 'tongchengAppTabs' });
   assert.doesNotThrow(() => vm.runInContext('openTongchengAppPage()', context));
-  assert.deepEqual(calls.find(([name]) => name === 'home'), ['home', false]);
+  assert.deepEqual(calls.find(([name]) => name === 'home'), ['home', true]);
   assert.equal(context.tongchengAppPage.hidden, false);
   assert.equal(context.tongchengPage.hidden, true);
 });
-test('再次进入 App 时委托页签恢复当前页，避免重置到手机桌面', () => {
+test('再次进入 App 时委托页签恢复当前页', () => {
   let resumes = 0;
   const { context, calls } = setup({ resume: () => resumes++ });
   vm.runInContext('openTongchengAppPage()', context);

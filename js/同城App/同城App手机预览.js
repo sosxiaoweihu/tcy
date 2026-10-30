@@ -34,31 +34,32 @@ function openTongchengAppPage() {
   tongchengAppPage.hidden = false;
   // 先显示容器，再恢复功能页，确保滚动位置按可见手机尺寸还原。
   if (typeof window.tongchengAppTabs?.resume === "function") window.tongchengAppTabs.resume();
-  else setRetailUnionAppOpen(false);
+  else setRetailUnionAppOpen(true);
 }
 
-function setRetailUnionAppOpen(isOpen) {
-  tongchengAppScreen.src = isOpen ? "./assets/retail-union-tools.png" : "./assets/tongcheng-app-home.png";
-  tongchengAppScreen.alt = isOpen ? "零售共场App全部工具页面" : "同城App手机桌面";
-  tongchengAppScreen.closest(".tongcheng-app-screen").classList.toggle("retail-union-open", isOpen);
+function setRetailUnionAppOpen() {
+  // 手机桌面已移除，旧的返回调用也统一回到全部工具。
+  tongchengAppScreen.src = "./assets/retail-union-tools.png";
+  tongchengAppScreen.alt = "零售共场App全部工具页面";
+  tongchengAppScreen.closest(".tongcheng-app-screen").classList.add("retail-union-open");
   tongchengAppScreen.hidden = false;
   document.getElementById("orderReviewsPage").hidden = true;
-  document.getElementById("openOrderReviews").hidden = !isOpen;
+  document.getElementById("openOrderReviews").hidden = false;
   thirdPartyOrderPage.hidden = true;
   thirdPartyPhotoPage.hidden = true;
   imAppPage.hidden = true;
   productRecordPage.hidden = true;
   document.getElementById("cityProductsPage").hidden = true;
-  document.getElementById("openCityProducts").hidden = !isOpen;
-  openRetailUnionApp.hidden = isOpen;
-  closeRetailUnionApp.hidden = !isOpen;
-  openThirdPartyOrder.hidden = !isOpen;
-  openImMessage.hidden = !isOpen;
-  openProductRecord.hidden = !isOpen;
+  document.getElementById("openCityProducts").hidden = false;
+  openRetailUnionApp.hidden = true;
+  closeRetailUnionApp.hidden = true;
+  openThirdPartyOrder.hidden = false;
+  openImMessage.hidden = false;
+  openProductRecord.hidden = false;
 }
 
 openRetailUnionApp.addEventListener("click", () => setRetailUnionAppOpen(true));
-closeRetailUnionApp.addEventListener("click", () => setRetailUnionAppOpen(false));
+closeRetailUnionApp.addEventListener("click", () => setRetailUnionAppOpen(true));
 
 function downloadTongchengAppScreenshot(blob) {
   const url = URL.createObjectURL(blob);

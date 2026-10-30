@@ -7,7 +7,6 @@
   const text = value => typeof value === 'string' ? value.slice(0, 2000) : '';
   const offset = value => Number.isFinite(value) ? Math.max(0, value) : 0;
   const entries = [
-    { id: 'home', name: 'App首页' },
     { id: 'tools', name: '全部工具' },
     { id: 'products', name: '同城商品', entry: 'openCityProducts', panel: 'cityProductsPage' },
     { id: 'records', name: '同城商品档案', entry: 'openProductRecord', panel: 'productRecordPage', open: openProductRecordPage },
@@ -18,11 +17,11 @@
   const catalog = new Map(entries.map(entry => [entry.id, entry]));
   const roots = [...entries.filter(entry => entry.panel).map(entry => document.getElementById(entry.panel)), thirdPartyPhotoPage];
   const initialized = new Set();
-  let tabs = ['home', 'tools'], active = 'home', snapshots = {}, navigating = false, queued = false;
+  let tabs = ['tools'], active = 'tools', snapshots = {}, navigating = false, queued = false;
   try {
     const saved = JSON.parse(sessionStorage.getItem(key));
     if (saved && Array.isArray(saved.tabs)) {
-      tabs = [...new Set(['home', 'tools', ...saved.tabs.filter(id => catalog.has(id))])];
+      tabs = [...new Set(['tools', ...saved.tabs.filter(id => catalog.has(id))])];
       active = tabs.includes(saved.active) ? saved.active : 'tools';
       if (saved.pages && typeof saved.pages === 'object' && !Array.isArray(saved.pages)) {
         snapshots = Object.fromEntries(tabs.filter(id => catalog.get(id).panel && saved.pages[id] && typeof saved.pages[id] === 'object').map(id => [id, saved.pages[id]]));
@@ -133,8 +132,8 @@
   function show(id) {
     const entry = catalog.get(id);
     if (!entry) return;
-    if (id === 'home' || id === 'tools') {
-      setRetailUnionAppOpen(id === 'tools');
+    if (id === 'tools') {
+      setRetailUnionAppOpen(true);
       return;
     }
     // 已初始化页保留原 DOM、草稿及滚动状态；仅刷新后第一次激活时恢复快照。
@@ -160,7 +159,7 @@
   function synchronize() {
     if (navigating || tongchengAppPage.hidden || !document.body.classList.contains('tongcheng-app-mode')) return;
     const shown = entries.find(entry => entry.panel && !document.getElementById(entry.panel).hidden);
-    const next = shown?.id || (!thirdPartyPhotoPage.hidden ? 'orders' : screen.classList.contains('retail-union-open') ? 'tools' : 'home');
+    const next = shown?.id || (!thirdPartyPhotoPage.hidden ? 'orders' : 'tools');
     const changed = next !== active;
     if (changed) { capture(); active = next; }
     if (!tabs.includes(next)) tabs.push(next);
