@@ -1,0 +1,28 @@
+<section id="inventoryComparePage" class="inventory-compare-page" hidden aria-label="同城商品库存对比">
+  <form id="inventoryCompareFilters" class="ic-filters" aria-label="库存对比查询条件">
+    <div class="ic-filter-main">
+      <label>业态<select name="format" aria-label="业态"><option value="标超店">标超店</option><option value="">全部业态</option></select></label>
+      <label>门店<span class="ic-input-group"><select name="store" aria-label="门店"><option value="">请选择</option></select><button class="btn" type="button" data-ic-action="region">区域</button></span></label>
+      <label>渠道<select name="channel" aria-label="渠道"><option value="">请选择</option><option>美团外卖</option><option>京东到家</option><option>饿百</option></select></label>
+      <div class="ic-query"><button type="button" class="ic-link" id="icExpand" aria-expanded="false" aria-controls="icAdvanced">展开 <span aria-hidden="true">⌄</span></button><button class="btn primary" type="submit">查询</button><button class="btn ic-reset" type="reset">重置</button></div>
+    </div>
+    <div id="icAdvanced" class="ic-advanced" hidden>
+      <label>商品编码<span class="ic-input-group"><input name="code" placeholder="请选择" aria-label="商品编码" /><button type="button" class="btn ic-ellipsis" data-ic-action="codes" aria-label="批量输入商品编码">···</button><button type="button" class="btn" data-ic-action="import">批量导入</button></span></label>
+      <label>库存接收状态<select name="sync" aria-label="库存接收状态"><option value="">请选择</option><option>启用</option><option>停用</option></select></label>
+      <label>创建日期<input name="date" type="date" value="2026-11-08" aria-label="创建日期" /></label>
+      <label>中台库存对比<select name="centerMatch" aria-label="中台库存对比"><option value="">请选择</option><option>成功</option><option>失败</option></select></label>
+      <label>平台库存对比<select name="platformMatch" aria-label="平台库存对比"><option value="">请选择</option><option>成功</option><option>失败</option></select></label>
+      <label>ERP库存对比<select name="erpMatch" aria-label="ERP库存对比"><option value="">请选择</option><option>成功</option><option>失败</option></select></label>
+      <label>中台库存差异<input name="centerDiff" type="number" step="any" placeholder=">100" aria-label="中台库存差异大于" /></label>
+      <label>平台库存差异<input name="platformDiff" type="number" step="any" placeholder=">100" aria-label="平台库存差异大于" /></label>
+      <label>ERP库存差异<input name="erpDiff" type="number" step="any" placeholder=">100" aria-label="ERP库存差异大于" /></label>
+      <label>销售模式<select name="mode" aria-label="销售模式"><option value="">请选择</option><option>A进A出生鲜</option></select></label>
+      <label>商品创建人<select name="creator" aria-label="商品创建人"><option value="">请选择</option><option>admin</option></select></label>
+    </div>
+  </form>
+  <div class="ic-toolbar"><div><h1>同城商品库存对比</h1><span id="icCount"></span></div><div class="ic-toolbar-actions"><span class="ic-help" tabindex="0"><i aria-hidden="true">i</i> 指标说明<span role="tooltip">库存数量保留四位小数；比对成功表示对应库存一致，失败表示存在差异。差异筛选按大于输入值查询。合计统计当前查询结果。</span></span><button class="btn" type="button" data-ic-action="options">选项</button><button class="btn" type="button" data-ic-action="export">导出</button><button class="ic-link" type="button" data-ic-action="exports">查看导出</button></div></div>
+  <div class="ic-table-scroll" tabindex="0" role="region" aria-label="库存对比明细表"><table class="ic-table"><colgroup id="icCols"></colgroup><thead id="icHead"></thead><tbody id="icRows"></tbody><tfoot id="icSummary"></tfoot></table></div>
+  <footer class="ic-pagination"><span id="icTotal"></span><label>每页 <select id="icPageSize" aria-label="每页条数"><option>15</option><option>30</option><option>50</option></select> 条</label><nav id="icPages" aria-label="库存对比分页"></nav><label>前往 <input id="icJump" type="number" min="1" value="1" aria-label="库存对比页码" /> 页</label></footer>
+  <dialog id="icDialog" class="ic-dialog" aria-labelledby="icDialogTitle"><form id="icDialogForm"><header><h2 id="icDialogTitle"></h2><button type="button" data-ic-action="close" aria-label="关闭对话框">×</button></header><div id="icDialogBody"></div><footer><button class="btn" type="button" data-ic-action="close">取消</button><button class="btn primary" type="submit">确定</button></footer></form></dialog>
+  <div id="icToast" class="ic-toast" role="status" hidden></div>
+</section>

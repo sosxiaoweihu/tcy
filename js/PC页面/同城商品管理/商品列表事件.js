@@ -107,22 +107,6 @@ function resetBatchSpecialImageFile() {
 const batchSpecialImageTabs = [...batchSpecialImageModal.querySelectorAll("[data-special-image-tab]")];
 const batchSpecialImageExcelInput = document.querySelector("#batchSpecialImageExcelInput");
 const batchSpecialImageExcelFileName = document.querySelector("#batchSpecialImageExcelFileName");
-const batchSpecialImageUploadChannels = [...batchSpecialImageModal.querySelectorAll("input[name='batchSpecialImageReferenceChannel']")];
-const batchSpecialImageCopyChannels = [...batchSpecialImageModal.querySelectorAll("input[name='batchSpecialImageCopyChannel']")];
-const batchSpecialImageCopyField = document.querySelector("#batchSpecialImageCopyField");
-
-function updateBatchSpecialImageCopyChannels() {
-  const uploadChannel = batchSpecialImageUploadChannels.find((input) => input.checked)?.value;
-  batchSpecialImageCopyField.hidden = !uploadChannel;
-  batchSpecialImageCopyChannels.forEach((input) => {
-    const excluded = !uploadChannel || input.value === uploadChannel;
-    input.disabled = excluded;
-    input.closest("label").hidden = excluded;
-    if (excluded) input.checked = false;
-  });
-}
-
-
 function setBatchSpecialImageTab(mode) {
   batchSpecialImageModal.dataset.uploadMode = mode;
   batchSpecialImageTabs.forEach((tab) => {
@@ -145,8 +129,6 @@ function openBatchSpecialImageModal() {
   resetBatchSpecialImageFile();
   resetBatchSpecialImageExcelFile();
   setBatchSpecialImageTab("zip");
-  [...batchSpecialImageUploadChannels, ...batchSpecialImageCopyChannels].forEach((input) => { input.checked = false; });
-  updateBatchSpecialImageCopyChannels();
   document.querySelector("input[name='batchSpecialImageChannel'][value='meituan']").checked = true;
   batchSpecialImageModal.classList.add("open");
   batchSpecialImageModal.setAttribute("aria-hidden", "false");
@@ -224,9 +206,6 @@ batchSpecialImageTabs.forEach((tab, index) => {
     nextTab.focus();
   });
 });
-batchSpecialImageUploadChannels.forEach((input) => {
-  input.addEventListener("change", updateBatchSpecialImageCopyChannels);
-});
 
 document.querySelector("#batchSpecialImageExcelButton").addEventListener("click", () => batchSpecialImageExcelInput.click());
 batchSpecialImageExcelInput.addEventListener("change", () => {
@@ -275,18 +254,8 @@ document.querySelector("#confirmBatchSpecialImageModal").addEventListener("click
       showToast("请先导入商品Excel文件");
       return;
     }
-    const channel = batchSpecialImageModal.querySelector("input[name='batchSpecialImageReferenceChannel']:checked");
-    if (!channel) {
-      showToast("请选择上传渠道");
-      return;
-    }
-    const copyChannel = batchSpecialImageCopyChannels.find((input) => input.checked && !input.disabled);
-    if (!copyChannel || copyChannel.value === channel.value) {
-      showToast("请选择与上传渠道不同的复制渠道");
-      return;
-    }
     closeBatchSpecialImageModal();
-    showToast(`已模拟提交：上传渠道为${channel.parentElement.textContent.trim()}，复制渠道为${copyChannel.parentElement.textContent.trim()}`);
+    showToast("已模拟提交：批量引用渠道特殊图片任务");
     return;
   }
   if (!batchSpecialImageFileInput.files.length) {

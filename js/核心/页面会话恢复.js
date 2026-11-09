@@ -20,7 +20,9 @@
     let state;
     try { state = JSON.parse(sessionStorage.getItem(key)); } catch { return; }
     if (!state || !Array.isArray(state.tabs)) return;
-    const tabs = [...new Set(state.tabs.filter(name => knownPages.has(name)))];
+    const renamePage = name => name === '同城商家客服' ? '小程序商家客服' : name;
+    const tabs = [...new Set(state.tabs.map(renamePage).filter(name => knownPages.has(name)))];
+    state.active = renamePage(state.active);
     if (!tabs.length) return;
     if (!tabs.includes('概况')) tabs.unshift('概况');
     const moduleButton = [...document.querySelectorAll('.side-nav [data-nav]')]

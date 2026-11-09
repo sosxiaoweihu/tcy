@@ -1,0 +1,46 @@
+<section class="merchant-service-page" id="merchantServicePage" hidden aria-label="小程序商家客服">
+  <header class="merchant-service-header"><h1>小程序商家客服</h1></header>
+  <form class="merchant-service-filters" id="merchantServiceFilters" aria-label="客服员工查询条件">
+    <label for="merchantServiceFilterAccount">微信客服ID：<input id="merchantServiceFilterAccount" autocomplete="off" placeholder="请输入微信客服ID" /></label>
+    <label for="merchantServiceFilterEmployee">员工工号：<input id="merchantServiceFilterEmployee" autocomplete="off" placeholder="请输入员工工号" /></label>
+    <div class="merchant-service-filter-actions">
+      <button class="btn primary" type="submit">查询</button>
+      <button class="btn" id="merchantServiceReset" type="button">重置</button>
+    </div>
+  </form>
+  <div class="merchant-service-toolbar" aria-label="列表工具栏">
+    <div class="merchant-service-toolbar-actions">
+      <button class="btn primary" id="merchantServiceAdd" type="button">新增员工</button>
+      <button class="btn" id="merchantServicePull" type="button">拉取微信客服</button>
+    </div>
+    <span id="merchantServiceCount"></span>
+  </div>
+  <div class="merchant-service-table-scroll" tabindex="0" role="region" aria-label="微信客服列表">
+    <table class="merchant-service-table">
+      <colgroup><col style="width: 30%" /><col style="width: 25%" /><col style="width: 17%" /><col style="width: 16%" /><col style="width: 12%" /></colgroup>
+      <thead><tr><th>微信客服ID</th><th>微信客服名称</th><th>员工工号</th><th>员工姓名</th><th>操作</th></tr></thead>
+      <tbody id="merchantServiceRows"></tbody>
+    </table>
+  </div>
+  <div class="merchant-service-pagination">
+    <span id="merchantServiceTotal"></span><span>10 条/页</span>
+    <button type="button" aria-label="上一页" disabled>‹</button><button type="button" class="active" aria-current="page">1</button><button type="button" aria-label="下一页" disabled>›</button>
+    <label>跳至 <input id="merchantServiceJump" type="number" min="1" max="1" value="1" aria-label="跳转页码" /> 页</label>
+  </div>
+  <dialog class="merchant-service-dialog" id="merchantServiceDialog" aria-labelledby="merchantServiceDialogTitle">
+    <form id="merchantServiceForm" novalidate>
+      <header><h2 id="merchantServiceDialogTitle">新增员工</h2><button type="button" data-merchant-service-close aria-label="关闭映射配置窗口">×</button></header>
+      <div class="merchant-service-dialog-body">
+        <div class="merchant-service-field"><label for="merchantServiceAccountSelect"><span aria-hidden="true">*</span> 微信客服</label><select id="merchantServiceAccountSelect" aria-required="true" aria-describedby="merchantServiceError"><option value="">请选择微信客服ID_微信客服名称</option></select></div>
+        <div class="merchant-service-field"><label for="merchantServiceEmployeeCode"><span aria-hidden="true">*</span> 员工工号</label><input id="merchantServiceEmployeeCode" autocomplete="off" placeholder="请输入员工工号" aria-required="true" aria-describedby="merchantServiceError" /></div>
+        <p class="merchant-service-error" id="merchantServiceError" role="alert"></p>
+      </div>
+      <footer><button class="btn" type="button" data-merchant-service-close>取消</button><button class="btn primary" type="submit">提交</button></footer>
+    </form>
+  </dialog>
+  <dialog class="merchant-service-dialog" id="merchantServiceDeleteDialog" aria-labelledby="merchantServiceDeleteTitle" aria-describedby="merchantServiceDeleteMessage">
+    <header><h2 id="merchantServiceDeleteTitle">删除员工</h2></header>
+    <div class="merchant-service-dialog-body" id="merchantServiceDeleteMessage"></div>
+    <footer><button class="btn" type="button" data-merchant-service-delete-cancel autofocus>取消</button><button class="btn primary" type="button" id="merchantServiceDeleteConfirm">确定删除</button></footer>
+  </dialog>
+</section>

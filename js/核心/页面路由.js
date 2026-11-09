@@ -100,6 +100,8 @@ function closeTab(pageName) {
 }
 
 function switchModule(moduleName) {
+  if (moduleName !== "同城") document.getElementById("inventoryComparePage").hidden = true;
+  if (moduleName !== "同城") document.getElementById("merchantServicePage").hidden = true;
   if (moduleName !== "同城") document.getElementById("cityInventoryLogPage").hidden = true;
   if (moduleName !== "同城") document.getElementById("cityInventoryPage").hidden = true;
   leaveCustomTaskPage();

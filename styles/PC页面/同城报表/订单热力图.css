@@ -9,7 +9,7 @@
   align-items: end;
   padding: var(--spacing-md) var(--spacing-lg);
   margin-bottom: var(--spacing-md);
-  border: 1px solid #e4e7ec;
+  border: 0;
   border-radius: var(--radius-md);
   background: #fff;
 }

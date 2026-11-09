@@ -1,4 +1,12 @@
 function openConstructionPage(pageName, shouldAddTab = true) {
+  if (pageName === "同城商品库存对比") {
+    openInventoryComparePage(shouldAddTab);
+    return;
+  }
+  if (pageName === "小程序商家客服") {
+    openMerchantServicePage(shouldAddTab);
+    return;
+  }
   if (pageName === "同城库存操作日志") {
     openCityInventoryLogPage(undefined, shouldAddTab);
     return;

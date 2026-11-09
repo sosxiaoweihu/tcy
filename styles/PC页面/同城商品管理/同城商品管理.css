@@ -817,16 +817,9 @@ tbody tr.selected {
   font-size: var(--font-size-body);
 }
 
-.batch-special-image-reference-panel .batch-special-image-step h3 > span {
-  width: 28px;
-  height: 28px;
-  flex-basis: 28px;
-  font-size: var(--font-size-body);
-}
-
 .batch-special-image-reference-panel .batch-special-image-upload-row {
   flex-wrap: wrap;
-  margin: var(--spacing-lg) 0 0 40px;
+  margin: var(--spacing-lg) 0 0;
 }
 
 .batch-special-image-reference-panel .btn {
@@ -835,15 +828,9 @@ tbody tr.selected {
 }
 
 .batch-special-image-excel-tip {
-  margin: var(--spacing-sm) 0 0 40px;
+  margin: var(--spacing-sm) 0 0;
   color: var(--color-text-secondary);
   font-size: var(--font-size-secondary);
-}
-
-.batch-special-image-reference-channels {
-  flex-wrap: wrap;
-  gap: var(--spacing-xl);
-  margin: var(--spacing-lg) 0 0 40px;
 }
 
 .batch-special-image-instructions {
@@ -894,21 +881,6 @@ tbody tr.selected {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-}
-
-.batch-special-image-copy-field {
-  margin: var(--spacing-xl) 0 0 40px;
-}
-
-.batch-special-image-copy-field h4 {
-  margin: 0 0 var(--spacing-lg);
-  font-size: var(--font-size-body);
-  font-weight: 500;
-}
-
-.batch-special-image-copy-channels {
-  flex-wrap: wrap;
-  gap: var(--spacing-xl);
 }
 
 .batch-special-image-body {
@@ -1492,6 +1464,7 @@ tbody tr.selected {
 .create-form-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(260px, 1fr));
+  align-items: start;
   column-gap: 38px;
   row-gap: 12px;
   max-width: 1480px;
@@ -1527,6 +1500,58 @@ tbody tr.selected {
 .recommended-input-wrap {
   display: grid;
   gap: 5px;
+}
+
+.jd-brand-field {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--spacing-sm);
+}
+
+.create-form-grid .jd-brand-field > label {
+  display: block;
+  line-height: 36px;
+}
+
+.jd-brand-recommendation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-secondary);
+}
+
+.jd-brand-recommendation-content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.jd-brand-recommendation-label {
+  flex-shrink: 0;
+  padding: 0 2px;
+  border-radius: var(--radius-sm);
+  background: var(--color-warning);
+  color: var(--color-text-primary);
+  line-height: 16px;
+}
+
+.jd-brand-recommendation .btn {
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-warning);
+  font-size: var(--font-size-secondary);
+  box-shadow: none;
+}
+
+.jd-brand-recommendation .btn:hover {
+  background: transparent;
+  color: var(--color-warning);
+  text-decoration: underline;
 }
 
 .recommended-input-wrap input {
@@ -2118,6 +2143,11 @@ tbody tr.selected {
 .image-library-footer > div {
   display: flex;
   gap: var(--spacing-sm);
+}
+
+.special-image-block .image-action-row .upload-btn {
+  height: var(--button-height, 32px);
+  font-size: var(--font-size-button);
 }
 
 .category-create-block {

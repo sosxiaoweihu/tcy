@@ -127,10 +127,16 @@ imageReplaceConfirmModal.addEventListener("click", (event) => {
   if (event.target === imageReplaceConfirmModal) closeImageReplaceConfirm();
 });
 
+const specialImageChannels = {
+  "ele-special": "饿了么",
+  "mt-special": "美团",
+  "douyin-special": "抖店"
+};
+
 function getImageLibraryConfig(target) {
   if (target === "main") return { title: "选择主图图片库素材", subtitle: "选中后将追加到当前商品主图", assets: imageLibraryAssets.main };
   if (target === "detail") return { title: "选择详情图片库素材", subtitle: "选中后将添加到图文详情", assets: imageLibraryAssets.detail };
-  const platform = target === "ele-special" ? "饿了么" : "美团";
+  const platform = specialImageChannels[target];
   return { title: `选择${platform}特殊图片素材`, subtitle: "请选择包含包装或背签信息的清晰图片", assets: imageLibraryAssets.special };
 }
 
@@ -198,6 +204,7 @@ document.querySelector("#confirmImageLibrary").addEventListener("click", () => {
     specialImageList.insertBefore(createDetailImage({ id: itemId, src: selectedLibraryImage.src, alt: selectedLibraryImage.name }), specialImageList.querySelector(".large-upload"));
   }
   closeImageLibrary();
+  syncSpecialImageReferenceButtons();
   syncImageRecommendationState();
   showToast("已使用图片库素材");
 });
@@ -205,7 +212,10 @@ document.querySelector("#confirmImageLibrary").addEventListener("click", () => {
 document.querySelectorAll(".special-image-list").forEach((list) => {
   list.addEventListener("click", (event) => {
     const removeButton = event.target.closest(".detail-image button");
-    if (removeButton) removeButton.closest(".detail-image").remove();
+    if (removeButton) {
+      removeButton.closest(".detail-image").remove();
+      syncSpecialImageReferenceButtons();
+    }
   });
 });
 
@@ -217,6 +227,48 @@ imageLibraryModal.addEventListener("click", (event) => {
 
 document.querySelector(".image-library-toolbar button").addEventListener("click", () => showToast("已按关键词筛选图片库"));
 
+function getChannelSpecialImages(channel) {
+  return Array.from(document.querySelectorAll(`[data-special-image-list="${channel}"] .detail-image`));
+}
+
+function syncSpecialImageReferenceButtons() {
+  document.querySelectorAll("[data-special-image-reference]").forEach((button) => {
+    button.hidden = getChannelSpecialImages(button.dataset.specialImageReference).length > 0;
+  });
+}
+
+document.querySelectorAll("[data-special-image-reference]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const target = button.dataset.specialImageReference;
+    if (getChannelSpecialImages(target).length) return;
+    const targetList = document.querySelector(`[data-special-image-list="${target}"]`);
+    const seenSources = new Set();
+    const images = Object.keys(specialImageChannels)
+      .filter((channel) => channel !== target)
+      .flatMap(getChannelSpecialImages)
+      .filter((image) => {
+        const src = image.querySelector("img").src;
+        if (seenSources.has(src)) return false;
+        seenSources.add(src);
+        return true;
+      });
+    if (!images.length) {
+      showToast("其他渠道暂无可引用的特殊图片");
+      return;
+    }
+    images.forEach((image, index) => {
+      const copy = image.cloneNode(true);
+      copy.dataset.imageId = `reference-${target}-${index}`;
+      targetList.insertBefore(copy, targetList.querySelector(".large-upload"));
+    });
+    syncSpecialImageReferenceButtons();
+    showToast(`已引用其他渠道的 ${images.length} 张特殊图片`);
+    document.querySelector(`[data-image-library-target="${target}"]`).focus();
+  });
+});
+
+syncSpecialImageReferenceButtons();
+
 function setCategoryAttributePanelExpanded(panel, expanded) {
   panel.classList.toggle("expanded", expanded);
   panel.querySelectorAll(".attribute-extra").forEach((field) => {
@@ -225,6 +277,25 @@ function setCategoryAttributePanelExpanded(panel, expanded) {
   const toggle = panel.querySelector("[data-attribute-toggle]");
   if (toggle) toggle.textContent = expanded ? "收起" : "全部展开";
 }
+
+const jdBrandInput = document.querySelector("#jdBrandInput");
+const recommendedJdBrand = jdBrandInput.dataset.recommendedBrand;
+document.querySelector("#jdBrandRecommendationText").textContent = recommendedJdBrand;
+
+function syncJdBrandRecommendation() {
+  const isRecommended = jdBrandInput.value.trim() === recommendedJdBrand;
+  document.querySelector("#jdBrandRecommendedState").hidden = !isRecommended;
+  document.querySelector("#jdBrandRecommendation").hidden = isRecommended;
+}
+
+jdBrandInput.addEventListener("input", syncJdBrandRecommendation);
+jdBrandInput.addEventListener("change", syncJdBrandRecommendation);
+document.querySelector("#useRecommendedJdBrand").addEventListener("click", () => {
+  jdBrandInput.value = recommendedJdBrand;
+  jdBrandInput.dispatchEvent(new Event("input", { bubbles: true }));
+  jdBrandInput.focus();
+});
+syncJdBrandRecommendation();
 
 const jdIngredients = document.querySelector("#jdIngredients");
 const jdNutritionToggle = document.querySelector("[data-jd-nutrition-toggle]");
@@ -271,6 +342,8 @@ function openProductForm(mode) {
   createProductModal.setAttribute("aria-hidden", "false");
   document.querySelectorAll("[data-attribute-panel]").forEach((panel) => setCategoryAttributePanelExpanded(panel, false));
   syncImageRecommendationState();
+  syncSpecialImageReferenceButtons();
+  syncJdBrandRecommendation();
 }
 
 document.querySelector("#createProductButton").addEventListener("click", () => {

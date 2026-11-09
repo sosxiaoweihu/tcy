@@ -171,6 +171,8 @@ function renderCategories() {
 }
 
 function renderPageTabs() {
+  document.getElementById("inventoryComparePage").hidden = activePage !== "同城商品库存对比";
+  document.getElementById("merchantServicePage").hidden = activePage !== "小程序商家客服";
   document.getElementById("cityInventoryLogPage").hidden = activePage !== "同城库存操作日志";
   document.getElementById("cityInventoryPage").hidden = activePage !== "同城库存";
   cityShelfPlanPage.hidden = activePage !== "同城上下架计划";

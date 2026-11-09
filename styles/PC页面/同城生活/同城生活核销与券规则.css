@@ -148,9 +148,9 @@
   align-items: center;
   gap: 0 42px;
   padding: 24px 46px 18px;
-  border-bottom: 1px solid #e5e9f0;
+  border: 0;
   background: #fff;
-  box-shadow: 0 1px 8px rgba(15, 23, 42, 0.06);
+  box-shadow: none;
 }
 
 .product-detail-filters {
@@ -161,9 +161,9 @@
   align-items: center;
   gap: 0 42px;
   padding: 24px 46px 18px;
-  border-bottom: 1px solid #e5e9f0;
+  border: 0;
   background: #fff;
-  box-shadow: 0 1px 8px rgba(15, 23, 42, 0.06);
+  box-shadow: none;
 }
 
 .product-detail-filters label {
@@ -204,9 +204,9 @@
   align-items: center;
   gap: 0 24px;
   padding: 20px 46px;
-  border-bottom: 1px solid #e5e9f0;
+  border: 0;
   background: #fff;
-  box-shadow: 0 1px 8px rgba(15, 23, 42, 0.06);
+  box-shadow: none;
 }
 
 .after-sale-list-filters label {
@@ -280,8 +280,8 @@
   align-items: center;
   gap: 0 44px;
   padding: 8px 24px 8px 56px;
-  border-bottom: 1px solid #e5e9f0;
-  box-shadow: 0 1px 8px rgba(15, 23, 42, 0.06);
+  border: 0;
+  box-shadow: none;
 }
 
 .coupon-rule-filters label {

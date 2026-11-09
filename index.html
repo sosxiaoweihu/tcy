@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>同城商品管理 Design System v0.1</title>
     <link rel="stylesheet" href="./styles/tokens.css" />
-    <link rel="stylesheet" href="./styles.css?v=20260924-store-sync-3" />
+    <link rel="stylesheet" href="./styles.css?v=20261109-1" />
   </head>
   <body>
     <div class="app-shell">
@@ -82,6 +82,8 @@
             <button data-page="同城品牌">同城品牌</button>
             <button data-page="同城运维工具">同城运维工具</button>
             <button data-page="同城上下架计划">同城上下架计划</button>
+            <button data-page="小程序商家客服">小程序商家客服</button>
+            <button data-page="同城商品库存对比">同城商品库存对比</button>
           </div>
         </section>
         <section class="module-group">
@@ -1084,6 +1086,81 @@
               <footer><button class="btn" type="button" data-store-plan-close="storeShelfPlanDetail">关闭</button></footer>
             </dialog>
           </div>
+        </section>
+
+<section id="inventoryComparePage" class="inventory-compare-page" hidden aria-label="同城商品库存对比">
+  <form id="inventoryCompareFilters" class="ic-filters" aria-label="库存对比查询条件">
+    <div class="ic-filter-main">
+      <label>业态<select name="format" aria-label="业态"><option value="标超店">标超店</option><option value="">全部业态</option></select></label>
+      <label>门店<span class="ic-input-group"><select name="store" aria-label="门店"><option value="">请选择</option></select><button class="btn" type="button" data-ic-action="region">区域</button></span></label>
+      <label>渠道<select name="channel" aria-label="渠道"><option value="">请选择</option><option>美团外卖</option><option>京东到家</option><option>饿百</option></select></label>
+      <div class="ic-query"><button type="button" class="ic-link" id="icExpand" aria-expanded="false" aria-controls="icAdvanced">展开 <span aria-hidden="true">⌄</span></button><button class="btn primary" type="submit">查询</button><button class="btn ic-reset" type="reset">重置</button></div>
+    </div>
+    <div id="icAdvanced" class="ic-advanced" hidden>
+      <label>商品编码<span class="ic-input-group"><input name="code" placeholder="请选择" aria-label="商品编码" /><button type="button" class="btn ic-ellipsis" data-ic-action="codes" aria-label="批量输入商品编码">···</button><button type="button" class="btn" data-ic-action="import">批量导入</button></span></label>
+      <label>库存接收状态<select name="sync" aria-label="库存接收状态"><option value="">请选择</option><option>启用</option><option>停用</option></select></label>
+      <label>创建日期<input name="date" type="date" value="2026-11-08" aria-label="创建日期" /></label>
+      <label>中台库存对比<select name="centerMatch" aria-label="中台库存对比"><option value="">请选择</option><option>成功</option><option>失败</option></select></label>
+      <label>平台库存对比<select name="platformMatch" aria-label="平台库存对比"><option value="">请选择</option><option>成功</option><option>失败</option></select></label>
+      <label>ERP库存对比<select name="erpMatch" aria-label="ERP库存对比"><option value="">请选择</option><option>成功</option><option>失败</option></select></label>
+      <label>中台库存差异<input name="centerDiff" type="number" step="any" placeholder=">100" aria-label="中台库存差异大于" /></label>
+      <label>平台库存差异<input name="platformDiff" type="number" step="any" placeholder=">100" aria-label="平台库存差异大于" /></label>
+      <label>ERP库存差异<input name="erpDiff" type="number" step="any" placeholder=">100" aria-label="ERP库存差异大于" /></label>
+      <label>销售模式<select name="mode" aria-label="销售模式"><option value="">请选择</option><option>A进A出生鲜</option></select></label>
+      <label>商品创建人<select name="creator" aria-label="商品创建人"><option value="">请选择</option><option>admin</option></select></label>
+    </div>
+  </form>
+  <div class="ic-toolbar"><div><h1>同城商品库存对比</h1><span id="icCount"></span></div><div class="ic-toolbar-actions"><span class="ic-help" tabindex="0"><i aria-hidden="true">i</i> 指标说明<span role="tooltip">库存数量保留四位小数；比对成功表示对应库存一致，失败表示存在差异。差异筛选按大于输入值查询。合计统计当前查询结果。</span></span><button class="btn" type="button" data-ic-action="options">选项</button><button class="btn" type="button" data-ic-action="export">导出</button><button class="ic-link" type="button" data-ic-action="exports">查看导出</button></div></div>
+  <div class="ic-table-scroll" tabindex="0" role="region" aria-label="库存对比明细表"><table class="ic-table"><colgroup id="icCols"></colgroup><thead id="icHead"></thead><tbody id="icRows"></tbody><tfoot id="icSummary"></tfoot></table></div>
+  <footer class="ic-pagination"><span id="icTotal"></span><label>每页 <select id="icPageSize" aria-label="每页条数"><option>15</option><option>30</option><option>50</option></select> 条</label><nav id="icPages" aria-label="库存对比分页"></nav><label>前往 <input id="icJump" type="number" min="1" value="1" aria-label="库存对比页码" /> 页</label></footer>
+  <dialog id="icDialog" class="ic-dialog" aria-labelledby="icDialogTitle"><form id="icDialogForm"><header><h2 id="icDialogTitle"></h2><button type="button" data-ic-action="close" aria-label="关闭对话框">×</button></header><div id="icDialogBody"></div><footer><button class="btn" type="button" data-ic-action="close">取消</button><button class="btn primary" type="submit">确定</button></footer></form></dialog>
+  <div id="icToast" class="ic-toast" role="status" hidden></div>
+</section>
+        <section class="merchant-service-page" id="merchantServicePage" hidden aria-label="小程序商家客服">
+          <header class="merchant-service-header"><h1>小程序商家客服</h1></header>
+          <form class="merchant-service-filters" id="merchantServiceFilters" aria-label="客服员工查询条件">
+            <label for="merchantServiceFilterAccount">微信客服ID：<input id="merchantServiceFilterAccount" autocomplete="off" placeholder="请输入微信客服ID" /></label>
+            <label for="merchantServiceFilterEmployee">员工工号：<input id="merchantServiceFilterEmployee" autocomplete="off" placeholder="请输入员工工号" /></label>
+            <div class="merchant-service-filter-actions">
+              <button class="btn primary" type="submit">查询</button>
+              <button class="btn" id="merchantServiceReset" type="button">重置</button>
+            </div>
+          </form>
+          <div class="merchant-service-toolbar" aria-label="列表工具栏">
+            <div class="merchant-service-toolbar-actions">
+              <button class="btn primary" id="merchantServiceAdd" type="button">新增员工</button>
+              <button class="btn" id="merchantServicePull" type="button">拉取微信客服</button>
+            </div>
+            <span id="merchantServiceCount"></span>
+          </div>
+          <div class="merchant-service-table-scroll" tabindex="0" role="region" aria-label="微信客服列表">
+            <table class="merchant-service-table">
+              <colgroup><col style="width: 30%" /><col style="width: 25%" /><col style="width: 17%" /><col style="width: 16%" /><col style="width: 12%" /></colgroup>
+              <thead><tr><th>微信客服ID</th><th>微信客服名称</th><th>员工工号</th><th>员工姓名</th><th>操作</th></tr></thead>
+              <tbody id="merchantServiceRows"></tbody>
+            </table>
+          </div>
+          <div class="merchant-service-pagination">
+            <span id="merchantServiceTotal"></span><span>10 条/页</span>
+            <button type="button" aria-label="上一页" disabled>‹</button><button type="button" class="active" aria-current="page">1</button><button type="button" aria-label="下一页" disabled>›</button>
+            <label>跳至 <input id="merchantServiceJump" type="number" min="1" max="1" value="1" aria-label="跳转页码" /> 页</label>
+          </div>
+          <dialog class="merchant-service-dialog" id="merchantServiceDialog" aria-labelledby="merchantServiceDialogTitle">
+            <form id="merchantServiceForm" novalidate>
+              <header><h2 id="merchantServiceDialogTitle">新增员工</h2><button type="button" data-merchant-service-close aria-label="关闭映射配置窗口">×</button></header>
+              <div class="merchant-service-dialog-body">
+                <div class="merchant-service-field"><label for="merchantServiceAccountSelect"><span aria-hidden="true">*</span> 微信客服</label><select id="merchantServiceAccountSelect" aria-required="true" aria-describedby="merchantServiceError"><option value="">请选择微信客服ID_微信客服名称</option></select></div>
+                <div class="merchant-service-field"><label for="merchantServiceEmployeeCode"><span aria-hidden="true">*</span> 员工工号</label><input id="merchantServiceEmployeeCode" autocomplete="off" placeholder="请输入员工工号" aria-required="true" aria-describedby="merchantServiceError" /></div>
+                <p class="merchant-service-error" id="merchantServiceError" role="alert"></p>
+              </div>
+              <footer><button class="btn" type="button" data-merchant-service-close>取消</button><button class="btn primary" type="submit">提交</button></footer>
+            </form>
+          </dialog>
+          <dialog class="merchant-service-dialog" id="merchantServiceDeleteDialog" aria-labelledby="merchantServiceDeleteTitle" aria-describedby="merchantServiceDeleteMessage">
+            <header><h2 id="merchantServiceDeleteTitle">删除员工</h2></header>
+            <div class="merchant-service-dialog-body" id="merchantServiceDeleteMessage"></div>
+            <footer><button class="btn" type="button" data-merchant-service-delete-cancel autofocus>取消</button><button class="btn primary" type="button" id="merchantServiceDeleteConfirm">确定删除</button></footer>
+          </dialog>
         </section>
 
         <section class="city-format-page" id="cityFormatPage" hidden aria-label="同城业态">
@@ -3952,13 +4029,13 @@
               <div>
                 <h4>上传说明</h4>
                 <ol>
-                  <li>上传商品文件并填写商品编码。所选上传渠道已上传特殊图片的商品，系统将自动过滤，不会重复上传；未上传的商品，将复制指定渠道的图片进行上传。复制的渠道如果没有特殊图片，则也过滤不上传。</li>
-                  <li>目前支持特殊图片的上传，如化妆品背签图、食品配料成分背签图。</li>
+                  <li>下载模板上传商品文件。通过引用指定渠道的特殊图片复制到需要上传的渠道，引用渠道无特殊图片将过滤不上传。</li>
+                  <li>目前支持特殊图片的上传，如化妆品背签图、食品配料成分的背签图。</li>
                 </ol>
               </div>
             </aside>
             <section class="batch-special-image-step">
-              <h3><span>1</span>第一步，请上传商品</h3>
+              <h3>上传商品</h3>
               <input id="batchSpecialImageExcelInput" type="file" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden />
               <div class="batch-special-image-upload-row">
                 <button class="btn" id="batchSpecialImageExcelButton" type="button">导入Excel文件</button>
@@ -3966,22 +4043,6 @@
                 <span class="batch-special-image-file-name" id="batchSpecialImageExcelFileName" hidden></span>
               </div>
               <p class="batch-special-image-excel-tip">支持 .xls、.xlsx 格式文件</p>
-            </section>
-            <section class="batch-special-image-step">
-              <h3><span>2</span>选择上传渠道</h3>
-              <div class="batch-special-image-channel-options batch-special-image-reference-channels" role="radiogroup" aria-label="选择上传渠道">
-                <label><input type="radio" name="batchSpecialImageReferenceChannel" value="meituan" /> 美团外卖</label>
-                <label><input type="radio" name="batchSpecialImageReferenceChannel" value="taobao" /> 淘宝闪购</label>
-                <label><input type="radio" name="batchSpecialImageReferenceChannel" value="douyin" /> 抖店</label>
-              </div>
-              <div class="batch-special-image-copy-field" id="batchSpecialImageCopyField" hidden>
-                <h4 id="batchSpecialImageCopyLabel">请选择复制渠道</h4>
-                <div class="batch-special-image-channel-options batch-special-image-copy-channels" role="radiogroup" aria-labelledby="batchSpecialImageCopyLabel">
-                  <label><input type="radio" name="batchSpecialImageCopyChannel" value="meituan" /> 美团外卖</label>
-                  <label><input type="radio" name="batchSpecialImageCopyChannel" value="taobao" /> 淘宝闪购</label>
-                  <label><input type="radio" name="batchSpecialImageCopyChannel" value="douyin" /> 抖店</label>
-                </div>
-              </div>
             </section>
           </div>
         </div>
@@ -4013,13 +4074,19 @@
               <label><span class="label-with-tip">美团重量：<span class="field-help" tabindex="0" aria-label="重量与美团重量都填写时，以美团重量同步美团，不填写美团重量时则以重量字段同步美团">i<span class="field-tip" role="tooltip">重量与美团重量都填写时，以美团重量同步美团，不填写美团重量时则以重量字段同步美团</span></span></span><div class="unit-input unit-input-select"><input value="750" /><select aria-label="美团重量单位"><option>请选择</option><option selected>克(g)</option><option>千克(kg)</option><option>毫升(ml)</option><option>升(L)</option><option>磅</option><option>斤</option><option>两</option></select></div></label>
               <label><span>产地：</span><input value="见包装" disabled /></label>
               <label><span class="label-with-tip">起购数：<span class="field-help" tabindex="0" aria-label="仅对美团外卖、饿百渠道生效">i<span class="field-tip" role="tooltip">仅对美团外卖、饿百渠道生效</span></span></span><input value="1" /></label>
-              <label>
-                <span>京东品牌：</span>
+              <div class="jd-brand-field">
+                <label for="jdBrandInput">京东品牌：</label>
                 <div class="recommended-input-wrap">
-                  <input value="飘柔" />
-                  <small class="recommended-field-state">已推荐</small>
+                  <input id="jdBrandInput" value="13968_飘柔（Rejoice）" data-recommended-brand="13968_飘柔（Rejoice）" aria-describedby="jdBrandRecommendationHint" />
+                  <div id="jdBrandRecommendationHint" aria-live="polite">
+                    <small class="recommended-field-state" id="jdBrandRecommendedState">已推荐</small>
+                    <div class="jd-brand-recommendation" id="jdBrandRecommendation" hidden>
+                      <span class="jd-brand-recommendation-content"><span class="jd-brand-recommendation-label">推荐</span><span id="jdBrandRecommendationText"></span></span>
+                      <button class="btn" id="useRecommendedJdBrand" type="button">使用推荐</button>
+                    </div>
+                  </div>
                 </div>
-              </label>
+              </div>
             </div>
           </section>
 
@@ -4228,6 +4295,7 @@
                 <p>描述：化妆品商品清晰需展示商品背签图和化妆品备案编码</p>
                 <div class="image-action-row">
                   <button class="upload-btn image-library-button" type="button" data-image-library-target="ele-special">使用图片库</button>
+                  <button class="upload-btn image-library-button" type="button" data-special-image-reference="ele-special">引用其他渠道</button>
                 </div>
                 <div class="image-inline-list special-image-list" data-special-image-list="ele-special">
                   <button class="large-upload">＋</button>
@@ -4242,9 +4310,23 @@
                 <p>描述：化妆品须清晰展示含有化妆品备案编码、产品名称、备案人等必要信息的商品背签图。</p>
                 <div class="image-action-row">
                   <button class="upload-btn image-library-button" type="button" data-image-library-target="mt-special">使用图片库</button>
+                  <button class="upload-btn image-library-button" type="button" data-special-image-reference="mt-special">引用其他渠道</button>
                 </div>
                 <div class="image-inline-list special-image-list" data-special-image-list="mt-special">
                   <button class="large-upload">＋</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="image-form-row">
+              <div class="image-field-label">抖店特殊图片</div>
+              <div class="image-field-content special-image-block">
+                <div class="image-action-row">
+                  <button class="upload-btn image-library-button" type="button" data-image-library-target="douyin-special">使用图片库</button>
+                  <button class="upload-btn image-library-button" type="button" data-special-image-reference="douyin-special">引用其他渠道</button>
+                </div>
+                <div class="image-inline-list special-image-list" data-special-image-list="douyin-special">
+                  <button class="large-upload" type="button">＋</button>
                 </div>
               </div>
             </div>
@@ -4344,7 +4426,7 @@
     <script src="./js/PC页面/同城商品管理/图片库数据.js"></script>
     <script src="./js/PC页面/同城生活/同城生活数据.js"></script>
     <script src="./js/核心/通用UI.js"></script>
-    <script src="./js/PC页面/同城商品管理/商品表格与页签.js?v=20260831-1"></script>
+    <script src="./js/PC页面/同城商品管理/商品表格与页签.js?v=20261109-1"></script>
     <script src="./js/PC页面/同城商品管理/同城门店商品.js?v=20260924-3"></script>
     <script src="./assets/vendor/html2canvas-1.4.1.min.js"></script>
     <script src="./js/同城App/同城App手机预览.js?v=20261030-5"></script>
@@ -4352,7 +4434,7 @@
     <script src="./js/同城App/功能应用/IM消息.js"></script>
     <script src="./js/同城App/功能应用/同城商品档案.js?v=20260907-3"></script>
     <script src="./js/同城App/功能应用/同城商品.js?v=20261030-6"></script>
-    <script src="./js/核心/页面路由.js?v=20260831-1"></script>
+    <script src="./js/核心/页面路由.js?v=20261109-1"></script>
     <script src="./js/PC页面/同城报表/同城商品缺勤报表.js"></script>
     <script src="./js/PC页面/同城报表/同城商品缺货报表.js"></script>
     <script src="./js/PC页面/同城报表/IM回复率统计.js"></script>
@@ -4360,25 +4442,27 @@
     <script src="./js/PC页面/同城订单.js?v=20260814-4"></script>
     <script src="./js/PC页面/老三方/商品池管理.js"></script>
     <script src="./js/PC页面/同城商品管理/同城后台类目.js?v=20260814-3"></script>
-    <script src="./js/核心/建设中页面.js?v=20260831-1"></script>
+    <script src="./js/核心/建设中页面.js?v=20261109-1"></script>
     <script src="./js/PC页面/接口管理/京东接口列表.js"></script>
     <script src="./js/PC页面/同城生活/同城生活页面.js"></script>
     <script src="./js/PC页面/同城基础设置/同城业态.js?v=20260814-2"></script>
     <script src="./js/PC页面/同城基础设置/同城上下架计划.js?v=20260908-1"></script>
     <script src="./js/PC页面/同城基础设置/门店商品上架计划.js?v=20260831-3"></script>
     <script src="./js/PC页面/同城基础设置/同城运维工具.js?v=20260728-3"></script>
+    <script src="./js/PC页面/同城基础设置/同城商家客服.js?v=20261106-5"></script>
     <script src="./js/核心/导航与标签.js?v=20260831-1"></script>
     <script src="./js/PC页面/同城报表/订单热力图.js"></script>
     <script src="./js/PC页面/通用页面事件.js?v=20260817-1"></script>
-    <script src="./js/PC页面/同城商品管理/商品列表事件.js?v=20260817-3"></script>
+    <script src="./js/PC页面/同城商品管理/商品列表事件.js?v=20261106-1"></script>
     <script src="./js/PC页面/同城生活/同城生活事件.js"></script>
     <script src="./js/PC页面/接口管理/京东接口调试.js"></script>
-    <script src="./js/PC页面/同城商品管理/商品表单图片.js?v=20260817-1"></script>
+    <script src="./js/PC页面/同城商品管理/商品表单图片.js?v=20261102-4"></script>
     <script src="./js/PC页面/同城商品管理/同城库存.js?v=20260909-1"></script>
     <script src="./js/PC页面/同城商品管理/同城库存操作日志.js?v=20260909-1"></script>
     <script src="./js/核心/全局事件初始化.js"></script>
   <script src="./js/同城App/功能应用/同城订单评价.js?v=20261030-2"></script>
-    <script src="./js/核心/页面会话恢复.js?v=20261030-1"></script>
+    <script src="./js/PC页面/同城基础设置/同城商品库存对比.js?v=20261109-1"></script>
+    <script src="./js/核心/页面会话恢复.js?v=20261106-5"></script>
     <script src="./js/同城App/同城App页签.js?v=20261030-3"></script>
   </body>
 </html>

@@ -205,13 +205,13 @@
               <div>
                 <h4>上传说明</h4>
                 <ol>
-                  <li>上传商品文件并填写商品编码。所选上传渠道已上传特殊图片的商品，系统将自动过滤，不会重复上传；未上传的商品，将复制指定渠道的图片进行上传。复制的渠道如果没有特殊图片，则也过滤不上传。</li>
-                  <li>目前支持特殊图片的上传，如化妆品背签图、食品配料成分背签图。</li>
+                  <li>下载模板上传商品文件。通过引用指定渠道的特殊图片复制到需要上传的渠道，引用渠道无特殊图片将过滤不上传。</li>
+                  <li>目前支持特殊图片的上传，如化妆品背签图、食品配料成分的背签图。</li>
                 </ol>
               </div>
             </aside>
             <section class="batch-special-image-step">
-              <h3><span>1</span>第一步，请上传商品</h3>
+              <h3>上传商品</h3>
               <input id="batchSpecialImageExcelInput" type="file" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden />
               <div class="batch-special-image-upload-row">
                 <button class="btn" id="batchSpecialImageExcelButton" type="button">导入Excel文件</button>
@@ -219,22 +219,6 @@
                 <span class="batch-special-image-file-name" id="batchSpecialImageExcelFileName" hidden></span>
               </div>
               <p class="batch-special-image-excel-tip">支持 .xls、.xlsx 格式文件</p>
-            </section>
-            <section class="batch-special-image-step">
-              <h3><span>2</span>选择上传渠道</h3>
-              <div class="batch-special-image-channel-options batch-special-image-reference-channels" role="radiogroup" aria-label="选择上传渠道">
-                <label><input type="radio" name="batchSpecialImageReferenceChannel" value="meituan" /> 美团外卖</label>
-                <label><input type="radio" name="batchSpecialImageReferenceChannel" value="taobao" /> 淘宝闪购</label>
-                <label><input type="radio" name="batchSpecialImageReferenceChannel" value="douyin" /> 抖店</label>
-              </div>
-              <div class="batch-special-image-copy-field" id="batchSpecialImageCopyField" hidden>
-                <h4 id="batchSpecialImageCopyLabel">请选择复制渠道</h4>
-                <div class="batch-special-image-channel-options batch-special-image-copy-channels" role="radiogroup" aria-labelledby="batchSpecialImageCopyLabel">
-                  <label><input type="radio" name="batchSpecialImageCopyChannel" value="meituan" /> 美团外卖</label>
-                  <label><input type="radio" name="batchSpecialImageCopyChannel" value="taobao" /> 淘宝闪购</label>
-                  <label><input type="radio" name="batchSpecialImageCopyChannel" value="douyin" /> 抖店</label>
-                </div>
-              </div>
             </section>
           </div>
         </div>
