@@ -750,6 +750,8 @@
 #cccStoreDefaults {
   margin-top: var(--spacing-md);
   margin-inline-start: calc(var(--cc-create-choice-size) + 3 * var(--spacing-xs));
+  color: color-mix(in srgb, var(--color-text-secondary) 96%, var(--color-bg-card));
+  font-size: var(--font-size-secondary);
 }
 .cc-create-store-settings {
   min-inline-size: 0;
