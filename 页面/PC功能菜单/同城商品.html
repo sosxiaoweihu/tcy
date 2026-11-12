@@ -1,0 +1,275 @@
+<section id="cityCatalogPage" class="cc-page" hidden aria-label="同城商品">
+  <div id="ccCatalogList">
+  <div class="cc-business"><span>切换业态：</span><label><input type="radio" name="ccBusiness" checked /> 卖场</label></div>
+  <div class="cc-card">
+    <form id="ccFilters" class="cc-filters">
+      <div class="cc-filter-main">
+        <label class="cc-field"><span>商品编码：</span><input name="code" placeholder="精确查询" /></label>
+        <label class="cc-field"><span>商品条码：</span><input name="barcode" placeholder="精准查询" /></label>
+        <label class="cc-field"><span>商品名称：</span><input name="name" placeholder="模糊匹配查询" /></label>
+        <div class="cc-filter-actions"><button type="reset" class="cc-outline">重置</button><button type="submit" class="cc-primary">查询</button><button type="button" id="ccExpand" class="cc-link" aria-expanded="false" aria-controls="ccAdvanced" aria-label="展开筛选">⌄</button></div>
+      </div>
+      <div id="ccAdvanced" class="cc-filter-advanced" hidden>
+        <label class="cc-field"><span>前台类目：</span><select name="front"><option value="">请选择</option><option>时令上新</option><option>葡提莓果</option><option>热带水果</option><option>鲜果果切</option></select></label>
+        <label class="cc-field"><span>后台类目：</span><select name="back"><option value="">请选择</option><option>浆果</option><option>热带水果</option><option>其他水果</option></select></label>
+        <label class="cc-field"><span>商品状态：</span><select name="status"><option value="">请选择</option><option>售卖</option><option>下架</option></select></label>
+        <label class="cc-field"><span>商品类型：</span><select name="type"><option value="">请选择</option><option>普通商品</option><option>组合商品</option></select></label>
+        <label class="cc-field"><span>名称同步：</span><select name="syncName"><option value="">请选择</option><option>启用</option><option>停用</option></select></label>
+        <label class="cc-field"><span>主图同步：</span><select name="syncImage"><option value="">请选择</option><option>启用</option><option>停用</option></select></label>
+      </div>
+    </form>
+    <div id="ccProductLayout" class="cc-product-layout">
+      <div class="cc-category-heading">
+        <button type="button" id="ccAllCategories" class="cc-category-item cc-category-active" data-cc-category="" aria-pressed="true"><span>全部分类</span><span class="cc-category-count">（14528）</span></button>
+      </div>
+      <div class="cc-toolbar">
+        <div class="cc-toolbar-tabs">
+          <button type="button" id="ccCategoryToggle" class="cc-category-toggle" aria-label="收起前台类目" aria-expanded="true" aria-controls="ccCategorySidebar"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="16" height="14" rx="1.5"/><path d="M7 3v14m6-10-3 3 3 3"/></svg></button>
+          <div id="ccTabs" class="cc-tabs" role="tablist" aria-label="商品分类"><button type="button" role="tab" data-cc-tab="all" aria-selected="true">全部商品（14528）</button><button type="button" role="tab" data-cc-tab="issue" aria-selected="false">异常商品（<span>8287</span>）</button></div>
+        </div>
+        <div class="cc-tools">
+          <div class="cc-more-wrap"><button type="button" id="ccMore" class="cc-outline" aria-expanded="false" aria-controls="ccMoreMenu">更多操作</button><div id="ccMoreMenu" class="cc-more-menu" hidden></div></div>
+          <div class="cc-batch-wrap"><button type="button" id="ccBatch" class="cc-outline" aria-expanded="false" aria-controls="ccBatchMenu">批量创建商品 ⌄</button><div id="ccBatchMenu" class="cc-more-menu" hidden><button type="button" id="ccBatchCreate">批量创建商品</button></div></div>
+          <button type="button" id="ccCreate" class="cc-primary">＋ 创建商品</button>
+        </div>
+      </div>
+      <aside id="ccCategorySidebar" class="cc-category-sidebar" aria-label="前台类目"><nav id="ccCategoryTree" aria-label="前台类目分类树"></nav></aside>
+      <div class="cc-table-scroll" tabindex="0" aria-label="同城商品表格，可横向滚动">
+        <table class="cc-table"><colgroup><col style="width:340px"/><col style="width:120px"/><col style="width:160px"/><col style="width:120px"/><col style="width:100px"/><col style="width:160px"/><col style="width:128px"/><col style="width:110px"/><col style="width:158px"/><col style="width:90px"/></colgroup><thead><tr><th scope="col">商品信息<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整商品信息列宽"></span></th><th scope="col">规格<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整规格列宽"></span></th><th scope="col">前台类目<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整前台类目列宽"></span></th><th scope="col">后台类目<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整后台类目列宽"></span></th><th scope="col">商品状态<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整商品状态列宽"></span></th><th scope="col">同步状态<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整同步状态列宽"></span></th><th scope="col">铺品门店<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整铺品门店列宽"></span></th><th scope="col">渠道标签<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整渠道标签列宽"></span></th><th scope="col">更新时间<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整更新时间列宽"></span></th><th scope="col">操作</th></tr></thead><tbody id="ccRows"></tbody></table>
+      </div>
+      <footer id="ccPagination" class="cc-pagination"></footer>
+    </div>
+  </div>
+  </div>
+  <section id="ccCreatePage" class="cc-create-page" aria-label="创建商品" hidden>
+    <header class="cc-create-header">
+      <div class="cc-create-toolbar">
+        <nav class="cc-create-nav" aria-label="创建商品区块">
+          <button type="button" class="cc-link" data-ccc-jump="cccBasics">基本信息</button>
+          <button type="button" class="cc-link" data-ccc-jump="cccCategories">类目信息</button>
+          <button type="button" class="cc-link" data-ccc-jump="cccImages">图片信息</button>
+          <button type="button" class="cc-link" data-ccc-jump="cccAttributes">类目属性</button>
+          <button type="button" class="cc-link" data-ccc-jump="cccOther">其他商品信息</button>
+          <button type="button" class="cc-link" data-ccc-jump="cccStores">门店信息</button>
+        </nav>
+        <div class="cc-create-actions">
+          <button type="button" data-ccc-close>取消</button>
+          <button type="submit" class="cc-primary" form="ccCreateForm">保存</button>
+        </div>
+      </div>
+      <span id="cccFeedback" role="status" aria-live="polite"></span>
+    </header>
+    <form id="ccCreateForm" class="cc-create-form">
+      <section id="cccBasics" class="cc-create-section">
+        <h3>基本信息</h3>
+        <aside id="cccIssueNotice" class="cc-notice cc-create-issue-notice" aria-labelledby="cccIssueTitle" hidden>
+          <span aria-hidden="true">!</span>
+          <div class="cc-create-issue-content">
+            <div class="cc-create-issue-heading">
+              <strong id="cccIssueTitle">异常信息</strong>
+              <span id="cccIssueSummary">该商品在 <strong id="cccIssueChannelCount"></strong> 个渠道存在问题，请尽快处理</span>
+              <small id="cccIssueExample" hidden>示例</small>
+              <button type="button" class="cc-link" id="cccIssueToggle" aria-controls="cccIssueDetails" aria-expanded="false" hidden>展开</button>
+            </div>
+            <div id="cccIssueDetails"></div>
+          </div>
+        </aside>
+        <div class="cc-create-grid">
+          <div class="cc-create-field"><label for="cccCode" class="ccc-required">商品编码：</label><div class="cc-create-joined"><input id="cccCode" name="code" required inputmode="numeric" pattern="[0-9]+" placeholder="请输入商品编码" /><button type="button" id="cccLookup" aria-label="查找商品" title="查找商品"><span class="cc-create-search-icon" aria-hidden="true"></span></button></div></div>
+          <label class="cc-create-field"><span class="ccc-required">商品名称：</span><input name="name" required placeholder="请输入商品名称" /></label>
+          <label class="cc-create-field"><span class="ccc-required">商品条码：</span><input name="barcode" readonly required placeholder="请输入商品条码" /></label>
+          <label class="cc-create-field"><span>品牌：</span><input name="brand" readonly /></label>
+          <label class="cc-create-field"><span>规格：</span><input name="spec" readonly /></label>
+          <label class="cc-create-field"><span>单位：</span><input name="unit" readonly /></label>
+          <div class="cc-create-field"><label for="cccWeight" class="ccc-required">重量：</label><div class="cc-create-joined"><input id="cccWeight" name="weight" required type="number" min="0" step="any" /><span class="cc-create-unit">g</span></div></div>
+          <div class="cc-create-field"><span><label for="cccMtWeight">美团重量：</label><span class="field-help" tabindex="0" aria-label="美团重量优先同步美团，留空时使用重量">i<span class="field-tip" role="tooltip">美团重量优先同步美团，留空时使用重量。</span></span></span><div class="cc-create-joined"><input id="cccMtWeight" name="mtWeight" type="number" min="0" step="any" /><select name="mtWeightUnit" aria-label="美团重量单位"><option value="">请选择单位</option><option value="g">克(g)</option><option value="kg">千克(kg)</option><option value="mL">毫升(mL)</option><option value="L">升(L)</option><option>磅</option><option>斤</option><option>两</option></select></div></div>
+          <label class="cc-create-field"><span>产地：</span><input name="origin" readonly /></label>
+          <div class="cc-create-field"><span><label for="cccMinimum">起购数：</label><span class="field-help" tabindex="0" aria-label="仅对美团外卖、淘宝闪购渠道生效">i<span class="field-tip" role="tooltip">仅对美团外卖、淘宝闪购渠道生效。</span></span></span><input id="cccMinimum" name="minOrder" type="number" min="1" value="1" /></div>
+          <div class="cc-create-field cc-create-jd-brand">
+            <label for="cccJdBrand">京东品牌：</label>
+            <div class="recommended-input-wrap">
+              <input id="cccJdBrand" name="jdBrand" placeholder="请选择京东品牌" aria-describedby="cccJdBrandHint" />
+              <div id="cccJdBrandHint" aria-live="polite" hidden>
+                <small class="recommended-field-state" id="cccJdBrandRecommended" hidden>已推荐</small>
+                <div class="jd-brand-recommendation" id="cccJdBrandSuggestion" hidden>
+                  <span class="jd-brand-recommendation-content"><span class="jd-brand-recommendation-label">推荐</span><span id="cccJdBrandSuggestionText"></span></span>
+                  <button type="button" class="btn" id="cccUseJdBrand">使用推荐</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <label class="cc-create-field cc-create-type"><span>商品类型：</span><input name="productType" value="标品" readonly /></label>
+          <div class="cc-create-field">
+            <span id="cccComboLabel">组合商品：</span>
+            <div class="cc-create-choices" role="radiogroup" aria-labelledby="cccComboLabel">
+              <label><input type="radio" name="combo" value="yes" disabled /> 是</label>
+              <label><input type="radio" name="combo" value="no" checked disabled /> 否</label>
+            </div>
+          </div>
+        </div>
+        <div class="cc-create-field cc-create-channels">
+          <span class="ccc-required">发布渠道：</span>
+          <div id="cccChannelChoices" class="cc-create-choices" role="group" aria-label="发布渠道"></div>
+        </div>
+      </section>
+      <section id="cccCategories" class="cc-create-section">
+        <h3>类目信息</h3>
+        <div class="cc-create-grid">
+          <div class="cc-create-field cc-create-front-field">
+            <label class="ccc-required" for="cccChooseFront">前台类目：</label>
+            <div class="cc-create-front-control">
+              <input type="hidden" name="front" />
+              <div id="cccFrontTags" class="cc-create-front-tags"></div>
+              <button type="button" id="cccChooseFront" aria-label="选择前台类目" aria-haspopup="dialog" aria-controls="cccFrontDialog"><span id="cccFrontPlaceholder">请选择</span><span aria-hidden="true">⌄</span></button>
+            </div>
+          </div>
+          <label class="cc-create-field"><span class="ccc-required">后台类目：</span><input name="back" required placeholder="请输入后台类目路径" /></label>
+        </div>
+        <div class="cc-create-platform-group">
+          <h4 class="cc-create-platform-title" id="cccPlatformTitle">平台类目：</h4>
+          <div id="cccPlatforms" class="cc-create-platform-grid" role="group" aria-labelledby="cccPlatformTitle"></div>
+        </div>
+      </section>
+      <section id="cccImages" class="cc-create-section">
+        <h3>图片信息</h3>
+        <div id="cccImageGroups" class="cc-create-image-rows"></div>
+      </section>
+      <section id="cccAttributes" class="cc-create-section">
+        <h3>类目属性</h3>
+        <div class="cc-create-field cc-create-attribute-field">
+          <span id="cccPlatformAttributesLabel">渠道类目属性：</span>
+          <div id="cccPlatformAttributes" role="group" aria-labelledby="cccPlatformAttributesLabel"></div>
+        </div>
+      </section>
+      <section id="cccOther" class="cc-create-section">
+        <h3>其他商品信息</h3>
+        <div class="cc-create-grid">
+          <div class="cc-create-field">
+            <span><span id="cccMustSellLabel">是否必卖</span><span class="field-help" tabindex="0" aria-label="必卖商品门店人员在零售共场App 中不可操作下架">i<span class="field-tip" role="tooltip">必卖商品门店人员在零售共场App 中不可操作下架</span></span>：</span>
+            <div class="cc-create-choices" role="radiogroup" aria-labelledby="cccMustSellLabel"><label><input type="radio" name="mustSell" value="yes" /> 是</label><label><input type="radio" name="mustSell" value="no" checked /> 否</label></div>
+          </div>
+          <div class="cc-create-field">
+            <span><span id="cccWeighLabel">京东支持称重</span><span class="field-help" tabindex="0" aria-label="默认不支持，设置支持后京东支持称重退差">i<span class="field-tip" role="tooltip">默认不支持，设置支持后京东支持称重退差</span></span>：</span>
+            <div class="cc-create-choices" role="radiogroup" aria-labelledby="cccWeighLabel"><label><input type="radio" name="jdWeigh" value="yes" /> 是</label><label><input type="radio" name="jdWeigh" value="no" checked /> 否</label></div>
+          </div>
+          <div class="cc-create-field cc-create-selling-points">
+            <span id="cccSellingPointsLabel">商品卖点：</span>
+            <div class="cc-create-rows" role="group" aria-labelledby="cccSellingPointsLabel">
+              <label title="美团外卖">
+                <span class="cc-channel-badge" data-channel-badge="mt" aria-hidden="true">美</span>
+                <input type="text" name="mtSellingPoint" aria-label="美团外卖卖点" maxlength="15" placeholder="最多输入15个字" />
+              </label>
+              <label title="淘宝闪购">
+                <span class="cc-channel-badge" data-channel-badge="ele" aria-hidden="true">淘</span>
+                <input type="text" name="eleSellingPoint" aria-label="淘宝闪购卖点" maxlength="15" placeholder="最多输入15个字" />
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="cccStores" class="cc-create-section">
+        <h3>门店信息</h3>
+        <div class="cc-create-field">
+          <span id="cccStoreSyncLabel">同步策略：</span>
+          <div class="cc-create-choices cc-create-store-mode" role="radiogroup" aria-labelledby="cccStoreSyncLabel">
+            <label><input type="radio" name="storeSync" value="store" checked /> 按门店信息同步</label>
+            <label><input type="radio" name="storeSync" value="custom" /> 设置门店信息同步</label>
+          </div>
+        </div>
+        <div id="cccStoreDefaults" class="cc-create-rows">
+          <div class="cc-create-field"><span>商品状态：</span><span>按门店商品状态</span></div>
+          <div class="cc-create-field"><span>商品价格：</span><span>按门店商品价格</span></div>
+          <div class="cc-create-field"><span>商品库存：</span><span>按门店商品库存</span></div>
+          <div class="cc-create-field"><span>选择门店：</span><span>按全部渠道门店</span></div>
+        </div>
+        <fieldset id="cccStoreFields" class="cc-create-rows cc-create-store-settings" aria-label="设置门店信息同步" hidden disabled>
+          <div class="cc-create-field">
+            <span id="cccStoreStatusLabel">商品状态：</span>
+            <div class="cc-create-choices" role="radiogroup" aria-labelledby="cccStoreStatusLabel">
+              <label><input type="radio" name="storeStatus" value="售卖" checked /> 上架</label>
+              <label><input type="radio" name="storeStatus" value="下架" /> 下架</label>
+            </div>
+          </div>
+          <div class="cc-create-field">
+            <span id="cccStorePriceLabel">商品价格<span class="field-help" tabindex="0" aria-label="可按门店价格、固定价格或加价比例同步">i<span class="field-tip" role="tooltip">可按门店价格、固定价格或加价比例同步。</span></span>：</span>
+            <div class="cc-create-store-options" role="group" aria-labelledby="cccStorePriceLabel">
+              <div class="cc-create-store-option"><label><input type="radio" name="storePriceMode" value="store" checked /> 门店价格</label></div>
+              <div class="cc-create-store-option">
+                <label><input type="radio" name="storePriceMode" value="fixed" /> 固定价格</label>
+                <div class="cc-create-store-value" data-ccc-store-option="storePriceMode" data-value="fixed" hidden><input type="number" name="storePrice" min="0" step="0.01" aria-label="固定价格金额" required disabled /><span>元</span></div>
+              </div>
+              <div class="cc-create-store-option">
+                <label><input type="radio" name="storePriceMode" value="markup" /> 加价比例</label>
+                <div class="cc-create-store-value" data-ccc-store-option="storePriceMode" data-value="markup" hidden><input type="number" name="storeMarkup" min="0" step="0.01" aria-label="加价百分比" required disabled /><span>%</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cc-create-field">
+            <span id="cccStoreStockLabel">商品库存<span class="field-help" tabindex="0" aria-label="可按门店库存比例或固定库存同步">i<span class="field-tip" role="tooltip">可按门店库存比例或固定库存同步。</span></span>：</span>
+            <div class="cc-create-store-options" role="group" aria-labelledby="cccStoreStockLabel">
+              <div class="cc-create-store-option">
+                <label><input type="radio" name="storeStockMode" value="ratio" checked /> 门店库存比例</label>
+                <div class="cc-create-store-value" data-ccc-store-option="storeStockMode" data-value="ratio"><input type="number" name="storeStockRatio" value="100" min="0" step="0.01" aria-label="门店库存百分比" required /><span>%</span></div>
+              </div>
+              <div class="cc-create-store-option">
+                <label><input type="radio" name="storeStockMode" value="fixed" /> 固定库存</label>
+                <div class="cc-create-store-value" data-ccc-store-option="storeStockMode" data-value="fixed" hidden><input type="number" name="storeStock" min="0" step="1" aria-label="固定库存数量" required disabled /></div>
+              </div>
+            </div>
+          </div>
+          <div class="cc-create-field">
+            <span id="cccStoreRangeLabel">选择门店：</span>
+            <div>
+              <div class="cc-create-choices" role="radiogroup" aria-labelledby="cccStoreRangeLabel">
+                <label><input type="radio" name="storeRange" value="all" checked /> 全部门店</label>
+                <label><input type="radio" name="storeRange" value="specified" /> 指定部分门店</label>
+              </div>
+              <div id="cccSpecifiedStores" class="cc-create-choices" role="group" aria-label="指定门店" data-ccc-store-option="storeRange" data-value="specified" hidden></div>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+    </form>
+    <dialog id="cccFrontDialog" class="cc-dialog cc-create-front-dialog" aria-labelledby="cccFrontTitle">
+      <header><h2 id="cccFrontTitle">选择前台类目</h2><button type="button" data-ccc-front-cancel aria-label="关闭前台类目选择">×</button></header>
+      <div class="cc-create-front-dialog-body">
+        <div class="cc-create-front-browser">
+          <label class="cc-create-front-dialog-field">
+            <span>关键词检索：</span>
+            <input type="search" id="cccFrontSearch" placeholder="请输入关键词检索" autofocus />
+          </label>
+          <div class="cc-create-front-dialog-field">
+            <span>类目选择：</span>
+            <div class="cc-create-front-columns">
+              <div class="cc-create-front-column">
+                <div>1级类目</div>
+                <ul id="cccFrontRoots"></ul>
+              </div>
+              <div class="cc-create-front-column">
+                <div>2级类目</div>
+                <ul id="cccFrontChildren"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="cc-create-front-selection" aria-labelledby="cccFrontSelectedTitle">
+          <h3 id="cccFrontSelectedTitle" aria-live="polite">已选类目（0）</h3>
+          <ul id="cccFrontSelected"></ul>
+        </aside>
+      </div>
+      <footer><button type="button" data-ccc-front-cancel>取消</button><button type="button" class="cc-primary" id="cccConfirmFront">确定</button></footer>
+    </dialog>
+    <dialog id="cccImagePicker" class="cc-dialog" aria-labelledby="cccImagePickerTitle">
+      <header><h2 id="cccImagePickerTitle">选择图片</h2><button type="button" id="cccCloseImagePicker" aria-label="关闭图片选择">×</button></header>
+      <div id="cccImageChoices" class="cc-create-image-choices"></div>
+    </dialog>
+    <dialog id="cccImageActionDialog" class="cc-dialog cc-create-image-action-dialog" aria-labelledby="cccImageActionTitle">
+      <header><h2 id="cccImageActionTitle"></h2><button type="button" data-ccc-image-close aria-label="关闭图片操作">×</button></header>
+      <div class="cc-create-image-action-preview"><img id="cccImageActionPreview" alt="" /></div>
+      <p id="cccImageActionFeedback" role="status" hidden></p>
+      <footer id="cccImageActionControls"></footer>
+    </dialog>
+  </section>
+  <dialog id="ccDialog" class="cc-dialog" aria-labelledby="ccDialogTitle"><header><h2 id="ccDialogTitle"></h2><button type="button" data-cc-close aria-label="关闭弹窗">×</button></header><div id="ccDialogContent"></div></dialog>
+  <div id="ccToast" class="cc-toast" role="status" hidden></div>
+</section>

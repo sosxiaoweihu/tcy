@@ -1,0 +1,35 @@
+        <section id="absenceReport2Page" class="ar2-page" hidden aria-labelledby="ar2Title">
+          <h1 id="ar2Title">三方渠道商品出勤率报表</h1>
+          <form id="ar2Filters" class="ar2-filters">
+            <div class="ar2-primary-filters">
+              <div class="ar2-period-field"><label for="ar2DateRange" class="ar2-field-label">查询时间：</label><div class="ar2-period-controls"><button type="button" id="ar2DateRange" aria-expanded="false" aria-controls="ar2Calendar">2026-10-12 — 2026-11-10</button><select id="ar2Period" name="period" aria-label="快捷查询时间"><option>近30日</option><option>昨天</option><option>本周</option><option>上周</option><option>本月</option><option>上月</option><option>本年</option><option>自定义</option></select></div></div>
+              <label class="ar2-field"><span class="ar2-field-label">渠道：</span><select name="channel" aria-label="渠道"><option value="">请选择</option><option>美团外卖</option><option>饿百</option></select></label>
+              <label class="ar2-field"><span class="ar2-field-label">门店：</span><span class="ar2-store-controls"><select name="store" aria-label="门店"><option value="">请选择</option><option value="2005">2005_鹏泰百货南康一店</option></select><button type="button" id="ar2RegionButton">区域</button></span></label>
+              <div class="ar2-actions"><button type="submit" class="ar2-primary">查询</button><button type="reset">重置</button><button type="button" class="ar2-link" id="ar2Expand" aria-expanded="false" aria-controls="ar2Advanced">展开 ⌄</button></div>
+            </div>
+            <div id="ar2Advanced" class="ar2-advanced" hidden>
+              <label class="ar2-field"><span class="ar2-field-label">前台类目：</span><select name="front" aria-label="前台类目"><option value="">请选择</option><option>wjh17</option><option>油</option><option>低温鲜奶</option></select></label>
+              <label class="ar2-field"><span class="ar2-field-label">后台类目：</span><select name="back" aria-label="后台类目"><option value="">请选择</option><option>可乐</option></select></label>
+              <label class="ar2-field"><span class="ar2-field-label">商品编码：</span><input name="code" aria-label="商品编码" placeholder="请输入商品编码" autocomplete="off" /></label>
+            </div>
+            <div id="ar2Calendar" class="ar2-calendar" hidden>
+              <div class="ar2-calendar-header"><button type="button" data-ar2-month="-1" aria-label="上一月">‹</button><strong>选择查询时间</strong><button type="button" data-ar2-month="1" aria-label="下一月">›</button></div>
+              <div id="ar2Months" class="ar2-months"></div>
+              <div class="ar2-calendar-footer"><span id="ar2DraftRange"></span><button type="button" id="ar2DateCancel">取消</button><button type="button" class="ar2-primary" id="ar2DateConfirm">确定</button></div>
+            </div>
+          </form>
+          <div class="ar2-metrics" aria-label="出勤指标">
+            <article><span class="ar2-metric-heading">整体出勤率<span class="ar2-metric-help"><button type="button" class="ar2-help-button" aria-label="整体出勤率说明" aria-describedby="ar2HelpOverall" aria-expanded="false">?</button><span class="ar2-tooltip" id="ar2HelpOverall" role="tooltip" hidden><span>查询时间范围内，所有商品渠道组合的实际出勤总时长占应出勤总时长的比例。</span><span>整体出勤率 = 实际出勤总时长 ÷ 应出勤总时长 × 100%</span></span></span></span><strong id="ar2Overall">67.80%</strong><p><span>较上周期</span><span id="ar2Compare">-24.99%</span></p></article>
+            <article><span class="ar2-metric-heading">出勤组合数<span class="ar2-metric-help"><button type="button" class="ar2-help-button" aria-label="出勤组合数 / 总组合数说明" aria-describedby="ar2HelpCombinations" aria-expanded="false">?</button><span class="ar2-tooltip" id="ar2HelpCombinations" role="tooltip" hidden><span>出勤组合数为查询期内符合出勤条件的商品渠道组合数量；总组合数为存在铺货关系且应出勤时长大于0的组合数量。</span><span>示例：出勤组合数 = 出勤商品sku数 × 渠道个数；总组合数 = 总商品sku数 × 渠道个数</span></span></span></span><strong id="ar2Attended">10117</strong><p><span>总组合数</span><span id="ar2Combinations">11536</span></p></article>
+            <article><span class="ar2-metric-heading">预警组合(&lt;60%)<span class="ar2-metric-help"><button type="button" class="ar2-help-button" aria-label="预警组合（&lt;60%）说明" aria-describedby="ar2HelpWarning" aria-expanded="false">?</button><span class="ar2-tooltip" id="ar2HelpWarning" role="tooltip" hidden><span>查询时间范围内，出勤率低于60%的商品渠道组合数量。</span><span>预警占比 = 预警组合数 ÷ 总组合数 × 100%</span></span></span></span><strong id="ar2Warning" class="ar2-danger">2815</strong><p><span>占组合</span><span id="ar2WarningRate">24.40%</span></p></article>
+            <article><span class="ar2-metric-heading">渠道铺货覆盖率<span class="ar2-metric-help"><button type="button" class="ar2-help-button" aria-label="渠道铺货覆盖率说明" aria-describedby="ar2HelpCoverage" aria-expanded="false">?</button><span class="ar2-tooltip" id="ar2HelpCoverage" role="tooltip" hidden><span>已铺货的商品渠道组合数占应铺货组合总数的比例，用于衡量渠道铺货的完整程度。</span><span>渠道铺货覆盖率 = 已铺货组合数 ÷ 应铺货组合数 × 100%</span></span></span></span><strong id="ar2Coverage">87.70%</strong></article>
+          </div>
+
+          <div class="ar2-report">
+            <div class="ar2-toolbar"><div class="ar2-tabs" role="tablist" aria-label="报表视图"><button type="button" id="ar2DetailTab" role="tab" aria-selected="true" aria-controls="ar2TablePanel" data-ar2-view="detail">商品出勤明细</button><button type="button" id="ar2StoreTab" role="tab" aria-selected="false" aria-controls="ar2TablePanel" data-ar2-view="store" tabindex="-1">门店汇总</button><button type="button" id="ar2CategoryTab" role="tab" aria-selected="false" aria-controls="ar2TablePanel" data-ar2-view="category" tabindex="-1">类目汇总</button></div><span id="ar2Count" class="ar2-count">共 17 条</span><button type="button" id="ar2Export">导出</button></div>
+            <div class="ar2-table-wrap" id="ar2TablePanel" role="tabpanel" aria-labelledby="ar2DetailTab"><table class="ar2-table"><thead id="ar2Head"></thead><tbody id="ar2Rows"></tbody></table></div>
+            <div class="ar2-pagination"><span id="ar2Total">共 17 条</span><select id="ar2PageSize" aria-label="每页条数"><option value="20">20 条/页</option><option value="10">10 条/页</option><option value="50">50 条/页</option></select><div id="ar2Pages"></div><label>前往 <input id="ar2Jump" type="number" min="1" value="1" aria-label="跳转页码" /> 页</label></div>
+          </div>
+          <dialog id="ar2RegionDialog" class="ar2-region-dialog"><form method="dialog"><h2>选择门店区域</h2><label>区域<select id="ar2Region"><option value="">全部区域</option><option>南康区域</option></select></label><div><button value="cancel">取消</button><button value="confirm" class="ar2-primary">确定</button></div></form></dialog>
+          <div class="ar2-toast" id="ar2Toast" role="status" hidden></div>
+        </section>

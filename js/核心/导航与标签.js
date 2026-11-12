@@ -39,7 +39,7 @@ tongchengMenu.addEventListener("click", (event) => {
   const target = event.target.closest("[data-page]");
   if (!target) return;
   storeProductPage.hidden = true;
-  if (target.dataset.page === "同城商品" || target.dataset.page === "同城商品管理(统一分类)") {
+  if (target.dataset.page === "商品2" || target.dataset.page === "同城商品管理(统一分类)") {
     openTongchengProductPage(target.dataset.page);
     return;
   }
@@ -165,7 +165,7 @@ pageTabs.addEventListener("click", (event) => {
     openOrderManagementPage(false);
     return;
   }
-  if (pageName === "同城商品" || pageName === "同城商品管理(统一分类)") {
+  if (pageName === "商品2" || pageName === "同城商品管理(统一分类)") {
     openTongchengProductPage(pageName, false);
     return;
   }

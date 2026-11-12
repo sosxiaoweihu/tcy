@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>同城商品管理 Design System v0.1</title>
     <link rel="stylesheet" href="./styles/tokens.css" />
-    <link rel="stylesheet" href="./styles.css?v=20261109-1" />
+    <link rel="stylesheet" href="./styles.css?v=20261112-merchant-pull-app-city-category-tip" />
   </head>
   <body>
     <div class="app-shell">
@@ -39,8 +39,9 @@
         <section class="module-group">
           <h2>同城商品管理</h2>
           <div class="module-links">
-            <button class="active" data-page="同城商品">同城商品</button>
-            <button data-page="同城商品管理(统一分类)">同城商品管理(统一分类)</button>
+            <button data-page="同城商品">同城商品</button>
+            <button class="active" data-page="商品2">商品2</button>
+            <button data-page="同城商品管理(统一分类)">商品（统一）1</button>
             <button data-page="同城门店商品">同城门店商品</button>
             <button data-page="同城价格">同城价格</button>
             <button data-page="同城库存">同城库存</button>
@@ -62,14 +63,15 @@
             <button data-page="同城销售明细">同城销售明细</button>
             <button data-page="同城销售看板">同城销售看板</button>
             <button data-page="同城订单评价">同城订单评价</button>
-            <button data-page="同城销售总览">同城销售总览</button>
           </div>
         </section>
         <section class="module-group">
           <h2>同城报表管理</h2>
           <div class="module-links">
+            <button data-page="同城销售总览">同城销售总览</button>
             <button data-page="订单热力图">订单热力图</button>
             <button data-page="同城商品缺勤报表">同城商品缺勤报表</button>
+            <button data-page="同城缺勤报表2">同城缺勤报表2</button>
             <button data-page="同城商品缺货报表">同城商品缺货报表</button>
             <button data-page="IM回复率统计">IM回复率统计</button>
           </div>
@@ -140,7 +142,7 @@
 
         <section class="page-tabs" id="pageTabs" aria-label="页面标签">
           <button data-tab="概况">概况</button>
-          <button class="active" data-tab="同城商品管理(统一分类)">同城商品管理(统一分类) <span class="tab-close" aria-label="关闭同城商品管理(统一分类)">×</span></button>
+          <button class="active" data-tab="同城商品管理(统一分类)">商品（统一）1 <span class="tab-close" aria-label="关闭商品（统一）1">×</span></button>
         </section>
 
         <nav class="tongcheng-app-tabs" id="tongchengAppTabs" role="tablist" aria-label="同城App页面标签"></nav>
@@ -1119,11 +1121,11 @@
         <section class="merchant-service-page" id="merchantServicePage" hidden aria-label="小程序商家客服">
           <header class="merchant-service-header"><h1>小程序商家客服</h1></header>
           <form class="merchant-service-filters" id="merchantServiceFilters" aria-label="客服员工查询条件">
-            <label for="merchantServiceFilterAccount">微信客服ID：<input id="merchantServiceFilterAccount" autocomplete="off" placeholder="请输入微信客服ID" /></label>
-            <label for="merchantServiceFilterEmployee">员工工号：<input id="merchantServiceFilterEmployee" autocomplete="off" placeholder="请输入员工工号" /></label>
+            <label for="merchantServiceFilterAccount"><span>微信客服ID：</span><input id="merchantServiceFilterAccount" autocomplete="off" placeholder="请输入微信客服ID" /></label>
+            <label for="merchantServiceFilterEmployee"><span>员工工号：</span><input id="merchantServiceFilterEmployee" autocomplete="off" placeholder="请输入员工工号" /></label>
             <div class="merchant-service-filter-actions">
+              <button class="btn outline" id="merchantServiceReset" type="button">重置</button>
               <button class="btn primary" type="submit">查询</button>
-              <button class="btn" id="merchantServiceReset" type="button">重置</button>
             </div>
           </form>
           <div class="merchant-service-toolbar" aria-label="列表工具栏">
@@ -1135,8 +1137,17 @@
           </div>
           <div class="merchant-service-table-scroll" tabindex="0" role="region" aria-label="微信客服列表">
             <table class="merchant-service-table">
-              <colgroup><col style="width: 30%" /><col style="width: 25%" /><col style="width: 17%" /><col style="width: 16%" /><col style="width: 12%" /></colgroup>
-              <thead><tr><th>微信客服ID</th><th>微信客服名称</th><th>员工工号</th><th>员工姓名</th><th>操作</th></tr></thead>
+              <colgroup><col style="width: 24%" /><col style="width: 23%" /><col style="width: 12%" /><col style="width: 12%" /><col style="width: 19%" /><col style="width: 10%" /></colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">微信客服ID<span class="merchant-service-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整微信客服ID列宽"></span></th>
+                  <th scope="col">微信客服名称<span class="merchant-service-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整微信客服名称列宽"></span></th>
+                  <th scope="col">员工工号<span class="merchant-service-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整员工工号列宽"></span></th>
+                  <th scope="col">员工姓名<span class="merchant-service-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整员工姓名列宽"></span></th>
+                  <th scope="col">创建时间<span class="merchant-service-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整创建时间列宽"></span></th>
+                  <th scope="col">操作</th>
+                </tr>
+              </thead>
               <tbody id="merchantServiceRows"></tbody>
             </table>
           </div>
@@ -1154,6 +1165,26 @@
                 <p class="merchant-service-error" id="merchantServiceError" role="alert"></p>
               </div>
               <footer><button class="btn" type="button" data-merchant-service-close>取消</button><button class="btn primary" type="submit">提交</button></footer>
+            </form>
+          </dialog>
+          <dialog class="merchant-service-dialog" id="merchantServicePullDialog" aria-labelledby="merchantServicePullTitle">
+            <form id="merchantServicePullForm">
+              <header>
+                <h2 id="merchantServicePullTitle">拉取微信客服</h2>
+                <button type="button" data-merchant-service-pull-close aria-label="关闭拉取微信客服弹窗">×</button>
+              </header>
+              <div class="merchant-service-dialog-body">
+                <div class="merchant-service-field merchant-service-app-field">
+                  <label for="merchantServiceAppId"><span aria-hidden="true">*</span> 微信小程序APPID</label>
+                  <select id="merchantServiceAppId" required autofocus>
+                    <option value="">请选择小程序APPID及名称</option>
+                  </select>
+                </div>
+              </div>
+              <footer>
+                <button class="btn" type="button" data-merchant-service-pull-close>取消</button>
+                <button class="btn primary" type="submit">确认</button>
+              </footer>
             </form>
           </dialog>
           <dialog class="merchant-service-dialog" id="merchantServiceDeleteDialog" aria-labelledby="merchantServiceDeleteTitle" aria-describedby="merchantServiceDeleteMessage">
@@ -1674,6 +1705,282 @@
   <dialog id="inventoryDialog" class="inventory-dialog"><form method="dialog"><header><strong id="inventoryDialogTitle"></strong><button value="cancel" aria-label="关闭">×</button></header><div id="inventoryDialogBody"></div><footer><button class="btn" value="cancel">取消</button><button class="btn primary" id="inventoryConfirm" value="default">确定</button></footer></form></dialog>
   <div id="inventoryToast" class="inventory-toast" role="status" hidden></div>
 </section>
+        <section id="cityCatalogPage" class="cc-page" hidden aria-label="同城商品">
+  <div id="ccCatalogList">
+  <div class="cc-business"><span>切换业态：</span><label><input type="radio" name="ccBusiness" checked /> 卖场</label></div>
+  <div class="cc-card">
+    <form id="ccFilters" class="cc-filters">
+      <div class="cc-filter-main">
+        <label class="cc-field"><span>商品编码：</span><input name="code" placeholder="精确查询" /></label>
+        <label class="cc-field"><span>商品条码：</span><input name="barcode" placeholder="精准查询" /></label>
+        <label class="cc-field"><span>商品名称：</span><input name="name" placeholder="模糊匹配查询" /></label>
+        <div class="cc-filter-actions"><button type="reset" class="cc-outline">重置</button><button type="submit" class="cc-primary">查询</button><button type="button" id="ccExpand" class="cc-link" aria-expanded="false" aria-controls="ccAdvanced" aria-label="展开筛选">⌄</button></div>
+      </div>
+      <div id="ccAdvanced" class="cc-filter-advanced" hidden>
+        <label class="cc-field"><span>前台类目：</span><select name="front"><option value="">请选择</option><option>时令上新</option><option>葡提莓果</option><option>热带水果</option><option>鲜果果切</option></select></label>
+        <label class="cc-field"><span>后台类目：</span><select name="back"><option value="">请选择</option><option>浆果</option><option>热带水果</option><option>其他水果</option></select></label>
+        <label class="cc-field"><span>商品状态：</span><select name="status"><option value="">请选择</option><option>售卖</option><option>下架</option></select></label>
+        <label class="cc-field"><span>商品类型：</span><select name="type"><option value="">请选择</option><option>普通商品</option><option>组合商品</option></select></label>
+        <label class="cc-field"><span>名称同步：</span><select name="syncName"><option value="">请选择</option><option>启用</option><option>停用</option></select></label>
+        <label class="cc-field"><span>主图同步：</span><select name="syncImage"><option value="">请选择</option><option>启用</option><option>停用</option></select></label>
+      </div>
+    </form>
+    <div id="ccProductLayout" class="cc-product-layout">
+      <div class="cc-category-heading">
+        <button type="button" id="ccAllCategories" class="cc-category-item cc-category-active" data-cc-category="" aria-pressed="true"><span>全部分类</span><span class="cc-category-count">（14528）</span></button>
+      </div>
+      <div class="cc-toolbar">
+        <div class="cc-toolbar-tabs">
+          <button type="button" id="ccCategoryToggle" class="cc-category-toggle" aria-label="收起前台类目" aria-expanded="true" aria-controls="ccCategorySidebar"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="16" height="14" rx="1.5"/><path d="M7 3v14m6-10-3 3 3 3"/></svg></button>
+          <div id="ccTabs" class="cc-tabs" role="tablist" aria-label="商品分类"><button type="button" role="tab" data-cc-tab="all" aria-selected="true">全部商品（14528）</button><button type="button" role="tab" data-cc-tab="issue" aria-selected="false">异常商品（<span>8287</span>）</button></div>
+        </div>
+        <div class="cc-tools">
+          <div class="cc-more-wrap"><button type="button" id="ccMore" class="cc-outline" aria-expanded="false" aria-controls="ccMoreMenu">更多操作</button><div id="ccMoreMenu" class="cc-more-menu" hidden></div></div>
+          <div class="cc-batch-wrap"><button type="button" id="ccBatch" class="cc-outline" aria-expanded="false" aria-controls="ccBatchMenu">批量创建商品 ⌄</button><div id="ccBatchMenu" class="cc-more-menu" hidden><button type="button" id="ccBatchCreate">批量创建商品</button></div></div>
+          <button type="button" id="ccCreate" class="cc-primary">＋ 创建商品</button>
+        </div>
+      </div>
+      <aside id="ccCategorySidebar" class="cc-category-sidebar" aria-label="前台类目"><nav id="ccCategoryTree" aria-label="前台类目分类树"></nav></aside>
+      <div class="cc-table-scroll" tabindex="0" aria-label="同城商品表格，可横向滚动">
+        <table class="cc-table"><colgroup><col style="width:340px"/><col style="width:120px"/><col style="width:160px"/><col style="width:120px"/><col style="width:100px"/><col style="width:160px"/><col style="width:128px"/><col style="width:110px"/><col style="width:158px"/><col style="width:90px"/></colgroup><thead><tr><th scope="col">商品信息<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整商品信息列宽"></span></th><th scope="col">规格<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整规格列宽"></span></th><th scope="col">前台类目<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整前台类目列宽"></span></th><th scope="col">后台类目<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整后台类目列宽"></span></th><th scope="col">商品状态<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整商品状态列宽"></span></th><th scope="col">同步状态<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整同步状态列宽"></span></th><th scope="col">铺品门店<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整铺品门店列宽"></span></th><th scope="col">渠道标签<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整渠道标签列宽"></span></th><th scope="col">更新时间<span class="cc-column-resize" role="separator" tabindex="0" aria-orientation="vertical" aria-label="调整更新时间列宽"></span></th><th scope="col">操作</th></tr></thead><tbody id="ccRows"></tbody></table>
+      </div>
+      <footer id="ccPagination" class="cc-pagination"></footer>
+    </div>
+  </div>
+  </div>
+  <section id="ccCreatePage" class="cc-create-page" aria-label="创建商品" hidden>
+    <header class="cc-create-header">
+      <div class="cc-create-toolbar">
+        <nav class="cc-create-nav" aria-label="创建商品区块">
+          <button type="button" class="cc-link" data-ccc-jump="cccBasics">基本信息</button>
+          <button type="button" class="cc-link" data-ccc-jump="cccCategories">类目信息</button>
+          <button type="button" class="cc-link" data-ccc-jump="cccImages">图片信息</button>
+          <button type="button" class="cc-link" data-ccc-jump="cccAttributes">类目属性</button>
+          <button type="button" class="cc-link" data-ccc-jump="cccOther">其他商品信息</button>
+          <button type="button" class="cc-link" data-ccc-jump="cccStores">门店信息</button>
+        </nav>
+        <div class="cc-create-actions">
+          <button type="button" data-ccc-close>取消</button>
+          <button type="submit" class="cc-primary" form="ccCreateForm">保存</button>
+        </div>
+      </div>
+      <span id="cccFeedback" role="status" aria-live="polite"></span>
+    </header>
+    <form id="ccCreateForm" class="cc-create-form">
+      <section id="cccBasics" class="cc-create-section">
+        <h3>基本信息</h3>
+        <aside id="cccIssueNotice" class="cc-notice cc-create-issue-notice" aria-labelledby="cccIssueTitle" hidden>
+          <span aria-hidden="true">!</span>
+          <div class="cc-create-issue-content">
+            <div class="cc-create-issue-heading">
+              <strong id="cccIssueTitle">异常信息</strong>
+              <span id="cccIssueSummary">该商品在 <strong id="cccIssueChannelCount"></strong> 个渠道存在问题，请尽快处理</span>
+              <small id="cccIssueExample" hidden>示例</small>
+              <button type="button" class="cc-link" id="cccIssueToggle" aria-controls="cccIssueDetails" aria-expanded="false" hidden>展开</button>
+            </div>
+            <div id="cccIssueDetails"></div>
+          </div>
+        </aside>
+        <div class="cc-create-grid">
+          <div class="cc-create-field"><label for="cccCode" class="ccc-required">商品编码：</label><div class="cc-create-joined"><input id="cccCode" name="code" required inputmode="numeric" pattern="[0-9]+" placeholder="请输入商品编码" /><button type="button" id="cccLookup" aria-label="查找商品" title="查找商品"><span class="cc-create-search-icon" aria-hidden="true"></span></button></div></div>
+          <label class="cc-create-field"><span class="ccc-required">商品名称：</span><input name="name" required placeholder="请输入商品名称" /></label>
+          <label class="cc-create-field"><span class="ccc-required">商品条码：</span><input name="barcode" readonly required placeholder="请输入商品条码" /></label>
+          <label class="cc-create-field"><span>品牌：</span><input name="brand" readonly /></label>
+          <label class="cc-create-field"><span>规格：</span><input name="spec" readonly /></label>
+          <label class="cc-create-field"><span>单位：</span><input name="unit" readonly /></label>
+          <div class="cc-create-field"><label for="cccWeight" class="ccc-required">重量：</label><div class="cc-create-joined"><input id="cccWeight" name="weight" required type="number" min="0" step="any" /><span class="cc-create-unit">g</span></div></div>
+          <div class="cc-create-field"><span><label for="cccMtWeight">美团重量：</label><span class="field-help" tabindex="0" aria-label="美团重量优先同步美团，留空时使用重量">i<span class="field-tip" role="tooltip">美团重量优先同步美团，留空时使用重量。</span></span></span><div class="cc-create-joined"><input id="cccMtWeight" name="mtWeight" type="number" min="0" step="any" /><select name="mtWeightUnit" aria-label="美团重量单位"><option value="">请选择单位</option><option value="g">克(g)</option><option value="kg">千克(kg)</option><option value="mL">毫升(mL)</option><option value="L">升(L)</option><option>磅</option><option>斤</option><option>两</option></select></div></div>
+          <label class="cc-create-field"><span>产地：</span><input name="origin" readonly /></label>
+          <div class="cc-create-field"><span><label for="cccMinimum">起购数：</label><span class="field-help" tabindex="0" aria-label="仅对美团外卖、淘宝闪购渠道生效">i<span class="field-tip" role="tooltip">仅对美团外卖、淘宝闪购渠道生效。</span></span></span><input id="cccMinimum" name="minOrder" type="number" min="1" value="1" /></div>
+          <div class="cc-create-field cc-create-jd-brand">
+            <label for="cccJdBrand">京东品牌：</label>
+            <div class="recommended-input-wrap">
+              <input id="cccJdBrand" name="jdBrand" placeholder="请选择京东品牌" aria-describedby="cccJdBrandHint" />
+              <div id="cccJdBrandHint" aria-live="polite" hidden>
+                <small class="recommended-field-state" id="cccJdBrandRecommended" hidden>已推荐</small>
+                <div class="jd-brand-recommendation" id="cccJdBrandSuggestion" hidden>
+                  <span class="jd-brand-recommendation-content"><span class="jd-brand-recommendation-label">推荐</span><span id="cccJdBrandSuggestionText"></span></span>
+                  <button type="button" class="btn" id="cccUseJdBrand">使用推荐</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <label class="cc-create-field cc-create-type"><span>商品类型：</span><input name="productType" value="标品" readonly /></label>
+          <div class="cc-create-field">
+            <span id="cccComboLabel">组合商品：</span>
+            <div class="cc-create-choices" role="radiogroup" aria-labelledby="cccComboLabel">
+              <label><input type="radio" name="combo" value="yes" disabled /> 是</label>
+              <label><input type="radio" name="combo" value="no" checked disabled /> 否</label>
+            </div>
+          </div>
+        </div>
+        <div class="cc-create-field cc-create-channels">
+          <span class="ccc-required">发布渠道：</span>
+          <div id="cccChannelChoices" class="cc-create-choices" role="group" aria-label="发布渠道"></div>
+        </div>
+      </section>
+      <section id="cccCategories" class="cc-create-section">
+        <h3>类目信息</h3>
+        <div class="cc-create-grid">
+          <div class="cc-create-field cc-create-front-field">
+            <label class="ccc-required" for="cccChooseFront">前台类目：</label>
+            <div class="cc-create-front-control">
+              <input type="hidden" name="front" />
+              <div id="cccFrontTags" class="cc-create-front-tags"></div>
+              <button type="button" id="cccChooseFront" aria-label="选择前台类目" aria-haspopup="dialog" aria-controls="cccFrontDialog"><span id="cccFrontPlaceholder">请选择</span><span aria-hidden="true">⌄</span></button>
+            </div>
+          </div>
+          <label class="cc-create-field"><span class="ccc-required">后台类目：</span><input name="back" required placeholder="请输入后台类目路径" /></label>
+        </div>
+        <div class="cc-create-platform-group">
+          <h4 class="cc-create-platform-title" id="cccPlatformTitle">平台类目：</h4>
+          <div id="cccPlatforms" class="cc-create-platform-grid" role="group" aria-labelledby="cccPlatformTitle"></div>
+        </div>
+      </section>
+      <section id="cccImages" class="cc-create-section">
+        <h3>图片信息</h3>
+        <div id="cccImageGroups" class="cc-create-image-rows"></div>
+      </section>
+      <section id="cccAttributes" class="cc-create-section">
+        <h3>类目属性</h3>
+        <div class="cc-create-field cc-create-attribute-field">
+          <span id="cccPlatformAttributesLabel">渠道类目属性：</span>
+          <div id="cccPlatformAttributes" role="group" aria-labelledby="cccPlatformAttributesLabel"></div>
+        </div>
+      </section>
+      <section id="cccOther" class="cc-create-section">
+        <h3>其他商品信息</h3>
+        <div class="cc-create-grid">
+          <div class="cc-create-field">
+            <span><span id="cccMustSellLabel">是否必卖</span><span class="field-help" tabindex="0" aria-label="必卖商品门店人员在零售共场App 中不可操作下架">i<span class="field-tip" role="tooltip">必卖商品门店人员在零售共场App 中不可操作下架</span></span>：</span>
+            <div class="cc-create-choices" role="radiogroup" aria-labelledby="cccMustSellLabel"><label><input type="radio" name="mustSell" value="yes" /> 是</label><label><input type="radio" name="mustSell" value="no" checked /> 否</label></div>
+          </div>
+          <div class="cc-create-field">
+            <span><span id="cccWeighLabel">京东支持称重</span><span class="field-help" tabindex="0" aria-label="默认不支持，设置支持后京东支持称重退差">i<span class="field-tip" role="tooltip">默认不支持，设置支持后京东支持称重退差</span></span>：</span>
+            <div class="cc-create-choices" role="radiogroup" aria-labelledby="cccWeighLabel"><label><input type="radio" name="jdWeigh" value="yes" /> 是</label><label><input type="radio" name="jdWeigh" value="no" checked /> 否</label></div>
+          </div>
+          <div class="cc-create-field cc-create-selling-points">
+            <span id="cccSellingPointsLabel">商品卖点：</span>
+            <div class="cc-create-rows" role="group" aria-labelledby="cccSellingPointsLabel">
+              <label title="美团外卖">
+                <span class="cc-channel-badge" data-channel-badge="mt" aria-hidden="true">美</span>
+                <input type="text" name="mtSellingPoint" aria-label="美团外卖卖点" maxlength="15" placeholder="最多输入15个字" />
+              </label>
+              <label title="淘宝闪购">
+                <span class="cc-channel-badge" data-channel-badge="ele" aria-hidden="true">淘</span>
+                <input type="text" name="eleSellingPoint" aria-label="淘宝闪购卖点" maxlength="15" placeholder="最多输入15个字" />
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="cccStores" class="cc-create-section">
+        <h3>门店信息</h3>
+        <div class="cc-create-field">
+          <span id="cccStoreSyncLabel">同步策略：</span>
+          <div class="cc-create-choices cc-create-store-mode" role="radiogroup" aria-labelledby="cccStoreSyncLabel">
+            <label><input type="radio" name="storeSync" value="store" checked /> 按门店信息同步</label>
+            <label><input type="radio" name="storeSync" value="custom" /> 设置门店信息同步</label>
+          </div>
+        </div>
+        <div id="cccStoreDefaults" class="cc-create-rows">
+          <div class="cc-create-field"><span>商品状态：</span><span>按门店商品状态</span></div>
+          <div class="cc-create-field"><span>商品价格：</span><span>按门店商品价格</span></div>
+          <div class="cc-create-field"><span>商品库存：</span><span>按门店商品库存</span></div>
+          <div class="cc-create-field"><span>选择门店：</span><span>按全部渠道门店</span></div>
+        </div>
+        <fieldset id="cccStoreFields" class="cc-create-rows cc-create-store-settings" aria-label="设置门店信息同步" hidden disabled>
+          <div class="cc-create-field">
+            <span id="cccStoreStatusLabel">商品状态：</span>
+            <div class="cc-create-choices" role="radiogroup" aria-labelledby="cccStoreStatusLabel">
+              <label><input type="radio" name="storeStatus" value="售卖" checked /> 上架</label>
+              <label><input type="radio" name="storeStatus" value="下架" /> 下架</label>
+            </div>
+          </div>
+          <div class="cc-create-field">
+            <span id="cccStorePriceLabel">商品价格<span class="field-help" tabindex="0" aria-label="可按门店价格、固定价格或加价比例同步">i<span class="field-tip" role="tooltip">可按门店价格、固定价格或加价比例同步。</span></span>：</span>
+            <div class="cc-create-store-options" role="group" aria-labelledby="cccStorePriceLabel">
+              <div class="cc-create-store-option"><label><input type="radio" name="storePriceMode" value="store" checked /> 门店价格</label></div>
+              <div class="cc-create-store-option">
+                <label><input type="radio" name="storePriceMode" value="fixed" /> 固定价格</label>
+                <div class="cc-create-store-value" data-ccc-store-option="storePriceMode" data-value="fixed" hidden><input type="number" name="storePrice" min="0" step="0.01" aria-label="固定价格金额" required disabled /><span>元</span></div>
+              </div>
+              <div class="cc-create-store-option">
+                <label><input type="radio" name="storePriceMode" value="markup" /> 加价比例</label>
+                <div class="cc-create-store-value" data-ccc-store-option="storePriceMode" data-value="markup" hidden><input type="number" name="storeMarkup" min="0" step="0.01" aria-label="加价百分比" required disabled /><span>%</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cc-create-field">
+            <span id="cccStoreStockLabel">商品库存<span class="field-help" tabindex="0" aria-label="可按门店库存比例或固定库存同步">i<span class="field-tip" role="tooltip">可按门店库存比例或固定库存同步。</span></span>：</span>
+            <div class="cc-create-store-options" role="group" aria-labelledby="cccStoreStockLabel">
+              <div class="cc-create-store-option">
+                <label><input type="radio" name="storeStockMode" value="ratio" checked /> 门店库存比例</label>
+                <div class="cc-create-store-value" data-ccc-store-option="storeStockMode" data-value="ratio"><input type="number" name="storeStockRatio" value="100" min="0" step="0.01" aria-label="门店库存百分比" required /><span>%</span></div>
+              </div>
+              <div class="cc-create-store-option">
+                <label><input type="radio" name="storeStockMode" value="fixed" /> 固定库存</label>
+                <div class="cc-create-store-value" data-ccc-store-option="storeStockMode" data-value="fixed" hidden><input type="number" name="storeStock" min="0" step="1" aria-label="固定库存数量" required disabled /></div>
+              </div>
+            </div>
+          </div>
+          <div class="cc-create-field">
+            <span id="cccStoreRangeLabel">选择门店：</span>
+            <div>
+              <div class="cc-create-choices" role="radiogroup" aria-labelledby="cccStoreRangeLabel">
+                <label><input type="radio" name="storeRange" value="all" checked /> 全部门店</label>
+                <label><input type="radio" name="storeRange" value="specified" /> 指定部分门店</label>
+              </div>
+              <div id="cccSpecifiedStores" class="cc-create-choices" role="group" aria-label="指定门店" data-ccc-store-option="storeRange" data-value="specified" hidden></div>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+    </form>
+    <dialog id="cccFrontDialog" class="cc-dialog cc-create-front-dialog" aria-labelledby="cccFrontTitle">
+      <header><h2 id="cccFrontTitle">选择前台类目</h2><button type="button" data-ccc-front-cancel aria-label="关闭前台类目选择">×</button></header>
+      <div class="cc-create-front-dialog-body">
+        <div class="cc-create-front-browser">
+          <label class="cc-create-front-dialog-field">
+            <span>关键词检索：</span>
+            <input type="search" id="cccFrontSearch" placeholder="请输入关键词检索" autofocus />
+          </label>
+          <div class="cc-create-front-dialog-field">
+            <span>类目选择：</span>
+            <div class="cc-create-front-columns">
+              <div class="cc-create-front-column">
+                <div>1级类目</div>
+                <ul id="cccFrontRoots"></ul>
+              </div>
+              <div class="cc-create-front-column">
+                <div>2级类目</div>
+                <ul id="cccFrontChildren"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="cc-create-front-selection" aria-labelledby="cccFrontSelectedTitle">
+          <h3 id="cccFrontSelectedTitle" aria-live="polite">已选类目（0）</h3>
+          <ul id="cccFrontSelected"></ul>
+        </aside>
+      </div>
+      <footer><button type="button" data-ccc-front-cancel>取消</button><button type="button" class="cc-primary" id="cccConfirmFront">确定</button></footer>
+    </dialog>
+    <dialog id="cccImagePicker" class="cc-dialog" aria-labelledby="cccImagePickerTitle">
+      <header><h2 id="cccImagePickerTitle">选择图片</h2><button type="button" id="cccCloseImagePicker" aria-label="关闭图片选择">×</button></header>
+      <div id="cccImageChoices" class="cc-create-image-choices"></div>
+    </dialog>
+    <dialog id="cccImageActionDialog" class="cc-dialog cc-create-image-action-dialog" aria-labelledby="cccImageActionTitle">
+      <header><h2 id="cccImageActionTitle"></h2><button type="button" data-ccc-image-close aria-label="关闭图片操作">×</button></header>
+      <div class="cc-create-image-action-preview"><img id="cccImageActionPreview" alt="" /></div>
+      <p id="cccImageActionFeedback" role="status" hidden></p>
+      <footer id="cccImageActionControls"></footer>
+    </dialog>
+  </section>
+  <dialog id="ccDialog" class="cc-dialog" aria-labelledby="ccDialogTitle"><header><h2 id="ccDialogTitle"></h2><button type="button" data-cc-close aria-label="关闭弹窗">×</button></header><div id="ccDialogContent"></div></dialog>
+  <div id="ccToast" class="cc-toast" role="status" hidden></div>
+</section>
+
         <section class="store-product-page" id="storeProductPage" hidden aria-label="同城门店商品">
           <div class="store-product-mode"><span>切换业态：</span><label><input type="radio" checked /> 卖场</label></div>
           <section class="store-product-filter">
@@ -2174,6 +2481,57 @@
               </section>
             </aside>
           </div>
+        </section>
+
+        <section id="salesOverviewPage" class="sov-page" hidden aria-labelledby="sovTitle">
+          <h1 id="sovTitle">同城销售总览</h1>
+          <form id="sovFilters" class="sov-filters">
+            <div class="sov-filter-main"><div class="sov-field"><label for="sovQueryRange">查询时间：</label><div class="sov-date-controls"><button type="button" id="sovQueryRange" data-sov-range="Query" aria-expanded="false" aria-controls="sovCalendar">2026-11-10 — 2026-11-10</button><select id="sovQueryPeriod" data-sov-period="Query" aria-label="查询时间快捷周期"><option>今日</option><option>昨天</option><option>本周</option><option>上周</option><option>本月</option><option>上月</option><option>本年</option><option>自定义</option></select></div></div><label class="sov-field"><span>渠道：</span><select name="channel" aria-label="渠道"><option value="">请选择</option><option>饿了么</option><option>美团外卖</option></select></label><label class="sov-field"><span>门店：</span><span class="sov-store-controls"><select name="store" id="sovStore" aria-label="门店"><option value="">请选择</option></select><button type="button" id="sovRegionButton">区域</button></span></label><div class="sov-actions"><button type="submit" class="sov-primary">查询</button><button type="reset">重置</button><button type="button" id="sovExpand" class="sov-link" aria-expanded="false" aria-controls="sovAdvanced">展开 ⌄</button></div></div>
+            <div class="sov-filter-advanced" id="sovAdvanced" hidden><div class="sov-field"><label for="sovCompareRange">对比时间：</label><div class="sov-date-controls"><button type="button" id="sovCompareRange" data-sov-range="Compare" aria-expanded="false" aria-controls="sovCalendar">2026-11-10 — 2026-11-10</button><select id="sovComparePeriod" data-sov-period="Compare" aria-label="对比时间快捷周期"><option>今日</option><option>昨天</option><option>本周</option><option>上周</option><option>本月</option><option>上月</option><option>本年</option><option>自定义</option></select></div></div><label class="sov-field"><span>品类级别：</span><select name="level" aria-label="品类级别"><option value="">请选择</option></select></label><label class="sov-field"><span>业态：</span><select name="format" aria-label="业态"><option value="">请选择</option></select></label></div>
+            <div class="sov-calendar" id="sovCalendar" hidden><div class="sov-calendar-heading"><button type="button" data-sov-month="-1" aria-label="上一月">‹</button><strong id="sovCalendarTitle">选择查询时间</strong><button type="button" data-sov-month="1" aria-label="下一月">›</button></div><div class="sov-months" id="sovMonths"></div><div class="sov-calendar-footer"><span id="sovDraftRange"></span><button type="button" id="sovDateCancel">取消</button><button type="button" id="sovDateConfirm" class="sov-primary">确定</button></div></div>
+          </form>
+          <h2>总览</h2><div class="sov-metrics"><article><span>销售金额</span><strong id="sovMetric_sales">2592.57</strong><p>环比 <span data-sov-ratio="sales">0.00%</span></p></article><article><span>订单数</span><strong id="sovMetric_orders">61</strong><p>环比 <span data-sov-ratio="orders">0.00%</span></p></article><article><span>客单价</span><strong id="sovMetric_average">42.50</strong><p>环比 <span data-sov-ratio="average">0.00%</span></p></article><article><span>退货金额</span><strong id="sovMetric_refund">-11.90</strong><p>环比 <span data-sov-ratio="refund">0.00%</span></p></article><article><span>订单合计</span><strong id="sovMetric_total">3624.50</strong><p>环比 <span data-sov-ratio="total">0.00%</span></p></article><article><span>佣金+履约服务费</span><strong id="sovMetric_fee">324.93</strong><p>环比 <span data-sov-ratio="fee">0.00%</span></p></article><article><span>优惠金额</span><strong id="sovMetric_discount">639.38</strong><p>环比 <span data-sov-ratio="discount">0.00%</span></p><p class="sov-discounts"><span>商家优惠费用 <b id="sovMerchantDiscount">428.50</b></span><span>平台优惠费用 <b id="sovPlatformDiscount">210.88</b></span></p></article><article><span>退单笔数</span><strong id="sovMetric_refundOrders">2</strong><p>环比 <span data-sov-ratio="refundOrders">0.00%</span></p></article></div>
+          <h2>趋势</h2><div class="sov-trends"><section class="sov-chart-card" aria-label="当期与环期趋势"><div class="sov-chart" id="sovHourlyChart"></div></section><section class="sov-chart-card" aria-label="销售金额与销售笔数趋势"><div class="sov-chart" id="sovDailyChart"></div></section></div>
+          <h2>渠道</h2><div class="sov-channel-layout"><section class="sov-chart-card" aria-label="渠道销售占比"><div class="sov-chart" id="sovChannelChart"></div></section><section class="sov-panel sov-panel-channel" aria-labelledby="sovchannelTitle"><div class="sov-panel-heading"><h3 id="sovchannelTitle">渠道</h3><span id="sovchannelCount" class="sov-count"></span><button type="button" data-sov-export="channel">导出</button></div><div class="sov-table-scroll"><table><thead id="sovchannelHead"></thead><tbody id="sovchannelRows"></tbody></table></div><div class="sov-pagination" id="sovchannelPagination"></div></section></div>
+          <div class="sov-rankings"><section class="sov-panel sov-panel-store" aria-labelledby="sovstoreTitle"><div class="sov-panel-heading"><h3 id="sovstoreTitle">门店排名</h3><span id="sovstoreCount" class="sov-count"></span><button type="button" data-sov-export="store">导出</button></div><div class="sov-table-scroll"><table><thead id="sovstoreHead"></thead><tbody id="sovstoreRows"></tbody></table></div><div class="sov-pagination" id="sovstorePagination"></div></section><section class="sov-panel sov-panel-category" aria-labelledby="sovcategoryTitle"><div class="sov-panel-heading"><h3 id="sovcategoryTitle">品类排名</h3><span id="sovcategoryCount" class="sov-count"></span><button type="button" data-sov-export="category">导出</button></div><div class="sov-table-scroll"><table><thead id="sovcategoryHead"></thead><tbody id="sovcategoryRows"></tbody></table></div><div class="sov-pagination" id="sovcategoryPagination"></div></section><section class="sov-panel sov-panel-product" aria-labelledby="sovproductTitle"><div class="sov-panel-heading"><h3 id="sovproductTitle">商品排名</h3><span id="sovproductCount" class="sov-count"></span><button type="button" data-sov-export="product">导出</button></div><div class="sov-table-scroll"><table><thead id="sovproductHead"></thead><tbody id="sovproductRows"></tbody></table></div><div class="sov-pagination" id="sovproductPagination"></div></section></div>
+          <dialog id="sovRegionDialog" class="sov-region-dialog"><form method="dialog"><h2>区域</h2><p class="sov-empty">暂无区域数据</p><button type="submit">关闭</button></form></dialog>
+          <div id="sovToast" class="sov-toast" role="status" hidden></div>
+        </section>
+
+        <section id="absenceReport2Page" class="ar2-page" hidden aria-labelledby="ar2Title">
+          <h1 id="ar2Title">三方渠道商品出勤率报表</h1>
+          <form id="ar2Filters" class="ar2-filters">
+            <div class="ar2-primary-filters">
+              <div class="ar2-period-field"><label for="ar2DateRange" class="ar2-field-label">查询时间：</label><div class="ar2-period-controls"><button type="button" id="ar2DateRange" aria-expanded="false" aria-controls="ar2Calendar">2026-10-12 — 2026-11-10</button><select id="ar2Period" name="period" aria-label="快捷查询时间"><option>近30日</option><option>昨天</option><option>本周</option><option>上周</option><option>本月</option><option>上月</option><option>本年</option><option>自定义</option></select></div></div>
+              <label class="ar2-field"><span class="ar2-field-label">渠道：</span><select name="channel" aria-label="渠道"><option value="">请选择</option><option>美团外卖</option><option>饿百</option></select></label>
+              <label class="ar2-field"><span class="ar2-field-label">门店：</span><span class="ar2-store-controls"><select name="store" aria-label="门店"><option value="">请选择</option><option value="2005">2005_鹏泰百货南康一店</option></select><button type="button" id="ar2RegionButton">区域</button></span></label>
+              <div class="ar2-actions"><button type="submit" class="ar2-primary">查询</button><button type="reset">重置</button><button type="button" class="ar2-link" id="ar2Expand" aria-expanded="false" aria-controls="ar2Advanced">展开 ⌄</button></div>
+            </div>
+            <div id="ar2Advanced" class="ar2-advanced" hidden>
+              <label class="ar2-field"><span class="ar2-field-label">前台类目：</span><select name="front" aria-label="前台类目"><option value="">请选择</option><option>wjh17</option><option>油</option><option>低温鲜奶</option></select></label>
+              <label class="ar2-field"><span class="ar2-field-label">后台类目：</span><select name="back" aria-label="后台类目"><option value="">请选择</option><option>可乐</option></select></label>
+              <label class="ar2-field"><span class="ar2-field-label">商品编码：</span><input name="code" aria-label="商品编码" placeholder="请输入商品编码" autocomplete="off" /></label>
+            </div>
+            <div id="ar2Calendar" class="ar2-calendar" hidden>
+              <div class="ar2-calendar-header"><button type="button" data-ar2-month="-1" aria-label="上一月">‹</button><strong>选择查询时间</strong><button type="button" data-ar2-month="1" aria-label="下一月">›</button></div>
+              <div id="ar2Months" class="ar2-months"></div>
+              <div class="ar2-calendar-footer"><span id="ar2DraftRange"></span><button type="button" id="ar2DateCancel">取消</button><button type="button" class="ar2-primary" id="ar2DateConfirm">确定</button></div>
+            </div>
+          </form>
+          <div class="ar2-metrics" aria-label="出勤指标">
+            <article><span class="ar2-metric-heading">整体出勤率<span class="ar2-metric-help"><button type="button" class="ar2-help-button" aria-label="整体出勤率说明" aria-describedby="ar2HelpOverall" aria-expanded="false">?</button><span class="ar2-tooltip" id="ar2HelpOverall" role="tooltip" hidden><span>查询时间范围内，所有商品渠道组合的实际出勤总时长占应出勤总时长的比例。</span><span>整体出勤率 = 实际出勤总时长 ÷ 应出勤总时长 × 100%</span></span></span></span><strong id="ar2Overall">67.80%</strong><p><span>较上周期</span><span id="ar2Compare">-24.99%</span></p></article>
+            <article><span class="ar2-metric-heading">出勤组合数<span class="ar2-metric-help"><button type="button" class="ar2-help-button" aria-label="出勤组合数 / 总组合数说明" aria-describedby="ar2HelpCombinations" aria-expanded="false">?</button><span class="ar2-tooltip" id="ar2HelpCombinations" role="tooltip" hidden><span>出勤组合数为查询期内符合出勤条件的商品渠道组合数量；总组合数为存在铺货关系且应出勤时长大于0的组合数量。</span><span>示例：出勤组合数 = 出勤商品sku数 × 渠道个数；总组合数 = 总商品sku数 × 渠道个数</span></span></span></span><strong id="ar2Attended">10117</strong><p><span>总组合数</span><span id="ar2Combinations">11536</span></p></article>
+            <article><span class="ar2-metric-heading">预警组合(&lt;60%)<span class="ar2-metric-help"><button type="button" class="ar2-help-button" aria-label="预警组合（&lt;60%）说明" aria-describedby="ar2HelpWarning" aria-expanded="false">?</button><span class="ar2-tooltip" id="ar2HelpWarning" role="tooltip" hidden><span>查询时间范围内，出勤率低于60%的商品渠道组合数量。</span><span>预警占比 = 预警组合数 ÷ 总组合数 × 100%</span></span></span></span><strong id="ar2Warning" class="ar2-danger">2815</strong><p><span>占组合</span><span id="ar2WarningRate">24.40%</span></p></article>
+            <article><span class="ar2-metric-heading">渠道铺货覆盖率<span class="ar2-metric-help"><button type="button" class="ar2-help-button" aria-label="渠道铺货覆盖率说明" aria-describedby="ar2HelpCoverage" aria-expanded="false">?</button><span class="ar2-tooltip" id="ar2HelpCoverage" role="tooltip" hidden><span>已铺货的商品渠道组合数占应铺货组合总数的比例，用于衡量渠道铺货的完整程度。</span><span>渠道铺货覆盖率 = 已铺货组合数 ÷ 应铺货组合数 × 100%</span></span></span></span><strong id="ar2Coverage">87.70%</strong></article>
+          </div>
+
+          <div class="ar2-report">
+            <div class="ar2-toolbar"><div class="ar2-tabs" role="tablist" aria-label="报表视图"><button type="button" id="ar2DetailTab" role="tab" aria-selected="true" aria-controls="ar2TablePanel" data-ar2-view="detail">商品出勤明细</button><button type="button" id="ar2StoreTab" role="tab" aria-selected="false" aria-controls="ar2TablePanel" data-ar2-view="store" tabindex="-1">门店汇总</button><button type="button" id="ar2CategoryTab" role="tab" aria-selected="false" aria-controls="ar2TablePanel" data-ar2-view="category" tabindex="-1">类目汇总</button></div><span id="ar2Count" class="ar2-count">共 17 条</span><button type="button" id="ar2Export">导出</button></div>
+            <div class="ar2-table-wrap" id="ar2TablePanel" role="tabpanel" aria-labelledby="ar2DetailTab"><table class="ar2-table"><thead id="ar2Head"></thead><tbody id="ar2Rows"></tbody></table></div>
+            <div class="ar2-pagination"><span id="ar2Total">共 17 条</span><select id="ar2PageSize" aria-label="每页条数"><option value="20">20 条/页</option><option value="10">10 条/页</option><option value="50">50 条/页</option></select><div id="ar2Pages"></div><label>前往 <input id="ar2Jump" type="number" min="1" value="1" aria-label="跳转页码" /> 页</label></div>
+          </div>
+          <dialog id="ar2RegionDialog" class="ar2-region-dialog"><form method="dialog"><h2>选择门店区域</h2><label>区域<select id="ar2Region"><option value="">全部区域</option><option>南康区域</option></select></label><div><button value="cancel">取消</button><button value="confirm" class="ar2-primary">确定</button></div></form></dialog>
+          <div class="ar2-toast" id="ar2Toast" role="status" hidden></div>
         </section>
 
         <section class="product-absence-report-page" id="productAbsenceReportPage" hidden>
@@ -4426,7 +4784,7 @@
     <script src="./js/PC页面/同城商品管理/图片库数据.js"></script>
     <script src="./js/PC页面/同城生活/同城生活数据.js"></script>
     <script src="./js/核心/通用UI.js"></script>
-    <script src="./js/PC页面/同城商品管理/商品表格与页签.js?v=20261109-1"></script>
+    <script src="./js/PC页面/同城商品管理/商品表格与页签.js?v=20261110-menu-names-1"></script>
     <script src="./js/PC页面/同城商品管理/同城门店商品.js?v=20260924-3"></script>
     <script src="./assets/vendor/html2canvas-1.4.1.min.js"></script>
     <script src="./js/同城App/同城App手机预览.js?v=20261030-5"></script>
@@ -4434,7 +4792,7 @@
     <script src="./js/同城App/功能应用/IM消息.js"></script>
     <script src="./js/同城App/功能应用/同城商品档案.js?v=20260907-3"></script>
     <script src="./js/同城App/功能应用/同城商品.js?v=20261030-6"></script>
-    <script src="./js/核心/页面路由.js?v=20261109-1"></script>
+    <script src="./js/核心/页面路由.js?v=20261110-sales-1"></script>
     <script src="./js/PC页面/同城报表/同城商品缺勤报表.js"></script>
     <script src="./js/PC页面/同城报表/同城商品缺货报表.js"></script>
     <script src="./js/PC页面/同城报表/IM回复率统计.js"></script>
@@ -4442,14 +4800,14 @@
     <script src="./js/PC页面/同城订单.js?v=20260814-4"></script>
     <script src="./js/PC页面/老三方/商品池管理.js"></script>
     <script src="./js/PC页面/同城商品管理/同城后台类目.js?v=20260814-3"></script>
-    <script src="./js/核心/建设中页面.js?v=20261109-1"></script>
+    <script src="./js/核心/建设中页面.js?v=20261110-sales-1"></script>
     <script src="./js/PC页面/接口管理/京东接口列表.js"></script>
     <script src="./js/PC页面/同城生活/同城生活页面.js"></script>
     <script src="./js/PC页面/同城基础设置/同城业态.js?v=20260814-2"></script>
     <script src="./js/PC页面/同城基础设置/同城上下架计划.js?v=20260908-1"></script>
     <script src="./js/PC页面/同城基础设置/门店商品上架计划.js?v=20260831-3"></script>
     <script src="./js/PC页面/同城基础设置/同城运维工具.js?v=20260728-3"></script>
-    <script src="./js/PC页面/同城基础设置/同城商家客服.js?v=20261106-5"></script>
+    <script src="./js/PC页面/同城基础设置/同城商家客服.js?v=20261112-pull-app"></script>
     <script src="./js/核心/导航与标签.js?v=20260831-1"></script>
     <script src="./js/PC页面/同城报表/订单热力图.js"></script>
     <script src="./js/PC页面/通用页面事件.js?v=20260817-1"></script>
@@ -4462,6 +4820,10 @@
     <script src="./js/核心/全局事件初始化.js"></script>
   <script src="./js/同城App/功能应用/同城订单评价.js?v=20261030-2"></script>
     <script src="./js/PC页面/同城基础设置/同城商品库存对比.js?v=20261109-1"></script>
+    <script src="./js/PC页面/同城报表/同城缺勤报表2.js?v=20261110-3"></script>
+    <script src="./js/PC页面/同城报表/同城销售总览.js?v=20261110-1"></script>
+    <script src="./js/PC页面/同城商品管理/同城商品.js?v=20261112-9"></script>
+    <script src="./js/PC页面/同城商品管理/同城商品创建.js?v=20261112-49"></script>
     <script src="./js/核心/页面会话恢复.js?v=20261106-5"></script>
     <script src="./js/同城App/同城App页签.js?v=20261030-3"></script>
   </body>

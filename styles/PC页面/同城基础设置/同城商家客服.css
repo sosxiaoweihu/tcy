@@ -16,7 +16,15 @@
   padding-bottom: var(--spacing-xl);
   border: 0;
 }
-.merchant-service-filters label { display: flex; align-items: center; gap: var(--spacing-sm); white-space: nowrap; }
+.merchant-service-filters label {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: min(100%, 320px);
+  white-space: nowrap;
+}
+.merchant-service-filters label > span { text-align: right; }
 .merchant-service-filter-actions { display: flex; gap: var(--spacing-sm); margin-left: auto; }
 .merchant-service-toolbar { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-md); margin: var(--spacing-lg) 0; }
 .merchant-service-toolbar-actions { display: flex; align-items: center; gap: var(--spacing-sm); }
@@ -39,10 +47,21 @@
   white-space: nowrap;
 }
 .merchant-service-table th {
+  position: relative;
   background: var(--color-bg-table-header);
   font-size: var(--font-size-table-header);
   font-weight: 600;
 }
+.merchant-service-column-resize {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: var(--spacing-sm);
+  border-right: 1px solid var(--color-border-default);
+  cursor: col-resize;
+  touch-action: none;
+}
+.merchant-service-column-resize:focus-visible { outline: 2px solid var(--color-primary); outline-offset: -2px; }
+.merchant-service-table-scroll.is-resizing { user-select: none; }
 .merchant-service-table td { background: var(--color-bg-card); }
 .merchant-service-table tbody tr:hover td { background: var(--color-bg-hover); }
 .merchant-service-table th:last-child,
@@ -125,6 +144,7 @@
   margin-top: var(--spacing-lg);
 }
 .merchant-service-field:first-child { margin-top: 0; }
+.merchant-service-app-field { grid-template-columns: max-content minmax(0, 1fr); }
 .merchant-service-field label span { color: var(--color-danger); }
 .merchant-service-field input,
 .merchant-service-field select,
@@ -138,7 +158,6 @@
   color: var(--color-text-primary);
   background: var(--color-bg-card);
 }
-.merchant-service-filters input { width: 220px; }
 .merchant-service-field input::placeholder { color: var(--color-text-placeholder); }
 .merchant-service-field select[aria-invalid="true"],
 .merchant-service-field input[aria-invalid="true"] { border-color: var(--color-danger); }

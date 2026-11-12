@@ -2561,7 +2561,7 @@ tbody tr.selected {
 
 .standard-product-filter-grid > label > span:first-child {
   color: var(--color-text-primary);
-  font-size: 15px;
+  font-size: var(--font-size-body);
   font-weight: 500;
   white-space: nowrap;
 }
@@ -2570,7 +2570,7 @@ tbody tr.selected {
 .standard-product-filter-grid select {
   width: 100%;
   min-width: 0;
-  height: 40px;
+  height: 32px;
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-sm);
   background: #fff;
@@ -2591,14 +2591,14 @@ tbody tr.selected {
 }
 
 .standard-product-filter-actions .btn {
-  height: 40px;
+  height: 32px;
   min-width: 76px;
-  font-size: 15px;
+  font-size: var(--font-size-button);
 }
 
 .standard-product-filter-toggle {
   width: 34px;
-  height: 40px;
+  height: 32px;
   border: 0;
   background: transparent;
   color: var(--color-text-primary);
@@ -2722,9 +2722,9 @@ tbody tr.selected {
 }
 
 .standard-product-mode .toolbar-actions .btn {
-  height: 40px;
+  height: 32px;
   min-width: 112px;
-  font-size: 15px;
+  font-size: var(--font-size-button);
 }
 
 .standard-product-mode #createProductButton {
@@ -2748,11 +2748,16 @@ tbody tr.selected {
   min-width: 1640px;
 }
 
+#tongchengPage .table-card th {
+  height: 48px;
+  font-size: var(--font-size-table-header);
+}
+
 .standard-product-table th {
-  height: 52px;
+  height: 48px;
   background: #f1f5fd;
   color: var(--color-text-primary);
-  font-size: 15px;
+  font-size: var(--font-size-table-header);
   font-weight: 600;
 }
 

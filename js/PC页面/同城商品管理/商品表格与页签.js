@@ -171,6 +171,9 @@ function renderCategories() {
 }
 
 function renderPageTabs() {
+  document.getElementById("cityCatalogPage").hidden = activePage !== "同城商品";
+  document.getElementById("salesOverviewPage").hidden = activePage !== "同城销售总览";
+  document.getElementById("absenceReport2Page").hidden = activePage !== "同城缺勤报表2";
   document.getElementById("inventoryComparePage").hidden = activePage !== "同城商品库存对比";
   document.getElementById("merchantServicePage").hidden = activePage !== "小程序商家客服";
   document.getElementById("cityInventoryLogPage").hidden = activePage !== "同城库存操作日志";
@@ -179,8 +182,9 @@ function renderPageTabs() {
   pageTabs.innerHTML = openTabs
     .map((name) => {
       const active = name === activePage ? "active" : "";
-      const close = name === "概况" ? "" : `<span class="tab-close" data-close-tab="${name}" aria-label="关闭${name}">×</span>`;
-      return `<button class="${active}" data-tab="${name}">${name} ${close}</button>`;
+      const displayName = name === "同城商品管理(统一分类)" ? "商品（统一）1" : name;
+      const close = name === "概况" ? "" : `<span class="tab-close" data-close-tab="${name}" aria-label="关闭${displayName}">×</span>`;
+      return `<button class="${active}" data-tab="${name}">${displayName} ${close}</button>`;
     })
     .join("");
 }

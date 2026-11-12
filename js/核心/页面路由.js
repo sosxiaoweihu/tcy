@@ -20,7 +20,7 @@ function closeTab(pageName) {
     openOrderManagementPage(false);
     return;
   }
-  if (activePage === "同城商品" || activePage === "同城商品管理(统一分类)") {
+  if (activePage === "商品2" || activePage === "同城商品管理(统一分类)") {
     openTongchengProductPage(activePage, false);
     return;
   }
@@ -100,6 +100,9 @@ function closeTab(pageName) {
 }
 
 function switchModule(moduleName) {
+  if (moduleName !== "同城") document.getElementById("cityCatalogPage").hidden = true;
+  if (moduleName !== "同城") document.getElementById("salesOverviewPage").hidden = true;
+  if (moduleName !== "同城") document.getElementById("absenceReport2Page").hidden = true;
   if (moduleName !== "同城") document.getElementById("inventoryComparePage").hidden = true;
   if (moduleName !== "同城") document.getElementById("merchantServicePage").hidden = true;
   if (moduleName !== "同城") document.getElementById("cityInventoryLogPage").hidden = true;
@@ -165,7 +168,8 @@ function switchModule(moduleName) {
   constructionTitle.textContent = `${moduleName}建设中`;
 }
 
-function openTongchengProductPage(pageName = "同城商品", shouldAddTab = true) {
+function openTongchengProductPage(pageName = "商品2", shouldAddTab = true) {
+  if (pageName === "同城商品") { openCityCatalogPage(shouldAddTab); return; }
   if (shouldAddTab) addOrActivateTab(pageName);
   leaveCustomTaskPage();
   isUnifiedCategoryPage = pageName === "同城商品管理(统一分类)";

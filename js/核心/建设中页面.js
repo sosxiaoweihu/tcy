@@ -1,4 +1,13 @@
 function openConstructionPage(pageName, shouldAddTab = true) {
+  if (pageName === "同城商品") { openCityCatalogPage(shouldAddTab); return; }
+  if (pageName === "同城销售总览") {
+    openSalesOverviewPage(shouldAddTab);
+    return;
+  }
+  if (pageName === "同城缺勤报表2") {
+    openAbsenceReport2Page(shouldAddTab);
+    return;
+  }
   if (pageName === "同城商品库存对比") {
     openInventoryComparePage(shouldAddTab);
     return;
