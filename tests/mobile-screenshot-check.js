@@ -13,6 +13,8 @@
     const tool=async entry=>{click('[data-app-tab="tools"]');await settle();click(entry);await settle();};
     const cases=[
       ['全部工具',async()=>{if($('[data-app-tab="home"]'))throw new Error('已移除的 App首页 不应出现');if(!$('#tongchengAppScreen').src.endsWith('/retail-union-tools.png'))throw new Error('首次进入 App 应直接显示全部工具');click('[data-app-tab="tools"]');}],
+      ['同城商品监控总览',async()=>{await tool('#openProductMonitor');if(app.getTongchengAppScreenshotTarget().id!=='productMonitorPage'||$('[data-pm-product="cola"]').textContent.indexOf('可乐 500ml')<0)throw new Error('未打开商品监控总览');}],
+      ['同城商品监控筛选明细',async()=>{click('[data-pm-filter="channel"]');click('[data-pm-value="美团"]');click('[data-pm-status="off"]');if($('#pmAllDetails').hidden||$('#pmAllRows .pm-row')?.dataset.pmProduct!=='cola'||$('#pmAllRows').children.length!==1)throw new Error('渠道及状态筛选未生效');}],
       ['同城商品管理',async()=>tool('#openCityProducts')],
       ['商品搜索结果',async()=>{const form=$('.cp-search');form.querySelector('input').value='番茄';form.dispatchEvent(new app.Event('submit',{bubbles:true,cancelable:true}));}],
       ['批量管理全选',async()=>{click('[data-cp-back]');click('[data-cp-batch]');click('[data-cp-all]');}],

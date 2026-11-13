@@ -8,6 +8,7 @@
   const offset = value => Number.isFinite(value) ? Math.max(0, value) : 0;
   const entries = [
     { id: 'tools', name: '全部工具' },
+    { id: 'monitor', name: '同城商品监控', entry: 'openProductMonitor', panel: 'productMonitorPage' },
     { id: 'products', name: '同城商品', entry: 'openCityProducts', panel: 'cityProductsPage' },
     { id: 'records', name: '同城商品档案', entry: 'openProductRecord', panel: 'productRecordPage', open: openProductRecordPage },
     { id: 'orders', name: '三方订单', entry: 'openThirdPartyOrder', panel: 'thirdPartyOrderPage', open: openThirdPartyOrderPage },

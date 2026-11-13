@@ -1,4 +1,5 @@
 .tongcheng-app-page {
+  position: relative;
   width: 100%;
   height: 100vh;
   display: grid;
@@ -7,10 +8,6 @@
   padding: 24px;
   background:
     radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.96) 0 19%, rgba(245, 248, 252, 0.92) 43%, rgba(231, 236, 243, 0.96) 100%);
-}
-
-.tongcheng-app-preview {
-  position: relative;
 }
 
 .tongcheng-app-screen {
@@ -31,8 +28,8 @@
 
 .tongcheng-app-copy-button {
   position: absolute;
-  top: 50%;
-  left: calc(100% + 20px);
+  right: var(--spacing-xl);
+  bottom: var(--spacing-xl);
   min-width: 116px;
   height: 36px;
   padding: 0 14px;
@@ -44,7 +41,6 @@
   cursor: pointer;
   font-size: 14px;
   white-space: nowrap;
-  transform: translateY(-50%);
 }
 
 .tongcheng-app-copy-button:hover {
@@ -55,18 +51,6 @@
 .tongcheng-app-copy-button:disabled {
   cursor: wait;
   opacity: 0.7;
-}
-
-@media (max-width: 720px) {
-  .tongcheng-app-page {
-    padding-bottom: 78px;
-  }
-
-  .tongcheng-app-copy-button {
-    top: calc(100% + 18px);
-    left: 50%;
-    transform: translateX(-50%);
-  }
 }
 
 .tongcheng-app-screen img {

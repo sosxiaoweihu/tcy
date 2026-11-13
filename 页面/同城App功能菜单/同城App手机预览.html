@@ -10,6 +10,10 @@
               <span>IM消息</span>
             </button>
             <span class="product-record-menu-extension" aria-hidden="true"></span>
+            <button class="product-monitor-entry" id="openProductMonitor" type="button" aria-label="打开同城商品监控" hidden>
+              <span aria-hidden="true" data-pm-icon="chart"></span>
+              <span>同城商品监控</span>
+            </button>
             <button class="product-record-entry" id="openProductRecord" type="button" aria-label="打开同城商品档案" hidden>
               <span class="product-record-entry-icon" aria-hidden="true"><i></i></span>
               <span>同城商品档案</span>
@@ -89,6 +93,37 @@
               </div>
             </section>
           </div>
-          <button class="tongcheng-app-copy-button" id="copyTongchengAppScreenshot" type="button">复制 App 截图</button>
           </div>
+          <aside class="product-monitor-requirements" aria-label="商品监控版本需求">
+            <div class="product-monitor-requirements-header">
+              <button class="product-monitor-requirements-drag" type="button" aria-label="移动需求浮层" title="拖动浮层，也可用方向键移动"></button>
+              <button class="product-monitor-requirements-toggle" type="button" aria-expanded="false" aria-controls="productMonitorRequirementsContent">2026.11.25版本需求</button>
+            </div>
+            <div class="product-monitor-requirements-content" id="productMonitorRequirementsContent" role="region" aria-label="商品监控需求正文" tabindex="0" hidden>
+              <dl>
+                <dt>时间范围</dt>
+                <dd>支持按天、按周查询监控数据。</dd>
+                <dt>商品监控范围</dt>
+                <dd>
+                  <ul>
+                    <li><strong>Top 销售商品</strong>：按商品销售金额排名，选取 Top N 商品作为监控对象，支持配置 Top100、Top200、Top500 等规则。</li>
+                    <li><strong>租户自定义商品池</strong>：支持租户配置指定商品清单，对重点商品进行定向监控。</li>
+                  </ul>
+                </dd>
+                <dt>销售监控数据</dt>
+                <dd>汇总展示监控商品的 SKU 数量、在售数量、出勤率、销售金额及订单数等核心指标。</dd>
+                <dt>上下架状态变化</dt>
+                <dd>
+                  <ul>
+                    <li><strong>新下架</strong>：昨日在架、今日下架的商品。</li>
+                    <li><strong>恢复上架</strong>：昨日下架、今日恢复上架的商品。</li>
+                    <li><strong>持续下架</strong>：昨日下架、今日仍处于下架状态的商品。</li>
+                  </ul>
+                </dd>
+                <dt>下架商品明细</dt>
+                <dd>展示监控范围内的下架商品清单，支持明细查询及数据下载。</dd>
+              </dl>
+            </div>
+          </aside>
+          <button class="tongcheng-app-copy-button" id="copyTongchengAppScreenshot" type="button">复制 App 截图</button>
         </section>

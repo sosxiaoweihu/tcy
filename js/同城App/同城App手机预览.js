@@ -43,6 +43,8 @@ function setRetailUnionAppOpen() {
   tongchengAppScreen.alt = "零售共场App全部工具页面";
   tongchengAppScreen.closest(".tongcheng-app-screen").classList.add("retail-union-open");
   tongchengAppScreen.hidden = false;
+  document.getElementById("productMonitorPage").hidden = true;
+  document.getElementById("openProductMonitor").hidden = false;
   document.getElementById("orderReviewsPage").hidden = true;
   document.getElementById("openOrderReviews").hidden = false;
   thirdPartyOrderPage.hidden = true;
@@ -112,7 +114,7 @@ async function copyTongchengAppStaticImage() {
 function getTongchengAppScreenshotTarget() {
   // 功能页均覆盖整个手机屏幕。只绘制当前页，避免背后已被遮挡的本地
   // 工具页背景进入画布，导致 file:// 模式下 PNG 导出触发 SecurityError。
-  return [document.getElementById("orderReviewsPage"), document.getElementById("cityProductsPage"), thirdPartyPhotoPage, productRecordPage, imAppPage, thirdPartyOrderPage]
+  return [document.getElementById("productMonitorPage"), document.getElementById("orderReviewsPage"), document.getElementById("cityProductsPage"), thirdPartyPhotoPage, productRecordPage, imAppPage, thirdPartyOrderPage]
     .find((page) => page && !page.hidden) || tongchengAppScreen.closest(".tongcheng-app-screen");
 }
 

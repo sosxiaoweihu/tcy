@@ -74,7 +74,7 @@ const ccEditor = (() => {
       ['保质期', '2988', {units: shelfLifeUnits}]
     ]
   };
-  const initialAttributeCounts = {mt: 4, ele: 6};
+  const initialAttributeCounts = {mt: 4, ele: 6, dou: 4};
   const specialImageGroups = {
     mt: [
       ['mt', '配料与营养成分图', 'special'],
@@ -86,11 +86,46 @@ const ccEditor = (() => {
   const giftBagMaxImages = 4;
   const giftBagMaxBytes = 1024 * 1024;
   const giftBagFormats = ['image/jpeg', 'image/png'];
+  const specialImageLimits = {mt: 4, mtGiftBag: giftBagMaxImages, ele: 4, dou: 1};
   const imageGroups = [
     ['main', '商品图片', 'main'],
     ['detail', '图文详情', 'detail'],
     ...Object.values(specialImageGroups).flat()
   ];
+  const packagingGroup = 'douPackaging';
+  const douRecognitionCompleteMessage = '以下信息为您识别自动填入，请确认是否完整准确，若与实际不一致可手动修改';
+  const douReplacementFields = [
+    ['产品名称', 'productName'], ['配料表', 'ingredients'],
+    ['生产企业地址', 'address'], ['生产企业名称', 'manufacturer']
+  ];
+  const douBaseNutrientCount = 5;
+  // Match the reference video's GB 28050—2011 NRV calculations.
+  const douNutrition = [
+    ['energy', '能量', 'kJ', 8400], ['protein', '蛋白质', 'g', 60], ['fat', '脂肪', 'g', 60],
+    ['carbs', '碳水化合物', 'g', 300], ['sodium', '钠', 'mg', 2000],
+    ['saturatedFat', '饱和脂肪（酸）', 'g', 20], ['transFat', '反式脂肪（酸）', 'g'],
+    ['monounsaturatedFat', '单不饱和脂肪（酸）', 'g'], ['polyunsaturatedFat', '多不饱和脂肪（酸）', 'g'],
+    ['cholesterol', '胆固醇', 'mg', 300], ['lactose', '糖（乳糖）', 'g'], ['sugar', '糖', 'g'],
+    ['fiber', '膳食纤维', 'g', 25],
+    ['vitaminA', '维生素A', 'μg RE', 800], ['vitaminD', '维生素D', 'μg', 5],
+    ['vitaminE', '维生素E', 'mg α-TE', 14], ['vitaminK', '维生素K', 'μg', 80],
+    ['vitaminB1', '维生素B1（硫胺素）', 'mg', 1.4], ['vitaminB2', '维生素B2（核黄素）', 'mg', 1.4],
+    ['vitaminB6', '维生素B6', 'mg', 1.4], ['vitaminB12', '维生素B12', 'μg', 2.4],
+    ['vitaminC', '维生素C（抗坏血酸）', 'mg', 100], ['niacin', '烟酸（烟酰胺）', 'mg', 14],
+    ['folate', '叶酸', 'μg DFE', 400], ['pantothenicAcid', '泛酸', 'mg', 5],
+    ['biotin', '生物素', 'μg', 30], ['choline', '胆碱', 'mg', 450],
+    ['phosphorus', '磷', 'mg', 700], ['potassium', '钾', 'mg', 2000], ['magnesium', '镁', 'mg', 300],
+    ['calcium', '钙', 'mg', 800], ['iron', '铁', 'mg', 15], ['zinc', '锌', 'mg', 15],
+    ['iodine', '碘', 'μg', 150], ['selenium', '硒', 'μg', 50],
+    ['copper', '铜', 'mg', 1.5], ['fluoride', '氟', 'mg', 1], ['manganese', '锰', 'mg', 3]
+  ];
+  const douFoodSample = {
+    productName: '川辣条味薯片', net: '25', netUnit: 'g', shelfLife: '15', shelfUnit: '个月',
+    manufacturer: '益海嘉里家乐氏食品（昆山）有限公司', license: 'SC11232058301562',
+    ingredients: '马铃薯、植物油、玉米粉、食用小麦淀粉、川辣条味复合调味料（含食用香精、磷酸三钙、柠檬酸、5′-呈味核苷酸二钠、辣椒红）、单、双甘油脂肪酸酯、麦芽糊精、柠檬酸钠',
+    serving: '每份25克', energy: '559', protein: '1.0', fat: '7.8', carbs: '14.9', sodium: '128',
+    address: '江苏省苏州市昆山市张浦镇', standard: 'GB/T 22699 含油型'
+  };
   const demoImage = (file, name) => ({src: `./assets/city-product-catalog/chips-demo/${file}`, name});
   const demoMain = demoImage('main.jpg', '乐事STAX黑松露味薯片主图');
   const demoNutrition = demoImage('recommended-detail-10.webp', '乐事薯片配料与营养成分图');
@@ -120,6 +155,8 @@ const ccEditor = (() => {
   const options = values => values.map(value => `<option>${ccEscape(value)}</option>`).join('');
   const channelBadge = (key, name) =>
     `<span class="cc-channel-badge" data-channel-badge="${key}" aria-hidden="true">${name[0]}</span>`;
+  const removeIcon = '<path d="M3 6h18m-15 0 1 14h10l1-14M9 6V3h6v3"/>';
+  const icon = path => `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
   ccEl('cccChannelChoices').innerHTML = '<label><input type="checkbox" id="cccSelectAll" checked /> 全选</label>' +
     channels.map(([key, name]) => `<label title="${name}"><input type="checkbox" name="channel" value="${key}" aria-label="${name}" checked />${channelBadge(key, name)}</label>`).join('');
   const frontDialog = ccEl('cccFrontDialog');
@@ -275,10 +312,12 @@ const ccEditor = (() => {
         <div class="cc-create-jd-basis">
           <label for="cccJdNutritionAmount" class="ccc-required">计量单位</label>
           <span>每</span>
-          <input id="cccJdNutritionAmount" name="jd.nutrition.amount" type="number" min="0" step="any" placeholder="请输入" aria-required="true" />
-          <select name="jd.nutrition.unit" aria-label="营养成分计量单位" aria-required="true">
-            <option value="">请选择</option><option>g</option><option>mL</option>
-          </select>
+          <div class="cc-create-joined">
+            <input id="cccJdNutritionAmount" name="jd.nutrition.amount" type="number" min="0" step="any" placeholder="请输入" aria-required="true" />
+            <select name="jd.nutrition.unit" aria-label="营养成分计量单位" aria-required="true">
+              <option value="">请选择</option><option>g</option><option>mL</option>
+            </select>
+          </div>
         </div>
         <table id="cccJdNutritionTable" class="cc-create-jd-table" aria-label="京东到家营养成分表">
           <thead><tr><th scope="col">成分</th><th scope="col">含量</th></tr></thead>
@@ -312,12 +351,91 @@ const ccEditor = (() => {
     </fieldset>`;
   }
 
+  function douFoodSafety(name) {
+    const input = (key, label, placeholder = '请输入') =>
+      `<input name="dou.food.${key}" aria-label="${label}" placeholder="${placeholder}" />`;
+    const select = (key, label, values, placeholder = '请选择') =>
+      `<select name="dou.food.${key}" aria-label="${label}">${placeholder ? `<option value="">${placeholder}</option>` : ''}${options(values)}</select>`;
+    const quantity = (key, label, unitKey, units) => `<div class="cc-create-joined">
+      <input type="number" min="0" step="any" name="dou.food.${key}" aria-label="${label}" placeholder="请输入" />
+      ${select(unitKey, `${label}单位`, units, '')}
+    </div>`;
+    const row = (label, control, wide = false) => `<div class="cc-create-field cc-create-attribute${wide ? ' cc-create-food-wide' : ''}"><span>${label}：</span><div>${control}</div></div>`;
+    return `<section class="cc-create-food-safety" aria-labelledby="cccDouFoodSafetyTitle">
+      <h4 id="cccDouFoodSafetyTitle">${channelBadge('dou', name)} 抖店 - 食品安全属性</h4>
+      <div id="cccDouRecognition" class="cc-notice" role="status" hidden><span aria-hidden="true">i</span><span></span></div>
+      <fieldset id="cccDouFoodFields" class="cc-create-food-fields" aria-labelledby="cccDouFoodSafetyTitle">
+        <div class="cc-create-attribute-grid">
+          ${row('商品外包装图', `
+            <div class="cc-create-packaging-layout">
+              <div>
+                <div class="cc-create-image-line">
+                  <input type="file" accept="image/*" data-ccc-file="${packagingGroup}" hidden />
+                  <button type="button" data-ccc-library="${packagingGroup}">使用图片库</button>
+                  <button type="button" data-ccc-reference="${packagingGroup}">引用其他渠道</button>
+                </div>
+                <div class="cc-create-dou-method">AI智能识别方式</div>
+                <div class="cc-create-previews">
+                  <div class="cc-create-preview-items" data-ccc-previews="${packagingGroup}"></div>
+                  <div id="cccDouPendingImage" class="cc-create-preview-items" hidden></div>
+                  <button type="button" class="cc-create-upload-tile" data-ccc-upload="${packagingGroup}"><span aria-hidden="true">＋</span>上传外包装图</button>
+                </div>
+              </div>
+              <section id="cccDouReplacement" class="cc-create-dou-replacement" aria-labelledby="cccDouReplacementTitle" hidden>
+                <h5 id="cccDouReplacementTitle">是否替换食品安全属性为如下内容？</h5>
+                <dl id="cccDouReplacementDetails"></dl>
+                <div class="cc-create-dou-replacement-actions">
+                  <button type="button" class="cc-primary" id="cccConfirmDouReplacement">确认并替换</button>
+                  <button type="button" id="cccCancelDouReplacement">取消</button>
+                </div>
+              </section>
+            </div>
+          `, true)}
+          ${row('产品名称', input('productName', '产品名称'))}
+          ${row('贮存条件', select('storage', '贮存条件', ['常温', '冷藏', '冷冻', '阴凉干燥处']))}
+          ${row('产地与包装', select('origin', '产地与包装', ['国产预包装', '进口预包装', '食用农产品']))}
+          ${row('净含量', quantity('net', '净含量', 'netUnit', ['g', 'kg', 'mL', 'L']))}
+          ${row('保质期', quantity('shelfLife', '保质期', 'shelfUnit', ['年', '个月', '天']))}
+          ${row('生产企业名称', input('manufacturer', '生产企业名称'))}
+          ${row('食品生产许可证编号', `${input('license', '食品生产许可证编号', '请以SC或QS开头')}
+            <small class="cc-create-food-help">初级农产品请在「包装方式」中选择「食用农产品」。</small>`, true)}
+          ${row('配料表', '<textarea name="dou.food.ingredients" aria-label="配料表" placeholder="请输入"></textarea>', true)}
+          ${row('营养成分表', `<div class="cc-create-food-serving">${select('serving', '营养成分计量单位', ['每100克', '每100毫升', '每份25克'], '请选择计量单位')}</div>
+            <table class="cc-create-jd-table cc-create-food-table" aria-label="抖店营养成分表">
+              <thead><tr><th scope="col">项目</th><th scope="col">每份含量</th><th scope="col">营养成分参考值</th></tr></thead>
+              <tbody>${douNutrition.map(([key, label, unit, reference], index) => `<tr data-dou-nutrient="${key}" data-reference="${reference ?? ''}" ${index < douBaseNutrientCount ? '' : 'hidden'}>
+                <th scope="row">${label}</th>
+                <td><div class="cc-create-joined">
+                  <input type="number" min="0" step="any" name="dou.food.${key}" aria-label="${label}含量（${unit}）" placeholder="请输入数字" ${index < douBaseNutrientCount ? '' : 'disabled'} />
+                  <span class="cc-create-unit">${unit}</span>
+                </div></td>
+                <td><div class="cc-create-food-reference"><output>—</output>${index < douBaseNutrientCount ? '' : `<button type="button" class="cc-link" data-dou-remove="${key}" aria-label="删除${label}" title="删除">${icon(removeIcon)}</button>`}</div></td>
+              </tr>`).join('')}</tbody>
+            </table>
+            <div class="cc-create-food-add">
+              <button type="button" id="cccDouAddNutrient" class="cc-outline" popovertarget="cccDouNutrientChoice">＋ 添加营养成分</button>
+              <div id="cccDouNutrientChoice" popover="auto" role="group" aria-label="选择营养成分">
+                <div class="cc-create-food-search">
+                  <input id="cccDouNutrientSearch" type="search" placeholder="搜索营养成分" aria-label="搜索营养成分" autofocus />
+                  <span class="cc-create-search-icon" aria-hidden="true"></span>
+                </div>
+                <div id="cccDouNutrientOptions"></div>
+              </div>
+            </div>`, true)}
+          ${row('生产企业地址', input('address', '生产企业地址'))}
+          ${row('产品标准代码', input('standard', '产品标准代码'))}
+          <label class="cc-create-inline cc-create-food-wide cc-create-food-multiple"><input type="checkbox" name="dou.food.multiple" value="yes" /> 本商品含有多种口味或包装，本信息为其中一个</label>
+        </div>
+      </fieldset>
+    </section>`;
+  }
+
   ccEl('cccPlatformAttributes').innerHTML = ['mt', 'ele', 'dou', 'jd'].map(key => {
     const [, name] = channels.find(([channelKey]) => channelKey === key);
     const attrs = platformAttributes[key];
-    return `<section class="cc-create-attribute-channel" aria-label="${name}类目属性">
+    return `<section class="cc-create-attribute-channel" aria-label="${key === 'dou' ? '抖店属性' : `${name}类目属性`}">
       <div class="cc-create-attributes-header">
-        <span>${channelBadge(key, name)} <strong>${name}</strong></span>
+        <span>${channelBadge(key, name)} <strong>${key === 'dou' ? '抖店 - 类目属性' : name}</strong></span>
         <div class="cc-create-attributes-header-actions">
           ${key === 'mt' || key === 'ele' ? `<button type="button" class="cc-link" data-ccc-attribute-recommend="${key}">一键推荐属性</button>` : ''}
           <button type="button" class="cc-link" data-ccc-attributes="${key}" aria-controls="cccAttrs-${key}" aria-expanded="${Boolean(attrs)}">${attrs ? '取消填写' : '填写类目属性'}</button>
@@ -325,12 +443,184 @@ const ccEditor = (() => {
       </div>
       <div id="cccAttrs-${key}" class="cc-create-attributes" ${attrs ? '' : 'hidden'}>
         ${attrs ? `<div class="cc-create-attribute-grid">${attrs.map((item, index) => attributeField(key, item, index)).join('')}</div>` : jdCategoryAttributes()}
-        ${key === 'mt' || key === 'ele' ? `<div class="cc-create-attribute-actions">
+        ${Object.hasOwn(initialAttributeCounts, key) ? `<div class="cc-create-attribute-actions">
           <button type="button" class="cc-create-attribute-more" data-ccc-attribute-more="${key}" aria-expanded="false">⌄ 展开输入项，选择更多${attrs.length - initialAttributeCounts[key]}项参数</button>
         </div>` : ''}
       </div>
+      ${key === 'dou' ? douFoodSafety(name) : ''}
     </section>`;
   }).join('');
+
+  const douFoodFields = ccEl('cccDouFoodFields');
+  const douRecognition = ccEl('cccDouRecognition');
+  const douReplacement = ccEl('cccDouReplacement');
+  const douPendingPreview = ccEl('cccDouPendingImage');
+  const douNutrientChoice = ccEl('cccDouNutrientChoice');
+  const douNutrientSearch = ccEl('cccDouNutrientSearch');
+  const douNutrientOptions = ccEl('cccDouNutrientOptions');
+  const douAddNutrient = ccEl('cccDouAddNutrient');
+  const douNutrientRows = [...douFoodFields.querySelectorAll('[data-dou-nutrient]')];
+  const douExtraRows = douNutrientRows.slice(douBaseNutrientCount);
+  const douField = key => field(`dou.food.${key}`);
+  let douRecognitionTimer;
+  let douPendingImage;
+
+  function updateDouNutrition() {
+    for (const row of douNutrientRows) {
+      const input = row.querySelector('input');
+      row.querySelector('output').value = !row.dataset.reference || input.value === '' || !input.validity.valid
+        ? '—' : `${Math.round(Number(input.value) / Number(row.dataset.reference) * 100)}%`;
+    }
+  }
+
+  function renderDouNutrientOptions() {
+    const query = douNutrientSearch.value.trim().toLowerCase().replace(/[()（）\s]/g, '');
+    const options = douExtraRows.filter(row => row.hidden).map(row => {
+      const label = row.querySelector('th').textContent;
+      if (!label.toLowerCase().replace(/[()（）\s]/g, '').includes(query)) return '';
+      return `<button type="button" data-dou-add="${row.dataset.douNutrient}">${label}</button>`;
+    }).filter(Boolean);
+    douNutrientOptions.innerHTML = options.join('') || '<div class="cc-create-food-no-results" role="status">未找到匹配的营养成分</div>';
+    douNutrientOptions.scrollTop = 0;
+  }
+
+  function resetDouFood(savedFields) {
+    clearTimeout(douRecognitionTimer);
+    douFoodFields.disabled = false;
+    douRecognition.hidden = true;
+    delete douRecognition.dataset.loading;
+    douPendingImage = undefined;
+    douPendingPreview.hidden = true;
+    douPendingPreview.replaceChildren();
+    douReplacement.hidden = true;
+    ccEl('cccDouReplacementDetails').replaceChildren();
+    for (const input of douFoodFields.elements) {
+      if (!input.name.startsWith('dou.food.') || !Object.hasOwn(savedFields, input.name)) continue;
+      const value = savedFields[input.name];
+      if (input.type === 'radio' || input.type === 'checkbox') input.checked = input.value === value;
+      else input.value = value;
+    }
+    douExtraRows.forEach(row => {
+      const input = row.querySelector('input');
+      row.hidden = !Object.hasOwn(savedFields, input.name) || savedFields[input.name] === null;
+      input.disabled = row.hidden;
+    });
+    const savedOrder = (savedFields['dou.food.nutrientOrder'] || '').split(',');
+    const tbody = douNutrientRows[0].parentElement;
+    tbody.append(...douExtraRows);
+    for (const key of savedOrder) {
+      const row = douExtraRows.find(item => item.dataset.douNutrient === key);
+      if (row && !row.hidden) tbody.append(row);
+    }
+    douNutrientChoice.hidePopover();
+    douAddNutrient.disabled = douExtraRows.every(row => !row.hidden);
+    updateDouNutrition();
+  }
+
+  function applyDouFoodSample() {
+    if (!douField('net').value) douField('netUnit').value = douFoodSample.netUnit;
+    if (!douField('shelfLife').value) douField('shelfUnit').value = douFoodSample.shelfUnit;
+    for (const [key, value] of Object.entries(douFoodSample)) {
+      const input = douField(key);
+      if (!input.value) input.value = value;
+    }
+    updateDouNutrition();
+    douRecognition.lastElementChild.textContent = douRecognitionCompleteMessage;
+  }
+
+  function douSourceImage({src, name}) {
+    return `<img src="${ccEscape(src)}" alt="${ccEscape(name)}" />`;
+  }
+
+  function recognizeDouFood() {
+    if (douFoodFields.disabled) return;
+    douRecognition.hidden = false;
+    douRecognition.dataset.loading = '';
+    douRecognition.lastElementChild.textContent = '图片信息智能识别中，预计5-10秒内完成，请等待...';
+    douFoodFields.disabled = true;
+    douRecognitionTimer = setTimeout(() => {
+      douFoodFields.disabled = false;
+      delete douRecognition.dataset.loading;
+      if (!douPendingImage) {
+        applyDouFoodSample();
+        return;
+      }
+      douRecognition.lastElementChild.textContent = '是否替换当前食品安全信息？';
+      const sources = [...images.get(packagingGroup), douPendingImage].map(douSourceImage).join('');
+      ccEl('cccDouReplacementDetails').innerHTML = `<dt>来源图片</dt><dd class="cc-create-dou-sources">${sources}</dd>` +
+        douReplacementFields
+          .map(([label, key]) => `<dt>${label}</dt><dd>${ccEscape(douFoodSample[key])}</dd>`).join('');
+      douReplacement.hidden = false;
+    }, 5000);
+  }
+
+  function finishDouReplacement(confirmed) {
+    if (!douPendingImage || douReplacement.hidden) return;
+    if (confirmed) {
+      images.set(packagingGroup, [douPendingImage]);
+      for (const [, key] of douReplacementFields) douField(key).value = douFoodSample[key];
+      douRecognition.lastElementChild.textContent = douRecognitionCompleteMessage;
+    } else {
+      douRecognition.hidden = true;
+    }
+    douPendingImage = undefined;
+    douPendingPreview.hidden = true;
+    douPendingPreview.replaceChildren();
+    douReplacement.hidden = true;
+    ccEl('cccDouReplacementDetails').replaceChildren();
+    feedback.textContent = '';
+    renderImages(packagingGroup);
+    page.querySelector(`[data-ccc-upload="${packagingGroup}"]`).focus({preventScroll: true});
+  }
+
+  ccEl('cccConfirmDouReplacement').addEventListener('click', () => finishDouReplacement(true));
+  ccEl('cccCancelDouReplacement').addEventListener('click', () => finishDouReplacement(false));
+
+  douFoodFields.addEventListener('input', event => {
+    if (event.target.closest('[data-dou-nutrient]')) updateDouNutrition();
+  });
+  douNutrientChoice.addEventListener('beforetoggle', event => {
+    if (event.newState !== 'open') return;
+    douNutrientSearch.value = '';
+    renderDouNutrientOptions();
+  });
+  douNutrientSearch.addEventListener('input', renderDouNutrientOptions);
+  douNutrientSearch.addEventListener('keydown', event => {
+    if (event.isComposing || !['Enter', 'ArrowDown', 'Escape'].includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === 'Escape') {
+      douNutrientChoice.hidePopover();
+      douAddNutrient.focus();
+      return;
+    }
+    const first = douNutrientOptions.querySelector('button');
+    if (event.key === 'Enter') first?.click();
+    else first?.focus();
+  });
+  douNutrientOptions.addEventListener('click', event => {
+    const key = event.target.closest('[data-dou-add]')?.dataset.douAdd;
+    const row = douExtraRows.find(item => item.dataset.douNutrient === key && item.hidden);
+    if (!row) return;
+    douNutrientChoice.hidePopover();
+    row.parentElement.append(row);
+    row.hidden = false;
+    const input = row.querySelector('input');
+    input.disabled = false;
+    douAddNutrient.disabled = douExtraRows.every(item => !item.hidden);
+    input.focus();
+  });
+  douFoodFields.addEventListener('click', event => {
+    const remove = event.target.closest('[data-dou-remove]');
+    if (!remove) return;
+    const row = remove.closest('tr');
+    const input = row.querySelector('input');
+    input.value = '';
+    input.disabled = true;
+    row.hidden = true;
+    updateDouNutrition();
+    douAddNutrient.disabled = false;
+    douAddNutrient.focus();
+  });
 
   function recommendationPanel(group) {
     return `<div class="cc-create-recommend">
@@ -367,6 +657,7 @@ const ccEditor = (() => {
         ${giftBag ? '<div>原厂礼袋图：</div>' : ''}
         <div class="cc-create-image-line">
           <button type="button" data-ccc-library="${key}">使用图片库</button>
+          ${special && !giftBag ? `<button type="button" data-ccc-reference="${key}">引用其他渠道</button>` : ''}
           ${special ? '' : `<div class="cc-notice cc-create-image-tip" data-ccc-image-tip="${key}"><span aria-hidden="true">i</span><span>淘宝闪购：${main ? '请至少上传2张图片' : '请上传图片'}</span></div>`}
           <input type="file" accept="${giftBag ? '.png,.jpg,.jpeg' : 'image/*'}" data-ccc-file="${key}" ${key === 'dou' ? '' : 'multiple'} hidden />
         </div>
@@ -382,7 +673,7 @@ const ccEditor = (() => {
           <p>支持上传格式为jpg、jpeg、png，单张大小5M以内的图片,最多可上传40张，可拖拽调整顺序；</p>
         </div>` : ''}
         ${special ? `<div class="cc-create-image-guidance">
-          <p>尺寸建议为800*800，最多${key === 'dou' ? 1 : giftBag ? giftBagMaxImages : 4}张图片，仅支持png、jpg、jpeg格式，小于1M</p>
+          <p>尺寸建议为800*800，最多${specialImageLimits[key]}张图片，仅支持png、jpg、jpeg格式，小于1M</p>
         </div>` : recommendationPanel(key)}`;
     if (special) {
       return `<div role="group" aria-label="${name}">${content}</div>`;
@@ -497,22 +788,24 @@ const ccEditor = (() => {
 
   const imageActionIcons = {
     preview: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
-    remove: '<path d="M3 6h18m-15 0 1 14h10l1-14M9 6V3h6v3"/>',
+    remove: removeIcon,
     white: '<path d="M12 3a9 9 0 1 0 9 9M17 3v4m-2-2h4m2 0v6m-3-3h6"/>',
     edit: '<path d="m5 16 10-10 3 3L8 19H5v-3ZM16 5l2-2 3 3-2 2M5 3v5M2.5 5.5h5"/>',
     copy: '<rect x="7" y="7" width="12" height="14" rx="2"/><path d="M15 3H5a2 2 0 0 0-2 2v12"/>'
   };
   const imageActionLabels = {preview: '预览图片', white: '一键白底', edit: '图片编辑', copy: '复制到特殊图'};
-  const imageIcon = name => `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${imageActionIcons[name]}</svg>`;
+  const imageIcon = name => icon(imageActionIcons[name]);
 
   function renderImages(group) {
     const groupImages = images.get(group) || [];
+    const referenceButton = page.querySelector(`[data-ccc-reference="${group}"]`);
+    if (referenceButton) referenceButton.hidden = group !== 'mt' && groupImages.length > 0;
     page.querySelector(`[data-ccc-previews="${group}"]`).innerHTML = groupImages.map(({src, name}, index) =>
       `<figure tabindex="0">
         <img src="${ccEscape(src)}" alt="${ccEscape(name)}" />
         <div class="cc-create-image-overlay">
           <button type="button" data-ccc-image-action="preview" data-group="${group}" data-index="${index}" aria-label="预览${ccEscape(name)}" title="预览">${imageIcon('preview')}</button>
-          <button type="button" data-ccc-remove="${group}" data-index="${index}" aria-label="移除${ccEscape(name)}" title="删除">${imageIcon('remove')}</button>
+          <button type="button" data-ccc-remove="${group}" data-index="${index}" aria-label="移除${ccEscape(name)}" title="删除" ${group === packagingGroup && douPendingImage ? 'disabled' : ''}>${imageIcon('remove')}</button>
         </div>
         ${group === 'main' ? `<div class="cc-create-image-tools">
           <div>${['white', 'edit', 'copy'].map(action => `<button type="button" data-ccc-image-action="${action}" data-group="${group}" data-index="${index}">${imageIcon(action)}<span>${imageActionLabels[action]}</span></button>`).join('')}</div>
@@ -596,7 +889,16 @@ const ccEditor = (() => {
 
   function addImages(group, additions) {
     const current = images.get(group) || [];
-    if (group === 'dou') {
+    if (group === packagingGroup && current.length) {
+      douPendingImage = additions[0];
+      douReplacement.hidden = true;
+      douPendingPreview.innerHTML = `<figure>${douSourceImage(douPendingImage)}</figure>`;
+      douPendingPreview.hidden = false;
+      renderImages(group);
+      recognizeDouFood();
+      return;
+    }
+    if (group === 'dou' || group === packagingGroup) {
       images.set(group, additions.slice(0, 1));
     } else {
       const next = [...current, ...additions.filter(image => !current.some(item => item.src === image.src))];
@@ -609,11 +911,42 @@ const ccEditor = (() => {
     }
     renderImages(group);
     feedback.textContent = '';
+    if (group === packagingGroup) recognizeDouFood();
+  }
+
+  function referenceSpecialImages(target) {
+    const current = images.get(target) || [];
+    if (target !== 'mt' && current.length) return;
+    const limit = specialImageLimits[target] ?? 1;
+    if (current.length >= limit) {
+      ccToast(`配料与营养成分图最多上传${limit}张`);
+      return;
+    }
+    const targetChannel = target === packagingGroup ? 'dou' : Object.keys(specialImageGroups).find(
+      channel => specialImageGroups[channel].some(([group]) => group === target)
+    );
+    const sources = Object.entries(specialImageGroups)
+      .filter(([channel]) => channel !== targetChannel)
+      .flatMap(([, groups]) => groups.flatMap(([group]) => images.get(group) || []));
+    const uniqueImages = [...new Map(sources.map(image => [image.src, image])).values()];
+    if (!uniqueImages.length) {
+      ccToast('其他渠道暂无可引用的特殊图片');
+      return;
+    }
+    const currentSources = new Set(current.map(image => image.src));
+    const additions = uniqueImages.filter(image => !currentSources.has(image.src)).slice(0, limit - current.length);
+    if (!additions.length) {
+      ccToast('可引用的特殊图片已全部添加');
+      return;
+    }
+    addImages(target, additions);
+    page.querySelector(`[data-ccc-library="${target}"]`).focus();
+    ccToast(`已引用其他渠道的 ${additions.length} 张特殊图片`);
   }
 
   function openImagePicker(group) {
     pickerGroup = group;
-    const libraryType = imageGroups.find(([id]) => id === group)[2];
+    const libraryType = group === packagingGroup ? 'special' : imageGroups.find(([id]) => id === group)[2];
     const demoImages = group === 'main' ? [demoMain, ...recommendations.main] : recommendations[group] || [];
     if (group === 'mt') demoImages.push(demoNutrition);
     const sources = [...demoImages, ...imageLibraryAssets[libraryType]];
@@ -680,6 +1013,7 @@ const ccEditor = (() => {
     images.clear();
     catalogMatch = undefined;
     form.reset();
+    resetDouFood({});
     field('front').value = '时令上新,柑橘橙柚';
     renderFrontTags();
     for (const [name, value] of Object.entries(demoFields)) field(name).value = value;
@@ -696,6 +1030,7 @@ const ccEditor = (() => {
     images.set('detail', recommendations.detail.slice(0, 7));
     images.set('mt', [demoNutrition]);
     imageGroups.forEach(([key]) => renderImages(key));
+    renderImages(packagingGroup);
     page.querySelectorAll('[data-ccc-recommend-image]').forEach(button => button.setAttribute('aria-pressed', 'false'));
     feedback.textContent = '';
     updateChannels();
@@ -740,7 +1075,7 @@ const ccEditor = (() => {
   function openEditor(product) {
     editingProduct = product;
     clearDraft(false);
-    for (const [group] of imageGroups) {
+    for (const group of [...imageGroups.map(([key]) => key), packagingGroup]) {
       const savedImages = product?.creation?.images?.[group];
       if (!savedImages) continue;
       images.set(group, [...savedImages]);
@@ -748,6 +1083,7 @@ const ccEditor = (() => {
     }
     field('combo').value = product?.combo ? 'yes' : 'no';
     const savedFields = product?.creation?.fields;
+    if (savedFields) resetDouFood(savedFields);
     field('mtSellingPoint').value = savedFields?.mtSellingPoint ?? '';
     field('eleSellingPoint').value = savedFields?.eleSellingPoint ?? '';
     renderIssueNotice(product);
@@ -876,6 +1212,7 @@ const ccEditor = (() => {
     }
     if (data.cccUpload) form.querySelector(`[data-ccc-file="${data.cccUpload}"]`).click();
     if (data.cccLibrary) openImagePicker(data.cccLibrary);
+    if (data.cccReference) referenceSpecialImages(data.cccReference);
     if ('cccPick' in data) {
       addImages(pickerGroup, [pickerOptions[Number(data.cccPick)]]);
       picker.close();
@@ -889,11 +1226,25 @@ const ccEditor = (() => {
 
   form.addEventListener('submit', event => {
     event.preventDefault();
+    if (douFoodFields.disabled) {
+      showError('请等待抖店食品安全属性识别完成。');
+      return;
+    }
+    if (douPendingImage) {
+      showError('请先确认或取消食品安全信息替换。', ccEl('cccConfirmDouReplacement'));
+      return;
+    }
     const data = new FormData(form);
     data.set('combo', field('combo').value);
     const storeNames = data.getAll('storeName');
     data.delete('storeName');
     const values = Object.fromEntries([...data].map(([key, value]) => [key, String(value).trim()]));
+    values['dou.food.multiple'] = douField('multiple').checked ? 'yes' : '';
+    values['dou.food.nutrientOrder'] = [...douNutrientRows[0].parentElement.rows]
+      .slice(douBaseNutrientCount).filter(row => !row.hidden).map(row => row.dataset.douNutrient).join(',');
+    douExtraRows.filter(row => row.hidden).forEach(row => {
+      values[row.querySelector('input').name] = null;
+    });
     if (!values.name || !values.barcode || !values.back) {
       const missing = ['name', 'barcode', 'back'].find(name => !values[name]);
       if (missing === 'barcode') showError('请通过商品编码查找商品条码。', ccEl('cccLookup'));

@@ -39,7 +39,20 @@
   }
 
   .tongcheng-app-page {
-    padding: 14px;
+    padding: 14px 14px 64px;
+  }
+
+  .tongcheng-app-copy-button {
+    right: var(--spacing-lg);
+    bottom: var(--spacing-lg);
+  }
+
+  body.tongcheng-app-mode .tongcheng-app-screen {
+    max-width: calc((100vh - 122px) * .46501);
+  }
+
+  body.tongcheng-app-mode .tongcheng-app-screen.retail-union-open {
+    max-width: calc((100vh - 122px) * .46725);
   }
 
   .tongcheng-app-screen {
