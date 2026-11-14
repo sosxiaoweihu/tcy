@@ -1,368 +1,368 @@
 <section class="city-order-page" id="cityOrderPage" hidden aria-label="订单管理">
-  <div class="city-order-list-view" id="cityOrderListView">
-    <nav class="city-order-status-tabs" aria-label="订单状态">
-      <button class="active" type="button" data-order-list-tab="all">全部</button>
-      <button type="button" data-order-list-tab="picking">待拣货(128)</button>
-    </nav>
+          <div class="city-order-list-view" id="cityOrderListView">
+            <nav class="city-order-status-tabs" aria-label="订单状态">
+              <button class="active" type="button" data-order-list-tab="all">全部</button>
+              <button type="button" data-order-list-tab="picking">待拣货(128)</button>
+            </nav>
 
-    <section class="city-order-list-filters" aria-label="订单筛选">
-      <label><span>门店：</span><select id="cityOrderStoreFilter"><option value="">请选择</option><option>家得福东海颐景店</option><option>家得福东海锦绣店</option><option>家得福西小区店</option><option>家得福海棠店</option><option>家得福双盛花店</option></select></label>
-      <label><span>订单来源：</span><select id="cityOrderSourceFilter"><option value=""></option><option>京东到家</option><option>饿百</option><option>美团外卖</option></select></label>
-      <label><span>平台订单号：</span><input id="cityOrderNumberFilter" type="search" placeholder="请输入三方订单号" /></label>
-      <div class="city-order-list-filter-actions">
-        <button class="btn primary" id="cityOrderQueryButton" type="button">查 询</button>
-        <button class="btn" id="cityOrderResetButton" type="button">重 置</button>
-        <button class="city-order-filter-more" id="cityOrderFilterMore" type="button" aria-label="展开更多筛选条件" aria-expanded="false"><i></i></button>
-      </div>
-    </section>
+            <section class="city-order-list-filters" aria-label="订单筛选">
+              <label><span>门店：</span><select id="cityOrderStoreFilter"><option value="">请选择</option><option>家得福东海颐景店</option><option>家得福东海锦绣店</option><option>家得福西小区店</option><option>家得福海棠店</option><option>家得福双盛花店</option></select></label>
+              <label><span>订单来源：</span><select id="cityOrderSourceFilter"><option value=""></option><option>京东到家</option><option>饿百</option><option>美团外卖</option></select></label>
+              <label><span>平台订单号：</span><input id="cityOrderNumberFilter" type="search" placeholder="请输入三方订单号" /></label>
+              <div class="city-order-list-filter-actions">
+                <button class="btn primary" id="cityOrderQueryButton" type="button">查 询</button>
+                <button class="btn" id="cityOrderResetButton" type="button">重 置</button>
+                <button class="city-order-filter-more" id="cityOrderFilterMore" type="button" aria-label="展开更多筛选条件" aria-expanded="false"><i></i></button>
+              </div>
+            </section>
 
-    <section class="city-order-list-panel">
-      <div class="city-order-list-toolbar">
-        <button class="btn primary" id="cityOrderBatchInvoiceButton" type="button">批量开票</button>
-        <button class="btn primary" id="cityOrderExportButton" type="button">导 出</button>
-        <button class="btn primary" id="cityOrderExportHistoryButton" type="button">查看导出</button>
-        <button class="btn" id="cityOrderOptionsButton" type="button">选 项</button>
-      </div>
+            <section class="city-order-list-panel">
+            <div class="city-order-list-toolbar">
+              <button class="btn primary" id="cityOrderBatchInvoiceButton" type="button">批量开票</button>
+              <button class="btn primary" id="cityOrderExportButton" type="button">导 出</button>
+              <button class="btn primary" id="cityOrderExportHistoryButton" type="button">查看导出</button>
+              <button class="btn" id="cityOrderOptionsButton" type="button">选 项</button>
+              </div>
 
-      <div class="city-order-list-table-scroll">
-        <table class="city-order-list-table">
-          <colgroup>
-            <col style="width: 48px" />
-            <col style="width: 100px" />
-            <col style="width: 185px" />
-            <col style="width: 155px" />
-            <col style="width: 110px" />
-            <col style="width: 115px" />
-            <col style="width: 120px" />
-            <col style="width: 120px" />
-            <col style="width: 145px" />
-            <col style="width: 175px" />
-            <col style="width: 175px" />
-            <col style="width: 190px" />
-            <col style="width: 175px" />
-            <col style="width: 110px" />
-            <col style="width: 105px" />
-          </colgroup>
-          <thead>
-            <tr>
-              <th><input class="city-order-select-checkbox" id="cityOrderSelectAll" type="checkbox" aria-label="全选当前列表订单" /></th>
-              <th>平台小号</th>
-              <th>平台订单号</th>
-              <th>门店名称</th>
-              <th>门店编码</th>
-              <th>订单状态</th>
-              <th>订单来源</th>
-              <th>收货人姓名</th>
-              <th>收货人电话</th>
-              <th>下单时间</th>
-              <th>接单时间</th>
-              <th>期望送达时间</th>
-              <th>完成时间</th>
-              <th>开票状态</th>
-              <th>操作</th>
-            </tr>
-          </thead>
-          <tbody id="cityOrderListBody"></tbody>
-        </table>
-        <div class="city-order-empty" id="cityOrderEmptyState" hidden>暂无符合条件的订单</div>
-      </div>
+              <div class="city-order-list-table-scroll">
+                <table class="city-order-list-table">
+                <colgroup>
+                  <col style="width: 48px" />
+                  <col style="width: 100px" />
+                    <col style="width: 185px" />
+                    <col style="width: 155px" />
+                    <col style="width: 110px" />
+                    <col style="width: 115px" />
+                    <col style="width: 120px" />
+                    <col style="width: 120px" />
+                    <col style="width: 145px" />
+                    <col style="width: 175px" />
+                    <col style="width: 175px" />
+                    <col style="width: 190px" />
+                    <col style="width: 175px" />
+                    <col style="width: 110px" />
+                    <col style="width: 105px" />
+                  </colgroup>
+                  <thead>
+                  <tr>
+                    <th><input class="city-order-select-checkbox" id="cityOrderSelectAll" type="checkbox" aria-label="全选当前列表订单" /></th>
+                    <th>平台小号</th>
+                      <th>平台订单号</th>
+                      <th>门店名称</th>
+                      <th>门店编码</th>
+                      <th>订单状态</th>
+                      <th>订单来源</th>
+                      <th>收货人姓名</th>
+                      <th>收货人电话</th>
+                      <th>下单时间</th>
+                      <th>接单时间</th>
+                      <th>期望送达时间</th>
+                      <th>完成时间</th>
+                      <th>开票状态</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cityOrderListBody"></tbody>
+                </table>
+                <div class="city-order-empty" id="cityOrderEmptyState" hidden>暂无符合条件的订单</div>
+              </div>
 
-      <footer class="city-order-pagination">
-        <span id="cityOrderPaginationTotal">共 5843 条</span>
-        <button type="button" aria-label="上一页">‹</button>
-        <button class="active" type="button">1</button>
-        <button type="button">2</button>
-        <button type="button">3</button>
-        <button type="button">4</button>
-        <button type="button">5</button>
-        <button type="button">6</button>
-        <span>•••</span>
-        <button type="button">585</button>
-        <button type="button" aria-label="下一页">›</button>
-        <label>前往 <input id="cityOrderPageJump" type="number" min="1" max="585" value="1" /> 页</label>
-      </footer>
-    </section>
-  </div>
+              <footer class="city-order-pagination">
+                <span id="cityOrderPaginationTotal">共 5843 条</span>
+                <button type="button" aria-label="上一页">‹</button>
+                <button class="active" type="button">1</button>
+                <button type="button">2</button>
+                <button type="button">3</button>
+                <button type="button">4</button>
+                <button type="button">5</button>
+                <button type="button">6</button>
+                <span>•••</span>
+                <button type="button">585</button>
+                <button type="button" aria-label="下一页">›</button>
+                <label>前往 <input id="cityOrderPageJump" type="number" min="1" max="585" value="1" /> 页</label>
+              </footer>
+            </section>
+          </div>
 
-  <div class="city-order-detail-view" id="cityOrderDetailView" hidden>
-  <header class="city-order-title">
-    <h1>订单详情</h1>
-  </header>
+          <div class="city-order-detail-view" id="cityOrderDetailView" hidden>
+          <header class="city-order-title">
+            <h1>订单详情</h1>
+          </header>
 
-  <div class="city-order-content">
-    <section class="city-order-card order-overview-card" aria-labelledby="cityOrderOverviewTitle">
-      <div class="order-overview-heading">
-        <div class="order-platform">
-          <span class="order-platform-logo" aria-hidden="true">e</span>
-          <strong id="cityOrderOverviewTitle">饿百 平台小号：#3</strong>
-          <span class="order-status" id="cityOrderDetailStatus">已完成</span>
-          <span class="order-number" id="cityOrderDetailNumber">平台订单号：4094546188654632504</span>
-        </div>
-        <div class="order-expected-time"><i>预</i><span id="cityOrderDetailExpectedTime">期望送达时间：2026-07-23 09:35:00</span></div>
-      </div>
-      <dl class="order-overview-grid">
-        <div><dt>门店：</dt><dd id="cityOrderDetailStore">家得福锦绣汇店</dd></div>
-        <div><dt>订单来源：</dt><dd id="cityOrderDetailSource">饿百</dd></div>
-        <div><dt>下单时间：</dt><dd id="cityOrderDetailCreatedTime">2026-07-22 22:04:29</dd></div>
-        <div><dt>接单时间：</dt><dd id="cityOrderDetailAcceptedTime">2026-07-22 22:04:36</dd></div>
-        <div><dt>完成时间：</dt><dd id="cityOrderDetailCompletedTime">2026-07-23 09:02:48</dd></div>
-        <div><dt>订单备注：</dt><dd>（缺货时电话与我联系）</dd></div>
-        <div><dt>会员卡号：</dt><dd></dd></div>
-      </dl>
-    </section>
-
-    <section class="city-order-card order-products-card" aria-labelledby="cityOrderProductsTitle">
-      <h2 id="cityOrderProductsTitle">商品信息</h2>
-      <div class="order-products-scroll">
-        <table class="order-products-table">
-          <colgroup>
-            <col style="width: 330px" />
-            <col style="width: 145px" />
-            <col style="width: 145px" />
-            <col style="width: 145px" />
-            <col style="width: 145px" />
-            <col style="width: 250px" />
-            <col style="width: 145px" />
-            <col style="width: 145px" />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>商品名称</th>
-              <th>商品单价</th>
-              <th>销售数量</th>
-              <th>商品合计</th>
-              <th>商品优惠</th>
-              <th>优惠方式</th>
-              <th>实付金额</th>
-              <th>退款金额</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div class="order-product-info">
-                  <span class="order-product-image egg-product-image" aria-hidden="true"><i>鲜鸡蛋</i></span>
-                  <div>
-                    <strong>得福溪港鲜萃鸡蛋30枚 约1500g</strong>
-                    <small>商品编码：10086366</small>
-                    <small>商品条码：6973125500783</small>
-                    <small>商品规格：1*1</small>
-                  </div>
+          <div class="city-order-content">
+            <section class="city-order-card order-overview-card" aria-labelledby="cityOrderOverviewTitle">
+              <div class="order-overview-heading">
+                <div class="order-platform">
+                  <span class="order-platform-logo" aria-hidden="true">e</span>
+                  <strong id="cityOrderOverviewTitle">饿百 平台小号：#3</strong>
+                  <span class="order-status" id="cityOrderDetailStatus">已完成</span>
+                  <span class="order-number" id="cityOrderDetailNumber">平台订单号：4094546188654632504</span>
                 </div>
-              </td>
-              <td>￥24.9</td>
-              <td>2 <button class="order-help" type="button" aria-label="查看销售数量说明">?</button></td>
-              <td>￥49.8</td>
-              <td>￥15.3</td>
-              <td class="order-discount-detail">
-                <span>商品特价：￥-4 <i>?</i></span>
-                <span>平台红包：￥-7.54 <i>?</i></span>
-                <span>平台红包：￥-1.88 <i>?</i></span>
-                <span>平台红包：￥-1.88 <i>?</i></span>
-              </td>
-              <td>￥34.5</td>
-              <td>￥0</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="order-product-info">
-                  <span class="order-product-image pumpkin-product-image" aria-hidden="true"></span>
-                  <div>
-                    <strong>（日日鲜）切片南瓜（称重）约</strong>
-                    <small>商品编码：1201040696</small>
-                    <small>商品条码：2129362</small>
-                    <small>商品规格：散称</small>
-                  </div>
+                <div class="order-expected-time"><i>预</i><span id="cityOrderDetailExpectedTime">期望送达时间：2026-07-23 09:35:00</span></div>
+              </div>
+              <dl class="order-overview-grid">
+                <div><dt>门店：</dt><dd id="cityOrderDetailStore">家得福锦绣汇店</dd></div>
+                <div><dt>订单来源：</dt><dd id="cityOrderDetailSource">饿百</dd></div>
+                <div><dt>下单时间：</dt><dd id="cityOrderDetailCreatedTime">2026-07-22 22:04:29</dd></div>
+                <div><dt>接单时间：</dt><dd id="cityOrderDetailAcceptedTime">2026-07-22 22:04:36</dd></div>
+                <div><dt>完成时间：</dt><dd id="cityOrderDetailCompletedTime">2026-07-23 09:02:48</dd></div>
+                <div><dt>订单备注：</dt><dd>（缺货时电话与我联系）</dd></div>
+                <div><dt>会员卡号：</dt><dd></dd></div>
+              </dl>
+            </section>
+
+            <section class="city-order-card order-products-card" aria-labelledby="cityOrderProductsTitle">
+              <h2 id="cityOrderProductsTitle">商品信息</h2>
+              <div class="order-products-scroll">
+                <table class="order-products-table">
+                  <colgroup>
+                    <col style="width: 330px" />
+                    <col style="width: 145px" />
+                    <col style="width: 145px" />
+                    <col style="width: 145px" />
+                    <col style="width: 145px" />
+                    <col style="width: 250px" />
+                    <col style="width: 145px" />
+                    <col style="width: 145px" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>商品名称</th>
+                      <th>商品单价</th>
+                      <th>销售数量</th>
+                      <th>商品合计</th>
+                      <th>商品优惠</th>
+                      <th>优惠方式</th>
+                      <th>实付金额</th>
+                      <th>退款金额</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="order-product-info">
+                          <span class="order-product-image egg-product-image" aria-hidden="true"><i>鲜鸡蛋</i></span>
+                          <div>
+                            <strong>得福溪港鲜萃鸡蛋30枚 约1500g</strong>
+                            <small>商品编码：10086366</small>
+                            <small>商品条码：6973125500783</small>
+                            <small>商品规格：1*1</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>￥24.9</td>
+                      <td>2 <button class="order-help" type="button" aria-label="查看销售数量说明">?</button></td>
+                      <td>￥49.8</td>
+                      <td>￥15.3</td>
+                      <td class="order-discount-detail">
+                        <span>商品特价：￥-4 <i>?</i></span>
+                        <span>平台红包：￥-7.54 <i>?</i></span>
+                        <span>平台红包：￥-1.88 <i>?</i></span>
+                        <span>平台红包：￥-1.88 <i>?</i></span>
+                      </td>
+                      <td>￥34.5</td>
+                      <td>￥0</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="order-product-info">
+                          <span class="order-product-image pumpkin-product-image" aria-hidden="true"></span>
+                          <div>
+                            <strong>（日日鲜）切片南瓜（称重）约</strong>
+                            <small>商品编码：1201040696</small>
+                            <small>商品条码：2129362</small>
+                            <small>商品规格：散称</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>￥2.8</td>
+                      <td>1 <button class="order-help" type="button" aria-label="查看销售数量说明">?</button></td>
+                      <td>￥2.8</td>
+                      <td>￥0.7</td>
+                      <td class="order-discount-detail">
+                        <span>平台红包：￥-0.46 <i>?</i></span>
+                        <span>平台红包：￥-0.12 <i>?</i></span>
+                        <span>平台红包：￥-0.12 <i>?</i></span>
+                      </td>
+                      <td>￥2.1</td>
+                      <td>￥0</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="city-order-card order-settlement-card" aria-labelledby="cityOrderSettlementTitle">
+              <h2 id="cityOrderSettlementTitle">结算信息</h2>
+              <div class="order-settlement-body">
+                <dl class="settlement-list settlement-order-total">
+                  <div><dt>商品合计 <button class="order-help" type="button" aria-label="查看商品合计说明">?</button>：</dt><dd>￥52.6</dd></div>
+                  <div><dt>包装费：</dt><dd>￥0</dd></div>
+                  <div><dt>打包费：</dt><dd>￥0.6</dd></div>
+                  <div><dt>配送费：</dt><dd>￥7</dd></div>
+                  <div><dt>订单合计 <button class="order-help" type="button" aria-label="查看订单合计说明">?</button>：</dt><dd>￥60.2</dd></div>
+                  <div><dt>优惠金额 <button class="order-help" type="button" aria-label="查看优惠金额说明">?</button>：</dt><dd>￥-21</dd></div>
+                </dl>
+
+                <div class="settlement-fund-detail">
+                  <span>金额明细:</span>
+                  <span>商家活动支出：￥-8</span>
+                  <span>平台活动支出：￥-13</span>
                 </div>
-              </td>
-              <td>￥2.8</td>
-              <td>1 <button class="order-help" type="button" aria-label="查看销售数量说明">?</button></td>
-              <td>￥2.8</td>
-              <td>￥0.7</td>
-              <td class="order-discount-detail">
-                <span>平台红包：￥-0.46 <i>?</i></span>
-                <span>平台红包：￥-0.12 <i>?</i></span>
-                <span>平台红包：￥-0.12 <i>?</i></span>
-              </td>
-              <td>￥2.1</td>
-              <td>￥0</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
 
-    <section class="city-order-card order-settlement-card" aria-labelledby="cityOrderSettlementTitle">
-      <h2 id="cityOrderSettlementTitle">结算信息</h2>
-      <div class="order-settlement-body">
-        <dl class="settlement-list settlement-order-total">
-          <div><dt>商品合计 <button class="order-help" type="button" aria-label="查看商品合计说明">?</button>：</dt><dd>￥52.6</dd></div>
-          <div><dt>包装费：</dt><dd>￥0</dd></div>
-          <div><dt>打包费：</dt><dd>￥0.6</dd></div>
-          <div><dt>配送费：</dt><dd>￥7</dd></div>
-          <div><dt>订单合计 <button class="order-help" type="button" aria-label="查看订单合计说明">?</button>：</dt><dd>￥60.2</dd></div>
-          <div><dt>优惠金额 <button class="order-help" type="button" aria-label="查看优惠金额说明">?</button>：</dt><dd>￥-21</dd></div>
-        </dl>
+                <dl class="settlement-list settlement-income">
+                  <div><dt>顾客实付：</dt><dd>￥39.2</dd></div>
+                  <div><dt>平台佣金：</dt><dd>￥-3.69</dd></div>
+                  <div><dt>履约服务费：</dt><dd>￥-0</dd></div>
+                  <div><dt>履约配送费：</dt><dd>￥-7</dd></div>
+                  <div><dt>远距离配送费：</dt><dd>￥-0</dd></div>
+                  <div><dt>原单预计收入 <button class="order-help" type="button" aria-label="查看原单预计收入说明">?</button>：</dt><dd>￥41.51</dd></div>
+                </dl>
 
-        <div class="settlement-fund-detail">
-          <span>金额明细:</span>
-          <span>商家活动支出：￥-8</span>
-          <span>平台活动支出：￥-13</span>
-        </div>
+                <div class="settlement-rule">
+                  <p>商家预计收入计算规则(仅做收入参考，实际入账数据请前往财务对账查看)</p>
+                  <strong>商家预计收入=商品合计＋包装费＋打包费+配送费-商家活动支出-平台佣金-履约服务费-履约配送费-远距离配送费</strong>
+                </div>
+              </div>
+            </section>
 
-        <dl class="settlement-list settlement-income">
-          <div><dt>顾客实付：</dt><dd>￥39.2</dd></div>
-          <div><dt>平台佣金：</dt><dd>￥-3.69</dd></div>
-          <div><dt>履约服务费：</dt><dd>￥-0</dd></div>
-          <div><dt>履约配送费：</dt><dd>￥-7</dd></div>
-          <div><dt>远距离配送费：</dt><dd>￥-0</dd></div>
-          <div><dt>原单预计收入 <button class="order-help" type="button" aria-label="查看原单预计收入说明">?</button>：</dt><dd>￥41.51</dd></div>
-        </dl>
+            <section class="city-order-card order-delivery-card" aria-labelledby="cityOrderDeliveryTitle">
+              <h2 id="cityOrderDeliveryTitle">配送信息</h2>
+              <dl class="order-delivery-grid">
+                <div><dt>收货人姓名：</dt><dd id="cityOrderDetailReceiver">李*****</dd></div>
+                <div><dt>收货人电话：</dt><dd id="cityOrderDetailPhone">13048690043,038</dd></div>
+                <div class="delivery-address"><dt>收货人地址：</dt><dd>[隐私保护]顾客地址已隐藏，您可登录淘宝...</dd></div>
+                <div><dt>配送方式：</dt><dd>平台配送</dd></div>
+                <div><dt>配送服务商：</dt><dd></dd></div>
+                <div><dt>骑手姓名：</dt><dd>顾胜利</dd></div>
+                <div><dt>骑手电话：</dt><dd>15784900208,2155</dd></div>
+              </dl>
+            </section>
 
-        <div class="settlement-rule">
-          <p>商家预计收入计算规则(仅做收入参考，实际入账数据请前往财务对账查看)</p>
-          <strong>商家预计收入=商品合计＋包装费＋打包费+配送费-商家活动支出-平台佣金-履约服务费-履约配送费-远距离配送费</strong>
-        </div>
-      </div>
-    </section>
+            <section class="city-order-card order-log-card">
+              <button class="order-log-toggle" id="cityOrderLogToggle" type="button" aria-expanded="false">
+                <span>订单日志</span><i aria-hidden="true"></i>
+              </button>
+              <div class="order-log-list" id="cityOrderLogList" hidden>
+                <div><time>2026-07-23 09:02:48</time><span>订单完成</span></div>
+                <div><time>2026-07-23 08:46:16</time><span>骑手送达</span></div>
+                <div><time>2026-07-23 08:21:35</time><span>骑手配送</span></div>
+                <div><time>2026-07-23 08:12:09</time><span>骑手到店</span></div>
+                <div><time>2026-07-23 08:02:34</time><span>骑手接单</span></div>
+                <div><time>2026-07-23 07:58:10</time><span>呼叫骑手</span></div>
+                <div><time>2026-07-22 22:31:42</time><span>拣货完成时间</span></div>
+                <div><time>2026-07-22 22:05:02</time><span>打印成功</span></div>
+                <div><time>2026-07-22 22:04:36</time><span>接单时间</span></div>
+                <div><time>2026-07-22 22:04:29</time><span>下单时间</span></div>
+              </div>
+            </section>
 
-    <section class="city-order-card order-delivery-card" aria-labelledby="cityOrderDeliveryTitle">
-      <h2 id="cityOrderDeliveryTitle">配送信息</h2>
-      <dl class="order-delivery-grid">
-        <div><dt>收货人姓名：</dt><dd id="cityOrderDetailReceiver">李*****</dd></div>
-        <div><dt>收货人电话：</dt><dd id="cityOrderDetailPhone">13048690043,038</dd></div>
-        <div class="delivery-address"><dt>收货人地址：</dt><dd>[隐私保护]顾客地址已隐藏，您可登录淘宝...</dd></div>
-        <div><dt>配送方式：</dt><dd>平台配送</dd></div>
-        <div><dt>配送服务商：</dt><dd></dd></div>
-        <div><dt>骑手姓名：</dt><dd>顾胜利</dd></div>
-        <div><dt>骑手电话：</dt><dd>15784900208,2155</dd></div>
-      </dl>
-    </section>
-
-    <section class="city-order-card order-log-card">
-      <button class="order-log-toggle" id="cityOrderLogToggle" type="button" aria-expanded="false">
-        <span>订单日志</span><i aria-hidden="true"></i>
-      </button>
-      <div class="order-log-list" id="cityOrderLogList" hidden>
-        <div><time>2026-07-23 09:02:48</time><span>订单完成</span></div>
-        <div><time>2026-07-23 08:46:16</time><span>骑手送达</span></div>
-        <div><time>2026-07-23 08:21:35</time><span>骑手配送</span></div>
-        <div><time>2026-07-23 08:12:09</time><span>骑手到店</span></div>
-        <div><time>2026-07-23 08:02:34</time><span>骑手接单</span></div>
-        <div><time>2026-07-23 07:58:10</time><span>呼叫骑手</span></div>
-        <div><time>2026-07-22 22:31:42</time><span>拣货完成时间</span></div>
-        <div><time>2026-07-22 22:05:02</time><span>打印成功</span></div>
-        <div><time>2026-07-22 22:04:36</time><span>接单时间</span></div>
-        <div><time>2026-07-22 22:04:29</time><span>下单时间</span></div>
-      </div>
-    </section>
-
-    <div class="city-order-footer">
-      <button class="btn" id="cityOrderBackButton" type="button">返 回</button>
-    </div>
-  </div>
-  </div>
-
-  <div class="city-order-invoice-view" id="cityOrderInvoiceView" hidden>
-    <header class="city-order-title city-order-invoice-title">
-      <h1 id="cityOrderInvoiceViewTitle">开票</h1>
-      <button class="btn city-order-invoice-back" id="cityOrderInvoiceBackButton" type="button">
-        <span aria-hidden="true">←</span> 返回订单列表
-      </button>
-    </header>
-
-    <form class="city-order-invoice-form" id="cityOrderInvoiceForm">
-      <div class="city-order-invoice-body">
-        <h2 id="cityOrderInvoiceHeading">订单开票申请</h2>
-
-        <section class="city-order-invoice-card invoice-application-card" aria-label="订单开票申请信息">
-          <div class="invoice-form-grid">
-            <div class="invoice-form-field invoice-header-type" role="group" aria-labelledby="cityOrderInvoiceHeaderTypeLabel">
-              <span id="cityOrderInvoiceHeaderTypeLabel"><i>*</i>抬头类型：</span>
-              <label><input type="radio" name="cityOrderInvoiceHeaderType" value="个人" checked /><span>个人</span></label>
-              <label><input type="radio" name="cityOrderInvoiceHeaderType" value="企业" /><span>企业</span></label>
+            <div class="city-order-footer">
+              <button class="btn" id="cityOrderBackButton" type="button">返 回</button>
             </div>
-
-            <label class="invoice-form-field">
-              <span><i>*</i>发票类型：</span>
-              <select id="cityOrderInvoiceType" required>
-                <option value="全电普通发票">全电普通发票</option>
-              </select>
-            </label>
-
-            <label class="invoice-form-field">
-              <span><i>*</i>抬头名称：</span>
-              <input id="cityOrderInvoiceHeaderName" value="个人" required />
-            </label>
-
-            <label class="invoice-form-field">
-              <span><i>*</i>电子邮箱：</span>
-              <input id="cityOrderInvoiceEmail" type="email" placeholder="用于接收电子发票的邮箱" required />
-            </label>
-
-            <label class="invoice-form-field">
-              <span>手机号码：</span>
-              <input id="cityOrderInvoicePhone" type="tel" placeholder="选填" />
-            </label>
-
-            <label class="invoice-form-field invoice-remark-field">
-              <span>发票备注：</span>
-              <input id="cityOrderInvoiceRemark" placeholder="开到发票页面，请谨慎填写" />
-            </label>
           </div>
+          </div>
+
+          <div class="city-order-invoice-view" id="cityOrderInvoiceView" hidden>
+            <header class="city-order-title city-order-invoice-title">
+              <h1 id="cityOrderInvoiceViewTitle">开票</h1>
+              <button class="btn city-order-invoice-back" id="cityOrderInvoiceBackButton" type="button">
+                <span aria-hidden="true">←</span> 返回订单列表
+              </button>
+            </header>
+
+            <form class="city-order-invoice-form" id="cityOrderInvoiceForm">
+              <div class="city-order-invoice-body">
+                <h2 id="cityOrderInvoiceHeading">订单开票申请</h2>
+
+                <section class="city-order-invoice-card invoice-application-card" aria-label="订单开票申请信息">
+                  <div class="invoice-form-grid">
+                    <div class="invoice-form-field invoice-header-type" role="group" aria-labelledby="cityOrderInvoiceHeaderTypeLabel">
+                      <span id="cityOrderInvoiceHeaderTypeLabel"><i>*</i>抬头类型：</span>
+                      <label><input type="radio" name="cityOrderInvoiceHeaderType" value="个人" checked /><span>个人</span></label>
+                      <label><input type="radio" name="cityOrderInvoiceHeaderType" value="企业" /><span>企业</span></label>
+                    </div>
+
+                    <label class="invoice-form-field">
+                      <span><i>*</i>发票类型：</span>
+                      <select id="cityOrderInvoiceType" required>
+                        <option value="全电普通发票">全电普通发票</option>
+                      </select>
+                    </label>
+
+                    <label class="invoice-form-field">
+                      <span><i>*</i>抬头名称：</span>
+                      <input id="cityOrderInvoiceHeaderName" value="个人" required />
+                    </label>
+
+                    <label class="invoice-form-field">
+                      <span><i>*</i>电子邮箱：</span>
+                      <input id="cityOrderInvoiceEmail" type="email" placeholder="用于接收电子发票的邮箱" required />
+                    </label>
+
+                    <label class="invoice-form-field">
+                      <span>手机号码：</span>
+                      <input id="cityOrderInvoicePhone" type="tel" placeholder="选填" />
+                    </label>
+
+                    <label class="invoice-form-field invoice-remark-field">
+                      <span>发票备注：</span>
+                      <input id="cityOrderInvoiceRemark" placeholder="开到发票页面，请谨慎填写" />
+                    </label>
+                  </div>
+                </section>
+
+                <section class="city-order-invoice-card invoice-order-card" aria-label="开票订单信息">
+                  <div class="invoice-order-summary">
+                    <div class="invoice-total">
+                      <span>总金额：</span>
+                      <strong><span id="cityOrderInvoiceAmount">42.69</span>元</strong>
+                      <button class="invoice-amount-help" id="cityOrderInvoiceAmountHelp" type="button" aria-label="查看总金额说明">i</button>
+                    </div>
+                    <div class="invoice-merge-control">
+                      <span>合并开票：</span>
+                      <b>否</b>
+                      <label class="invoice-switch">
+                        <input id="cityOrderInvoiceMerge" type="checkbox" />
+                        <i aria-hidden="true"></i>
+                      </label>
+                      <b>是</b>
+                    </div>
+                  </div>
+
+                  <div class="city-order-invoice-table-scroll">
+                    <table class="city-order-invoice-table">
+                      <colgroup>
+                        <col style="width: 90px" />
+                        <col />
+                        <col style="width: 34%" />
+                      </colgroup>
+                      <thead>
+                        <tr><th>序号</th><th>订单编码</th><th>开票金额</th></tr>
+                      </thead>
+                      <tbody id="cityOrderInvoiceTableBody"></tbody>
+                      <tfoot>
+                        <tr><td>合计</td><td id="cityOrderInvoiceOrderCount">1条</td><td id="cityOrderInvoiceTableTotalAmount">42.69</td></tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </section>
+              </div>
+
+              <footer class="city-order-invoice-actions">
+                <button class="btn primary" type="submit">申请开票</button>
+              </footer>
+            </form>
+          </div>
+
+          <div class="modal-mask city-order-qr-mask" id="cityOrderQrModal" aria-hidden="true">
+            <section class="city-order-qr-dialog" role="dialog" aria-modal="true" aria-labelledby="cityOrderQrTitle">
+              <button class="city-order-qr-close" id="cityOrderQrClose" type="button" aria-label="关闭扫码开票弹窗">×</button>
+              <h2 id="cityOrderQrTitle">请扫码开票</h2>
+              <p>订单号:<span id="cityOrderQrOrderNumber">--</span></p>
+              <canvas id="cityOrderQrCanvas" width="343" height="343" aria-label="订单开票二维码"></canvas>
+            </section>
+          </div>
+
+          <button class="city-order-service" id="cityOrderServiceButton" type="button" aria-label="联系客服" hidden>☏</button>
         </section>
-
-        <section class="city-order-invoice-card invoice-order-card" aria-label="开票订单信息">
-          <div class="invoice-order-summary">
-            <div class="invoice-total">
-              <span>总金额：</span>
-              <strong><span id="cityOrderInvoiceAmount">42.69</span>元</strong>
-              <button class="invoice-amount-help" id="cityOrderInvoiceAmountHelp" type="button" aria-label="查看总金额说明">i</button>
-            </div>
-            <div class="invoice-merge-control">
-              <span>合并开票：</span>
-              <b>否</b>
-              <label class="invoice-switch">
-                <input id="cityOrderInvoiceMerge" type="checkbox" />
-                <i aria-hidden="true"></i>
-              </label>
-              <b>是</b>
-            </div>
-          </div>
-
-          <div class="city-order-invoice-table-scroll">
-            <table class="city-order-invoice-table">
-              <colgroup>
-                <col style="width: 90px" />
-                <col />
-                <col style="width: 34%" />
-              </colgroup>
-              <thead>
-                <tr><th>序号</th><th>订单编码</th><th>开票金额</th></tr>
-              </thead>
-              <tbody id="cityOrderInvoiceTableBody"></tbody>
-              <tfoot>
-                <tr><td>合计</td><td id="cityOrderInvoiceOrderCount">1条</td><td id="cityOrderInvoiceTableTotalAmount">42.69</td></tr>
-              </tfoot>
-            </table>
-          </div>
-        </section>
-      </div>
-
-      <footer class="city-order-invoice-actions">
-        <button class="btn primary" type="submit">申请开票</button>
-      </footer>
-    </form>
-  </div>
-
-  <div class="modal-mask city-order-qr-mask" id="cityOrderQrModal" aria-hidden="true">
-    <section class="city-order-qr-dialog" role="dialog" aria-modal="true" aria-labelledby="cityOrderQrTitle">
-      <button class="city-order-qr-close" id="cityOrderQrClose" type="button" aria-label="关闭扫码开票弹窗">×</button>
-      <h2 id="cityOrderQrTitle">请扫码开票</h2>
-      <p>订单号:<span id="cityOrderQrOrderNumber">--</span></p>
-      <canvas id="cityOrderQrCanvas" width="343" height="343" aria-label="订单开票二维码"></canvas>
-    </section>
-  </div>
-
-  <button class="city-order-service" id="cityOrderServiceButton" type="button" aria-label="联系客服" hidden>☏</button>
-</section>

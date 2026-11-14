@@ -8,7 +8,6 @@ function scripts(directory){return fs.readdirSync(directory,{withFileTypes:true}
 for(const file of [...scripts(path.join(root,'js/同城App')),path.join(root,'js/核心/页面会话恢复.js'),path.join(__dirname,'mobile-screenshot-check.js')])execFileSync(process.execPath,['--check',file],{stdio:'inherit'});
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 assert.match(index,/<script src="\.\/assets\/vendor\/html2canvas-1\.4\.1\.min\.js"/,'截图必须使用固定的本地依赖');
-assert.ok(index.includes(fs.readFileSync(path.join(root,'页面/同城App功能菜单/同城商品.html'),'utf8')),'商品页面片段必须与运行入口同步');
-assert.ok(index.includes(fs.readFileSync(path.join(root,'页面/同城App功能菜单/同城商品监控.html'),'utf8')),'商品监控页面片段必须与运行入口同步');
+execFileSync(process.execPath,[path.join(root,'build-index.mjs'),'--check'],{stdio:'inherit'});
 execFileSync(process.execPath,['--test',path.join(__dirname,'tongcheng-app-screenshot.test.cjs'),path.join(__dirname,'tongcheng-app-navigation.test.cjs')],{stdio:'inherit'});
 console.log('\n命令行检查通过。还必须在浏览器运行 tests/mobile-screenshot-check.html?autorun=1，确认所有真实 PNG 通过，并实际点击本次修改页的“复制 App 截图”。');

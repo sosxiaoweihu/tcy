@@ -1,87 +1,87 @@
 <div class="store-shelf-plan-panel" id="storeShelfPlanPanel" role="tabpanel" aria-labelledby="storeShelfPlanTab" hidden>
-  <div class="city-shelf-plan-field store-shelf-plan-business">
-    <span id="storeShelfPlanBusinessLabel">业态：</span>
-    <div class="city-shelf-plan-business-options" id="storeShelfPlanBusiness" role="radiogroup" aria-labelledby="storeShelfPlanBusinessLabel"></div>
-  </div>
+            <div class="city-shelf-plan-field store-shelf-plan-business">
+              <span id="storeShelfPlanBusinessLabel">业态：</span>
+              <div class="city-shelf-plan-business-options" id="storeShelfPlanBusiness" role="radiogroup" aria-labelledby="storeShelfPlanBusinessLabel"></div>
+            </div>
 
-  <form class="store-shelf-plan-filters" id="storeShelfPlanFilters" aria-label="门店商品上架计划筛选">
-    <label data-store-plan-filter><span>商品名称：</span><input name="productName" placeholder="请输入线上商品名称查询" /></label>
-    <label data-store-plan-filter><span>SPU：</span><input name="spu" placeholder="支持多码查询，用“,”隔开" /></label>
-    <label data-store-plan-filter><span>SKU：</span><input name="sku" placeholder="支持多码查询，用“,”隔开" /></label>
-    <label data-store-plan-filter><span>ERP编码：</span><input name="erp" placeholder="支持多码查询，用“,”隔开" /></label>
-    <label data-store-plan-filter><span>线下商品条码：</span><input name="barcode" placeholder="支持多码查询，用“,”隔开" /></label>
-    <label data-store-plan-filter><span>状态：</span><select name="status"><option value="">全部</option><option value="enabled">启用</option><option value="disabled">禁用</option></select></label>
-    <label data-store-plan-filter><span>门店：</span><select name="store" id="storeShelfPlanStoreFilter"><option value="">请选择</option></select></label>
-    <div class="store-shelf-plan-filter-actions">
-      <button class="btn primary" type="submit">查询</button>
-      <button class="btn" id="storeShelfPlanReset" type="button">重置</button>
-      <button class="link-button" id="storeShelfPlanFilterToggle" type="button" aria-expanded="false" aria-controls="storeShelfPlanFilters">展开 <span aria-hidden="true">⌄</span></button>
-    </div>
-  </form>
+            <form class="store-shelf-plan-filters" id="storeShelfPlanFilters" aria-label="门店商品上架计划筛选">
+              <label data-store-plan-filter><span>商品名称：</span><input name="productName" placeholder="请输入线上商品名称查询" /></label>
+              <label data-store-plan-filter><span>SPU：</span><input name="spu" placeholder="支持多码查询，用“,”隔开" /></label>
+              <label data-store-plan-filter><span>SKU：</span><input name="sku" placeholder="支持多码查询，用“,”隔开" /></label>
+              <label data-store-plan-filter><span>ERP编码：</span><input name="erp" placeholder="支持多码查询，用“,”隔开" /></label>
+              <label data-store-plan-filter><span>线下商品条码：</span><input name="barcode" placeholder="支持多码查询，用“,”隔开" /></label>
+              <label data-store-plan-filter><span>状态：</span><select name="status"><option value="">全部</option><option value="enabled">启用</option><option value="disabled">禁用</option></select></label>
+              <label data-store-plan-filter><span>门店：</span><select name="store" id="storeShelfPlanStoreFilter"><option value="">请选择</option></select></label>
+              <div class="store-shelf-plan-filter-actions">
+                <button class="btn primary" type="submit">查询</button>
+                <button class="btn" id="storeShelfPlanReset" type="button">重置</button>
+                <button class="link-button" id="storeShelfPlanFilterToggle" type="button" aria-expanded="false" aria-controls="storeShelfPlanFilters">展开 <span aria-hidden="true">⌄</span></button>
+              </div>
+            </form>
 
-  <div class="store-shelf-plan-toolbar">
-    <div class="store-shelf-plan-toolbar-actions">
-      <button class="btn primary" id="storeShelfPlanAdd" type="button">添加计划</button>
-      <div class="store-shelf-plan-batch">
-        <button class="btn" id="storeShelfPlanBatchToggle" type="button" aria-expanded="false" aria-controls="storeShelfPlanBatchMenu">批量管理 <span aria-hidden="true">⌄</span></button>
-        <div class="store-shelf-plan-batch-menu" id="storeShelfPlanBatchMenu" hidden>
-          <button type="button" data-store-plan-batch="enabled">批量启用</button>
-          <button type="button" data-store-plan-batch="disabled">批量禁用</button>
-          <button class="store-shelf-plan-danger" type="button" data-store-plan-batch="delete">批量删除</button>
-        </div>
-      </div>
-    </div>
-    <button class="btn" id="storeShelfPlanExport" type="button">导出</button>
-  </div>
+            <div class="store-shelf-plan-toolbar">
+              <div class="store-shelf-plan-toolbar-actions">
+                <button class="btn primary" id="storeShelfPlanAdd" type="button">添加计划</button>
+                <div class="store-shelf-plan-batch">
+                  <button class="btn" id="storeShelfPlanBatchToggle" type="button" aria-expanded="false" aria-controls="storeShelfPlanBatchMenu">批量管理 <span aria-hidden="true">⌄</span></button>
+                  <div class="store-shelf-plan-batch-menu" id="storeShelfPlanBatchMenu" hidden>
+                    <button type="button" data-store-plan-batch="enabled">批量启用</button>
+                    <button type="button" data-store-plan-batch="disabled">批量禁用</button>
+                    <button class="store-shelf-plan-danger" type="button" data-store-plan-batch="delete">批量删除</button>
+                  </div>
+                </div>
+              </div>
+              <button class="btn" id="storeShelfPlanExport" type="button">导出</button>
+            </div>
 
-  <div class="store-shelf-plan-table-scroll" tabindex="0" role="region" aria-label="门店商品上架计划列表，可横向滚动">
-    <table class="store-shelf-plan-table">
-      <colgroup>
-        <col style="width: 60px" /><col style="width: 300px" /><col style="width: 270px" />
-        <col style="width: 96px" /><col style="width: 208px" /><col style="width: 152px" />
-        <col style="width: 180px" /><col style="width: 100px" /><col style="width: 168px" />
-      </colgroup>
-      <thead><tr><th scope="col">序号</th><th scope="col">商品信息</th><th scope="col">规格信息</th><th scope="col">上架数量</th><th scope="col">开始结束时间</th><th scope="col">上架时间</th><th scope="col">门店</th><th scope="col">状态</th><th scope="col">操作</th></tr></thead>
-      <tbody id="storeShelfPlanTableBody"></tbody>
-    </table>
-    <div class="store-shelf-plan-empty" id="storeShelfPlanEmpty" hidden>暂无符合条件的上架计划</div>
-  </div>
-  <div class="pagination-bar store-shelf-plan-pagination">
-    <span class="pagination-total" id="storeShelfPlanTotal">共 0 条</span>
-    <div class="pagination" id="storeShelfPlanPagination" aria-label="门店上架计划分页"></div>
-    <label class="page-jump">前往 <input id="storeShelfPlanPageJump" type="number" min="1" value="1" aria-label="门店上架计划页码" /> 页</label>
-  </div>
+            <div class="store-shelf-plan-table-scroll" tabindex="0" role="region" aria-label="门店商品上架计划列表，可横向滚动">
+              <table class="store-shelf-plan-table">
+                <colgroup>
+                  <col style="width: 60px" /><col style="width: 300px" /><col style="width: 270px" />
+                  <col style="width: 96px" /><col style="width: 208px" /><col style="width: 152px" />
+                  <col style="width: 180px" /><col style="width: 100px" /><col style="width: 168px" />
+                </colgroup>
+                <thead><tr><th scope="col">序号</th><th scope="col">商品信息</th><th scope="col">规格信息</th><th scope="col">上架数量</th><th scope="col">开始结束时间</th><th scope="col">上架时间</th><th scope="col">门店</th><th scope="col">状态</th><th scope="col">操作</th></tr></thead>
+                <tbody id="storeShelfPlanTableBody"></tbody>
+              </table>
+              <div class="store-shelf-plan-empty" id="storeShelfPlanEmpty" hidden>暂无符合条件的上架计划</div>
+            </div>
+            <div class="pagination-bar store-shelf-plan-pagination">
+              <span class="pagination-total" id="storeShelfPlanTotal">共 0 条</span>
+              <div class="pagination" id="storeShelfPlanPagination" aria-label="门店上架计划分页"></div>
+              <label class="page-jump">前往 <input id="storeShelfPlanPageJump" type="number" min="1" value="1" aria-label="门店上架计划页码" /> 页</label>
+            </div>
 
-  <dialog class="store-shelf-plan-dialog" id="storeShelfPlanEditor" aria-labelledby="storeShelfPlanEditorTitle">
-    <form id="storeShelfPlanEditorForm">
-      <header><h2 id="storeShelfPlanEditorTitle">添加计划</h2><button class="icon-button" type="button" data-store-plan-close="storeShelfPlanEditor" aria-label="关闭计划编辑">×</button></header>
-      <div class="store-shelf-plan-dialog-body">
-        <div class="store-shelf-plan-note" role="note"><i aria-hidden="true">!</i><span>仅用于原型演示，不执行实际商品上架。</span></div>
-        <div class="store-shelf-plan-editor-fields">
-          <label><span>商品名称：</span><select id="storeShelfPlanEditorProduct" name="productId" required></select></label>
-          <label><span>上架数量：</span><input name="quantity" type="number" min="0" step="1" value="0" required /></label>
-          <div class="store-shelf-plan-editor-row"><span>开始结束时间：</span><div class="store-shelf-plan-range"><input name="startDate" type="date" aria-label="计划开始日期" required /><span>至</span><input name="endDate" type="date" aria-label="计划结束日期" required /></div></div>
-          <div class="store-shelf-plan-editor-row"><span>上架时间：</span><div class="store-shelf-plan-range"><input name="startTime" type="time" step="60" value="09:00" aria-label="开始上架时间" required /><span>至</span><input name="endTime" type="time" step="60" value="20:00" aria-label="结束上架时间" required /></div></div>
-          <label><span>门店：</span><select id="storeShelfPlanEditorStore" name="store"><option value="">全部门店</option></select></label>
-          <label><span>状态：</span><select name="status"><option value="disabled">禁用</option><option value="enabled">启用</option></select></label>
-        </div>
-      </div>
-      <footer><button class="btn" type="button" data-store-plan-close="storeShelfPlanEditor">取消</button><button class="btn primary" type="submit">提交</button></footer>
-    </form>
-  </dialog>
+            <dialog class="store-shelf-plan-dialog" id="storeShelfPlanEditor" aria-labelledby="storeShelfPlanEditorTitle">
+              <form id="storeShelfPlanEditorForm">
+                <header><h2 id="storeShelfPlanEditorTitle">添加计划</h2><button class="icon-button" type="button" data-store-plan-close="storeShelfPlanEditor" aria-label="关闭计划编辑">×</button></header>
+                <div class="store-shelf-plan-dialog-body">
+                  <div class="store-shelf-plan-note" role="note"><i aria-hidden="true">!</i><span>仅用于原型演示，不执行实际商品上架。</span></div>
+                  <div class="store-shelf-plan-editor-fields">
+                    <label><span>商品名称：</span><select id="storeShelfPlanEditorProduct" name="productId" required></select></label>
+                    <label><span>上架数量：</span><input name="quantity" type="number" min="0" step="1" value="0" required /></label>
+                    <div class="store-shelf-plan-editor-row"><span>开始结束时间：</span><div class="store-shelf-plan-range"><input name="startDate" type="date" aria-label="计划开始日期" required /><span>至</span><input name="endDate" type="date" aria-label="计划结束日期" required /></div></div>
+                    <div class="store-shelf-plan-editor-row"><span>上架时间：</span><div class="store-shelf-plan-range"><input name="startTime" type="time" step="60" value="09:00" aria-label="开始上架时间" required /><span>至</span><input name="endTime" type="time" step="60" value="20:00" aria-label="结束上架时间" required /></div></div>
+                    <label><span>门店：</span><select id="storeShelfPlanEditorStore" name="store"><option value="">全部门店</option></select></label>
+                    <label><span>状态：</span><select name="status"><option value="disabled">禁用</option><option value="enabled">启用</option></select></label>
+                  </div>
+                </div>
+                <footer><button class="btn" type="button" data-store-plan-close="storeShelfPlanEditor">取消</button><button class="btn primary" type="submit">提交</button></footer>
+              </form>
+            </dialog>
 
-  <dialog class="store-shelf-plan-dialog store-shelf-plan-confirm" id="storeShelfPlanConfirm" aria-labelledby="storeShelfPlanConfirmTitle">
-    <header><h2 id="storeShelfPlanConfirmTitle">确认操作</h2><button class="icon-button" type="button" data-store-plan-close="storeShelfPlanConfirm" aria-label="关闭确认">×</button></header>
-    <div class="store-shelf-plan-dialog-body"><p id="storeShelfPlanConfirmMessage"></p></div>
-    <footer><button class="btn" type="button" data-store-plan-close="storeShelfPlanConfirm">取消</button><button class="btn primary" id="storeShelfPlanConfirmAction" type="button">确认</button></footer>
-  </dialog>
+            <dialog class="store-shelf-plan-dialog store-shelf-plan-confirm" id="storeShelfPlanConfirm" aria-labelledby="storeShelfPlanConfirmTitle">
+              <header><h2 id="storeShelfPlanConfirmTitle">确认操作</h2><button class="icon-button" type="button" data-store-plan-close="storeShelfPlanConfirm" aria-label="关闭确认">×</button></header>
+              <div class="store-shelf-plan-dialog-body"><p id="storeShelfPlanConfirmMessage"></p></div>
+              <footer><button class="btn" type="button" data-store-plan-close="storeShelfPlanConfirm">取消</button><button class="btn primary" id="storeShelfPlanConfirmAction" type="button">确认</button></footer>
+            </dialog>
 
-  <dialog class="store-shelf-plan-dialog" id="storeShelfPlanDetail" aria-labelledby="storeShelfPlanDetailTitle">
-    <header><h2 id="storeShelfPlanDetailTitle">查看门店商品状态</h2><button class="icon-button" type="button" data-store-plan-close="storeShelfPlanDetail" aria-label="关闭门店商品状态">×</button></header>
-    <div class="store-shelf-plan-dialog-body">
-      <div class="store-shelf-plan-note" role="note"><i aria-hidden="true">!</i><span>原型仅展示计划配置，未连接实时门店商品状态。</span></div>
-      <dl class="store-shelf-plan-details" id="storeShelfPlanDetails"></dl>
-    </div>
-    <footer><button class="btn" type="button" data-store-plan-close="storeShelfPlanDetail">关闭</button></footer>
-  </dialog>
-</div>
+            <dialog class="store-shelf-plan-dialog" id="storeShelfPlanDetail" aria-labelledby="storeShelfPlanDetailTitle">
+              <header><h2 id="storeShelfPlanDetailTitle">查看门店商品状态</h2><button class="icon-button" type="button" data-store-plan-close="storeShelfPlanDetail" aria-label="关闭门店商品状态">×</button></header>
+              <div class="store-shelf-plan-dialog-body">
+                <div class="store-shelf-plan-note" role="note"><i aria-hidden="true">!</i><span>原型仅展示计划配置，未连接实时门店商品状态。</span></div>
+                <dl class="store-shelf-plan-details" id="storeShelfPlanDetails"></dl>
+              </div>
+              <footer><button class="btn" type="button" data-store-plan-close="storeShelfPlanDetail">关闭</button></footer>
+            </dialog>
+          </div>

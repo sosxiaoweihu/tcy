@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>同城商品管理 Design System v0.1</title>
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./styles.css?v=20261114-monitor-rules-white" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- include: 页面/一级菜单.html -->
+
+      <!-- include: 页面/二级菜单.html -->
+
+      <main class="main">
+        <header class="topbar">
+          <div class="company">
+            <button class="icon-button" aria-label="折叠菜单">☰</button>
+            <strong><mark class="company-demo-highlight">元数科技demo 原型设计稿</mark></strong>
+          </div>
+          <input class="global-search" placeholder="功能搜索" />
+          <div class="operator">操作人：肖伟虎</div>
+        </header>
+
+        <section class="page-tabs" id="pageTabs" aria-label="页面标签">
+          <button data-tab="概况">概况</button>
+          <button class="active" data-tab="同城商品管理(统一分类)">商品（统一）1 <span class="tab-close" aria-label="关闭商品（统一）1">×</span></button>
+        </section>
+
+        <!-- include: 页面/同城App功能菜单/同城App手机预览.html -->
+
+        <!-- include: 页面/PC功能菜单/商品池管理.html -->
+
+        <div class="modal-mask" id="productPoolEditModal" aria-hidden="true">
+          <section class="product-pool-edit-modal" role="dialog" aria-modal="true" aria-labelledby="productPoolEditTitle">
+            <header class="product-pool-edit-header">
+              <h2 id="productPoolEditTitle">修改商品</h2>
+              <button class="icon-button" id="productPoolEditClose" type="button" aria-label="关闭修改商品弹窗">×</button>
+            </header>
+
+            <div class="product-pool-edit-body">
+              <section class="product-pool-edit-section">
+                <h3>基础信息</h3>
+                <div class="product-pool-basic-grid">
+                  <label><span class="required">商品名称</span><input id="productPoolEditName" type="text" /></label>
+                  <label><span class="required">商品编码</span><input id="productPoolEditCode" type="text" /></label>
+                  <label><span class="required">商品条码</span><input id="productPoolEditBarcode" type="text" /></label>
+                  <label class="product-pool-platform-category"><span class="required">平台类目</span><select id="productPoolEditCategory"><option>鲜食/熟食 / 熟食/卤味/凉菜 / 禽肉类熟食</option><option>饮料酒水 / 果蔬汁</option><option>粮油调味 / 米面杂粮</option></select></label>
+                </div>
+              </section>
+
+              <div class="product-pool-recommend-state"><i>✓</i><span>已为推荐类目</span></div>
+              <section class="product-pool-attribute-panel">
+                <header>
+                  <strong>饿百类目属性</strong>
+                  <button class="btn" id="productPoolRecommendAttributes" type="button">一键推荐属性</button>
+                </header>
+                <div class="product-pool-attribute-columns">
+                  <div class="product-pool-attribute-column">
+                    <label class="product-pool-attribute-field"><span>主要成分<small>608366858</small></span><input placeholder="请输入主要成分" /></label>
+                    <label class="product-pool-attribute-field"><span class="required">净含量<small>147956252</small></span><span class="product-pool-net-content"><input placeholder="请输入净含量" /><select><option>请选择单位</option><option>g</option><option>kg</option><option>ml</option></select></span></label>
+                    <label class="product-pool-attribute-field"><span>厂家联系方式<small>151428601</small></span><input placeholder="请输入厂家联系方式" /></label>
+                    <label class="product-pool-attribute-field"><span class="required">商品类别<small>589743111</small></span><select><option>请选择商品类别</option><option>禽肉类熟食</option><option>即食熟食</option></select></label>
+                    <label class="product-pool-attribute-field"><span>生产厂家地址<small>151454497</small></span><input placeholder="请输入生产厂家地址" /></label>
+                  </div>
+                  <div class="product-pool-attribute-column">
+                    <label class="product-pool-attribute-field"><span>产地<small>589735952</small></span><select><option>请选择产地</option><option>中国大陆</option><option>进口</option></select></label>
+                    <label class="product-pool-attribute-field"><span>包装方式<small>589743613</small></span><select><option>请选择包装方式</option><option>袋装</option><option>盒装</option><option>瓶装</option></select></label>
+                    <label class="product-pool-attribute-field"><span>品牌<small>20000</small></span><select><option>请选择品牌</option><option>我得</option><option>奈雪</option><option>金龙鱼</option></select></label>
+                    <label class="product-pool-attribute-field"><span>是否清真<small>589740817</small></span><select><option>请选择是否清真</option><option>是</option><option>否</option></select></label>
+                    <label class="product-pool-attribute-field"><span class="required">食用方式<small>589740919</small></span><select><option>请选择食用方式</option><option>开袋即食</option><option>加热食用</option></select></label>
+                  </div>
+                  <div class="product-pool-attribute-column">
+                    <label class="product-pool-attribute-field"><span class="required">储藏条件<small>589739536</small></span><select><option>请选择储藏条件</option><option>常温</option><option>冷藏</option><option>冷冻</option></select></label>
+                    <label class="product-pool-attribute-field"><span>包装规格<small>2020563</small></span><input placeholder="请输入包装规格" /></label>
+                    <label class="product-pool-attribute-field"><span class="required">售卖方式<small>5897350800</small></span><select><option>请选择售卖方式</option><option>按件售卖</option><option>按重量售卖</option></select></label>
+                    <label class="product-pool-attribute-field"><span>生产厂家名称<small>151486361</small></span><input placeholder="请输入生产厂家名称" /></label>
+                  </div>
+                </div>
+              </section>
+
+              <section class="product-pool-edit-section product-pool-image-section">
+                <h3>图片信息</h3>
+                <div class="product-pool-image-row">
+                  <div class="product-pool-image-label required">商品图片 <i>i</i></div>
+                  <div class="product-pool-image-content">
+                    <button class="btn product-pool-upload-button" id="productPoolMainUpload" type="button">点击上传</button>
+                    <input id="productPoolMainImageInput" type="file" accept="image/*" multiple hidden />
+                    <div class="product-pool-edit-image-list product-pool-main-images" id="productPoolMainImages"></div>
+                    <p class="product-pool-image-warning">饿了么：请至少上传2张图片</p>
+                  </div>
+                </div>
+
+                <div class="product-pool-image-row">
+                  <div class="product-pool-image-label">详情图 <i>i</i></div>
+                  <div class="product-pool-image-content">
+                    <input id="productPoolDetailImageInput" type="file" accept="image/*" multiple hidden />
+                    <div class="product-pool-edit-image-list product-pool-detail-images" id="productPoolDetailImages"></div>
+                    <p class="product-pool-image-warning">饿了么：请上传图片</p>
+                  </div>
+                </div>
+
+                <div class="product-pool-image-row">
+                  <div class="product-pool-image-label">特殊图片 <i>i</i></div>
+                  <div class="product-pool-image-content product-pool-special-content">
+                    <p><strong>标题：配料图</strong> <em>（不传特殊图下架）</em></p>
+                    <p>描述：当前类目需上传清晰完整的商品配料表和条码图片，建议使用平面设计图；实拍图片请保持文字清晰、背景整洁。</p>
+                    <input id="productPoolSpecialImageInput" type="file" accept="image/*" multiple hidden />
+                    <div class="product-pool-edit-image-list product-pool-special-images" id="productPoolSpecialImages"></div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <footer class="product-pool-edit-footer">
+              <button class="btn" id="productPoolEditCancel" type="button">取消</button>
+              <button class="btn primary" id="productPoolEditSave" type="button">保存</button>
+            </footer>
+          </section>
+        </div>
+
+        <!-- include: 页面/PC功能菜单/同城上下架计划.html -->
+
+<!-- include: 页面/PC功能菜单/同城商品库存对比.html -->
+        <!-- include: 页面/PC功能菜单/同城商家客服.html -->
+
+        <!-- include: 页面/PC功能菜单/同城业态.html -->
+
+        <!-- include: 页面/PC功能菜单/同城运维工具.html -->
+
+        <!-- include: 页面/PC功能菜单/同城后台类目.html -->
+
+<!-- include: 页面/PC功能菜单/同城库存操作日志.html -->
+<!-- include: 页面/PC功能菜单/同城库存.html -->
+        <!-- include: 页面/PC功能菜单/同城商品.html -->
+
+        <!-- include: 页面/PC功能菜单/同城门店商品.html -->
+
+        <section class="construction-page" id="constructionPage" hidden>
+          <div>
+            <h1 id="constructionTitle">建设中</h1>
+            <p>当前模块内容正在建设中</p>
+          </div>
+        </section>
+
+        <!-- include: 页面/PC功能菜单/同城订单.html -->
+
+        <!-- include: 页面/PC功能菜单/订单热力图.html -->
+
+        <!-- include: 页面/PC功能菜单/同城销售总览.html -->
+
+        <!-- include: 页面/PC功能菜单/同城缺勤报表2.html -->
+
+        <!-- include: 页面/PC功能菜单/同城商品缺勤报表.html -->
+
+        <!-- include: 页面/PC功能菜单/同城商品缺货报表.html -->
+
+        <!-- include: 页面/PC功能菜单/IM回复率统计.html -->
+
+        <!-- include: 页面/PC功能菜单/京东接口列表.html -->
+
+        <!-- include: 页面/PC功能菜单/同城生活门店管理.html -->
+
+        <!-- include: 页面/PC功能菜单/同城生活核销明细.html -->
+
+        <!-- include: 页面/PC功能菜单/同城核销商品明细.html -->
+
+        <!-- include: 页面/PC功能菜单/同城券规则.html -->
+
+        <!-- include: 页面/PC功能菜单/同城生活售后.html -->
+
+        <!-- include: 页面/PC功能菜单/同城生活店铺.html -->
+
+        <!-- include: 页面/PC功能菜单/同城自定义任务.html -->
+
+        <!-- include: 页面/PC功能菜单/同城商品管理统一分类.html -->
+      </main>
+    </div>
+
+	    <div class="modal-mask" id="localStoreModal" aria-hidden="true">
+	      <section class="local-store-modal" role="dialog" aria-modal="true" aria-labelledby="localStoreTitle">
+        <header class="local-store-modal-header">
+          <h2 id="localStoreTitle">新增门店</h2>
+          <button class="icon-button" id="closeLocalStoreModal" aria-label="关闭">×</button>
+        </header>
+        <div class="local-store-form">
+          <label>
+            <span><em>*</em> 门店名称:</span>
+            <select>
+              <option>请选择门店</option>
+            </select>
+          </label>
+          <div class="local-store-channel">
+            <span>选择渠道：</span>
+            <label><input type="radio" name="localStoreChannel" value="抖音" /> 抖音</label>
+            <label><input type="radio" name="localStoreChannel" value="美团" /> 美团</label>
+            <label><input type="radio" name="localStoreChannel" value="快手" /> 快手</label>
+            <label><input type="radio" name="localStoreChannel" value="支付宝" checked /> 支付宝</label>
+          </div>
+	          <label>
+	            <span><em>*</em> 平台门店编码:</span>
+	            <div class="local-store-code-field">
+	              <input placeholder="请输入平台门店编码" />
+	              <button class="btn" id="validateLocalStoreButton" type="button">校验门店</button>
+	            </div>
+	          </label>
+        </div>
+        <footer class="local-store-modal-footer">
+          <button class="btn" id="cancelLocalStoreModal">取消</button>
+          <button class="btn primary" id="confirmLocalStoreModal">确定</button>
+        </footer>
+	      </section>
+	    </div>
+
+	    <div class="modal-mask" id="verifyDetailModal" aria-hidden="true">
+	      <section class="modal verify-detail-modal" role="dialog" aria-modal="true" aria-labelledby="verifyDetailTitle">
+	        <header class="modal-header">
+	          <h2 id="verifyDetailTitle">券凭证详情</h2>
+	          <button class="icon-button" id="closeVerifyDetailModal" aria-label="关闭">×</button>
+	        </header>
+	        <div class="verify-detail-form" id="verifyDetailForm"></div>
+	      </section>
+	    </div>
+
+	    <div class="modal-mask" id="afterSaleModal" aria-hidden="true">
+	      <section class="modal after-sale-modal" role="dialog" aria-modal="true" aria-labelledby="afterSaleTitle">
+	        <header class="modal-header">
+	          <h2 id="afterSaleTitle">售后申请</h2>
+	          <button class="icon-button" id="closeAfterSaleModal" aria-label="关闭">×</button>
+	        </header>
+	        <div class="after-sale-form">
+	          <label class="after-sale-field">
+	            <span class="after-sale-field-label">POS订单号：</span>
+	            <input id="afterSalePosOrder" readonly />
+	          </label>
+	          <label class="after-sale-field">
+	            <span class="after-sale-field-label">售后类型：</span>
+	            <select disabled aria-disabled="true">
+	              <option>退款</option>
+	            </select>
+	          </label>
+	          <div class="after-sale-field after-sale-voucher-field">
+	            <span class="after-sale-field-label">券码信息：</span>
+	            <div class="after-sale-voucher-list" id="afterSaleVoucherList"></div>
+	          </div>
+	          <label class="after-sale-field">
+	            <span class="after-sale-field-label">退款原因：</span>
+	            <textarea placeholder="请输入退款原因">顾客不要了</textarea>
+	          </label>
+	        </div>
+	        <footer class="after-sale-footer">
+	          <button class="btn" id="cancelAfterSaleModal">取消</button>
+	          <button class="btn primary" id="submitAfterSaleModal">提交</button>
+	        </footer>
+	      </section>
+	    </div>
+
+	    <div class="toast" id="toast" role="status"></div>
+
+    <div class="modal-mask" id="exceptionModal" aria-hidden="true">
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <header class="modal-header">
+          <h2 id="modalTitle">异常信息</h2>
+          <button class="icon-button" id="closeModal" aria-label="关闭">×</button>
+        </header>
+        <div class="platform-tabs">
+          <button class="active">京东（1）</button>
+          <button>美团（0）</button>
+          <button>饿百（0）</button>
+        </div>
+        <table class="exception-table">
+          <thead>
+            <tr>
+              <th>问题分类</th>
+              <th>问题详情</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>商品其他异常-上下架异常</td>
+              <td>缺失经营许可资质，设为可售失败</td>
+              <td><button class="link-button" id="handleException">去处理</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <div class="modal-mask" id="publishChannelModal" aria-hidden="true">
+      <section class="modal publish-channel-modal" role="dialog" aria-modal="true" aria-labelledby="publishChannelTitle">
+        <header class="modal-header">
+          <h2 id="publishChannelTitle">发品到渠道确认</h2>
+          <button class="icon-button" id="closePublishChannelModal" aria-label="关闭">×</button>
+        </header>
+        <div class="publish-channel-body">
+          <p class="publish-channel-tip">系统会剔除停售，已发品门店，提交后都不会推送渠道发布商品</p>
+          <section class="publish-product-section">
+            <h3>商品信息</h3>
+            <div class="publish-product-grid">
+              <p><span>商品编码：</span><strong id="publishProductCode">-</strong></p>
+              <p><span>商品名称：</span><strong id="publishProductName">-</strong></p>
+            </div>
+          </section>
+          <section class="publish-channel-section">
+            <h3>发布渠道</h3>
+            <div class="publish-channel-row">
+              <span class="setting-label required">渠道名称<span class="field-help" tabindex="0" aria-label="请选择需要发品的渠道">i<span class="field-tip" role="tooltip">请选择需要发品的渠道</span></span>：</span>
+              <div class="publish-channel-options">
+                <label><input type="checkbox" id="publishChannelAll" checked /> 全选</label>
+                <label><input type="checkbox" name="publishChannel" checked /> 京东到家</label>
+                <label><input type="checkbox" name="publishChannel" checked /> 美团外卖</label>
+                <label><input type="checkbox" name="publishChannel" checked /> 饿百</label>
+                <label><input type="checkbox" name="publishChannel" checked /> 抖店</label>
+              </div>
+            </div>
+          </section>
+          <section class="publish-store-section">
+            <h3>铺品到门店信息</h3>
+            <div class="publish-store-sync-row">
+              <label><input type="radio" name="publishStoreSync" value="store" checked /> 按门店信息同步</label>
+              <label><input type="radio" name="publishStoreSync" value="custom" /> 设置门店信息同步</label>
+            </div>
+            <div class="publish-store-default-info" id="publishStoreDefaultInfo">
+              <p><span>商品状态：</span>按门店商品状态</p>
+              <p><span>商品价格：</span>按门店商品价格</p>
+              <p><span>商品库存：</span>按门店商品库存</p>
+              <p><span>选择门店：</span>按全部渠道门店</p>
+            </div>
+            <div class="publish-store-settings" id="publishStoreSettings" hidden>
+              <div class="publish-setting-row">
+                <span class="setting-label">商品价格<span class="field-help" tabindex="0" aria-label="可按门店价格、固定价格或加价比例同步">i<span class="field-tip" role="tooltip">可按门店价格、固定价格或加价比例同步</span></span>：</span>
+                <div class="setting-control-group">
+                  <label><input type="radio" name="publishPriceMode" checked /> 门店价格</label>
+                  <label><input type="radio" name="publishPriceMode" /> 固定价格</label>
+                  <label><input type="radio" name="publishPriceMode" /> 加价比例</label>
+                </div>
+              </div>
+              <div class="publish-setting-row">
+                <span class="setting-label">商品库存<span class="field-help" tabindex="0" aria-label="可按门店库存比例或固定库存同步">i<span class="field-tip" role="tooltip">可按门店库存比例或固定库存同步</span></span>：</span>
+                <div class="setting-control-group">
+                  <label class="inline-input-option"><input type="radio" name="publishStockMode" checked /> 门店库存比例<input value="100" inputmode="numeric" /><em>%</em></label>
+                  <label><input type="radio" name="publishStockMode" /> 固定库存</label>
+                </div>
+              </div>
+              <div class="publish-setting-row">
+                <span class="setting-label">选择门店：</span>
+                <div class="setting-control-group setting-control-inline">
+                  <label><input type="radio" name="publishStoreRange" checked /> 全部门店</label>
+                  <label><input type="radio" name="publishStoreRange" /> 指定部分门店</label>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <footer class="publish-channel-footer">
+          <button class="btn" id="cancelPublishChannelModal" type="button">取消</button>
+          <button class="btn primary" id="confirmPublishChannelModal" type="button">确定</button>
+        </footer>
+      </section>
+    </div>
+
+    <div class="modal-mask batch-special-image-mask" id="batchSpecialImageModal" aria-hidden="true">
+      <section class="modal batch-special-image-modal" role="dialog" aria-modal="true" aria-labelledby="batchSpecialImageTitle">
+        <header class="modal-header batch-special-image-header">
+          <h2 id="batchSpecialImageTitle">批量维护特殊图片</h2>
+          <button class="icon-button" id="closeBatchSpecialImageModal" type="button" aria-label="关闭批量维护特殊图片弹窗">×</button>
+        </header>
+        <div class="batch-special-image-tabs" role="tablist" aria-label="特殊图片上传方式">
+          <button id="batchSpecialImageZipTab" class="batch-special-image-tab active" type="button" role="tab" aria-selected="true" aria-controls="batchSpecialImageZipPanel" data-special-image-tab="zip">压缩包上传</button>
+          <button id="batchSpecialImageReferenceTab" class="batch-special-image-tab" type="button" role="tab" aria-selected="false" aria-controls="batchSpecialImageReferencePanel" tabindex="-1" data-special-image-tab="reference">引用渠道上传</button>
+        </div>
+        <div class="batch-special-image-body">
+          <div id="batchSpecialImageZipPanel" role="tabpanel" aria-labelledby="batchSpecialImageZipTab">
+            <p class="batch-special-image-warning">注意：上传特殊图片后，将覆盖原本已经上传的特殊图片，覆盖后不可还原，请谨慎操作！！！</p>
+
+            <section class="batch-special-image-step">
+              <h3><span>1</span>修改图片命名</h3>
+              <ol class="batch-special-image-rules">
+                <li>
+                  图片命名必须为“商品编码_特殊图类型_序号、商品条码_特殊图类型_序号”，（例:69247185234_5_1.jpg），相同商品的特殊图片上传最多不超过4张，排名按照名称尾号数字越小越靠前展示。
+                  <em>若图片命名为"ERP编码"，则默认排在同批的最后一位。</em>
+                </li>
+                <li class="important">
+                  数字代表特殊图类型：<br />
+                  美团外卖渠道：背签图=8，配料/营养成分图=5，医疗器械注册证/备案凭证=10，吊牌及洗唛=7，质量认证图=4，尺寸图=13，尺码表=14，包装标签图=3，纺织品使用说明=6。<br />
+                  淘宝闪购渠道：含化妆品备案编码的背签图=1，配料/营养成分图=2，医疗器械注册证/备案凭证=3，质量认证图=4，背签图=6，特殊医学配方食品注册证书=7，食品类背签图=8
+                </li>
+                <li>
+                  图片尺寸建议为800*800px，图片格式<em>仅支持jpg、jpeg、png、gif（仅美团，其它渠道不展示），其他文件格式无法上传，上传后将自动过滤，小于2M，文件总大小不超过100M。</em>
+                </li>
+                <li class="important">单个图片最大5M，图片名不能重复，图片文件夹压缩成.zip文件包上传。</li>
+                <li class="important">图片上传会进行尺寸缩放，请不要修改图片后缀，否则无法识别。</li>
+              </ol>
+            </section>
+
+            <section class="batch-special-image-step batch-special-image-upload-step">
+              <h3><span>2</span>打包图片上传并提交系统</h3>
+              <p>将上传的图片放于1个文件夹(请勿创建子文件夹且文件夹名称不能有中文)后压缩为zip格式上传。上传时需选择正确的命名方式，否则将无法导入系统。</p>
+              <input id="batchSpecialImageFileInput" type="file" accept=".zip,application/zip,application/x-zip-compressed" hidden />
+              <div class="batch-special-image-upload-row">
+                <button class="btn batch-special-image-upload-button" id="batchSpecialImageUploadButton" type="button">点击上传</button>
+                <span class="batch-special-image-file-name" id="batchSpecialImageFileName" hidden></span>
+              </div>
+              <p class="batch-special-image-file-tip"><span>i</span>仅支持zip格式，总文件大小不超过100M。</p>
+              <div class="batch-special-image-channel-field">
+                <span>选择渠道：</span>
+                <div class="batch-special-image-channel-options" role="radiogroup" aria-label="选择特殊图片上传渠道">
+                  <label><input type="radio" name="batchSpecialImageChannel" value="meituan" checked /> 美团外卖</label>
+                  <label><input type="radio" name="batchSpecialImageChannel" value="taobao" /> 淘宝闪购</label>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div id="batchSpecialImageReferencePanel" class="batch-special-image-reference-panel" role="tabpanel" aria-labelledby="batchSpecialImageReferenceTab" hidden>
+            <aside class="batch-special-image-instructions" aria-label="上传说明">
+              <span class="batch-special-image-instructions-icon" aria-hidden="true">i</span>
+              <div>
+                <h4>上传说明</h4>
+                <ol>
+                  <li>下载模板上传商品文件。通过引用指定渠道的特殊图片复制到需要上传的渠道，引用渠道无特殊图片将过滤不上传。</li>
+                  <li>目前支持特殊图片的上传，如化妆品背签图、食品配料成分的背签图。</li>
+                </ol>
+              </div>
+            </aside>
+            <section class="batch-special-image-step">
+              <h3>上传商品</h3>
+              <input id="batchSpecialImageExcelInput" type="file" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden />
+              <div class="batch-special-image-upload-row">
+                <button class="btn" id="batchSpecialImageExcelButton" type="button">导入Excel文件</button>
+                <a class="btn batch-special-image-template-button" id="batchSpecialImageTemplateDownload" href="assets/templates/特殊图片商品导入模板.xlsx" download="特殊图片商品导入模板.xlsx">下载模板</a>
+                <span class="batch-special-image-file-name" id="batchSpecialImageExcelFileName" hidden></span>
+              </div>
+              <p class="batch-special-image-excel-tip">支持 .xls、.xlsx 格式文件</p>
+            </section>
+          </div>
+        </div>
+        <footer class="batch-special-image-footer">
+          <button class="btn" id="cancelBatchSpecialImageModal" type="button">关闭</button>
+          <button class="btn primary" id="confirmBatchSpecialImageModal" type="button">确定</button>
+        </footer>
+      </section>
+    </div>
+
+
+    <div class="create-drawer-mask" id="createProductModal" aria-hidden="true">
+      <section class="create-drawer" role="dialog" aria-modal="true" aria-labelledby="createProductTitle">
+        <header class="create-drawer-header">
+          <h2 id="createProductTitle">创建商品</h2>
+          <button class="icon-button" id="closeCreateProduct" aria-label="关闭">×</button>
+        </header>
+        <div class="create-product-form">
+          <section class="create-section">
+            <h3>基本信息</h3>
+            <div class="create-form-grid">
+              <label><span class="required">商品编码：</span><div class="input-with-icon"><input value="22303190" /><button>⌕</button></div></label>
+              <label><span class="required">商品名称：</span><input value="飘柔控油去屑型洗发露750g" /></label>
+              <label><span>商品条码：</span><input value="6903148357699" disabled /></label>
+              <label><span>品牌：</span><input value="200321飘柔" disabled /></label>
+              <label><span>规格：</span><input value="750g" disabled /></label>
+              <label><span>单位：</span><input value="瓶" disabled /></label>
+              <label><span class="required">重量：</span><div class="unit-input"><input value="750" /><em>g</em></div></label>
+              <label><span class="label-with-tip">美团重量：<span class="field-help" tabindex="0" aria-label="重量与美团重量都填写时，以美团重量同步美团，不填写美团重量时则以重量字段同步美团">i<span class="field-tip" role="tooltip">重量与美团重量都填写时，以美团重量同步美团，不填写美团重量时则以重量字段同步美团</span></span></span><div class="unit-input unit-input-select"><input value="750" /><select aria-label="美团重量单位"><option>请选择</option><option selected>克(g)</option><option>千克(kg)</option><option>毫升(ml)</option><option>升(L)</option><option>磅</option><option>斤</option><option>两</option></select></div></label>
+              <label><span>产地：</span><input value="见包装" disabled /></label>
+              <label><span class="label-with-tip">起购数：<span class="field-help" tabindex="0" aria-label="仅对美团外卖、饿百渠道生效">i<span class="field-tip" role="tooltip">仅对美团外卖、饿百渠道生效</span></span></span><input value="1" /></label>
+              <div class="jd-brand-field">
+                <label for="jdBrandInput">京东品牌：</label>
+                <div class="recommended-input-wrap">
+                  <input id="jdBrandInput" value="13968_飘柔（Rejoice）" data-recommended-brand="13968_飘柔（Rejoice）" aria-describedby="jdBrandRecommendationHint" />
+                  <div id="jdBrandRecommendationHint" aria-live="polite">
+                    <small class="recommended-field-state" id="jdBrandRecommendedState">已推荐</small>
+                    <div class="jd-brand-recommendation" id="jdBrandRecommendation" hidden>
+                      <span class="jd-brand-recommendation-content"><span class="jd-brand-recommendation-label">推荐</span><span id="jdBrandRecommendationText"></span></span>
+                      <button class="btn" id="useRecommendedJdBrand" type="button">使用推荐</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="create-section">
+            <h3>发布渠道</h3>
+            <div class="channel-row">
+              <span class="required">渠道名称</span>
+              <label><input type="checkbox" checked /> 全选</label>
+              <label><input type="checkbox" checked /> 京东到家</label>
+              <label><input type="checkbox" checked /> 美团外卖</label>
+              <label><input type="checkbox" checked /> 饿了么</label>
+              <label><input type="checkbox" checked /> 抖店</label>
+            </div>
+          </section>
+
+          <section class="create-section">
+            <h3>类目信息</h3>
+            <div class="category-create-block">
+              <div class="category-create-line"><span class="required">前台类目：</span><button class="btn primary">选择</button></div>
+              <h4>后台类目</h4>
+              <label><span class="required">后台类目：</span><select><option>非食处 / 洗化部 / 个人清洁护理类 / 洗护发用品 / 洗发用品</option></select></label>
+              <h4>平台类目</h4>
+              <div class="platform-category-group">
+                <div class="platform-category-row"><span class="required">京东到家：</span><select><option>个护清洁 / 洗发护发 / 洗发水</option></select><label><input type="checkbox" /> 自动匹配</label><a href="#jdCategoryAttributes" data-category-attribute-visibility aria-controls="jdCategoryAttributes" aria-expanded="true">取消类目属性</a></div>
+                <div class="attribute-recommend-state">已为推荐类目</div>
+                <section class="category-attribute-panel" id="jdCategoryAttributes" data-attribute-panel="jingdong">
+                  <header><strong>京东到家类目属性</strong></header>
+                  <div class="jd-category-details">
+                    <section class="jd-attribute-section">
+                      <div class="jd-section-heading"><h5>营养成分表</h5><p>请如实填写营养成分表信息，以便消费者更直观地了解商品成分信息，做出购买决策。</p></div>
+                      <div class="jd-nutrition-basis"><label for="jdNutritionAmount">计量单位&nbsp; 每</label><div class="jd-value-unit"><input id="jdNutritionAmount" type="number" min="0" step="any" placeholder="请输入" /><select aria-label="营养成分计量单位"><option>g</option><option>mL</option></select></div></div>
+                      <table class="jd-nutrition-table" id="jdNutritionTable" aria-label="京东到家营养成分表">
+                        <thead><tr><th scope="col">成分</th><th scope="col">含量</th></tr></thead>
+                        <tbody>
+                          <tr><th scope="row">能量</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="能量含量（kJ）" /><span>kJ</span></div></td></tr>
+                          <tr><th scope="row">蛋白质</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="蛋白质含量（g）" /><span>g</span></div></td></tr>
+                          <tr><th scope="row">脂肪</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="脂肪含量（g）" /><span>g</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row" class="jd-nutrient-child">胆固醇</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="胆固醇含量（mg）" /><span>mg</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row" class="jd-nutrient-child">多不饱和脂肪（酸）</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="多不饱和脂肪（酸）含量（g）" /><span>g</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row" class="jd-nutrient-child">单不饱和脂肪（酸）</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="单不饱和脂肪（酸）含量（g）" /><span>g</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row" class="jd-nutrient-child">反式脂肪（酸）</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="反式脂肪（酸）含量（g）" /><span>g</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row">钾</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="钾含量（mg）" /><span>mg</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row">镁</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="镁含量（mg）" /><span>mg</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row">钙</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="钙含量（mg）" /><span>mg</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row">铁</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="铁含量（mg）" /><span>mg</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row">锌</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="锌含量（mg）" /><span>mg</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row">碘</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="碘含量（μg）" /><span>μg</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row">硒</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="硒含量（μg）" /><span>μg</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row">铜</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="铜含量（mg）" /><span>mg</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row">氟</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="氟含量（mg）" /><span>mg</span></div></td></tr>
+                          <tr data-jd-nutrient-extra hidden><th scope="row">锰</th><td><div class="jd-value-unit"><input type="number" min="0" step="any" placeholder="请输入" aria-label="锰含量（mg）" /><span>mg</span></div></td></tr>
+                        </tbody>
+                      </table>
+                      <button class="attribute-toggle" type="button" data-jd-nutrition-toggle aria-controls="jdNutritionTable" aria-expanded="false">展开其他营养成分 ⌄</button>
+                    </section>
+                    <section class="jd-attribute-section">
+                      <div class="jd-section-heading"><h5><label for="jdIngredients">配料表</label></h5></div>
+                      <div class="jd-ingredients-input"><textarea id="jdIngredients" maxlength="300" placeholder="请输入配料信息"></textarea><span class="jd-ingredients-count" data-jd-ingredients-count>0/300</span></div>
+                    </section>
+                    <section class="jd-attribute-section">
+                      <div class="jd-section-heading"><h5>产品信息</h5></div>
+                      <div class="jd-product-info-grid">
+                        <label><span>生产许可证号：</span><input placeholder="请输入生产许可证号" /></label>
+                        <label><span>产品标准号：</span><input placeholder="请输入产品标准号" /></label>
+                        <label><span>生产商家名称：</span><input placeholder="请输入生产商家名称" /></label>
+                        <label><span>厂址：</span><input placeholder="请输入厂址" /></label>
+                        <label><span>原产国（地区）：</span><input placeholder="请输入原产国（地区）" /></label>
+                        <label><span>储存方法：</span><input placeholder="请输入储存方法" /></label>
+                        <label><span>进口商/代理商名称：</span><input placeholder="请输入进口商/代理商名称" /></label>
+                        <label><span>厂家联系方式：</span><input placeholder="请输入厂家联系方式" /></label>
+                        <label><span>致敏物质：</span><input placeholder="请输入致敏物质" /></label>
+                      </div>
+                    </section>
+                  </div>
+                </section>
+              </div>
+
+              <div class="platform-category-group">
+                <div class="platform-category-row"><span class="required">美团外卖：</span><select><option>个人洗护 / 美发护发 / 洗发水/皂</option></select><label><input type="checkbox" /> 自动匹配</label><a>取消类目属性</a></div>
+                <div class="attribute-recommend-state">已为推荐类目</div>
+                <section class="category-attribute-panel" data-attribute-panel="meituan">
+                  <header><strong>美团外卖类目属性</strong><button class="btn" type="button" data-recommend-attributes="美团外卖">一键推荐属性</button></header>
+                  <div class="category-attribute-grid">
+                    <label class="category-attribute-field"><span class="required">品牌<small>1200000088</small></span><input value="飘柔" /></label>
+                    <label class="category-attribute-field"><span class="required">国产/进口<small>1200000132</small></span><select><option>国产</option></select></label>
+                    <label class="category-attribute-field"><span class="required">是否为特殊用途化妆品<small>1200250629</small></span><select><option>非特殊化妆品</option></select></label>
+                    <label class="category-attribute-field"><span>包装方式<small>1200000135</small></span><select><option>普通装</option></select></label>
+                    <label class="category-attribute-field"><span>适用年龄<small>1200000389</small></span><select><option>请选择适用年龄</option></select></label>
+                    <label class="category-attribute-field"><span>产地<small>1200000094</small></span><input value="中国" /></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>香味<small>1200000148</small></span><select><option>花香</option></select></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>是否礼盒装<small>1200004956</small></span><select><option>请选择是否礼盒装</option></select></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>备案编号/注册证号<small>1200250630</small></span><input placeholder="请输入备案编号/注册证号" /></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>提供礼赠包装<small>1200256724</small></span><select><option>请选择提供礼赠包装</option></select></label>
+                  </div>
+                  <button class="attribute-toggle" type="button" data-attribute-toggle>全部展开</button>
+                </section>
+              </div>
+
+              <div class="platform-category-group">
+                <div class="platform-category-row"><span class="required">饿了么：</span><select><option>个护清洁 / 洗发护发 / 洗发水/洗发露/洗发膏</option></select><label><input type="checkbox" /> 自动匹配</label><a>取消类目属性</a></div>
+                <div class="attribute-recommend-state">已为推荐类目</div>
+                <section class="category-attribute-panel" data-attribute-panel="eleme">
+                  <header><strong>饿了么类目属性</strong><button class="btn" type="button" data-recommend-attributes="饿了么">一键推荐属性</button></header>
+                  <div class="category-attribute-grid">
+                    <label class="category-attribute-field"><span class="required">品牌<small>ele_brand</small></span><input value="飘柔" /></label>
+                    <label class="category-attribute-field"><span class="required">商品类型<small>ele_product_type</small></span><select><option>洗发水</option></select></label>
+                    <label class="category-attribute-field"><span class="required">适用人群<small>ele_crowd</small></span><select><option>通用</option></select></label>
+                    <label class="category-attribute-field"><span class="required">净含量<small>ele_net_content</small></span><input value="750g" /></label>
+                    <label class="category-attribute-field"><span>包装方式<small>ele_package</small></span><select><option>瓶装</option></select></label>
+                    <label class="category-attribute-field"><span>产地<small>ele_origin</small></span><input value="中国" /></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>香型<small>ele_fragrance</small></span><select><option>清香型</option></select></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>主要功效<small>ele_effect</small></span><select><option>控油去屑</option></select></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>是否进口<small>ele_imported</small></span><select><option>否</option></select></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>备案编号<small>ele_record_no</small></span><input placeholder="请输入备案编号" /></label>
+                  </div>
+                  <button class="attribute-toggle" type="button" data-attribute-toggle>全部展开</button>
+                </section>
+              </div>
+
+              <div class="platform-category-group">
+                <div class="platform-category-row"><span class="required">抖店：</span><select><option>个人护理 / 洗发护发 / 洗发水</option></select><label><input type="checkbox" /> 自动匹配</label><a>取消类目属性</a></div>
+                <div class="attribute-recommend-state">已为推荐类目</div>
+                <section class="category-attribute-panel" data-attribute-panel="douyin">
+                  <header><strong>抖店类目属性</strong><button class="btn" type="button" data-recommend-attributes="抖店">一键推荐属性</button></header>
+                  <div class="category-attribute-grid">
+                    <label class="category-attribute-field"><span class="required">品牌<small>dou_brand</small></span><input value="飘柔" /></label>
+                    <label class="category-attribute-field"><span class="required">产品类型<small>dou_product_type</small></span><select><option>洗发水</option></select></label>
+                    <label class="category-attribute-field"><span class="required">国产/进口<small>dou_imported</small></span><select><option>国产</option></select></label>
+                    <label class="category-attribute-field"><span>适用发质<small>dou_hair_type</small></span><select><option>所有发质</option></select></label>
+                    <label class="category-attribute-field"><span>主要功效<small>dou_effect</small></span><select><option>控油去屑</option></select></label>
+                    <label class="category-attribute-field"><span>净含量<small>dou_net_content</small></span><input value="750g" /></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>特殊用途化妆品<small>dou_special</small></span><select><option>否</option></select></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>生产许可证号<small>dou_license</small></span><input placeholder="请输入生产许可证号" /></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>保质期<small>dou_shelf_life</small></span><input value="3年" /></label>
+                    <label class="category-attribute-field attribute-extra" hidden><span>产地<small>dou_origin</small></span><input value="中国" /></label>
+                  </div>
+                  <button class="attribute-toggle" type="button" data-attribute-toggle>全部展开</button>
+                </section>
+              </div>
+            </div>
+          </section>
+
+          <section class="create-section">
+            <h3>图片信息</h3>
+            <div class="image-form-row">
+              <div class="image-field-label required">商品图片</div>
+              <div class="image-field-content">
+                <div class="image-action-row">
+                  <button class="upload-btn">点击上传</button>
+                  <button class="upload-btn image-library-button" type="button" data-image-library-target="main">使用图片库</button>
+                </div>
+                <div class="thumb-list" id="mainImageList">
+                  <div class="upload-thumb" data-image-id="current-front"><img src="./assets/rejoice-front.svg" alt="飘柔洗发露正面" /><button type="button" aria-label="删除主图">×</button></div>
+                </div>
+                <p class="form-warning" id="mainImageWarning">饿了么：请至少上传2张图片</p>
+
+                <div class="image-recommend-compact" aria-label="饿了么推荐主图">
+                  <span class="compact-recommend-label">饿了么主图推荐</span>
+                  <div class="compact-recommend-body">
+                    <div class="compact-recommend-images">
+                      <button class="recommend-image-option" type="button" data-recommend-id="ele-back" data-image-src="./assets/rejoice-back.svg" data-image-alt="飘柔洗发露背面推荐图" aria-label="选择商品背面推荐图" aria-pressed="false">
+                        <span class="recommend-image-box"><img src="./assets/rejoice-back.svg" alt="飘柔洗发露背面推荐图" /><i>✓</i></span>
+                      </button>
+                      <button class="recommend-image-option" type="button" data-recommend-id="ele-side" data-image-src="./assets/rejoice-side.svg" data-image-alt="飘柔洗发露侧面推荐图" aria-label="选择商品侧面推荐图" aria-pressed="false">
+                        <span class="recommend-image-box"><img src="./assets/rejoice-side.svg" alt="飘柔洗发露侧面推荐图" /><i>✓</i></span>
+                      </button>
+                    </div>
+                    <div class="compact-recommend-actions">
+                      <button class="recommend-text-action" id="appendRecommendedMain" type="button">追加</button>
+                      <button class="recommend-text-action" id="replaceRecommendedMain" type="button">覆盖</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="image-form-row">
+              <div class="image-field-label">图文详情</div>
+              <div class="image-field-content">
+                <div class="image-action-row">
+                  <button class="upload-btn image-library-button" type="button" data-image-library-target="detail">使用图片库</button>
+                </div>
+                <div class="image-inline-list" id="detailImageList">
+                  <button class="large-upload">＋</button>
+                </div>
+                <p class="form-warning" id="detailImageWarning">饿了么：请上传图片</p>
+
+                <div class="image-recommend-compact detail-recommend-compact" aria-label="饿了么推荐详情图">
+                  <span class="compact-recommend-label">饿了么详情图推荐</span>
+                  <div class="compact-recommend-body">
+                    <div class="compact-recommend-images">
+                      <div class="recommend-detail-preview">
+                        <img src="./assets/rejoice-detail-recommended.svg" alt="饿了么推荐详情图" />
+                      </div>
+                    </div>
+                    <button class="recommend-text-action" id="replaceRecommendedDetail" type="button">覆盖</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="image-form-row">
+              <div class="image-field-label">饿了么特殊图片</div>
+              <div class="image-field-content special-image-block">
+                <p><span>标题：含化妆品备案编码的背签图</span></p>
+                <p>描述：化妆品商品清晰需展示商品背签图和化妆品备案编码</p>
+                <div class="image-action-row">
+                  <button class="upload-btn image-library-button" type="button" data-image-library-target="ele-special">使用图片库</button>
+                  <button class="upload-btn image-library-button" type="button" data-special-image-reference="ele-special">引用其他渠道</button>
+                </div>
+                <div class="image-inline-list special-image-list" data-special-image-list="ele-special">
+                  <button class="large-upload">＋</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="image-form-row">
+              <div class="image-field-label">美团特殊图片</div>
+              <div class="image-field-content special-image-block">
+                <p><span>标题：含化妆品备案编码等必要信息的商品图</span> <em>（不传将驳回下架）</em></p>
+                <p>描述：化妆品须清晰展示含有化妆品备案编码、产品名称、备案人等必要信息的商品背签图。</p>
+                <div class="image-action-row">
+                  <button class="upload-btn image-library-button" type="button" data-image-library-target="mt-special">使用图片库</button>
+                  <button class="upload-btn image-library-button" type="button" data-special-image-reference="mt-special">引用其他渠道</button>
+                </div>
+                <div class="image-inline-list special-image-list" data-special-image-list="mt-special">
+                  <button class="large-upload">＋</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="image-form-row">
+              <div class="image-field-label">抖店特殊图片</div>
+              <div class="image-field-content special-image-block">
+                <div class="image-action-row">
+                  <button class="upload-btn image-library-button" type="button" data-image-library-target="douyin-special">使用图片库</button>
+                  <button class="upload-btn image-library-button" type="button" data-special-image-reference="douyin-special">引用其他渠道</button>
+                </div>
+                <div class="image-inline-list special-image-list" data-special-image-list="douyin-special">
+                  <button class="large-upload" type="button">＋</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="create-section">
+            <h3>其他商品信息</h3>
+            <div class="other-product-info-fields">
+              <div class="must-sell-row">
+                <span class="must-sell-label label-with-tip" id="mustSellLabel">
+                  是否必卖：
+                  <span class="field-help" tabindex="0" aria-label="必卖商品在零售共场 App 中不可操作下架">i<span class="field-tip" id="mustSellNotice" role="tooltip">必卖商品在零售共场 App 中不可操作下架</span></span>
+                </span>
+                <div class="must-sell-options" role="radiogroup" aria-labelledby="mustSellLabel" aria-describedby="mustSellNotice">
+                  <label><input type="radio" name="mustSell" value="yes" /> 是</label>
+                  <label><input type="radio" name="mustSell" value="no" checked /> 否</label>
+                </div>
+              </div>
+              <div class="must-sell-row">
+                <span class="must-sell-label label-with-tip" id="jdFreshRefundDifferenceLabel">
+                  京东支持称重：
+                  <span class="field-help" tabindex="0" aria-label="默认：不支持，设置支持后京东支持称重退差">i<span class="field-tip" id="jdFreshRefundDifferenceNotice" role="tooltip">默认：不支持，设置支持后京东支持称重退差</span></span>
+                </span>
+                <div class="must-sell-options" role="radiogroup" aria-labelledby="jdFreshRefundDifferenceLabel" aria-describedby="jdFreshRefundDifferenceNotice">
+                  <label><input type="radio" name="jdFreshRefundDifference" value="yes" /> 是</label>
+                  <label><input type="radio" name="jdFreshRefundDifference" value="no" checked /> 否</label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="create-section">
+            <h3>门店信息</h3>
+            <div class="store-sync-row">
+              <label><input type="radio" name="storeSync" checked /> 按门店信息同步</label>
+              <label><input type="radio" name="storeSync" /> 设置门店信息同步</label>
+            </div>
+            <div class="store-info-lines">
+              <p><span>商品状态：</span>按门店商品状态</p>
+              <p><span>商品价格：</span>按门店商品价格</p>
+              <p><span>商品库存：</span>按门店商品库存</p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-mask" id="imageReplaceConfirmModal" aria-hidden="true">
+      <section class="modal image-replace-confirm" role="dialog" aria-modal="true" aria-labelledby="imageReplaceConfirmTitle">
+        <header class="modal-header">
+          <h2 id="imageReplaceConfirmTitle">确认覆盖图片</h2>
+          <button class="icon-button" id="closeImageReplaceConfirm" aria-label="关闭">×</button>
+        </header>
+        <div class="image-replace-confirm-body">
+          <span class="confirm-warning-icon">!</span>
+          <div>
+            <strong id="imageReplaceConfirmMessage">覆盖后现有图片将被替换</strong>
+            <p>覆盖后仍可通过图片右上角关闭按钮删除，再重新上传或选择推荐图片。</p>
+          </div>
+        </div>
+        <footer class="image-replace-confirm-footer">
+          <button class="btn" id="cancelImageReplaceConfirm" type="button">取消</button>
+          <button class="btn primary" id="confirmImageReplace" type="button">确认覆盖</button>
+        </footer>
+      </section>
+    </div>
+
+    <div class="modal-mask" id="imageLibraryModal" aria-hidden="true">
+      <section class="modal image-library-modal" role="dialog" aria-modal="true" aria-labelledby="imageLibraryTitle">
+        <header class="modal-header">
+          <div>
+            <h2 id="imageLibraryTitle">选择图片库素材</h2>
+            <p id="imageLibrarySubtitle">请选择一张图片</p>
+          </div>
+          <button class="icon-button" id="closeImageLibrary" aria-label="关闭">×</button>
+        </header>
+        <div class="image-library-body">
+          <div class="image-library-toolbar">
+            <span>全部图片</span>
+            <label><input type="search" placeholder="搜索商品名称或图片名称" /><button type="button">搜索</button></label>
+          </div>
+          <div class="image-library-grid" id="imageLibraryOptions"></div>
+        </div>
+        <footer class="image-library-footer">
+          <span id="imageLibrarySelection">请选择图片</span>
+          <div>
+            <button class="btn" id="cancelImageLibrary" type="button">取消</button>
+            <button class="btn primary" id="confirmImageLibrary" type="button">使用选中图片</button>
+          </div>
+        </footer>
+      </section>
+    </div>
+
+    <script src="./js/数据/商品目录.js?v=20260817-3"></script>
+    <script src="./js/核心/状态与DOM引用.js?v=20260907-3"></script>
+    <script src="./js/同城App/功能应用/IM消息数据.js"></script>
+    <script src="./js/PC页面/同城商品管理/图片库数据.js"></script>
+    <script src="./js/PC页面/同城生活/同城生活数据.js"></script>
+    <script src="./js/核心/通用UI.js"></script>
+    <script src="./js/PC页面/同城商品管理/商品表格与页签.js?v=20261110-menu-names-1"></script>
+    <script src="./js/PC页面/同城商品管理/同城门店商品.js?v=20260924-3"></script>
+    <script src="./assets/vendor/html2canvas-1.4.1.min.js"></script>
+    <script src="./js/同城App/同城App手机预览.js?v=20261114-screenshot-ellipsis"></script>
+    <script src="./js/同城App/功能应用/三方订单.js"></script>
+    <script src="./js/同城App/功能应用/IM消息.js"></script>
+    <script src="./js/同城App/功能应用/同城商品档案.js?v=20260907-3"></script>
+    <script src="./js/同城App/功能应用/同城商品.js?v=20261030-6"></script>
+    <script src="./js/核心/页面路由.js?v=20261110-sales-1"></script>
+    <script src="./js/PC页面/同城报表/同城商品缺勤报表.js"></script>
+    <script src="./js/PC页面/同城报表/同城商品缺货报表.js"></script>
+    <script src="./js/PC页面/同城报表/IM回复率统计.js"></script>
+    <script src="./js/PC页面/同城自定义任务.js"></script>
+    <script src="./js/PC页面/同城订单.js?v=20260814-4"></script>
+    <script src="./js/PC页面/老三方/商品池管理.js"></script>
+    <script src="./js/PC页面/同城商品管理/同城后台类目.js?v=20260814-3"></script>
+    <script src="./js/核心/建设中页面.js?v=20261110-sales-1"></script>
+    <script src="./js/PC页面/接口管理/京东接口列表.js"></script>
+    <script src="./js/PC页面/同城生活/同城生活页面.js"></script>
+    <script src="./js/PC页面/同城基础设置/同城业态.js?v=20260814-2"></script>
+    <script src="./js/PC页面/同城基础设置/同城上下架计划.js?v=20260908-1"></script>
+    <script src="./js/PC页面/同城基础设置/门店商品上架计划.js?v=20260831-3"></script>
+    <script src="./js/PC页面/同城基础设置/同城运维工具.js?v=20260728-3"></script>
+    <script src="./js/PC页面/同城基础设置/同城商家客服.js?v=20261112-pull-app"></script>
+    <script src="./js/核心/导航与标签.js?v=20260831-1"></script>
+    <script src="./js/PC页面/同城报表/订单热力图.js"></script>
+    <script src="./js/PC页面/通用页面事件.js?v=20260817-1"></script>
+    <script src="./js/PC页面/同城商品管理/商品列表事件.js?v=20261106-1"></script>
+    <script src="./js/PC页面/同城生活/同城生活事件.js"></script>
+    <script src="./js/PC页面/接口管理/京东接口调试.js"></script>
+    <script src="./js/PC页面/同城商品管理/商品表单图片.js?v=20261102-4"></script>
+    <script src="./js/PC页面/同城商品管理/同城库存.js?v=20260909-1"></script>
+    <script src="./js/PC页面/同城商品管理/同城库存操作日志.js?v=20260909-1"></script>
+    <script src="./js/核心/全局事件初始化.js"></script>
+  <script src="./js/同城App/功能应用/同城订单评价.js?v=20261030-2"></script>
+    <script src="./js/PC页面/同城基础设置/同城商品库存对比.js?v=20261109-1"></script>
+    <script src="./js/PC页面/同城报表/同城缺勤报表2.js?v=20261110-3"></script>
+    <script src="./js/PC页面/同城报表/同城销售总览.js?v=20261110-1"></script>
+    <script src="./js/PC页面/同城商品管理/同城商品.js?v=20261112-9"></script>
+    <script src="./js/PC页面/同城商品管理/同城商品创建.js?v=20261113-dou-ocr-copy"></script>
+    <script src="./js/核心/页面会话恢复.js?v=20261106-5"></script>
+    <script src="./js/同城App/功能应用/同城商品监控.js?v=20261114-monitor-rules"></script>
+    <script src="./js/同城App/同城App页签.js?v=20261113-product-monitor"></script>
+  </body>
+</html>

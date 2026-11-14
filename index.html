@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>同城商品管理 Design System v0.1</title>
     <link rel="stylesheet" href="./styles/tokens.css" />
-    <link rel="stylesheet" href="./styles.css?v=20261113-monitor-requirements-drag" />
+    <link rel="stylesheet" href="./styles.css?v=20261114-monitor-rules-white" />
   </head>
   <body>
     <div class="app-shell">
@@ -40,7 +40,7 @@
           <h2>同城商品管理</h2>
           <div class="module-links">
             <button data-page="同城商品">同城商品</button>
-            <button class="active" data-page="商品2">商品2</button>
+            <button class="active" data-page="商品2">商品（分渠道）2</button>
             <button data-page="同城商品管理(统一分类)">商品（统一）1</button>
             <button data-page="同城门店商品">同城门店商品</button>
             <button data-page="同城价格">同城价格</button>
@@ -403,63 +403,143 @@
     </div>
     <div class="cp-title pm-heading">
       <button type="button" data-pm-action="back" class="pm-back" aria-label="返回全部工具"></button>
-      <div><h1>每日Top销售监控</h1><p>同城云</p></div>
-      <button type="button" data-pm-action="help" class="pm-help" aria-label="监控说明"><span aria-hidden="true">?</span></button>
+      <h1>同城门店商品监控</h1>
+      <button type="button" data-pm-action="help" class="pm-help" aria-haspopup="dialog" aria-label="规则说明"><span aria-hidden="true">?</span></button>
     </div>
+    <div class="pm-scope" role="group" aria-label="日期、门店和渠道">
+      <button type="button" data-pm-filter="period" aria-label="日期 昨日" aria-expanded="false" aria-controls="pmFilterMenu">
+        <span id="pmPeriodValue">昨日</span><i aria-hidden="true"></i>
+      </button>
+      <button type="button" data-pm-filter="store" aria-label="门店 经开万达店" aria-expanded="false" aria-haspopup="dialog" aria-controls="pmStoreDialog">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 11v9h16v-9M3 7l2-3h14l2 3v4c0 2-3 3-4.5 1C15 14 13 14 12 12c-1 2-3 2-4.5 0C6 14 3 13 3 11V7Zm0 0h18M9 20v-5h6v5"/></svg>
+        <span id="pmStoreValue">经开万达店</span><i aria-hidden="true"></i>
+      </button>
+      <button type="button" data-pm-filter="channel" aria-label="渠道 全部渠道" aria-expanded="false" aria-controls="pmFilterMenu">
+        <span id="pmChannelValue">全部渠道</span><i aria-hidden="true"></i>
+      </button>
+    </div>
+    <div id="pmFilterMenu" class="pm-filter-menu" role="group" hidden></div>
   </header>
-
-  <div class="pm-filters" aria-label="监控筛选">
-    <div><span id="pmDateLabel">日期</span><button type="button" data-pm-filter="date" aria-labelledby="pmDateLabel pmDateValue"><span id="pmDateValue">2026-11-13</span><i aria-hidden="true"></i></button></div>
-    <div><span id="pmStoreLabel">门店</span><button type="button" data-pm-filter="store" aria-labelledby="pmStoreLabel pmStoreValue"><span id="pmStoreValue">全部门店</span><i aria-hidden="true"></i></button></div>
-    <div><span id="pmChannelLabel">渠道</span><button type="button" data-pm-filter="channel" aria-labelledby="pmChannelLabel pmChannelValue"><span id="pmChannelValue">全部渠道</span><i aria-hidden="true"></i></button></div>
-    <div><span id="pmRankLabel">榜单</span><button type="button" data-pm-filter="rank" aria-labelledby="pmRankLabel pmRankValue"><span id="pmRankValue">Top200</span><i aria-hidden="true"></i></button></div>
-  </div>
+  <button type="button" id="pmFilterBackdrop" class="pm-filter-backdrop" aria-label="关闭筛选" tabindex="-1" hidden></button>
 
   <div class="pm-scroll">
     <div id="pmOverview" class="pm-overview">
       <section class="pm-card pm-summary" aria-labelledby="pmSummaryTitle">
         <header>
           <span class="pm-summary-icon" aria-hidden="true" data-pm-icon="chart"></span>
-          <div><h2 id="pmSummaryTitle">销售Top200监控（9点）</h2><p>抓取时间：<time id="pmCaptureTime">2026-11-13 09:00</time></p></div>
+          <h2 id="pmSummaryTitle">销售top商品监控</h2>
         </header>
         <div class="pm-metrics">
-          <div><i data-pm-icon="tag" aria-hidden="true"></i><span>监控SKU数<strong id="pmSkuCount">200</strong></span></div>
-          <div><i data-pm-icon="bag" aria-hidden="true"></i><span>在售SKU数<strong id="pmAvailableCount">181</strong></span></div>
+          <div class="pm-sku-metric">
+            <i data-pm-icon="tag" aria-hidden="true"></i><span>监控SKU数<strong id="pmSkuCount">200</strong></span>
+            <button type="button" class="pm-more-trigger pm-sku-more" data-pm-more id="pmSkuMore" aria-label="监控SKU更多操作" aria-expanded="false" aria-controls="pmSkuActions"><span aria-hidden="true">⋯</span></button>
+            <div class="pm-more-actions" id="pmSkuActions" hidden>
+              <button type="button" data-pm-action="download-sku">下载</button>
+            </div>
+          </div>
+          <div><i data-pm-icon="bag" aria-hidden="true"></i><span>渠道在售数<strong id="pmAvailableCount">181</strong></span></div>
           <div><i data-pm-icon="pulse" aria-hidden="true"></i><span>出勤率<strong id="pmAttendance" class="pm-emphasis">90.5%</strong></span></div>
           <div><i data-pm-icon="coins" aria-hidden="true"></i><span>销售金额<strong id="pmSales" class="pm-emphasis">¥2,000.00</strong></span></div>
           <div><i data-pm-icon="order" aria-hidden="true"></i><span>订单数<strong id="pmOrders">35单</strong></span></div>
-          <button type="button" data-pm-action="details"><i data-pm-icon="box" aria-hidden="true"></i><span>下架明细<strong id="pmOffShelfCount" class="pm-emphasis">19条</strong></span><b class="pm-chevron" aria-hidden="true"></b></button>
+          <button type="button" data-pm-action="details"><i data-pm-icon="box" aria-hidden="true"></i><span>渠道下架数<strong id="pmOffShelfCount" class="pm-emphasis">19条</strong></span></button>
         </div>
       </section>
 
       <section class="pm-card pm-changes" aria-labelledby="pmChangesTitle">
-        <h2 id="pmChangesTitle" class="pm-section-title">状态变化</h2>
+        <header class="pm-changes-heading">
+          <h2 id="pmChangesTitle" class="pm-section-title">渠道状态变化</h2>
+          <span class="pm-updated-at">更新时间：<time id="pmUpdatedAt"></time></span>
+        </header>
         <div class="pm-change-grid">
-          <button type="button" data-pm-status="new"><i aria-hidden="true">−</i><span>新下架<strong id="pmNewCount">1<small>个</small></strong></span></button>
-          <button type="button" data-pm-status="restored"><i aria-hidden="true">✓</i><span>恢复上架<strong id="pmRestoredCount">2<small>个</small></strong></span></button>
-          <button type="button" data-pm-status="off"><i aria-hidden="true">!</i><span>持续下架<strong id="pmOngoingCount">18<small>个</small></strong></span></button>
+          <button class="pm-change-action" type="button" data-pm-status="new">
+            <i class="pm-change-icon" aria-hidden="true">−</i>
+            <span class="pm-change-label">新下架<strong id="pmNewCount">1<small>个</small></strong></span>
+          </button>
+          <button class="pm-change-action" type="button" data-pm-status="restored">
+            <i class="pm-change-icon" aria-hidden="true">✓</i>
+            <span class="pm-change-label">恢复上架<strong id="pmRestoredCount">2<small>个</small></strong></span>
+          </button>
+          <button class="pm-change-action" type="button" data-pm-status="off">
+            <i class="pm-change-icon" aria-hidden="true">!</i>
+            <span class="pm-change-label">持续下架<strong id="pmOngoingCount">18<small>个</small></strong></span>
+          </button>
         </div>
       </section>
 
       <section class="pm-card pm-details" aria-labelledby="pmDetailsTitle">
         <div class="pm-details-heading">
           <h2 id="pmDetailsTitle" class="pm-section-title">下架明细</h2>
-          <button type="button" class="pm-download" data-pm-action="download">下载商品明细</button>
+          <div class="pm-detail-more">
+            <button type="button" class="pm-more-trigger" data-pm-more aria-label="下架明细更多操作" aria-expanded="false" aria-controls="pmOverviewDownload"><span aria-hidden="true">⋯</span></button>
+            <div class="pm-more-actions" id="pmOverviewDownload" hidden>
+              <button type="button" data-pm-action="download">下载商品明细</button>
+            </div>
+          </div>
         </div>
         <div id="pmRows" class="pm-rows"></div>
-        <button type="button" class="pm-all" data-pm-action="details">查看全部明细 <b class="pm-chevron" aria-hidden="true"></b></button>
+        <p id="pmRowsCount" class="pm-sample-count" aria-live="polite" hidden></p>
       </section>
     </div>
 
     <section id="pmAllDetails" class="pm-card pm-details pm-full-details" aria-labelledby="pmAllTitle" hidden>
       <div class="pm-details-heading">
         <h2 class="pm-section-title" id="pmAllTitle">下架明细</h2>
-        <button type="button" class="pm-download" data-pm-action="download">下载商品明细</button>
+        <div class="pm-detail-more">
+          <button type="button" class="pm-more-trigger" data-pm-more aria-label="下架明细更多操作" aria-expanded="false" aria-controls="pmDetailDownload"><span aria-hidden="true">⋯</span></button>
+          <div class="pm-more-actions" id="pmDetailDownload" hidden>
+            <button type="button" data-pm-action="download">下载商品明细</button>
+          </div>
+        </div>
       </div>
       <div id="pmAllRows" class="pm-rows"></div>
-      <p id="pmSampleCount" class="pm-sample-count"></p>
+      <p id="pmSampleCount" class="pm-sample-count" aria-live="polite"></p>
     </section>
   </div>
+
+  <div id="pmStoreOverlay" class="pm-overlay pm-store-overlay" hidden>
+    <button type="button" class="pm-backdrop" data-pm-action="cancel-store" tabindex="-1" aria-label="关闭门店选择"></button>
+    <section id="pmStoreDialog" class="pm-sheet pm-store-sheet" role="dialog" aria-modal="true" aria-labelledby="pmStoreTitle">
+      <header>
+        <button type="button" data-pm-action="cancel-store">取消</button>
+        <h2 id="pmStoreTitle">选择门店</h2>
+        <button type="button" data-pm-action="confirm-store">确认</button>
+      </header>
+      <div class="pm-store-formats" role="group" aria-label="切换业态">
+        <span>切换业态</span>
+        <button type="button" data-pm-format="大卖场" aria-label="大卖场" aria-pressed="true">大卖场</button>
+        <button type="button" data-pm-format="恺源" aria-label="恺源" aria-pressed="false">恺源</button>
+      </div>
+      <div class="pm-store-list" id="pmStoreList" role="group" aria-label="门店列表"></div>
+    </section>
+  </div>
+
+  <template id="pmRulesTemplate">
+    <div class="pm-rules" tabindex="0" role="region" aria-label="统计规则正文">
+      <section>
+        <h3>查询范围</h3>
+        <dl>
+          <div><dt>昨日 / 近7天：</dt><dd>按对应周期销售金额排名，筛选 Top 商品。</dd></div>
+        </dl>
+      </section>
+      <section>
+        <h3>商品销售监控</h3>
+        <dl>
+          <div><dt>监控SKU数：</dt><dd>所选周期内销售金额排名 Top N 的商品数。</dd></div>
+          <div><dt>在售 / 下架数：</dt><dd>按昨日最终渠道状态统计。</dd></div>
+          <div><dt>出勤率：</dt><dd>取出勤率报表数据。</dd></div>
+          <div><dt>销售金额 / 订单数：</dt><dd>取销售报表对应周期数据。</dd></div>
+        </dl>
+      </section>
+      <section>
+        <h3>渠道状态变化</h3>
+        <dl>
+          <div><dt>新下架：</dt><dd>昨日上架，今日下架。</dd></div>
+          <div><dt>恢复上架：</dt><dd>昨日下架，今日上架。</dd></div>
+          <div><dt>持续下架：</dt><dd>昨日、今日均下架。</dd></div>
+        </dl>
+      </section>
+    </div>
+  </template>
 
   <div id="pmOverlay" class="pm-overlay" hidden>
     <button type="button" class="pm-backdrop" data-pm-action="dismiss" tabindex="-1" aria-label="关闭弹层"></button>
@@ -4900,7 +4980,7 @@
     <script src="./js/PC页面/同城商品管理/商品表格与页签.js?v=20261110-menu-names-1"></script>
     <script src="./js/PC页面/同城商品管理/同城门店商品.js?v=20260924-3"></script>
     <script src="./assets/vendor/html2canvas-1.4.1.min.js"></script>
-    <script src="./js/同城App/同城App手机预览.js?v=20261113-product-monitor"></script>
+    <script src="./js/同城App/同城App手机预览.js?v=20261114-screenshot-ellipsis"></script>
     <script src="./js/同城App/功能应用/三方订单.js"></script>
     <script src="./js/同城App/功能应用/IM消息.js"></script>
     <script src="./js/同城App/功能应用/同城商品档案.js?v=20260907-3"></script>
@@ -4938,7 +5018,7 @@
     <script src="./js/PC页面/同城商品管理/同城商品.js?v=20261112-9"></script>
     <script src="./js/PC页面/同城商品管理/同城商品创建.js?v=20261113-dou-ocr-copy"></script>
     <script src="./js/核心/页面会话恢复.js?v=20261106-5"></script>
-    <script src="./js/同城App/功能应用/同城商品监控.js?v=20261113-requirements-drag"></script>
+    <script src="./js/同城App/功能应用/同城商品监控.js?v=20261114-monitor-rules"></script>
     <script src="./js/同城App/同城App页签.js?v=20261113-product-monitor"></script>
   </body>
 </html>

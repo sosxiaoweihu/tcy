@@ -149,6 +149,19 @@ function normalizeTongchengScreenshotControl(element, clonedDocument) {
   return replacement;
 }
 
+function getTongchengScreenshotEllipsis(element, style) {
+  if (!element.hasAttribute?.("data-screenshot-ellipsis") || element.scrollWidth <= element.clientWidth) return null;
+  // 截图库不会绘制 CSS 省略号，按浏览器字体测量并生成截图专用文案。
+  const context = document.createElement("canvas").getContext("2d");
+  if (!context) return null;
+  context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+  const characters = Array.from(element.textContent);
+  while (characters.length && context.measureText(characters.join("") + "…").width > element.clientWidth) {
+    characters.pop();
+  }
+  return characters.join("").trimEnd() + "…";
+}
+
 async function createTongchengAppScreenshot(target) {
   if (typeof window.html2canvas !== "function") {
     throw new Error("截图服务加载失败，请检查网络后重试");
@@ -165,6 +178,7 @@ async function createTongchengAppScreenshot(target) {
           style.getPropertyValue(property),
           style.getPropertyValue("background-color")
         )]),
+      ellipsisText: getTongchengScreenshotEllipsis(element, style),
       unsafeImageSource: String(element.currentSrc || element.getAttribute?.("src") || "").startsWith("file:"),
       customControl: element.tagName === "INPUT" && ["checkbox", "radio"].includes(element.type)
         && [style.getPropertyValue("appearance"), style.getPropertyValue("-webkit-appearance")].includes("none"),
@@ -185,6 +199,7 @@ async function createTongchengAppScreenshot(target) {
       if (elements.length !== snapshots.length) throw new Error("页面内容已变化，请重新截图");
       elements.forEach((element, index) => {
         snapshots[index].styles.forEach(([property, value]) => element.style.setProperty(property, value));
+        if (snapshots[index].ellipsisText !== null) element.textContent = snapshots[index].ellipsisText;
         if (snapshots[index].unsafeImageSource && element.tagName === "IMG") {
           element.setAttribute("src", "data:image/gif;base64,R0lGODlhAQABAAAAACw=");
           element.removeAttribute("srcset");

@@ -1,259 +1,274 @@
 <section class="product-record-page" id="productRecordPage" aria-label="同城商品档案" hidden>
-  <header class="product-record-topbar">
-    <div class="product-record-statusbar">
-      <strong>16:58</strong>
-      <span class="product-record-device" aria-label="网络连接正常，电量100%"><i></i><b>HD</b><b>HD</b><em>100</em><u>ϟ</u></span>
-    </div>
-    <div class="product-record-titlebar">
-      <button id="productRecordBack" type="button" aria-label="返回全部工具"><span></span></button>
-      <h1>待完善商品列表</h1>
-    </div>
-  </header>
+              <header class="product-record-topbar">
+                <div class="product-record-statusbar">
+                  <strong>16:58</strong>
+                  <span class="product-record-device" aria-label="网络连接正常，电量100%"><i></i><b>HD</b><b>HD</b><em>100</em><u>ϟ</u></span>
+                </div>
+                <div class="product-record-titlebar">
+                  <button id="productRecordBack" type="button" aria-label="返回全部工具"><span></span></button>
+                  <h1>待完善商品列表</h1>
+                </div>
+                  </header>
 
-  <section class="product-record-format-switch" aria-label="当前业态">
-    <span>当前业态</span>
-    <button id="productRecordFormatTrigger" type="button" aria-haspopup="dialog" aria-expanded="false">
-      <strong id="productRecordFormatName">大卖场</strong><em id="productRecordFormatAction">切换</em><i aria-hidden="true"></i>
-    </button>
-  </section>
+                  <section class="product-record-format-switch" aria-label="当前业态">
+                    <span>当前业态</span>
+                    <button id="productRecordFormatTrigger" type="button" aria-haspopup="dialog" aria-expanded="false">
+                      <strong id="productRecordFormatName">大卖场</strong><em id="productRecordFormatAction">切换</em><i aria-hidden="true"></i>
+                    </button>
+                  </section>
 
-  <div class="product-record-searchbar">
-    <label><i aria-hidden="true"></i><input id="productRecordSearch" type="search" aria-label="商品名称、条码或编码查询" placeholder="请输入商品名称/条码/编码查询" /></label>
-    <button id="productRecordScan" type="button" aria-label="扫码查询"><i aria-hidden="true"></i></button>
-  </div>
+                  <div class="product-record-searchbar">
+                <label><i aria-hidden="true"></i><input id="productRecordSearch" type="search" aria-label="商品名称、条码或编码查询" placeholder="请输入商品名称/条码/编码查询" /></label>
+                <button id="productRecordScan" type="button" aria-label="扫码查询"><i aria-hidden="true"></i></button>
+              </div>
 
-  <nav class="product-record-tabs" aria-label="待完善类型">
-    <button class="active" type="button" data-product-record-issue="main"><span>主图少于2张</span><em>99+</em></button>
-    <button type="button" data-product-record-issue="special"><span>特殊图缺失</span><em>99+</em></button>
-    <button type="button" data-product-record-issue="attribute"><span>类目属性缺失</span><em>99+</em></button>
-    <button type="button" data-product-record-issue="detail"><span>图文详情缺失</span><em>99+</em></button>
-  </nav>
+              <nav class="product-record-tabs" aria-label="待完善类型">
+                <button class="active" type="button" data-product-record-issue="main"><span>主图少于2张</span><em>99+</em></button>
+                <button type="button" data-product-record-issue="special"><span>特殊图缺失</span><em>99+</em></button>
+                <button type="button" data-product-record-issue="attribute"><span>类目属性缺失</span><em>99+</em></button>
+                <button type="button" data-product-record-issue="detail"><span>图文详情缺失</span><em>99+</em></button>
+              </nav>
 
-  <div class="product-record-workspace">
-    <aside class="product-record-categories" aria-label="商品类目">
-      <button class="active" type="button" data-product-record-category="全部商品">全部商品</button>
-      <button type="button" data-product-record-category="蔬菜菌菇">蔬菜菌菇<span></span></button>
-      <button type="button" data-product-record-category="时令水果">时令水果<span></span></button>
-      <button type="button" data-product-record-category="肉蛋水产">肉蛋水产<span></span></button>
-      <button type="button" data-product-record-category="熟食面点">熟食面点<span></span></button>
-      <button type="button" data-product-record-category="乳品奶酪">乳品奶酪<span></span></button>
-      <button type="button" data-product-record-category="居家清洁">居家清洁<span></span></button>
-      <button type="button" data-product-record-category="休闲食品">休闲食品<span></span></button>
-      <button type="button" data-product-record-category="酒水饮料">酒水饮料<span></span></button>
-      <button type="button" data-product-record-category="粮油调味">粮油调味<span></span></button>
-      <button type="button" data-product-record-category="营养冲调">营养冲调<span></span></button>
-      <button type="button" data-product-record-category="烘焙速食">烘焙速食<span></span></button>
-      <button type="button" data-product-record-category="美妆个护">美妆个护<span></span></button>
-    </aside>
-    <div class="product-record-list" id="productRecordList" role="region" aria-label="待完善商品列表" aria-live="polite"></div>
-  </div>
+                  <div class="product-record-workspace">
+                <aside class="product-record-categories" aria-label="商品类目">
+                  <button class="active" type="button" data-product-record-category="全部商品">全部商品</button>
+                  <button type="button" data-product-record-category="蔬菜菌菇">蔬菜菌菇<span></span></button>
+                  <button type="button" data-product-record-category="时令水果">时令水果<span></span></button>
+                  <button type="button" data-product-record-category="肉蛋水产">肉蛋水产<span></span></button>
+                  <button type="button" data-product-record-category="熟食面点">熟食面点<span></span></button>
+                  <button type="button" data-product-record-category="乳品奶酪">乳品奶酪<span></span></button>
+                  <button type="button" data-product-record-category="居家清洁">居家清洁<span></span></button>
+                  <button type="button" data-product-record-category="休闲食品">休闲食品<span></span></button>
+                  <button type="button" data-product-record-category="酒水饮料">酒水饮料<span></span></button>
+                  <button type="button" data-product-record-category="粮油调味">粮油调味<span></span></button>
+                  <button type="button" data-product-record-category="营养冲调">营养冲调<span></span></button>
+                  <button type="button" data-product-record-category="烘焙速食">烘焙速食<span></span></button>
+                  <button type="button" data-product-record-category="美妆个护">美妆个护<span></span></button>
+                </aside>
+                    <div class="product-record-list" id="productRecordList" role="region" aria-label="待完善商品列表" aria-live="polite"></div>
+                  </div>
 
-  <div class="product-record-format-sheet" id="productRecordFormatSheet" hidden>
-    <button class="product-record-format-backdrop" id="productRecordFormatBackdrop" type="button" aria-label="关闭业态选择"></button>
-    <section class="product-record-format-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordFormatTitle">
-      <header><h2 id="productRecordFormatTitle">选择业态</h2><button id="productRecordFormatClose" type="button" aria-label="关闭业态选择">×</button></header>
-      <ul class="product-record-format-list" id="productRecordFormatList" aria-label="业态列表"></ul>
-      <footer aria-hidden="true"></footer>
-    </section>
-  </div>
+                  <div class="product-record-format-sheet" id="productRecordFormatSheet" hidden>
+                    <button class="product-record-format-backdrop" id="productRecordFormatBackdrop" type="button" aria-label="关闭业态选择"></button>
+                    <section class="product-record-format-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordFormatTitle">
+                      <header><h2 id="productRecordFormatTitle">选择业态</h2><button id="productRecordFormatClose" type="button" aria-label="关闭业态选择">×</button></header>
+                      <ul class="product-record-format-list" id="productRecordFormatList" aria-label="业态列表"></ul>
+                      <footer aria-hidden="true"></footer>
+                    </section>
+                  </div>
 
-  <section class="product-record-detail-view" id="productRecordDetailView" aria-label="完善商品资料" hidden>
-    <header class="product-record-topbar">
-      <div class="product-record-statusbar">
-        <strong>17:02</strong>
-        <span class="product-record-device" aria-label="网络连接正常，电量100%"><i></i><b>HD</b><b>HD</b><em>100</em><u>ϟ</u></span>
-      </div>
-      <div class="product-record-titlebar">
-        <button id="productRecordDetailBack" type="button" aria-label="返回待完善商品列表"><span></span></button>
-        <h1>完善商品资料</h1>
-      </div>
-    </header>
+                  <section class="product-record-detail-view" id="productRecordDetailView" aria-label="完善商品资料" hidden>
+                <header class="product-record-topbar">
+                  <div class="product-record-statusbar">
+                    <strong>17:02</strong>
+                    <span class="product-record-device" aria-label="网络连接正常，电量100%"><i></i><b>HD</b><b>HD</b><em>100</em><u>ϟ</u></span>
+                  </div>
+                  <div class="product-record-titlebar">
+                    <button id="productRecordDetailBack" type="button" aria-label="返回待完善商品列表"><span></span></button>
+                    <h1>完善商品资料</h1>
+                  </div>
+                </header>
 
-    <div class="product-record-detail-scroll" id="productRecordDetailScroll">
-      <section class="product-record-detail-card product-record-detail-product">
-        <h2 id="productRecordDetailName">320g杏花村月饼礼盒</h2>
-        <p>商品ID： <span id="productRecordDetailId">1683631758541637</span></p>
-        <p>条码： <span id="productRecordDetailBarcode">6921569600019</span></p>
-        <p>编码： <span id="productRecordDetailCode">737628</span></p>
-      </section>
+                <div class="product-record-detail-scroll" id="productRecordDetailScroll">
+                  <section class="product-record-detail-card product-record-detail-product">
+                    <h2 id="productRecordDetailName">320g杏花村月饼礼盒</h2>
+                    <p>商品ID： <span id="productRecordDetailId">1683631758541637</span></p>
+                    <p>条码： <span id="productRecordDetailBarcode">6921569600019</span></p>
+                    <p>编码： <span id="productRecordDetailCode">737628</span></p>
+                  </section>
 
-      <section class="product-record-detail-card product-record-main-card" aria-labelledby="productRecordMainImagesTitle">
-        <h2 id="productRecordMainImagesTitle">商品主图</h2>
-        <div class="product-record-main-images" id="productRecordMainImages"></div>
-      </section>
+                  <section class="product-record-detail-card product-record-main-card" aria-labelledby="productRecordMainImagesTitle">
+                    <h2 id="productRecordMainImagesTitle">商品主图</h2>
+                    <div class="product-record-main-images" id="productRecordMainImages"></div>
+                  </section>
 
-      <section class="product-record-detail-card product-record-detail-images-card" aria-labelledby="productRecordDetailImagesTitle">
-        <h2 id="productRecordDetailImagesTitle">商品详情图</h2>
-        <div class="product-record-detail-images" id="productRecordDetailImages"></div>
-      </section>
+                  <section class="product-record-detail-card product-record-detail-images-card" aria-labelledby="productRecordDetailImagesTitle">
+                    <h2 id="productRecordDetailImagesTitle">商品详情图</h2>
+                    <div class="product-record-detail-images" id="productRecordDetailImages"></div>
+                  </section>
 
-      <section class="product-record-detail-card product-record-special-card">
-        <h2>美团特殊图</h2>
-        <div class="product-record-special-field">
-          <h3>礼袋图 <button type="button" data-product-record-image-help="礼袋图" aria-label="查看礼袋图说明">?</button></h3>
-          <div class="product-record-special-uploads" id="productRecordMeituanUploads">
-            <label class="product-record-upload-tile">
-              <input id="productRecordMeituanImageInput" type="file" accept="image/*" hidden />
-              <span>＋</span><em>上传</em><img alt="美团礼袋图预览" hidden />
-            </label>
-          </div>
-          <p class="product-record-missing-tip">特殊图缺失，建议完善</p>
-        </div>
-      </section>
+                  <section class="product-record-detail-card product-record-special-card">
+                    <h2>美团特殊图</h2>
+                    <div class="product-record-special-field">
+                      <h3>礼袋图 <button type="button" data-product-record-image-help="礼袋图" aria-label="查看礼袋图说明">?</button></h3>
+                      <div class="product-record-special-uploads" id="productRecordMeituanUploads">
+                        <label class="product-record-upload-tile">
+                          <input id="productRecordMeituanImageInput" type="file" accept="image/*" hidden />
+                          <span>＋</span><em>上传</em><img alt="美团礼袋图预览" hidden />
+                        </label>
+                      </div>
+                      <p class="product-record-missing-tip">特殊图缺失，建议完善</p>
+                    </div>
+                  </section>
 
-      <section class="product-record-detail-card product-record-special-card">
-        <h2>淘宝特殊图</h2>
-        <div class="product-record-special-field">
-          <h3>背签图 <button type="button" data-product-record-image-help="背签图" aria-label="查看背签图说明">?</button></h3>
-          <div class="product-record-special-uploads" id="productRecordTaobaoUploads">
-            <div class="product-record-existing-image" id="productRecordTaobaoExistingImage">
-              <span class="product-record-back-label" aria-label="已有背签图"><i>杏花村</i><b>背签</b><em>320g</em></span>
-              <button id="productRecordRemoveTaobaoImage" type="button" aria-label="删除已有背签图">×</button>
-            </div>
-            <label class="product-record-upload-tile">
-              <input id="productRecordTaobaoImageInput" type="file" accept="image/*" hidden />
-              <span>＋</span><em>上传</em><img alt="淘宝背签图预览" hidden />
-            </label>
-          </div>
-        </div>
-      </section>
+                  <section class="product-record-detail-card product-record-special-card">
+                    <h2>淘宝特殊图</h2>
+                    <div class="product-record-special-field">
+                      <h3>背签图 <button type="button" data-product-record-image-help="背签图" aria-label="查看背签图说明">?</button></h3>
+                      <div class="product-record-special-uploads" id="productRecordTaobaoUploads">
+                        <div class="product-record-existing-image" id="productRecordTaobaoExistingImage">
+                          <span class="product-record-back-label" aria-label="已有背签图"><i>杏花村</i><b>背签</b><em>320g</em></span>
+                          <button id="productRecordRemoveTaobaoImage" type="button" aria-label="删除已有背签图">×</button>
+                        </div>
+                        <label class="product-record-upload-tile">
+                          <input id="productRecordTaobaoImageInput" type="file" accept="image/*" hidden />
+                          <span>＋</span><em>上传</em><img alt="淘宝背签图预览" hidden />
+                        </label>
+                      </div>
+                    </div>
+                  </section>
 
-      <section class="product-record-detail-card product-record-attributes-card">
-        <article class="product-record-attribute-block">
-          <header><h2>美团类目属性 <small>（已填6/16）</small></h2></header>
-          <button class="product-record-attribute-entry" type="button" data-product-record-fill-channel="美团"><span>请填写类目属性</span><i></i></button>
-          <div class="product-record-attribute-values" id="productRecordMeituanAttributes">
-            <dl>
-              <div><dt>品牌</dt><dd>杏花村</dd></div><div><dt>包装方式</dt><dd>礼盒装</dd></div><div><dt>保质期</dt><dd>90</dd></div>
-              <div data-product-record-attribute-extra><dt>商品类别</dt><dd>其他</dd></div><div data-product-record-attribute-extra><dt>月饼馅类别</dt><dd>其他</dd></div><div data-product-record-attribute-extra><dt>储藏条件</dt><dd>常温</dd></div>
-            </dl>
-            <button type="button" data-product-record-attribute-toggle="productRecordMeituanAttributes">收起更多 <i></i></button>
-          </div>
-        </article>
+                  <section class="product-record-detail-card product-record-attributes-card">
+                    <article class="product-record-attribute-block">
+                      <header><h2>美团类目属性 <small>（已填6/16）</small></h2></header>
+                      <button class="product-record-attribute-entry" type="button" data-product-record-fill-channel="美团"><span>请填写类目属性</span><i></i></button>
+                      <div class="product-record-attribute-values" id="productRecordMeituanAttributes">
+                        <dl>
+                          <div><dt>品牌</dt><dd>杏花村</dd></div>
+                          <div><dt>包装方式</dt><dd>礼盒装</dd></div>
+                          <div><dt>保质期</dt><dd>90</dd></div>
+                          <div data-product-record-attribute-extra><dt>商品类别</dt><dd>其他</dd></div>
+                          <div data-product-record-attribute-extra><dt>月饼馅类别</dt><dd>其他</dd></div>
+                          <div data-product-record-attribute-extra><dt>储藏条件</dt><dd>常温</dd></div>
+                        </dl>
+                        <button type="button" data-product-record-attribute-toggle="productRecordMeituanAttributes">收起更多 <i></i></button>
+                      </div>
+                    </article>
 
-        <article class="product-record-attribute-block">
-          <header><h2>淘宝类目属性 <small>（已填8/20）</small></h2></header>
-          <button class="product-record-attribute-entry" type="button" data-product-record-fill-channel="淘宝"><span>请填写类目属性</span><i></i></button>
-          <div class="product-record-attribute-values" id="productRecordTaobaoAttributes">
-            <dl>
-              <div><dt>品牌</dt><dd>杏花村（食品）</dd></div><div><dt>保质期</dt><dd>90天</dd></div><div><dt>包装方式</dt><dd>盒装</dd></div>
-              <div data-product-record-attribute-extra><dt>单件净含量</dt><dd>320g</dd></div><div data-product-record-attribute-extra><dt>售卖方式</dt><dd>预包装</dd></div><div data-product-record-attribute-extra><dt>储藏条件</dt><dd>常温</dd></div>
-              <div data-product-record-attribute-extra><dt>月饼馅类别</dt><dd>其他</dd></div><div data-product-record-attribute-extra><dt>商品类别</dt><dd>其他</dd></div>
-            </dl>
-            <button type="button" data-product-record-attribute-toggle="productRecordTaobaoAttributes">收起更多 <i></i></button>
-          </div>
-        </article>
+                    <article class="product-record-attribute-block">
+                      <header><h2>淘宝类目属性 <small>（已填8/20）</small></h2></header>
+                      <button class="product-record-attribute-entry" type="button" data-product-record-fill-channel="淘宝"><span>请填写类目属性</span><i></i></button>
+                      <div class="product-record-attribute-values" id="productRecordTaobaoAttributes">
+                        <dl>
+                          <div><dt>品牌</dt><dd>杏花村（食品）</dd></div>
+                          <div><dt>保质期</dt><dd>90天</dd></div>
+                          <div><dt>包装方式</dt><dd>盒装</dd></div>
+                          <div data-product-record-attribute-extra><dt>单件净含量</dt><dd>320g</dd></div>
+                          <div data-product-record-attribute-extra><dt>售卖方式</dt><dd>预包装</dd></div>
+                          <div data-product-record-attribute-extra><dt>储藏条件</dt><dd>常温</dd></div>
+                          <div data-product-record-attribute-extra><dt>月饼馅类别</dt><dd>其他</dd></div>
+                          <div data-product-record-attribute-extra><dt>商品类别</dt><dd>其他</dd></div>
+                        </dl>
+                        <button type="button" data-product-record-attribute-toggle="productRecordTaobaoAttributes">收起更多 <i></i></button>
+                      </div>
+                    </article>
 
-        <article class="product-record-attribute-block">
-          <header><h2>抖店类目属性 <small>（已填1/7）</small></h2></header>
-          <button class="product-record-attribute-entry" type="button" data-product-record-fill-channel="抖店"><span>请填写类目属性</span><i></i></button>
-          <div class="product-record-attribute-values" id="productRecordDouyinAttributes">
-            <dl><div><dt>品牌</dt><dd>其它</dd></div></dl>
-            <button type="button" data-product-record-attribute-toggle="productRecordDouyinAttributes">收起更多 <i></i></button>
-          </div>
-        </article>
-      </section>
-    </div>
+                    <article class="product-record-attribute-block">
+                      <header><h2>抖店类目属性 <small>（已填1/7）</small></h2></header>
+                      <button class="product-record-attribute-entry" type="button" data-product-record-fill-channel="抖店"><span>请填写类目属性</span><i></i></button>
+                      <div class="product-record-attribute-values" id="productRecordDouyinAttributes">
+                        <dl><div><dt>品牌</dt><dd>其它</dd></div></dl>
+                        <button type="button" data-product-record-attribute-toggle="productRecordDouyinAttributes">收起更多 <i></i></button>
+                      </div>
+                    </article>
+                  </section>
+                </div>
 
-    <footer class="product-record-detail-footer"><button id="productRecordDetailConfirm" type="button">确定</button></footer>
+                <footer class="product-record-detail-footer">
+                  <button id="productRecordDetailConfirm" type="button">确定</button>
+                </footer>
 
-    <section class="product-record-attribute-editor" id="productRecordAttributeEditor" aria-label="渠道类目属性" hidden>
-      <header class="product-record-topbar">
-        <div class="product-record-statusbar">
-          <strong>17:00</strong>
-          <span class="product-record-device" aria-label="网络连接正常，电量100%"><i></i><b>HD</b><b>HD</b><em>100</em><u>ϟ</u></span>
-        </div>
-        <div class="product-record-titlebar">
-          <button id="productRecordAttributeBack" type="button" aria-label="返回完善商品资料"><span></span></button>
-          <h1 id="productRecordAttributeTitle">美团类目属性</h1>
-        </div>
-      </header>
-      <div class="product-record-attribute-editor-scroll" id="productRecordAttributeEditorScroll">
-        <p class="product-record-attribute-notice">所有必填属性需全部填写且准确，非必填项填写越多越有利于商品曝光</p>
-        <section class="product-record-attribute-fields" id="productRecordAttributeFields" aria-label="类目属性列表"></section>
-      </div>
-      <footer class="product-record-attribute-editor-footer">
-        <button id="productRecordUseRecommended" type="button">使用推荐</button><button id="productRecordSaveAttributes" type="button">保存</button>
-      </footer>
-      <div class="product-record-attribute-input-sheet" id="productRecordAttributeInputSheet" hidden>
-        <button class="product-record-attribute-input-backdrop" id="productRecordAttributeInputBackdrop" type="button" aria-label="关闭属性编辑"></button>
-        <section aria-labelledby="productRecordAttributeInputTitle">
-          <header><h2 id="productRecordAttributeInputTitle">填写属性</h2><button id="productRecordAttributeInputClose" type="button" aria-label="关闭">×</button></header>
-          <label><span id="productRecordAttributeInputLabel">属性值</span><input id="productRecordAttributeInput" type="text" maxlength="60" /></label>
-          <footer><button id="productRecordAttributeInputCancel" type="button">取消</button><button id="productRecordAttributeInputConfirm" type="button">确定</button></footer>
-        </section>
-      </div>
-      <div class="product-record-fabric-sheet" id="productRecordFabricSheet" hidden>
-        <button class="product-record-fabric-backdrop" id="productRecordFabricBackdrop" type="button" aria-label="关闭面料成份编辑"></button>
-        <section class="product-record-fabric-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordFabricTitle">
-          <header><h2 id="productRecordFabricTitle">面料成份</h2><button id="productRecordFabricClose" type="button" aria-label="关闭面料成份">×</button></header>
-          <div class="product-record-fabric-content">
-            <p class="product-record-fabric-example" aria-label="填写示例：聚酯纤维100%">聚酯纤维 100 %</p>
-            <div id="productRecordFabricRows" class="product-record-fabric-rows"></div>
-            <button id="productRecordFabricAdd" class="product-record-fabric-add" type="button">添加新内容</button>
-            <p id="productRecordFabricError" class="product-record-fabric-error" role="alert" hidden></p>
-          </div>
-          <footer><button id="productRecordFabricConfirm" type="button">确定</button></footer>
-        </section>
-      </div>
-      <div class="product-record-brand-sheet" id="productRecordBrandSheet" hidden>
-        <button class="product-record-brand-backdrop" id="productRecordBrandBackdrop" type="button" aria-label="关闭品牌选择遮罩"></button>
-        <section class="product-record-brand-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordBrandTitle">
-          <header><h2 id="productRecordBrandTitle">品牌</h2><button id="productRecordBrandClose" type="button" aria-label="关闭品牌选择">×</button></header>
-          <form class="product-record-brand-search" id="productRecordBrandSearchForm" role="search" aria-label="搜索品牌">
-            <label><i aria-hidden="true"></i><input id="productRecordBrandSearch" type="search" placeholder="请输入关键字" aria-label="品牌关键字" autocomplete="off" /></label>
-            <button type="submit">搜索</button>
-          </form>
-          <ul class="product-record-brand-list" id="productRecordBrandList" aria-label="品牌列表"></ul>
-          <p class="product-record-brand-empty" id="productRecordBrandEmpty" role="status" hidden>暂无匹配品牌，请更换关键字</p>
-          <footer aria-hidden="true"></footer>
-        </section>
-      </div>
-      <div class="product-record-category-sheet" id="productRecordCategorySheet" hidden>
-        <button class="product-record-category-backdrop" id="productRecordCategoryBackdrop" type="button" aria-label="关闭商品类别选择遮罩"></button>
-        <section class="product-record-category-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordCategoryTitle">
-          <header><h2 id="productRecordCategoryTitle">商品类别</h2><button id="productRecordCategoryClose" type="button" aria-label="关闭商品类别选择">×</button></header>
-          <form class="product-record-category-search" id="productRecordCategorySearchForm" role="search" aria-label="搜索商品类别">
-            <label><i aria-hidden="true"></i><input id="productRecordCategorySearch" type="search" placeholder="请输入关键字" aria-label="商品类别关键字" autocomplete="off" /></label>
-            <button type="submit">搜索</button>
-          </form>
-          <div class="product-record-category-content">
-            <div class="product-record-category-list" id="productRecordCategoryList" role="group" aria-label="可多选商品类别"></div>
-            <p class="product-record-category-empty" id="productRecordCategoryEmpty" role="status" hidden>暂无匹配类别，请更换关键字</p>
-            <p class="product-record-category-error" id="productRecordCategoryError" role="alert" hidden></p>
-          </div>
-          <footer><button id="productRecordCategoryCancel" type="button">取消</button><button id="productRecordCategoryConfirm" type="button">确定</button></footer>
-        </section>
-      </div>
-      <div class="product-record-alcohol-sheet" id="productRecordAlcoholSheet" hidden>
-        <button class="product-record-alcohol-backdrop" id="productRecordAlcoholBackdrop" type="button" aria-label="关闭酒精度编辑遮罩"></button>
-        <section class="product-record-alcohol-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordAlcoholTitle">
-          <header><h2 id="productRecordAlcoholTitle">酒精度</h2><button id="productRecordAlcoholClose" type="button" aria-label="关闭酒精度编辑">×</button></header>
-          <div class="product-record-alcohol-content">
-            <p class="product-record-alcohol-example" aria-label="填写示例：40%vol">40%vol</p>
-            <div class="product-record-alcohol-row">
-              <input id="productRecordAlcoholInput" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="请输入数值" aria-label="酒精度数值" />
-              <span class="product-record-alcohol-unit"><select id="productRecordAlcoholUnit" aria-label="酒精度单位" required><option value="" selected disabled>请选择</option><option value="%vol">%vol</option></select></span>
-            </div>
-            <p class="product-record-alcohol-error" id="productRecordAlcoholError" role="alert" hidden></p>
-          </div>
-          <footer><button id="productRecordAlcoholConfirm" type="button">确定</button></footer>
-        </section>
-      </div>
-      <div class="product-record-fruit-sheet" id="productRecordFruitVarietySheet" hidden>
-        <button class="product-record-fruit-backdrop" id="productRecordFruitVarietyBackdrop" type="button" aria-label="关闭属性选项"></button>
-        <section class="product-record-fruit-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordFruitVarietyTitle">
-          <header><h2 id="productRecordFruitVarietyTitle">口味</h2><button id="productRecordFruitVarietyClose" type="button" aria-label="关闭属性选项">×</button></header>
-          <ul class="product-record-fruit-list" id="productRecordFruitVarietyList" aria-label="属性选项列表"></ul>
-          <button class="product-record-fruit-create" id="productRecordFruitVarietyCreate" type="button">＋新建口味</button>
-          <div class="product-record-fruit-create-row" id="productRecordFruitVarietyCreateRow" hidden>
-            <input id="productRecordFruitVarietyInput" type="text" maxlength="60" placeholder="请输入自定义属性" aria-label="自定义属性名称" />
-            <button class="confirm" id="productRecordFruitVarietyCreateConfirm" type="button" aria-label="确认新建">✓</button>
-            <button class="cancel" id="productRecordFruitVarietyCreateCancel" type="button" aria-label="取消新建">×</button>
-          </div>
-          <footer aria-hidden="true"></footer>
-        </section>
-      </div>
-    </section>
-  </section>
-</section>
+                <section class="product-record-attribute-editor" id="productRecordAttributeEditor" aria-label="渠道类目属性" hidden>
+                  <header class="product-record-topbar">
+                    <div class="product-record-statusbar">
+                      <strong>17:00</strong>
+                      <span class="product-record-device" aria-label="网络连接正常，电量100%"><i></i><b>HD</b><b>HD</b><em>100</em><u>ϟ</u></span>
+                    </div>
+                    <div class="product-record-titlebar">
+                      <button id="productRecordAttributeBack" type="button" aria-label="返回完善商品资料"><span></span></button>
+                      <h1 id="productRecordAttributeTitle">美团类目属性</h1>
+                    </div>
+                  </header>
+
+                  <div class="product-record-attribute-editor-scroll" id="productRecordAttributeEditorScroll">
+                    <p class="product-record-attribute-notice">所有必填属性需全部填写且准确，非必填项填写越多越有利于商品曝光</p>
+                    <section class="product-record-attribute-fields" id="productRecordAttributeFields" aria-label="类目属性列表"></section>
+                  </div>
+
+                  <footer class="product-record-attribute-editor-footer">
+                    <button id="productRecordUseRecommended" type="button">使用推荐</button>
+                    <button id="productRecordSaveAttributes" type="button">保存</button>
+                  </footer>
+
+                  <div class="product-record-attribute-input-sheet" id="productRecordAttributeInputSheet" hidden>
+                    <button class="product-record-attribute-input-backdrop" id="productRecordAttributeInputBackdrop" type="button" aria-label="关闭属性编辑"></button>
+                    <section aria-labelledby="productRecordAttributeInputTitle">
+                      <header><h2 id="productRecordAttributeInputTitle">填写属性</h2><button id="productRecordAttributeInputClose" type="button" aria-label="关闭">×</button></header>
+                      <label><span id="productRecordAttributeInputLabel">属性值</span><input id="productRecordAttributeInput" type="text" maxlength="60" /></label>
+                      <footer><button id="productRecordAttributeInputCancel" type="button">取消</button><button id="productRecordAttributeInputConfirm" type="button">确定</button></footer>
+                    </section>
+                  </div>
+                  <div class="product-record-fabric-sheet" id="productRecordFabricSheet" hidden>
+                    <button class="product-record-fabric-backdrop" id="productRecordFabricBackdrop" type="button" aria-label="关闭面料成份编辑"></button>
+                    <section class="product-record-fabric-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordFabricTitle">
+                      <header><h2 id="productRecordFabricTitle">面料成份</h2><button id="productRecordFabricClose" type="button" aria-label="关闭面料成份">×</button></header>
+                      <div class="product-record-fabric-content">
+                        <p class="product-record-fabric-example" aria-label="填写示例：聚酯纤维100%">聚酯纤维 100 %</p>
+                        <div id="productRecordFabricRows" class="product-record-fabric-rows"></div>
+                        <button id="productRecordFabricAdd" class="product-record-fabric-add" type="button">添加新内容</button>
+                        <p id="productRecordFabricError" class="product-record-fabric-error" role="alert" hidden></p>
+                      </div>
+                      <footer><button id="productRecordFabricConfirm" type="button">确定</button></footer>
+                    </section>
+                  </div>
+                  <div class="product-record-brand-sheet" id="productRecordBrandSheet" hidden>
+                    <button class="product-record-brand-backdrop" id="productRecordBrandBackdrop" type="button" aria-label="关闭品牌选择遮罩"></button>
+                    <section class="product-record-brand-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordBrandTitle">
+                      <header><h2 id="productRecordBrandTitle">品牌</h2><button id="productRecordBrandClose" type="button" aria-label="关闭品牌选择">×</button></header>
+                      <form class="product-record-brand-search" id="productRecordBrandSearchForm" role="search" aria-label="搜索品牌">
+                        <label><i aria-hidden="true"></i><input id="productRecordBrandSearch" type="search" placeholder="请输入关键字" aria-label="品牌关键字" autocomplete="off" /></label>
+                        <button type="submit">搜索</button>
+                      </form>
+                      <ul class="product-record-brand-list" id="productRecordBrandList" aria-label="品牌列表"></ul>
+                      <p class="product-record-brand-empty" id="productRecordBrandEmpty" role="status" hidden>暂无匹配品牌，请更换关键字</p>
+                      <footer aria-hidden="true"></footer>
+                    </section>
+                  </div>
+                  <div class="product-record-category-sheet" id="productRecordCategorySheet" hidden>
+                    <button class="product-record-category-backdrop" id="productRecordCategoryBackdrop" type="button" aria-label="关闭商品类别选择遮罩"></button>
+                    <section class="product-record-category-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordCategoryTitle">
+                      <header><h2 id="productRecordCategoryTitle">商品类别</h2><button id="productRecordCategoryClose" type="button" aria-label="关闭商品类别选择">×</button></header>
+                      <form class="product-record-category-search" id="productRecordCategorySearchForm" role="search" aria-label="搜索商品类别">
+                        <label><i aria-hidden="true"></i><input id="productRecordCategorySearch" type="search" placeholder="请输入关键字" aria-label="商品类别关键字" autocomplete="off" /></label>
+                        <button type="submit">搜索</button>
+                      </form>
+                      <div class="product-record-category-content">
+                        <div class="product-record-category-list" id="productRecordCategoryList" role="group" aria-label="可多选商品类别"></div>
+                        <p class="product-record-category-empty" id="productRecordCategoryEmpty" role="status" hidden>暂无匹配类别，请更换关键字</p>
+                        <p class="product-record-category-error" id="productRecordCategoryError" role="alert" hidden></p>
+                      </div>
+                      <footer><button id="productRecordCategoryCancel" type="button">取消</button><button id="productRecordCategoryConfirm" type="button">确定</button></footer>
+                    </section>
+                  </div>
+                  <div class="product-record-alcohol-sheet" id="productRecordAlcoholSheet" hidden>
+                    <button class="product-record-alcohol-backdrop" id="productRecordAlcoholBackdrop" type="button" aria-label="关闭酒精度编辑遮罩"></button>
+                    <section class="product-record-alcohol-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordAlcoholTitle">
+                      <header><h2 id="productRecordAlcoholTitle">酒精度</h2><button id="productRecordAlcoholClose" type="button" aria-label="关闭酒精度编辑">×</button></header>
+                      <div class="product-record-alcohol-content">
+                        <p class="product-record-alcohol-example" aria-label="填写示例：40%vol">40%vol</p>
+                        <div class="product-record-alcohol-row">
+                          <input id="productRecordAlcoholInput" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="请输入数值" aria-label="酒精度数值" />
+                          <span class="product-record-alcohol-unit"><select id="productRecordAlcoholUnit" aria-label="酒精度单位" required><option value="" selected disabled>请选择</option><option value="%vol">%vol</option></select></span>
+                        </div>
+                        <p class="product-record-alcohol-error" id="productRecordAlcoholError" role="alert" hidden></p>
+                      </div>
+                      <footer><button id="productRecordAlcoholConfirm" type="button">确定</button></footer>
+                    </section>
+                  </div>
+                  <div class="product-record-fruit-sheet" id="productRecordFruitVarietySheet" hidden>
+                    <button class="product-record-fruit-backdrop" id="productRecordFruitVarietyBackdrop" type="button" aria-label="关闭属性选项"></button>
+                    <section class="product-record-fruit-panel" role="dialog" aria-modal="true" aria-labelledby="productRecordFruitVarietyTitle">
+                      <header><h2 id="productRecordFruitVarietyTitle">口味</h2><button id="productRecordFruitVarietyClose" type="button" aria-label="关闭属性选项">×</button></header>
+                      <ul class="product-record-fruit-list" id="productRecordFruitVarietyList" aria-label="属性选项列表"></ul>
+                      <button class="product-record-fruit-create" id="productRecordFruitVarietyCreate" type="button">＋新建口味</button>
+                      <div class="product-record-fruit-create-row" id="productRecordFruitVarietyCreateRow" hidden>
+                        <input id="productRecordFruitVarietyInput" type="text" maxlength="60" placeholder="请输入自定义属性" aria-label="自定义属性名称" />
+                        <button class="confirm" id="productRecordFruitVarietyCreateConfirm" type="button" aria-label="确认新建">✓</button>
+                        <button class="cancel" id="productRecordFruitVarietyCreateCancel" type="button" aria-label="取消新建">×</button>
+                      </div>
+                      <footer aria-hidden="true"></footer>
+                    </section>
+                  </div>
+                </section>
+              </section>
+            </section>

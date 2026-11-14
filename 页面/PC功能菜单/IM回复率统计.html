@@ -1,34 +1,104 @@
 <section class="im-reply-rate-report-page" id="imReplyRateReportPage" hidden>
-  <div class="im-reply-rate-notice" id="imReplyRateNotice"><i>i</i><span>仅包含人工回复率统计，系统自动回复不计算入内</span><button id="imReplyRateNoticeClose" type="button" aria-label="关闭提示">×</button></div>
-  <div class="im-reply-rate-filters">
-    <label><span>门店</span><select class="im-reply-rate-filter-select im-reply-rate-store-select" id="imReplyRateStoreFilter" aria-label="选择门店"><option value="全部门店">全部门店</option><option value="昕怡">昕怡</option><option value="扬州">扬州</option></select></label>
-    <label><span>渠道</span><select class="im-reply-rate-filter-select" id="imReplyRateChannelFilter"><option>全部渠道</option><option>京东秒送</option><option>美团外卖</option><option>饿了么</option><option>抖店</option></select></label>
-    <label><span>统计日期范围</span><div class="im-reply-rate-period"><div class="im-reply-rate-range"><span id="imReplyRateDateStart">2026-06-20</span><span>→</span><span id="imReplyRateDateEnd">2026-07-20</span></div><div class="im-reply-rate-quick-periods"><button type="button" data-im-reply-period="今天">今天</button><button type="button" data-im-reply-period="昨天">昨天</button><button type="button" data-im-reply-period="近7天">近7天</button><button class="active" type="button" data-im-reply-period="近30天">近30天</button></div></div></label>
-    <div class="im-reply-rate-actions"><button class="btn primary" id="imReplyRateQueryButton" type="button">查 询</button><button class="btn" id="imReplyRateResetButton" type="button">重 置</button></div>
-  </div>
-  <section class="im-reply-rate-metrics" aria-label="回复率指标">
-    <article class="im-reply-rate-metric"><h2>1分钟回复率<i class="im-rate-help" tabindex="0" data-tooltip="1分钟回复率，即（1分钟内回复顾客消息次数/当日需要回复顾客的消息次数）*100%；" aria-label="1分钟回复率，即1分钟内回复顾客消息次数除以当日需要回复顾客的消息次数，乘以100%。">?</i></h2><strong>4.38%</strong><span class="im-rate-ring" style="--rate-angle:16deg"></span></article>
-    <article class="im-reply-rate-metric"><h2>3分钟回复率<i class="im-rate-help" tabindex="0" data-tooltip="3分钟回复率，即（3分钟内回复顾客消息次数/当日需要回复顾客的消息次数）*100%；" aria-label="3分钟回复率，即3分钟内回复顾客消息次数除以当日需要回复顾客的消息次数，乘以100%。">?</i></h2><strong>5.84%</strong><span class="im-rate-ring" style="--rate-angle:21deg"></span></article>
-    <article class="im-reply-rate-metric"><h2>5分钟回复率<i class="im-rate-help" tabindex="0" data-tooltip="5分钟回复率，即（5分钟内回复顾客消息次数/当日需要回复顾客的消息次数）*100%；" aria-label="5分钟回复率，即5分钟内回复顾客消息次数除以当日需要回复顾客的消息次数，乘以100%。">?</i></h2><strong>8.76%</strong><span class="im-rate-ring" style="--rate-angle:32deg"></span></article>
-  </section>
-  <section class="im-reply-rate-table-panel">
-    <div class="im-reply-rate-table-actions"><button class="btn" id="imReplyRateExportButton" type="button">导 出</button><button class="btn" id="imReplyRateExportHistoryButton" type="button">导出记录</button></div>
-    <div class="im-reply-rate-table-wrap">
-      <table class="im-reply-rate-table">
-        <thead><tr><th>门店编码</th><th>门店名称</th><th>1分钟回复率<i class="im-rate-help">?</i></th><th>3分钟回复率<i class="im-rate-help">?</i></th><th>5分钟回复率<i class="im-rate-help">?</i></th><th>1分钟回复次数<i class="im-rate-help">?</i></th><th>3分钟回复次数<i class="im-rate-help">?</i></th><th>5分钟回复次数<i class="im-rate-help">?</i></th><th>总消息次数<i class="im-rate-help">?</i></th></tr></thead>
-        <tbody id="imReplyRateTableBody">
-          <tr data-store="昕怡 万豪店" data-channel="美团外卖"><td>0026</td><td>万豪店</td><td>0%</td><td>0%</td><td>0%</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
-          <tr data-store="扬州 万润发华夏店" data-channel="美团外卖"><td>0001</td><td>万润发华夏店</td><td>8.33%</td><td>8.33%</td><td>16.67%</td><td>1</td><td>1</td><td>2</td><td>12</td></tr>
-          <tr data-store="扬州 龙泉店" data-channel="京东秒送"><td>0034</td><td>龙泉店</td><td>20%</td><td>20%</td><td>20%</td><td>1</td><td>1</td><td>1</td><td>5</td></tr>
-          <tr data-store="昕怡 蜀冈万达店" data-channel="饿了么"><td>1001</td><td>蜀冈万达店</td><td>0%</td><td>0%</td><td>0%</td><td>0</td><td>0</td><td>0</td><td>27</td></tr>
-          <tr data-store="扬州 仪征宝能店" data-channel="抖店"><td>1002</td><td>仪征宝能店</td><td>0%</td><td>0%</td><td>0%</td><td>0</td><td>0</td><td>0</td><td>35</td></tr>
-          <tr data-store="昕怡 万润发伊顿蓝庭店" data-channel="美团外卖"><td>0039</td><td>万润发伊顿蓝庭店</td><td>0%</td><td>0%</td><td>0%</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
-          <tr data-store="扬州 万润发国贸店" data-channel="饿了么"><td>0002</td><td>万润发国贸店</td><td>10.81%</td><td>16.22%</td><td>24.32%</td><td>4</td><td>6</td><td>9</td><td>37</td></tr>
-          <tr data-store="昕怡 帝景国际店" data-channel="京东秒送"><td>0040</td><td>帝景国际店</td><td>0%</td><td>0%</td><td>0%</td><td>0</td><td>0</td><td>0</td><td>19</td></tr>
-        </tbody>
-      </table>
-      <div class="im-reply-rate-empty" id="imReplyRateEmptyState" hidden>暂无符合条件的数据</div>
-    </div>
-    <div class="im-reply-rate-pagination"><span id="imReplyRatePaginationTotal">共 8 条</span><select aria-label="每页条数"><option>20条/页</option></select><button type="button" aria-label="上一页">‹</button><button class="active" type="button">1</button><button type="button" aria-label="下一页">›</button></div>
-  </section>
-</section>
+          <div class="im-reply-rate-notice" id="imReplyRateNotice">
+            <i>i</i>
+            <span>仅包含人工回复率统计，系统自动回复不计算入内</span>
+            <button id="imReplyRateNoticeClose" type="button" aria-label="关闭提示">×</button>
+          </div>
+
+          <div class="im-reply-rate-filters">
+            <label>
+              <span>门店</span>
+              <select class="im-reply-rate-filter-select im-reply-rate-store-select" id="imReplyRateStoreFilter" aria-label="选择门店">
+                <option value="全部门店">全部门店</option>
+                <option value="昕怡">昕怡</option>
+                <option value="扬州">扬州</option>
+              </select>
+            </label>
+            <label>
+              <span>渠道</span>
+              <select class="im-reply-rate-filter-select" id="imReplyRateChannelFilter">
+                <option>全部渠道</option>
+                <option>京东秒送</option>
+                <option>美团外卖</option>
+                <option>饿了么</option>
+                <option>抖店</option>
+              </select>
+            </label>
+            <label>
+              <span>统计日期范围</span>
+              <div class="im-reply-rate-period">
+                <div class="im-reply-rate-range"><span id="imReplyRateDateStart">2026-06-20</span><span>→</span><span id="imReplyRateDateEnd">2026-07-20</span></div>
+                <div class="im-reply-rate-quick-periods" aria-label="快捷日期">
+                  <button type="button" data-im-reply-period="今天">今天</button>
+                  <button type="button" data-im-reply-period="昨天">昨天</button>
+                  <button type="button" data-im-reply-period="近7天">近7天</button>
+                  <button class="active" type="button" data-im-reply-period="近30天">近30天</button>
+                </div>
+              </div>
+            </label>
+            <div class="im-reply-rate-actions">
+              <button class="btn primary" id="imReplyRateQueryButton" type="button">查 询</button>
+              <button class="btn" id="imReplyRateResetButton" type="button">重 置</button>
+            </div>
+          </div>
+
+          <section class="im-reply-rate-metrics" aria-label="回复率指标">
+            <article class="im-reply-rate-metric">
+              <h2>1分钟回复率<i class="im-rate-help" tabindex="0" data-tooltip="1分钟回复率，即（1分钟内回复顾客消息次数/当日需要回复顾客的消息次数）*100%；" aria-label="1分钟回复率，即1分钟内回复顾客消息次数除以当日需要回复顾客的消息次数，乘以100%。">?</i></h2>
+              <strong>4.38%</strong>
+              <span class="im-rate-ring" style="--rate-angle:16deg"></span>
+            </article>
+            <article class="im-reply-rate-metric">
+              <h2>3分钟回复率<i class="im-rate-help" tabindex="0" data-tooltip="3分钟回复率，即（3分钟内回复顾客消息次数/当日需要回复顾客的消息次数）*100%；" aria-label="3分钟回复率，即3分钟内回复顾客消息次数除以当日需要回复顾客的消息次数，乘以100%。">?</i></h2>
+              <strong>5.84%</strong>
+              <span class="im-rate-ring" style="--rate-angle:21deg"></span>
+            </article>
+            <article class="im-reply-rate-metric">
+              <h2>5分钟回复率<i class="im-rate-help" tabindex="0" data-tooltip="5分钟回复率，即（5分钟内回复顾客消息次数/当日需要回复顾客的消息次数）*100%；" aria-label="5分钟回复率，即5分钟内回复顾客消息次数除以当日需要回复顾客的消息次数，乘以100%。">?</i></h2>
+              <strong>8.76%</strong>
+              <span class="im-rate-ring" style="--rate-angle:32deg"></span>
+            </article>
+          </section>
+
+          <section class="im-reply-rate-table-panel">
+            <div class="im-reply-rate-table-actions">
+              <button class="btn" id="imReplyRateExportButton" type="button">导 出</button>
+              <button class="btn" id="imReplyRateExportHistoryButton" type="button">导出记录</button>
+            </div>
+            <div class="im-reply-rate-table-wrap">
+              <table class="im-reply-rate-table">
+                <thead>
+                  <tr>
+                    <th>门店编码</th>
+                    <th>门店名称</th>
+                    <th>1分钟回复率<i class="im-rate-help">?</i></th>
+                    <th>3分钟回复率<i class="im-rate-help">?</i></th>
+                    <th>5分钟回复率<i class="im-rate-help">?</i></th>
+                    <th>1分钟回复次数<i class="im-rate-help">?</i></th>
+                    <th>3分钟回复次数<i class="im-rate-help">?</i></th>
+                    <th>5分钟回复次数<i class="im-rate-help">?</i></th>
+                    <th>总消息次数<i class="im-rate-help">?</i></th>
+                  </tr>
+                </thead>
+                <tbody id="imReplyRateTableBody">
+                  <tr data-store="昕怡 万豪店" data-channel="美团外卖"><td>0026</td><td>万豪店</td><td>0%</td><td>0%</td><td>0%</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                  <tr data-store="扬州 万润发华夏店" data-channel="美团外卖"><td>0001</td><td>万润发华夏店</td><td>8.33%</td><td>8.33%</td><td>16.67%</td><td>1</td><td>1</td><td>2</td><td>12</td></tr>
+                  <tr data-store="扬州 龙泉店" data-channel="京东秒送"><td>0034</td><td>龙泉店</td><td>20%</td><td>20%</td><td>20%</td><td>1</td><td>1</td><td>1</td><td>5</td></tr>
+                  <tr data-store="昕怡 蜀冈万达店" data-channel="饿了么"><td>1001</td><td>蜀冈万达店</td><td>0%</td><td>0%</td><td>0%</td><td>0</td><td>0</td><td>0</td><td>27</td></tr>
+                  <tr data-store="扬州 仪征宝能店" data-channel="抖店"><td>1002</td><td>仪征宝能店</td><td>0%</td><td>0%</td><td>0%</td><td>0</td><td>0</td><td>0</td><td>35</td></tr>
+                  <tr data-store="昕怡 万润发伊顿蓝庭店" data-channel="美团外卖"><td>0039</td><td>万润发伊顿蓝庭店</td><td>0%</td><td>0%</td><td>0%</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                  <tr data-store="扬州 万润发国贸店" data-channel="饿了么"><td>0002</td><td>万润发国贸店</td><td>10.81%</td><td>16.22%</td><td>24.32%</td><td>4</td><td>6</td><td>9</td><td>37</td></tr>
+                  <tr data-store="昕怡 帝景国际店" data-channel="京东秒送"><td>0040</td><td>帝景国际店</td><td>0%</td><td>0%</td><td>0%</td><td>0</td><td>0</td><td>0</td><td>19</td></tr>
+                </tbody>
+              </table>
+              <div class="im-reply-rate-empty" id="imReplyRateEmptyState" hidden>暂无符合条件的数据</div>
+            </div>
+            <div class="im-reply-rate-pagination">
+              <span id="imReplyRatePaginationTotal">共 8 条</span>
+              <select aria-label="每页条数"><option>20条/页</option></select>
+              <button type="button" aria-label="上一页">‹</button>
+              <button class="active" type="button">1</button>
+              <button type="button" aria-label="下一页">›</button>
+            </div>
+          </section>
+        </section>

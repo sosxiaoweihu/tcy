@@ -1,13 +1,81 @@
 <section class="content" id="tongchengPage">
           <section class="card business-card">
             <div class="section-title">切换业态</div>
-            <div class="radio-group" role="radiogroup" aria-label="切换业态">
+            <div class="radio-group" role="radiogroup" aria-label="业态">
               <label><input type="radio" name="business" value="大卖场" checked /> 大卖场</label>
               <label><input type="radio" name="business" value="怡源" /> 测试</label>
             </div>
           </section>
 
-          <section class="card filter-card">
+          <section class="card standard-product-filter-card" aria-label="同城商品筛选">
+            <div class="standard-product-filter-grid" id="standardProductFilterGrid">
+              <label>
+                <span>商品编码：</span>
+                <input id="standardProductCodeInput" placeholder="精确查询" />
+              </label>
+              <label>
+                <span>商品条码：</span>
+                <input id="standardProductBarcodeInput" placeholder="精准查询" />
+              </label>
+              <label>
+                <span>商品名称：</span>
+                <input id="standardProductNameInput" placeholder="模糊匹配查询" />
+              </label>
+              <div class="standard-product-filter-actions">
+                <button class="btn outline" id="standardProductResetButton" type="button">重置</button>
+                <button class="btn primary" id="standardProductQueryButton" type="button">查询</button>
+                <button class="standard-product-filter-toggle" id="standardProductFilterToggle" type="button" aria-label="收起筛选" aria-expanded="true">⌃</button>
+              </div>
+
+              <label class="standard-product-filter-secondary">
+                <span>前台类目：</span>
+                <select><option>请选择</option></select>
+              </label>
+              <label class="standard-product-filter-secondary">
+                <span>后台类目：</span>
+                <select><option>请选择</option></select>
+              </label>
+              <label class="standard-product-filter-secondary">
+                <span>商品状态：</span>
+                <select><option>请选择</option></select>
+              </label>
+
+              <label class="standard-product-filter-secondary standard-product-type-filter">
+                <span>商品类型：</span>
+                <select><option>请选择</option></select>
+              </label>
+              <label class="standard-product-filter-secondary standard-combo-filter">
+                <span>组合商品：</span>
+                <select><option>请选择</option></select>
+              </label>
+              <label class="standard-product-filter-secondary standard-channel-filter">
+                <span>渠道标签：</span>
+                <span class="standard-channel-selects">
+                  <select aria-label="渠道标签一"><option>请选择</option></select>
+                  <select aria-label="渠道标签二"><option>请选择</option></select>
+                  <select aria-label="渠道标签三"><option>请选择</option></select>
+                </span>
+              </label>
+              <label class="standard-product-filter-secondary standard-must-sell-filter">
+                <span>是否必卖：</span>
+                <select id="standardMustSellFilter">
+                  <option value="">请选择</option>
+                  <option value="yes">是</option>
+                  <option value="no">否</option>
+                </select>
+              </label>
+              <label class="standard-product-filter-secondary unified-weight-filter">
+                <span>京东支持称重：</span>
+                <select id="unifiedJdWeightFilter">
+                  <option value="">请选择</option>
+                  <option value="yes">是</option>
+                  <option value="no">否</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <section class="card filter-card unified-product-filter-card">
             <div class="filter-grid compact" id="filterGrid">
               <label>
                 <span>商品编码</span>
@@ -71,11 +139,11 @@
           <section class="table-section">
             <div class="table-toolbar">
               <div class="product-tabs" id="productTabs">
-                <button class="active" data-tab="all">全部商品（19541）</button>
-                <button data-tab="exception">异常商品（11656）</button>
+                <button class="active" data-tab="all"><span class="standard-product-only">全部商品（13949）</span><span class="unified-product-only">全部商品（19541）</span></button>
+                <button data-tab="exception"><span class="standard-product-only">异常商品（<em>9375</em>）</span><span class="unified-product-only">异常商品（11656）</span></button>
               </div>
               <div class="toolbar-actions">
-                <button class="btn outline" id="createProductButton">创建商品</button>
+                <button class="btn outline" id="createProductButton"><span class="standard-create-symbol">＋</span>创建商品</button>
                 <button class="btn">批量创建商品</button>
                 <div class="menu-wrap">
                   <button class="btn primary" id="moreButton">更多操作</button>
@@ -103,7 +171,38 @@
                 <div class="category-tree" id="categoryTree"></div>
               </aside>
               <div class="product-table-area">
-                <div class="table-card">
+                <div class="table-card standard-product-table-card">
+                  <table class="standard-product-table">
+                    <colgroup>
+                      <col style="width: 300px" />
+                      <col style="width: 185px" />
+                      <col style="width: 140px" />
+                      <col style="width: 150px" />
+                      <col style="width: 110px" />
+                      <col style="width: 160px" />
+                      <col style="width: 170px" />
+                      <col style="width: 140px" />
+                      <col style="width: 185px" />
+                      <col style="width: 100px" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th><span>商品信息</span><button class="resize-handle" aria-label="调整商品信息列宽"></button></th>
+                        <th><span>规格</span><button class="resize-handle" aria-label="调整规格列宽"></button></th>
+                        <th><span>前台类目</span><button class="resize-handle" aria-label="调整前台类目列宽"></button></th>
+                        <th><span>后台类目</span><button class="resize-handle" aria-label="调整后台类目列宽"></button></th>
+                        <th><span>商品状态</span><button class="resize-handle" aria-label="调整商品状态列宽"></button></th>
+                        <th><span>同步状态</span><button class="resize-handle" aria-label="调整同步状态列宽"></button></th>
+                        <th><span>铺品门店</span><button class="resize-handle" aria-label="调整铺品门店列宽"></button></th>
+                        <th><span>渠道标签</span><button class="resize-handle" aria-label="调整渠道标签列宽"></button></th>
+                        <th><span>更新时间</span><button class="resize-handle" aria-label="调整更新时间列宽"></button></th>
+                        <th class="sticky-col"><span>操作</span></th>
+                      </tr>
+                    </thead>
+                    <tbody id="standardProductTable"></tbody>
+                  </table>
+                </div>
+                <div class="table-card unified-product-table-card">
                   <table>
                     <colgroup>
                       <col style="width: 150px" />
@@ -132,8 +231,20 @@
                 </div>
               </div>
               <div class="pagination-bar">
-                <div class="pagination-total">共 19542 条</div>
-                <div class="pagination">
+                <div class="pagination-total"><span class="standard-product-only">共 13949 条</span><span class="unified-product-only">共 19542 条</span></div>
+                <div class="pagination standard-product-only">
+                  <button aria-label="上一页">‹</button>
+                  <button class="active">1</button>
+                  <button>2</button>
+                  <button>3</button>
+                  <button>4</button>
+                  <button>5</button>
+                  <button>6</button>
+                  <span>…</span>
+                  <button>1395</button>
+                  <button aria-label="下一页">›</button>
+                </div>
+                <div class="pagination unified-product-only">
                   <button aria-label="上一页">‹</button>
                   <button>1</button>
                   <button>2</button>
@@ -147,84 +258,11 @@
                 </div>
                 <label class="page-jump">
                   <span>前往</span>
-                  <input value="4" inputmode="numeric" />
+                  <input class="standard-product-only" value="1" inputmode="numeric" aria-label="同城商品页码" />
+                  <input class="unified-product-only" value="4" inputmode="numeric" aria-label="统一分类页码" />
                   <span>页</span>
                 </label>
               </div>
             </div>
           </section>
         </section>
-    <div class="modal-mask batch-special-image-mask" id="batchSpecialImageModal" aria-hidden="true">
-      <section class="modal batch-special-image-modal" role="dialog" aria-modal="true" aria-labelledby="batchSpecialImageTitle">
-        <header class="modal-header batch-special-image-header">
-          <h2 id="batchSpecialImageTitle">批量维护特殊图片</h2>
-          <button class="icon-button" id="closeBatchSpecialImageModal" type="button" aria-label="关闭批量维护特殊图片弹窗">×</button>
-        </header>
-        <div class="batch-special-image-tabs" role="tablist" aria-label="特殊图片上传方式">
-          <button id="batchSpecialImageZipTab" class="batch-special-image-tab active" type="button" role="tab" aria-selected="true" aria-controls="batchSpecialImageZipPanel" data-special-image-tab="zip">压缩包上传</button>
-          <button id="batchSpecialImageReferenceTab" class="batch-special-image-tab" type="button" role="tab" aria-selected="false" aria-controls="batchSpecialImageReferencePanel" tabindex="-1" data-special-image-tab="reference">引用渠道上传</button>
-        </div>
-        <div class="batch-special-image-body">
-          <div id="batchSpecialImageZipPanel" role="tabpanel" aria-labelledby="batchSpecialImageZipTab">
-            <p class="batch-special-image-warning">注意：上传特殊图片后，将覆盖原本已经上传的特殊图片，覆盖后不可还原，请谨慎操作！！！</p>
-            <section class="batch-special-image-step">
-              <h3><span>1</span>修改图片命名</h3>
-              <ol class="batch-special-image-rules">
-                <li>图片命名必须为“商品编码_特殊图类型_序号、商品条码_特殊图类型_序号”，（例:69247185234_5_1.jpg），相同商品的特殊图片上传最多不超过4张，排名按照名称尾号数字越小越靠前展示。<em>若图片命名为"ERP编码"，则默认排在同批的最后一位。</em></li>
-                <li class="important">
-                  数字代表特殊图类型：<br />
-                  美团外卖渠道：背签图=8，配料/营养成分图=5，医疗器械注册证/备案凭证=10，吊牌及洗唛=7，质量认证图=4，尺寸图=13，尺码表=14，包装标签图=3，纺织品使用说明=6。<br />
-                  淘宝闪购渠道：含化妆品备案编码的背签图=1，配料/营养成分图=2，医疗器械注册证/备案凭证=3，质量认证图=4，背签图=6，特殊医学配方食品注册证书=7，食品类背签图=8
-                </li>
-                <li>图片尺寸建议为800*800px，图片格式<em>仅支持jpg、jpeg、png、gif（仅美团，其它渠道不展示），其他文件格式无法上传，上传后将自动过滤，小于2M，文件总大小不超过100M。</em></li>
-                <li class="important">单个图片最大5M，图片名不能重复，图片文件夹压缩成.zip文件包上传。</li>
-                <li class="important">图片上传会进行尺寸缩放，请不要修改图片后缀，否则无法识别。</li>
-              </ol>
-            </section>
-            <section class="batch-special-image-step batch-special-image-upload-step">
-              <h3><span>2</span>打包图片上传并提交系统</h3>
-              <p>将上传的图片放于1个文件夹(请勿创建子文件夹且文件夹名称不能有中文)后压缩为zip格式上传。上传时需选择正确的命名方式，否则将无法导入系统。</p>
-              <input id="batchSpecialImageFileInput" type="file" accept=".zip,application/zip,application/x-zip-compressed" hidden />
-              <div class="batch-special-image-upload-row">
-                <button class="btn batch-special-image-upload-button" id="batchSpecialImageUploadButton" type="button">点击上传</button>
-                <span class="batch-special-image-file-name" id="batchSpecialImageFileName" hidden></span>
-              </div>
-              <p class="batch-special-image-file-tip"><span>i</span>仅支持zip格式，总文件大小不超过100M。</p>
-              <div class="batch-special-image-channel-field">
-                <span>选择渠道：</span>
-                <div class="batch-special-image-channel-options" role="radiogroup" aria-label="选择特殊图片上传渠道">
-                  <label><input type="radio" name="batchSpecialImageChannel" value="meituan" checked /> 美团外卖</label>
-                  <label><input type="radio" name="batchSpecialImageChannel" value="taobao" /> 淘宝闪购</label>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div id="batchSpecialImageReferencePanel" class="batch-special-image-reference-panel" role="tabpanel" aria-labelledby="batchSpecialImageReferenceTab" hidden>
-            <aside class="batch-special-image-instructions" aria-label="上传说明">
-              <span class="batch-special-image-instructions-icon" aria-hidden="true">i</span>
-              <div>
-                <h4>上传说明</h4>
-                <ol>
-                  <li>下载模板上传商品文件。通过引用指定渠道的特殊图片复制到需要上传的渠道，引用渠道无特殊图片将过滤不上传。</li>
-                  <li>目前支持特殊图片的上传，如化妆品背签图、食品配料成分的背签图。</li>
-                </ol>
-              </div>
-            </aside>
-            <section class="batch-special-image-step">
-              <h3>上传商品</h3>
-              <input id="batchSpecialImageExcelInput" type="file" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden />
-              <div class="batch-special-image-upload-row">
-                <button class="btn" id="batchSpecialImageExcelButton" type="button">导入Excel文件</button>
-                <a class="btn batch-special-image-template-button" id="batchSpecialImageTemplateDownload" href="../../assets/templates/特殊图片商品导入模板.xlsx" download="特殊图片商品导入模板.xlsx">下载模板</a>
-                <span class="batch-special-image-file-name" id="batchSpecialImageExcelFileName" hidden></span>
-              </div>
-              <p class="batch-special-image-excel-tip">支持 .xls、.xlsx 格式文件</p>
-            </section>
-          </div>
-        </div>
-        <footer class="batch-special-image-footer">
-          <button class="btn" id="cancelBatchSpecialImageModal" type="button">关闭</button>
-          <button class="btn primary" id="confirmBatchSpecialImageModal" type="button">确定</button>
-        </footer>
-      </section>
-    </div>

@@ -1,66 +1,66 @@
 <section class="backend-category-page" id="backendCategoryPage" hidden aria-label="同城后台类目">
-  <header class="backend-category-toolbar">
-    <button class="btn primary backend-category-toolbar-primary" type="button" aria-current="page">关联平台类目</button>
-    <button class="btn backend-category-export" id="backendCategoryExportButton" type="button">导出关联平台类目</button>
-  </header>
+          <header class="backend-category-toolbar">
+            <button class="btn primary backend-category-toolbar-primary" type="button" aria-current="page">关联平台类目</button>
+            <button class="btn backend-category-export" id="backendCategoryExportButton" type="button">导出关联平台类目</button>
+          </header>
 
-  <div class="backend-category-workbench">
-    <aside class="backend-category-sidebar" aria-label="后台类目树">
-      <label class="backend-category-search" for="backendCategorySearch">
-        <span aria-hidden="true"></span>
-        <input id="backendCategorySearch" type="search" placeholder="输入类目名称筛选" autocomplete="off" />
-      </label>
-      <div class="backend-category-tree" id="backendCategoryTree" role="tree" aria-label="后台类目"></div>
-      <div class="backend-category-empty" id="backendCategoryEmpty" hidden>未找到匹配的类目</div>
-    </aside>
+          <div class="backend-category-workbench">
+            <aside class="backend-category-sidebar" aria-label="后台类目树">
+              <label class="backend-category-search" for="backendCategorySearch">
+                <span aria-hidden="true"></span>
+                <input id="backendCategorySearch" type="search" placeholder="输入类目名称筛选" autocomplete="off" />
+              </label>
+              <div class="backend-category-tree" id="backendCategoryTree" role="tree" aria-label="后台类目"></div>
+              <div class="backend-category-empty" id="backendCategoryEmpty" hidden>未找到匹配的类目</div>
+            </aside>
 
-    <section class="backend-category-detail">
-      <div class="backend-category-summary" aria-live="polite">
-        <div><span>类目编码：</span><strong id="backendCategoryCode">21</strong></div>
-        <div><span>类目名称：</span><strong id="backendCategoryName">纺织部</strong></div>
-      </div>
+            <section class="backend-category-detail">
+              <div class="backend-category-summary" aria-live="polite">
+                <div><span>类目编码：</span><strong id="backendCategoryCode">21</strong></div>
+                <div><span>类目名称：</span><strong id="backendCategoryName">纺织部</strong></div>
+              </div>
 
-      <form class="backend-category-form" id="backendCategoryForm">
-        <label class="backend-category-field">
-          <span>京东到家：</span>
-          <select data-backend-platform="京东到家" aria-label="京东到家关联类目">
-            <option value="">请选择</option>
-            <option>肉禽蛋品 / 水产制品</option>
-            <option>熟食卤味 / 水产熟食</option>
-            <option>海鲜水产 / 水产加工品</option>
-          </select>
-        </label>
-        <label class="backend-category-field">
-          <span>美团外卖：</span>
-          <select data-backend-platform="美团外卖" aria-label="美团外卖关联类目">
-            <option value="">请选择</option>
-            <option>食品生鲜 / 水产制品</option>
-            <option>熟食卤味 / 肉食水产</option>
-            <option>海鲜水产 / 加工水产</option>
-          </select>
-        </label>
-        <label class="backend-category-field">
-          <span>饿百：</span>
-          <select data-backend-platform="饿百" aria-label="饿百关联类目">
-            <option value="">请选择</option>
-            <option>生鲜食品 / 水产制品</option>
-            <option>熟食卤味 / 水产熟食</option>
-            <option>海鲜水产 / 水产加工品</option>
-          </select>
-        </label>
-        <label class="backend-category-field">
-          <span>抖店：</span>
-          <select data-backend-platform="抖店" aria-label="抖店关联类目">
-            <option value="">请选择</option>
-            <option>食品饮料 / 水产加工品</option>
-            <option>生鲜 / 海鲜水产</option>
-            <option>熟食 / 水产熟食</option>
-          </select>
-        </label>
-        <div class="backend-category-form-actions">
-          <button class="btn primary" type="submit">保存</button>
-        </div>
-      </form>
-    </section>
-  </div>
-</section>
+              <form class="backend-category-form" id="backendCategoryForm">
+                <label class="backend-category-field">
+                  <span>京东到家：</span>
+                  <select data-backend-platform="京东到家" aria-label="京东到家关联类目">
+                    <option value="">请选择</option>
+                    <option>肉禽蛋品 / 水产制品</option>
+                    <option>熟食卤味 / 水产熟食</option>
+                    <option>海鲜水产 / 水产加工品</option>
+                  </select>
+                </label>
+                <label class="backend-category-field">
+                  <span>美团外卖：</span>
+                  <select data-backend-platform="美团外卖" aria-label="美团外卖关联类目">
+                    <option value="">请选择</option>
+                    <option>食品生鲜 / 水产制品</option>
+                    <option>熟食卤味 / 肉食水产</option>
+                    <option>海鲜水产 / 加工水产</option>
+                  </select>
+                </label>
+                <label class="backend-category-field">
+                  <span>饿百：</span>
+                  <select data-backend-platform="饿百" aria-label="饿百关联类目">
+                    <option value="">请选择</option>
+                    <option>生鲜食品 / 水产制品</option>
+                    <option>熟食卤味 / 水产熟食</option>
+                    <option>海鲜水产 / 水产加工品</option>
+                  </select>
+                </label>
+                <label class="backend-category-field">
+                  <span>抖店：</span>
+                  <select data-backend-platform="抖店" aria-label="抖店关联类目">
+                    <option value="">请选择</option>
+                    <option>食品饮料 / 水产加工品</option>
+                    <option>生鲜 / 海鲜水产</option>
+                    <option>熟食 / 水产熟食</option>
+                  </select>
+                </label>
+                <div class="backend-category-form-actions">
+                  <button class="btn primary" type="submit">保存</button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </section>

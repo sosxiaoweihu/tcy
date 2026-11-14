@@ -1,10 +1,10 @@
 <section class="store-product-page" id="storeProductPage" hidden aria-label="同城门店商品">
-  <div class="store-product-mode"><span>切换业态：</span><label><input type="radio" checked /> 卖场</label></div>
-  <section class="store-product-filter">
-    <label><span>门店名称：</span><button class="store-product-select" type="button">1001_1001_联家恒通店 <i>×</i><em>⌄</em></button></label>
-    <label><span>商品编码：</span><input id="storeProductCode" placeholder="精准查询" /></label>
-    <label><span>商品名称：</span><input id="storeProductName" placeholder="模糊匹配查询" /></label>
-    <div class="store-product-filter-actions"><button class="btn outline" id="storeProductReset" type="button">重置</button><button class="btn primary" id="storeProductQuery" type="button">查询</button><button class="store-product-expand" type="button" aria-label="展开筛选" aria-expanded="false">⌄</button></div>
+          <div class="store-product-mode"><span>切换业态：</span><label><input type="radio" checked /> 卖场</label></div>
+          <section class="store-product-filter">
+            <label><span>门店名称：</span><button class="store-product-select" type="button">1001_1001_联家恒通店 <i>×</i><em>⌄</em></button></label>
+            <label><span>商品编码：</span><input id="storeProductCode" placeholder="精准查询" /></label>
+            <label><span>商品名称：</span><input id="storeProductName" placeholder="模糊匹配查询" /></label>
+            <div class="store-product-filter-actions"><button class="btn outline" id="storeProductReset" type="button">重置</button><button class="btn primary" id="storeProductQuery" type="button">查询</button><button class="store-product-expand" type="button" aria-label="展开筛选" aria-expanded="false">⌄</button></div>
             <label class="store-product-filter-extra" hidden><span>商品条码：</span><input data-store-filter="barcode" placeholder="精准查询" /></label>
             <label class="store-product-filter-extra" hidden><span>前台类目：</span><select data-store-filter="front"><option value="">请选择</option><option>苹果蕉梨</option><option>水果礼盒</option><option>花蛤鲍鱼</option><option>葡提莓果</option><option>番茄瓜果</option></select></label>
             <label class="store-product-filter-extra" hidden><span>后台类目：</span><select data-store-filter="back"><option value="">请选择</option><option>瓜果</option><option>联营礼盒/果篮</option><option>鲜活贝品</option><option>浆果</option><option>联营精品蔬菜</option></select></label>
@@ -20,26 +20,26 @@
             <label class="store-product-filter-extra" hidden><span>是否预售：</span><select data-store-filter="presale"><option value="">请选择</option><option>是</option><option>否</option></select></label>
             <label class="store-product-filter-extra" hidden><span>是否力荐：</span><select data-store-filter="recommended"><option value="">请选择</option><option>是</option><option>否</option></select></label>
             <label class="store-product-filter-extra" hidden><span>下架原因：</span><select data-store-filter="reason"><option value="">请选择</option><option>手动下架</option><option>库存不足</option><option>临时下架</option></select></label>
-  </section>
-  <section class="store-product-content">
-    <nav class="store-product-tabs" id="storeProductTabs" aria-label="商品类型"></nav>
-    <div class="store-product-toolbar">
-      <div><button class="btn outline" data-store-batch="up" type="button">↓ 全渠道上架</button><button class="btn outline" data-store-batch="down" type="button">↑ 全渠道下架</button></div>
-      <div><button class="btn outline" type="button" data-store-more>更多操作</button><button class="btn outline" type="button" data-store-create-batch>批量创建门店商品</button><button class="btn primary" type="button" data-store-create>＋ 创建商品</button></div>
-    </div>
-    <div class="store-product-table-wrap">
-      <table class="store-product-table">
-        <thead><tr><th><input id="storeProductSelectAll" type="checkbox" /></th><th>商品信息</th><th>门店信息</th><th>前台类目</th><th>后台类目</th><th>线上/线下状态</th><th>渠道状态</th><th>线上库存 <i class="store-help">i</i></th><th>线下门店价格</th><th>渠道售价</th><th>渠道加价率</th><th>接收线下状态同步 <i class="store-help">i</i></th><th>操作</th></tr></thead>
-        <tbody id="storeProductTableBody"></tbody>
-      </table>
-      <div class="store-product-empty" id="storeProductEmpty" hidden>暂无符合条件的商品</div>
-    </div>
-    <footer class="store-product-pagination"><span id="storeProductTotal">共 8738 条</span><select><option>10条/页</option><option>20条/页</option></select><div id="storeProductPages"></div><label>前往 <input value="1" inputmode="numeric" /> 页</label></footer>
-  </section>
-  <dialog class="store-price-sync-dialog" id="storePriceSyncDialog" aria-labelledby="storePriceSyncTitle">
+          </section>
+          <section class="store-product-content">
+            <nav class="store-product-tabs" id="storeProductTabs" aria-label="商品类型"></nav>
+            <div class="store-product-toolbar">
+              <div><button class="btn outline" data-store-batch="up" type="button">↓ 全渠道上架</button><button class="btn outline" data-store-batch="down" type="button">↑ 全渠道下架</button></div>
+              <div><button class="btn outline" type="button" data-store-more>更多操作</button><button class="btn outline" type="button" data-store-create-batch>批量创建门店商品</button><button class="btn primary" type="button" data-store-create>＋ 创建商品</button></div>
+            </div>
+            <div class="store-product-table-wrap">
+              <table class="store-product-table">
+                <thead><tr><th><input id="storeProductSelectAll" type="checkbox" aria-label="全选商品" /></th><th>商品信息</th><th>门店信息</th><th>前台类目</th><th>后台类目</th><th>线上/线下状态</th><th>渠道状态</th><th>线上库存 <i class="store-help">i</i></th><th>线下门店价格</th><th>渠道售价</th><th>渠道加价率</th><th>接收线下状态同步 <i class="store-help">i</i></th><th>操作</th></tr></thead>
+                <tbody id="storeProductTableBody"></tbody>
+              </table>
+              <div class="store-product-empty" id="storeProductEmpty" hidden>暂无符合条件的商品</div>
+            </div>
+            <footer class="store-product-pagination"><span id="storeProductTotal">共 8738 条</span><select aria-label="每页条数"><option>10条/页</option><option>20条/页</option></select><div id="storeProductPages"></div><label>前往 <input value="1" inputmode="numeric" aria-label="页码" /> 页</label></footer>
+          </section>
+          <dialog class="store-price-sync-dialog" id="storePriceSyncDialog" aria-labelledby="storePriceSyncTitle">
     <header><h2 id="storePriceSyncTitle">价格同步状态设置</h2><button type="button" data-store-sync-close aria-label="关闭详情">×</button></header>
     <table><thead><tr><th>渠道</th><th>价格同步状态</th></tr></thead><tbody></tbody></table>
     <footer><button class="btn outline" type="button" data-store-sync-close>取消</button><button class="btn primary" type="button" data-store-sync-save>保存</button></footer>
   </dialog>
   <div class="store-product-toast" id="storeProductToast" hidden></div>
-</section>
+        </section>

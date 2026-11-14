@@ -4,19 +4,72 @@
   const scroll = page.querySelector('.pm-scroll');
   const overlay = byId('pmOverlay');
   const sheetBody = byId('pmSheetBody');
-  const titles = { date: '日期', store: '门店', channel: '渠道', rank: '榜单' };
-  const defaults = { date: '2026-11-13', store: '全部门店', channel: '全部渠道', rank: 'Top200' };
+  const storeOverlay = byId('pmStoreOverlay');
+  const storeList = byId('pmStoreList');
+  const confirmStore = storeOverlay.querySelector('[data-pm-action="confirm-store"]');
+  const formatButtons = storeOverlay.querySelectorAll('[data-pm-format]');
+  const filterMenu = byId('pmFilterMenu');
+  const filterBackdrop = byId('pmFilterBackdrop');
+  const filterButtons = {
+    period: page.querySelector('[data-pm-filter="period"]'),
+    store: page.querySelector('[data-pm-filter="store"]'),
+    channel: page.querySelector('[data-pm-filter="channel"]')
+  };
+  const filterLabels = { period: '日期', store: '门店', channel: '渠道' };
+  const periodLabels = { yesterday: '昨日', week: '近七天' };
+  const defaults = { period: 'yesterday', store: '经开万达店', channel: '全部渠道' };
+  const rank = 'Top200';
   const labels = { new: '新下架', restored: '恢复上架', off: '持续下架' };
+  const legacyChannels = { 美团: '美团外卖', 饿了么: '淘宝闪购', 抖音小时达: '抖店', 京东: '京东秒送' };
   const products = [
-    { id: 'cola', name: '可乐 500ml', store: '经开万达店', channel: '美团', sales: 12, hours: 26, status: 'off' },
-    { id: 'sprite', name: '雪碧 500ml', store: '经开万达店', channel: '京东秒送', sales: 8, hours: 2, status: 'new' },
-    { id: 'orange', name: '橙汁 1L', store: '仙林店', channel: '美团', sales: 5, status: 'restored' },
-    { id: 'tea', name: '冰红茶 500ml', store: '新街口店', channel: '抖音小时达', sales: 9, hours: 18, status: 'off' }
+    { id: 'cola', name: '可乐 500ml 经典原味碳酸饮料夏日畅饮分享装', code: '10010001', store: '经开万达店', channel: '美团外卖', sales: 12, hours: 26, status: 'off' },
+    { id: 'sprite', name: '雪碧 500ml 冰爽柠檬味碳酸饮料家庭分享装', code: '10010002', store: '经开万达店', channel: '京东秒送', sales: 8, hours: 2, status: 'new' },
+    { id: 'orange', name: '橙汁 1L', code: '10010003', store: '仙林店', channel: '美团外卖', sales: 5, status: 'restored' },
+    { id: 'tea', name: '冰红茶 500ml 冰爽柠檬风味红茶饮料夏日分享装', code: '10010004', store: '新街口店', channel: '抖店', sales: 9, hours: 18, status: 'off' }
   ];
+  const storesByFormat = {
+    大卖场: [
+      defaults.store,
+      '家得福黄浦银都城店', '家得福解放中路店', '家得福灌云九龙港店',
+      '家得福东海锦程佳园店', '家得福海昌北路店', '家得福云鼎家园店',
+      '家得福中央华府店', '家得福新孔店', '家得福嘉泰店', '家得福融盛店',
+      '家得福东海瓯龙店', '家得福新海花园店', '仙林店', '新街口店'
+    ],
+    恺源: []
+  };
+  const sampleChannels = ['美团外卖', '淘宝闪购', '抖店', '京东秒送'];
+  const sampleStatuses = ['off', 'new', 'restored'];
+  const sampleProducts = products.slice();
+  // 为每个可选门店补齐演示明细，保留原有商品图和已有明细。
+  storesByFormat.大卖场.forEach((store, storeIndex) => {
+    const existing = sampleProducts.filter(product => product.store === store);
+    const combinations = sampleProducts.flatMap(product => sampleChannels.map(channel => ({ product, channel })));
+    const missing = combinations.filter(({ product, channel }) =>
+      !existing.some(row => row.name === product.name && row.channel === channel)
+    );
+    missing.forEach(({ product, channel }, index) => {
+      const status = sampleStatuses[(index + storeIndex) % sampleStatuses.length];
+      products.push({
+        id: `sample-${storeIndex}-${index}`,
+        image: product.id,
+        name: product.name,
+        code: product.code,
+        store,
+        channel,
+        sales: 3 + (storeIndex * 5 + index * 7) % 24,
+        hours: status === 'restored' ? 0 : 2 + (storeIndex + index * 3) % 28 + (index % 4) / 4,
+        status
+      });
+    });
+  });
+
+  const pageSize = 10;
+  const overviewList = { rows: byId('pmRows'), count: byId('pmRowsCount'), limit: pageSize };
+  const detailList = { rows: byId('pmAllRows'), count: byId('pmSampleCount'), limit: pageSize };
   const options = {
-    store: [defaults.store, ...new Set(products.map(product => product.store))],
-    channel: [defaults.channel, ...new Set(products.map(product => product.channel))],
-    rank: [defaults.rank]
+    period: Object.keys(periodLabels),
+    store: Object.values(storesByFormat).flat(),
+    channel: [defaults.channel, ...sampleChannels]
   };
   const icons = {
     chart: '<path d="M5 18v-5m7 5V6m7 12v-8" stroke-width="3.5"/>',
@@ -36,12 +89,15 @@
   let showAll = false;
   let previousScroll = 0;
   let returnFocus;
+  let activeFilter;
+  let draftStore;
 
   function matchingProducts() {
-    if (filters.date !== defaults.date || filters.rank !== defaults.rank) return [];
+    // 现有原型只有一个监控快照，昨日和近七天均包含该快照。
+    const channel = filters.channel;
     return products.filter(product =>
-      (filters.store === defaults.store || product.store === filters.store) &&
-      (filters.channel === defaults.channel || product.channel === filters.channel)
+      product.store === filters.store &&
+      (channel === defaults.channel || product.channel === channel)
     );
   }
 
@@ -49,21 +105,23 @@
     return detailStatus ? rows.filter(product => product.status === detailStatus) : rows;
   }
 
-  function downloadDetails() {
+  const formatHours = hours => hours.toFixed(2) + 'h';
+
+  function downloadDetails({ sku = false } = {}) {
     const matching = matchingProducts();
-    const rows = showAll ? detailProducts(matching) : matching;
+    const rows = !sku && showAll ? detailProducts(matching) : matching;
     if (!rows.length) {
       showToast('暂无可下载的商品明细');
       return;
     }
 
-    const fields = ['商品名称', '门店', '渠道', '今日销量', '持续时长', '状态'];
+    const fields = ['商品名称', '商品编码', '渠道', '销量', '下架时长', '状态'];
     const values = rows.map(product => [
       product.name,
-      product.store,
+      product.code,
       product.channel,
       product.sales,
-      product.hours ? product.hours + 'h' : '',
+      product.hours ? formatHours(product.hours) : '',
       labels[product.status]
     ]);
     const csv = [fields, ...values]
@@ -72,14 +130,14 @@
     const url = URL.createObjectURL(new Blob(['\ufeff', csv], { type: 'text/csv;charset=utf-8' }));
     const link = document.createElement('a');
     link.href = url;
-    link.download = '商品明细_' + filters.date + '_' + filters.rank + '.csv';
+    link.download = (sku ? '监控SKU明细_' : '商品明细_') + periodLabels[filters.period] + '_' + rank + '.csv';
     link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     showToast('已发起下载，共 ' + rows.length + ' 条商品明细');
   }
 
-  function renderRows(target, rows) {
-    target.replaceChildren();
+  function renderRows(target, rows, append = false) {
+    if (!append) target.replaceChildren();
     if (!rows.length) {
       const empty = document.createElement('p');
       empty.className = 'pm-empty';
@@ -92,34 +150,68 @@
       button.type = 'button';
       button.className = 'pm-row';
       button.dataset.pmProduct = product.id;
-      const duration = product.hours ? '<span>持续 ' + product.hours + 'h</span>' : '';
-      button.innerHTML = '<span class="pm-product-image" data-image="' + product.id + '" aria-hidden="true"></span>' +
-        '<span class="pm-row-copy"><strong>' + product.name + '</strong><small>' + product.store + ' ｜ ' + product.channel + '</small></span>' +
-        '<span class="pm-row-sales"><span>今日销量 ' + product.sales + '</span>' + duration + '</span>' +
+      const duration = product.hours ? '<span>下架时长 ' + formatHours(product.hours) + '</span>' : '';
+      button.innerHTML = '<span class="pm-product-image" data-image="' + (product.image || product.id) + '" aria-hidden="true"></span>' +
+        '<span class="pm-row-copy"><strong data-screenshot-ellipsis title="' + product.name + '">' + product.name + '</strong><small>编码 ' + product.code + ' ｜ <span class="pm-channel-name">' + product.channel + '</span></small></span>' +
+        '<span class="pm-row-sales"><span>销量 ' + product.sales + '</span>' + duration + '</span>' +
         '<span class="pm-badge" data-pm-status="' + product.status + '">' + labels[product.status] + '</span>';
       target.append(button);
     }
   }
 
+  function showRows(list, rows, start = 0) {
+    renderRows(list.rows, rows.slice(start, list.limit), start > 0);
+    list.count.hidden = !rows.length;
+    list.count.textContent = rows.length
+      ? `已显示 ${Math.min(list.limit, rows.length)} / ${rows.length} 条样例`
+      : '';
+  }
+
+  scroll.addEventListener('scroll', () => {
+    const remaining = scroll.scrollHeight - scroll.clientHeight - scroll.scrollTop;
+    if (remaining > 8 || !scroll.clientHeight) return;
+    const list = showAll ? detailList : overviewList;
+    const matching = matchingProducts();
+    const rows = showAll ? detailProducts(matching) : matching;
+    if (list.limit >= rows.length) return;
+    const start = list.limit;
+    list.limit += pageSize;
+    showRows(list, rows, start);
+  }, { passive: true });
+
+  const updatedAt = byId('pmUpdatedAt');
+  const formatUpdateTime = new Intl.DateTimeFormat('zh-CN', {
+    hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+  });
+
+  function updateStatusTime() {
+    const time = formatUpdateTime.format(Date.now() - 15 * 60 * 1000);
+    if (updatedAt.textContent === time) return;
+    updatedAt.dateTime = time;
+    updatedAt.textContent = time;
+  }
+
+  setInterval(() => {
+    if (updatedAt.getClientRects().length) updateStatusTime();
+  }, 1000);
+
   function render() {
-    for (const [key, value] of Object.entries(filters)) {
-      byId('pm' + key[0].toUpperCase() + key.slice(1) + 'Value').textContent = value;
+    for (const [key, trigger] of Object.entries(filterButtons)) {
+      const label = key === 'period' ? periodLabels[filters.period] : filters[key];
+      trigger.querySelector('span').textContent = label;
+      trigger.setAttribute('aria-label', filterLabels[key] + ' ' + label);
     }
-    const defaultView = Object.keys(defaults).every(key => filters[key] === defaults[key]);
-    byId('pmSummaryTitle').textContent = '销售' + filters.rank + '监控（9点）';
-    byId('pmCaptureTime').textContent = filters.date === defaults.date && filters.rank === defaults.rank ? defaults.date + ' 09:00' : '—';
+    const defaultView = filters.store === defaults.store && filters.channel === defaults.channel;
     for (const [id, value] of Object.entries({ pmSkuCount: '200', pmAvailableCount: '181', pmAttendance: '90.5%', pmSales: '¥2,000.00', pmOrders: '35单', pmOffShelfCount: '19条', pmNewCount: '1<small>个</small>', pmRestoredCount: '2<small>个</small>', pmOngoingCount: '18<small>个</small>' })) {
       byId(id).innerHTML = defaultView ? value : '—';
     }
     const rows = matchingProducts();
-    renderRows(byId('pmRows'), rows);
-    const details = detailProducts(rows);
-    renderRows(byId('pmAllRows'), details);
+    showRows(overviewList, rows);
+    showRows(detailList, detailProducts(rows));
     byId('pmOverview').hidden = showAll;
+    updateStatusTime();
     byId('pmAllDetails').hidden = !showAll;
     byId('pmAllTitle').textContent = detailStatus ? labels[detailStatus] + '明细' : '下架明细';
-    byId('pmSampleCount').textContent = details.length ? '当前展示 ' + details.length + ' 条样例' : '';
-    byId('pmSampleCount').hidden = !details.length;
     page.querySelector('[data-pm-action="back"]').setAttribute('aria-label', showAll ? '返回监控总览' : '返回全部工具');
   }
 
@@ -138,63 +230,149 @@
     returnFocus = null;
   }
 
+  function renderStoreOptions(format) {
+    const stores = storesByFormat[format];
+    formatButtons.forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.pmFormat === format));
+    });
+    storeList.replaceChildren();
+    stores.forEach(store => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = store;
+      button.dataset.pmStoreOption = store;
+      button.setAttribute('aria-label', store);
+      button.setAttribute('aria-pressed', String(store === draftStore));
+      storeList.append(button);
+    });
+    if (!stores.length) {
+      const empty = document.createElement('p');
+      empty.className = 'pm-empty';
+      empty.textContent = '该业态暂无可选门店';
+      storeList.append(empty);
+    }
+    confirmStore.disabled = !stores.includes(draftStore);
+    storeList.scrollTop = 0;
+  }
+
+  function openStoreSheet() {
+    dismissFilter(false);
+    draftStore = filters.store;
+    const format = Object.keys(storesByFormat).find(key => storesByFormat[key].includes(draftStore));
+    renderStoreOptions(format);
+    storeOverlay.hidden = false;
+    filterButtons.store.setAttribute('aria-expanded', 'true');
+    storeOverlay.querySelector('header button').focus({ preventScroll: true });
+    storeList.querySelector('[aria-pressed="true"]')?.scrollIntoView({ block: 'nearest' });
+  }
+
+  function dismissStoreSheet(restoreFocus = true) {
+    if (storeOverlay.hidden) return;
+    storeOverlay.hidden = true;
+    filterButtons.store.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) filterButtons.store.focus({ preventScroll: true });
+  }
+
+  function dismissFilter(restoreFocus = true) {
+    if (!activeFilter) return;
+    const trigger = filterButtons[activeFilter];
+    trigger.setAttribute('aria-expanded', 'false');
+    filterMenu.hidden = true;
+    filterBackdrop.hidden = true;
+    activeFilter = null;
+    if (restoreFocus) trigger.focus({ preventScroll: true });
+  }
+
   function applyFilter(key, value) {
     filters[key] = value;
-    dismissSheet();
+    overviewList.limit = detailList.limit = pageSize;
+    dismissFilter();
     render();
     scroll.scrollTop = 0;
   }
 
   function openFilter(key) {
-    openSheet('选择' + titles[key]);
-    if (key === 'date') {
-      const form = document.createElement('form');
-      const input = document.createElement('input');
-      input.type = 'date';
-      input.required = true;
-      input.value = filters.date;
-      input.setAttribute('aria-label', '选择监控日期');
-      const button = document.createElement('button');
-      button.type = 'submit';
-      button.textContent = '确定';
-      form.className = 'pm-date-form';
-      form.append(input, button);
-      form.addEventListener('submit', event => {
-        event.preventDefault();
-        if (input.value) applyFilter(key, input.value);
-      });
-      sheetBody.append(form);
+    if (activeFilter === key) {
+      dismissFilter();
       return;
     }
+    dismissFilter(false);
+    activeFilter = key;
+    filterButtons[key].setAttribute('aria-expanded', 'true');
+    filterMenu.setAttribute('aria-label', '选择' + filterLabels[key]);
+    filterMenu.replaceChildren();
     for (const value of options[key]) {
       const button = document.createElement('button');
       button.type = 'button';
       button.dataset.pmValue = value;
-      button.textContent = value;
+      button.textContent = key === 'period' ? periodLabels[value] : value;
       button.setAttribute('aria-pressed', String(value === filters[key]));
       button.addEventListener('click', () => applyFilter(key, value));
-      sheetBody.append(button);
+      filterMenu.append(button);
     }
+    filterMenu.hidden = false;
+    filterBackdrop.hidden = false;
+    filterMenu.querySelector('[aria-pressed="true"]').focus({ preventScroll: true });
   }
 
   function openDetails(status = null) {
     previousScroll = scroll.scrollTop;
     detailStatus = status;
+    detailList.limit = pageSize;
     showAll = true;
     render();
     scroll.scrollTop = 0;
   }
 
+  let activeMoreTrigger = null;
+
+  function closeMoreMenu(restoreFocus = false) {
+    if (!activeMoreTrigger) return;
+    const trigger = activeMoreTrigger;
+    byId(trigger.getAttribute('aria-controls')).hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    activeMoreTrigger = null;
+    if (restoreFocus) trigger.focus({ preventScroll: true });
+  }
+
+  function toggleMoreMenu(trigger) {
+    const alreadyOpen = activeMoreTrigger === trigger;
+    closeMoreMenu();
+    if (alreadyOpen) return;
+    const menu = byId(trigger.getAttribute('aria-controls'));
+    activeMoreTrigger = trigger;
+    trigger.setAttribute('aria-expanded', 'true');
+    menu.hidden = false;
+    menu.querySelector('button').focus({ preventScroll: true });
+  }
+
+  document.addEventListener('click', event => {
+    if (!activeMoreTrigger || activeMoreTrigger.contains(event.target)) return;
+    const menu = byId(activeMoreTrigger.getAttribute('aria-controls'));
+    if (!menu.contains(event.target)) closeMoreMenu();
+  });
+
   page.addEventListener('click', event => {
     const button = event.target.closest('button');
     if (!button) return;
-    if (button.dataset.pmFilter) openFilter(button.dataset.pmFilter);
+    if (button.hasAttribute('data-pm-more')) toggleMoreMenu(button);
+    const filter = button.dataset.pmFilter;
+    if (filter === 'store') openStoreSheet();
+    else if (filter) openFilter(filter);
+    if (button.dataset.pmFormat) renderStoreOptions(button.dataset.pmFormat);
+    if (button.dataset.pmStoreOption) {
+      draftStore = button.dataset.pmStoreOption;
+      storeList.querySelector('[aria-pressed="true"]')?.setAttribute('aria-pressed', 'false');
+      button.setAttribute('aria-pressed', 'true');
+      confirmStore.disabled = false;
+    }
+    if (button === filterBackdrop) dismissFilter();
     if (button.dataset.pmStatus) openDetails(button.dataset.pmStatus);
     if (button.dataset.pmProduct) {
       const product = products.find(item => item.id === button.dataset.pmProduct);
       openSheet(product.name);
-      const fields = [['门店', product.store], ['渠道', product.channel], ['今日销量', product.sales], ['状态', labels[product.status]]];
-      if (product.hours) fields.push(['持续时长', product.hours + 'h']);
+      const fields = [['商品编码', product.code], ['渠道', product.channel], ['销量', product.sales], ['状态', labels[product.status]]];
+      if (product.hours) fields.push(['下架时长', formatHours(product.hours)]);
       const details = document.createElement('dl');
       for (const [label, value] of fields) {
         const term = document.createElement('dt');
@@ -207,6 +385,7 @@
     }
     switch (button.dataset.pmAction) {
       case 'back':
+        dismissFilter(false);
         if (showAll) {
           showAll = false;
           render();
@@ -216,19 +395,30 @@
           setRetailUnionAppOpen(true);
         }
         break;
+      case 'cancel-store':
+        dismissStoreSheet();
+        break;
+      case 'confirm-store':
+        dismissStoreSheet();
+        applyFilter('store', draftStore);
+        break;
+      case 'download-sku':
+        closeMoreMenu(true);
+        downloadDetails({ sku: true });
+        break;
       case 'download':
+        closeMoreMenu(true);
         downloadDetails();
         break;
       case 'details':
         openDetails();
         break;
-      case 'help': {
-        openSheet('监控说明');
-        const help = document.createElement('p');
-        help.textContent = '查看销售榜单在 9 点的监控结果，包括出勤率、销售金额和商品状态变化。当前展示截图中的监控及明细样例。';
-        sheetBody.append(help);
+      case 'help':
+        dismissFilter(false);
+        openSheet('统计规则说明');
+        sheetBody.replaceChildren(byId('pmRulesTemplate').content.cloneNode(true));
+        sheetBody.scrollTop = 0;
         break;
-      }
       case 'dismiss':
         dismissSheet();
         break;
@@ -236,13 +426,25 @@
   });
 
   page.addEventListener('keydown', event => {
-    if (overlay.hidden) return;
+    if (activeMoreTrigger && event.key === 'Escape') {
+      event.preventDefault();
+      closeMoreMenu(true);
+      return;
+    }
+    if (activeFilter && event.key === 'Escape') {
+      event.preventDefault();
+      dismissFilter();
+      return;
+    }
+    const activeOverlay = storeOverlay.hidden ? overlay : storeOverlay;
+    if (activeOverlay.hidden) return;
     if (event.key === 'Escape') {
       event.preventDefault();
-      dismissSheet();
+      if (activeOverlay === storeOverlay) dismissStoreSheet();
+      else dismissSheet();
     }
     if (event.key === 'Tab') {
-      const items = [...overlay.querySelectorAll('.pm-sheet button, .pm-sheet input')];
+      const items = [...activeOverlay.querySelectorAll('.pm-sheet button:not(:disabled), .pm-rules[tabindex]')];
       const edge = event.shiftKey ? items[0] : items.at(-1);
       if (document.activeElement === edge) {
         event.preventDefault();
@@ -316,23 +518,34 @@
   page.appSession = {
     open() {
       filters = { ...defaults };
+      overviewList.limit = detailList.limit = pageSize;
       detailStatus = null;
       showAll = false;
       previousScroll = 0;
+      dismissFilter(false);
       dismissSheet(false);
+      dismissStoreSheet(false);
+      closeMoreMenu();
       page.hidden = false;
       render();
       scroll.scrollTop = 0;
     },
     capture() {
-      return { filters: { ...filters }, showAll, detailStatus, scroll: scroll.scrollTop, previousScroll };
+      return {
+        filters: { ...filters }, showAll, detailStatus, scroll: scroll.scrollTop, previousScroll,
+        overviewLimit: overviewList.limit, detailLimit: detailList.limit
+      };
     },
     restore(state) {
       const saved = state.filters || {};
-      for (const key of ['store', 'channel', 'rank']) {
+      const maximum = Math.ceil(products.length / pageSize) * pageSize;
+      overviewList.limit = Math.min(maximum, Math.max(pageSize, Number(state.overviewLimit) || pageSize));
+      detailList.limit = Math.min(maximum, Math.max(pageSize, Number(state.detailLimit) || pageSize));
+      for (const key of ['store', 'channel']) {
         if (options[key].includes(saved[key])) filters[key] = saved[key];
       }
-      if (/^\d{4}-\d{2}-\d{2}$/.test(saved.date)) filters.date = saved.date;
+      if (Object.hasOwn(legacyChannels, saved.channel)) filters.channel = legacyChannels[saved.channel];
+      if (Object.hasOwn(periodLabels, saved.period)) filters.period = saved.period;
       showAll = state.showAll === true;
       detailStatus = Object.hasOwn(labels, state.detailStatus) ? state.detailStatus : null;
       previousScroll = Number.isFinite(state.previousScroll) ? Math.max(0, state.previousScroll) : 0;
