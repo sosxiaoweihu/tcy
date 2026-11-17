@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>同城商品管理 Design System v0.1</title>
     <link rel="stylesheet" href="./styles/tokens.css" />
-    <link rel="stylesheet" href="./styles.css?v=20261114-monitor-rules-white" />
+    <link rel="stylesheet" href="./styles.css?v=20261117-monitor-rank-dropdown" />
   </head>
   <body>
     <div class="app-shell">
@@ -427,21 +427,30 @@
       <section class="pm-card pm-summary" aria-labelledby="pmSummaryTitle">
         <header>
           <span class="pm-summary-icon" aria-hidden="true" data-pm-icon="chart"></span>
-          <h2 id="pmSummaryTitle">销售top商品监控</h2>
+          <h2 id="pmSummaryTitle">Top销售商品监控</h2>
+          <div class="pm-rank-dropdown">
+            <button id="pmRankTrigger" class="pm-rank-trigger" type="button" data-pm-more aria-expanded="false" aria-controls="pmRankOptions" aria-label="销售榜单范围：Top200">
+              <span>Top200</span><i aria-hidden="true"></i>
+            </button>
+            <div id="pmRankOptions" class="pm-more-actions pm-rank-options" role="group" aria-label="销售榜单选项" hidden>
+              <button type="button" data-pm-rank="Top200" aria-pressed="true">Top200</button>
+              <button type="button" data-pm-rank="Top500" aria-pressed="false">Top500</button>
+            </div>
+          </div>
         </header>
         <div class="pm-metrics">
           <div class="pm-sku-metric">
-            <i data-pm-icon="tag" aria-hidden="true"></i><span>监控SKU数<strong id="pmSkuCount">200</strong></span>
-            <button type="button" class="pm-more-trigger pm-sku-more" data-pm-more id="pmSkuMore" aria-label="监控SKU更多操作" aria-expanded="false" aria-controls="pmSkuActions"><span aria-hidden="true">⋯</span></button>
+            <i data-pm-icon="tag" aria-hidden="true"></i><span>门店SKU数<strong id="pmSkuCount">150</strong></span>
+            <button type="button" class="pm-more-trigger pm-sku-more" data-pm-more id="pmSkuMore" aria-label="门店SKU更多操作" aria-expanded="false" aria-controls="pmSkuActions"><span aria-hidden="true">⋯</span></button>
             <div class="pm-more-actions" id="pmSkuActions" hidden>
               <button type="button" data-pm-action="download-sku">下载</button>
             </div>
           </div>
-          <div><i data-pm-icon="bag" aria-hidden="true"></i><span>渠道在售数<strong id="pmAvailableCount">181</strong></span></div>
+          <div><i data-pm-icon="bag" aria-hidden="true"></i><span>渠道在售数<strong id="pmAvailableCount">350</strong></span></div>
           <div><i data-pm-icon="pulse" aria-hidden="true"></i><span>出勤率<strong id="pmAttendance" class="pm-emphasis">90.5%</strong></span></div>
           <div><i data-pm-icon="coins" aria-hidden="true"></i><span>销售金额<strong id="pmSales" class="pm-emphasis">¥2,000.00</strong></span></div>
           <div><i data-pm-icon="order" aria-hidden="true"></i><span>订单数<strong id="pmOrders">35单</strong></span></div>
-          <button type="button" data-pm-action="details"><i data-pm-icon="box" aria-hidden="true"></i><span>渠道下架数<strong id="pmOffShelfCount" class="pm-emphasis">19条</strong></span></button>
+          <button type="button" data-pm-action="details"><i data-pm-icon="box" aria-hidden="true"></i><span>渠道下架数<strong id="pmOffShelfCount" class="pm-emphasis">50条</strong></span></button>
         </div>
       </section>
 
@@ -524,7 +533,7 @@
       <section>
         <h3>商品销售监控</h3>
         <dl>
-          <div><dt>监控SKU数：</dt><dd>所选周期内销售金额排名 Top N 的商品数。</dd></div>
+          <div><dt>门店SKU数：</dt><dd>当前门店的 SKU 总数，不随 Top 榜单范围变化。</dd></div>
           <div><dt>在售 / 下架数：</dt><dd>按昨日最终渠道状态统计。</dd></div>
           <div><dt>出勤率：</dt><dd>取出勤率报表数据。</dd></div>
           <div><dt>销售金额 / 订单数：</dt><dd>取销售报表对应周期数据。</dd></div>
@@ -2014,7 +2023,7 @@
       </section>
       <section id="cccCategories" class="cc-create-section">
         <h3>类目信息</h3>
-        <div class="cc-create-grid">
+        <div class="cc-create-rows">
           <div class="cc-create-field cc-create-front-field">
             <label class="ccc-required" for="cccChooseFront">前台类目：</label>
             <div class="cc-create-front-control">
@@ -5016,9 +5025,9 @@
     <script src="./js/PC页面/同城报表/同城缺勤报表2.js?v=20261110-3"></script>
     <script src="./js/PC页面/同城报表/同城销售总览.js?v=20261110-1"></script>
     <script src="./js/PC页面/同城商品管理/同城商品.js?v=20261112-9"></script>
-    <script src="./js/PC页面/同城商品管理/同城商品创建.js?v=20261113-dou-ocr-copy"></script>
+    <script src="./js/PC页面/同城商品管理/同城商品创建.js?v=20261114-dou-title"></script>
     <script src="./js/核心/页面会话恢复.js?v=20261106-5"></script>
-    <script src="./js/同城App/功能应用/同城商品监控.js?v=20261114-monitor-rules"></script>
+    <script src="./js/同城App/功能应用/同城商品监控.js?v=20261117-monitor-rank-dropdown"></script>
     <script src="./js/同城App/同城App页签.js?v=20261113-product-monitor"></script>
   </body>
 </html>

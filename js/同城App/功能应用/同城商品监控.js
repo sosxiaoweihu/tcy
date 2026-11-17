@@ -17,8 +17,13 @@
   };
   const filterLabels = { period: '日期', store: '门店', channel: '渠道' };
   const periodLabels = { yesterday: '昨日', week: '近七天' };
-  const defaults = { period: 'yesterday', store: '经开万达店', channel: '全部渠道' };
-  const rank = 'Top200';
+  const defaults = { period: 'yesterday', store: '经开万达店', channel: '全部渠道', rank: 'Top200' };
+  const rankTrigger = byId('pmRankTrigger');
+  const rankButtons = page.querySelectorAll('[data-pm-rank]');
+  const summaries = {
+    Top200: { pmAvailableCount: '350', pmAttendance: '90.5%', pmSales: '¥2,000.00', pmOrders: '35单', pmOffShelfCount: '50条', pmNewCount: '1<small>个</small>', pmRestoredCount: '2<small>个</small>', pmOngoingCount: '18<small>个</small>' },
+    Top500: { pmAvailableCount: '350', pmAttendance: '90.0%', pmSales: '¥4,860.00', pmOrders: '82单', pmOffShelfCount: '50条', pmNewCount: '8<small>个</small>', pmRestoredCount: '5<small>个</small>', pmOngoingCount: '42<small>个</small>' }
+  };
   const labels = { new: '新下架', restored: '恢复上架', off: '持续下架' };
   const legacyChannels = { 美团: '美团外卖', 饿了么: '淘宝闪购', 抖音小时达: '抖店', 京东: '京东秒送' };
   const products = [
@@ -63,6 +68,25 @@
     });
   });
 
+  // 榜单扩大时加入排名 201–500 的饮料样例。
+  const additionalProducts = [
+    { name: '无糖可乐 500ml', code: '10010005', image: 'cola' },
+    { name: '原味冰红茶 500ml', code: '10010006', image: 'tea' }
+  ];
+  storesByFormat.大卖场.forEach((store, storeIndex) => {
+    additionalProducts.forEach((sample, index) => {
+      sampleChannels.forEach((channel, channelIndex) => {
+        const status = sampleStatuses[(channelIndex + index + storeIndex) % sampleStatuses.length];
+        products.push({
+          ...sample, id: `top500-${storeIndex}-${index}-${channelIndex}`,
+          top500Only: true, store, channel, status,
+          sales: 2 + (storeIndex + index + channelIndex) % 8,
+          hours: status === 'restored' ? 0 : 3.5 + channelIndex
+        });
+      });
+    });
+  });
+
   const pageSize = 10;
   const overviewList = { rows: byId('pmRows'), count: byId('pmRowsCount'), limit: pageSize };
   const detailList = { rows: byId('pmAllRows'), count: byId('pmSampleCount'), limit: pageSize };
@@ -92,12 +116,15 @@
   let activeFilter;
   let draftStore;
 
+  function storeProducts() {
+    return products.filter(product => product.store === filters.store);
+  }
+
   function matchingProducts() {
     // 现有原型只有一个监控快照，昨日和近七天均包含该快照。
-    const channel = filters.channel;
-    return products.filter(product =>
-      product.store === filters.store &&
-      (channel === defaults.channel || product.channel === channel)
+    return storeProducts().filter(product =>
+      (!product.top500Only || filters.rank === 'Top500') &&
+      (filters.channel === defaults.channel || product.channel === filters.channel)
     );
   }
 
@@ -109,14 +136,17 @@
 
   function downloadDetails({ sku = false } = {}) {
     const matching = matchingProducts();
-    const rows = !sku && showAll ? detailProducts(matching) : matching;
+    // 门店 SKU 按商品编码去重，覆盖当前门店的全部样例。
+    const rows = sku
+      ? [...new Map(storeProducts().map(product => [product.code, product])).values()]
+      : (showAll ? detailProducts(matching) : matching);
     if (!rows.length) {
       showToast('暂无可下载的商品明细');
       return;
     }
 
-    const fields = ['商品名称', '商品编码', '渠道', '销量', '下架时长', '状态'];
-    const values = rows.map(product => [
+    const fields = sku ? ['商品名称', '商品编码'] : ['商品名称', '商品编码', '渠道', '销量', '下架时长', '状态'];
+    const values = rows.map(product => sku ? [product.name, product.code] : [
       product.name,
       product.code,
       product.channel,
@@ -130,7 +160,7 @@
     const url = URL.createObjectURL(new Blob(['\ufeff', csv], { type: 'text/csv;charset=utf-8' }));
     const link = document.createElement('a');
     link.href = url;
-    link.download = (sku ? '监控SKU明细_' : '商品明细_') + periodLabels[filters.period] + '_' + rank + '.csv';
+    link.download = sku ? '门店SKU明细_' + filters.store + '.csv' : '商品明细_' + periodLabels[filters.period] + '_' + filters.rank + '.csv';
     link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     showToast('已发起下载，共 ' + rows.length + ' 条商品明细');
@@ -201,8 +231,15 @@
       trigger.querySelector('span').textContent = label;
       trigger.setAttribute('aria-label', filterLabels[key] + ' ' + label);
     }
-    const defaultView = filters.store === defaults.store && filters.channel === defaults.channel;
-    for (const [id, value] of Object.entries({ pmSkuCount: '200', pmAvailableCount: '181', pmAttendance: '90.5%', pmSales: '¥2,000.00', pmOrders: '35单', pmOffShelfCount: '19条', pmNewCount: '1<small>个</small>', pmRestoredCount: '2<small>个</small>', pmOngoingCount: '18<small>个</small>' })) {
+    rankTrigger.querySelector('span').textContent = filters.rank;
+    rankTrigger.setAttribute('aria-label', '销售榜单范围：' + filters.rank);
+    rankButtons.forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.pmRank === filters.rank));
+    });
+    const defaultStore = filters.store === defaults.store;
+    const defaultView = defaultStore && filters.channel === defaults.channel;
+    byId('pmSkuCount').textContent = defaultStore ? '150' : '—';
+    for (const [id, value] of Object.entries(summaries[filters.rank])) {
       byId(id).innerHTML = defaultView ? value : '—';
     }
     const rows = matchingProducts();
@@ -343,7 +380,8 @@
     activeMoreTrigger = trigger;
     trigger.setAttribute('aria-expanded', 'true');
     menu.hidden = false;
-    menu.querySelector('button').focus({ preventScroll: true });
+    const option = menu.querySelector('[aria-pressed="true"]') || menu.querySelector('button');
+    option.focus({ preventScroll: true });
   }
 
   document.addEventListener('click', event => {
@@ -355,6 +393,11 @@
   page.addEventListener('click', event => {
     const button = event.target.closest('button');
     if (!button) return;
+    if (button.dataset.pmRank) {
+      closeMoreMenu(true);
+      if (button.dataset.pmRank !== filters.rank) applyFilter('rank', button.dataset.pmRank);
+      return;
+    }
     if (button.hasAttribute('data-pm-more')) toggleMoreMenu(button);
     const filter = button.dataset.pmFilter;
     if (filter === 'store') openStoreSheet();
@@ -546,6 +589,7 @@
       }
       if (Object.hasOwn(legacyChannels, saved.channel)) filters.channel = legacyChannels[saved.channel];
       if (Object.hasOwn(periodLabels, saved.period)) filters.period = saved.period;
+      if (Object.hasOwn(summaries, saved.rank)) filters.rank = saved.rank;
       showAll = state.showAll === true;
       detailStatus = Object.hasOwn(labels, state.detailStatus) ? state.detailStatus : null;
       previousScroll = Number.isFinite(state.previousScroll) ? Math.max(0, state.previousScroll) : 0;

@@ -435,7 +435,7 @@ const ccEditor = (() => {
     const attrs = platformAttributes[key];
     return `<section class="cc-create-attribute-channel" aria-label="${key === 'dou' ? '抖店属性' : `${name}类目属性`}">
       <div class="cc-create-attributes-header">
-        <span>${channelBadge(key, name)} <strong>${key === 'dou' ? '抖店 - 类目属性' : name}</strong></span>
+        <span>${channelBadge(key, name)} <strong>${name}</strong></span>
         <div class="cc-create-attributes-header-actions">
           ${key === 'mt' || key === 'ele' ? `<button type="button" class="cc-link" data-ccc-attribute-recommend="${key}">一键推荐属性</button>` : ''}
           <button type="button" class="cc-link" data-ccc-attributes="${key}" aria-controls="cccAttrs-${key}" aria-expanded="${Boolean(attrs)}">${attrs ? '取消填写' : '填写类目属性'}</button>

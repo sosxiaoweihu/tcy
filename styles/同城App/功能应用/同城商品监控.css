@@ -153,6 +153,40 @@
 .pm-card { min-width: 0; padding: 2.6cqw; border: 1px solid #e9eef5; border-radius: 2.5cqw; background: var(--color-bg-card); }
 .pm-summary > header { display: flex; align-items: center; gap: 2cqw; margin-bottom: 2.4cqw; }
 .pm-summary h2 { margin: 0; font-size: 4cqw; font-weight: 600; }
+.pm-rank-dropdown {
+  position: relative;
+  flex: none;
+  margin-inline-start: auto;
+}
+
+.product-monitor-page .pm-rank-trigger {
+  display: flex;
+  align-items: center;
+  gap: 1.6cqw;
+  min-height: 7.6cqw;
+  padding: 0 1.6cqw;
+  border: 1px solid #e9eef5;
+  border-radius: 1.6cqw;
+  background: var(--color-bg-card);
+  color: var(--color-text-secondary);
+  font-size: 3.1cqw;
+}
+
+.pm-rank-trigger i {
+  width: 1.35cqw;
+  height: 1.35cqw;
+  border: solid currentColor;
+  border-width: 0 1px 1px 0;
+  transform: translateY(-.3cqw) rotate(45deg);
+}
+
+.pm-rank-trigger[aria-expanded="true"] i { transform: translateY(.3cqw) rotate(225deg); }
+.pm-rank-dropdown .pm-rank-options { top: calc(100% + .8cqw); right: 0; }
+.product-monitor-page .pm-rank-options button { display: block; width: 100%; color: var(--color-text-secondary); font-size: 3.1cqw; }
+.product-monitor-page .pm-rank-options button:hover,
+.product-monitor-page .pm-rank-options button[aria-pressed="true"] { background: #f5f5f5; color: var(--color-text-primary); }
+.product-monitor-page .pm-rank-dropdown button:focus-visible { outline-color: var(--color-text-secondary); }
+
 .pm-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5cqw; }
 .pm-metrics > div,
 .pm-metrics > button {

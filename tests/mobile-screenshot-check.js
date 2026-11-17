@@ -14,7 +14,29 @@
     const cases=[
       ['全部工具',async()=>{if($('[data-app-tab="home"]'))throw new Error('已移除的 App首页 不应出现');if(!$('#tongchengAppScreen').src.endsWith('/retail-union-tools.png'))throw new Error('首次进入 App 应直接显示全部工具');click('[data-app-tab="tools"]');}],
       ['同城商品监控总览',async()=>{await tool('#openProductMonitor');if(app.getTongchengAppScreenshotTarget().id!=='productMonitorPage'||$('[data-pm-product="cola"]').textContent.indexOf('可乐 500ml')<0)throw new Error('未打开商品监控总览');}],
+      ['同城商品监控榜单下拉',async()=>{
+        click('#pmRankTrigger');
+        if ($('#pmRankOptions').hidden || $('#pmRankTrigger').textContent.trim() !== 'Top200') {
+          throw new Error('榜单下拉未打开或默认值不正确');
+        }
+      }],
+      ['同城商品监控Top500',async()=>{
+        const storeSku = $('#pmSkuCount').textContent;
+        click('[data-pm-rank="Top500"]');
+        if (!$('#pmRankOptions').hidden || $('#pmRankTrigger').textContent.trim() !== 'Top500' ||
+            $('#pmSkuCount').textContent !== storeSku || $('#pmOffShelfCount').textContent !== '50条') {
+          throw new Error('榜单切换或门店 SKU 口径不正确');
+        }
+        const scroller = $('#productMonitorPage .pm-scroll');
+        scroller.scrollTop = scroller.scrollHeight;
+        await settle();
+        if (!$('#pmRows [data-pm-product^="top500-"]')) throw new Error('Top500 明细未补充商品');
+        scroller.scrollTop = 0;
+        await settle();
+      }],
       ['同城商品监控统计规则',async()=>{
+        click('#pmRankTrigger');
+        click('[data-pm-rank="Top200"]');
         click('[data-pm-action="help"]');
         const rules = $('#pmSheetBody .pm-rules');
         if ($('#pmOverlay').hidden || $('#pmSheetTitle').textContent !== '统计规则说明' ||
